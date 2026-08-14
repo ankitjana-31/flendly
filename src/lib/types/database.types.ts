@@ -203,6 +203,14 @@ export type Database = {
         Args: { p_offer_id: string };
         Returns: string;
       };
+      decline_request: {
+        Args: { p_request_id: string };
+        Returns: void;
+      };
+      cancel_request: {
+        Args: { p_request_id: string };
+        Returns: void;
+      };
       get_loan_ledger: {
         Args: { p_loan_id: string };
         Returns: Json;
