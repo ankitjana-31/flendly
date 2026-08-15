@@ -17,6 +17,7 @@ const usernameSchema = z
 
 export type UsernameFormState = {
   error?: string;
+  success?: boolean;
 };
 
 export async function completeUsername(
@@ -47,4 +48,30 @@ export async function completeUsername(
 
   revalidatePath("/", "layout");
   redirect("/dashboard");
+}
+
+export async function updateUsernameAction(
+  _state: UsernameFormState,
+  formData: FormData,
+): Promise<UsernameFormState> {
+  const parsed = usernameSchema.safeParse(formData.get("username"));
+
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? "Invalid username." };
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("update_username", {
+    p_new_username: parsed.data,
+  });
+
+  if (error) {
+    if (error.code === "23505" || error.message.toLowerCase().includes("duplicate")) {
+      return { error: "That username is already taken." };
+    }
+    return { error: error.message };
+  }
+
+  revalidatePath("/", "layout");
+  return { success: true };
 }

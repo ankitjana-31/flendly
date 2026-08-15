@@ -222,6 +222,56 @@ export type Database = {
           full_name: string | null;
         }[];
       };
+      create_request: {
+        Args: {
+          p_receiver_username: string;
+          p_direction: Database["public"]["Enums"]["request_direction"];
+          p_amount: number;
+          p_interest_type: Database["public"]["Enums"]["interest_type"];
+          p_interest_rate: number | null;
+          p_interest_frequency:
+            | Database["public"]["Enums"]["interest_frequency"]
+            | null;
+          p_compounding:
+            | Database["public"]["Enums"]["interest_frequency"]
+            | null;
+          p_deadline: string;
+          p_message?: string | null;
+        };
+        Returns: string;
+      };
+      decline_request: {
+        Args: { p_request_id: string };
+        Returns: void;
+      };
+      cancel_request: {
+        Args: { p_request_id: string };
+        Returns: void;
+      };
+      accept_offer: {
+        Args: { p_offer_id: string };
+        Returns: string;
+      };
+      record_payment: {
+        Args: {
+          p_loan_id: string;
+          p_amount: number;
+          p_payment_date: string;
+          p_note?: string | null;
+        };
+        Returns: string;
+      };
+      get_loan_ledger: {
+        Args: { p_loan_id: string };
+        Returns: {
+          outstanding: string;
+          principal_remaining: string;
+          unpaid_interest: string;
+          is_overdue: boolean;
+          is_partially_paid: boolean;
+          status: Database["public"]["Enums"]["loan_status"];
+        }[];
+      };
     };
     Enums: {
       visibility_level: "everyone" | "participants" | "nobody";
