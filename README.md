@@ -84,6 +84,7 @@ Session refresh and route protection both happen in `proxy.ts` / `src/lib/supaba
 | 0017 | `create_request`, `decline_request`, `cancel_request` |
 | 0018 | Notification trigger for counter-offers |
 | 0019 | `update_profile_details` — the write path for `full_name`/`phone_number` |
+| 0020 | `send_deadline_reminders` — scheduled job for deadline/overdue notifications |
 
 Key design decisions:
 - **`loan_offers` is append-only.** A counter-offer doesn't edit the previous offer; a `BEFORE INSERT` trigger marks the prior active offer `SUPERSEDED` and flips the request to `COUNTERED`. The full negotiation history is preserved.
@@ -137,7 +138,15 @@ Loan created at acceptance (terms frozen)
 
 ## Notifications
 
-Fired directly from the RPC that causes them (not a generic afterthought trigger), so each notification always has full context: `new_request`, `counter_offer`, `offer_accepted`, `offer_declined`, `payment_recorded`, `fully_paid`. (`deadline_reminder`/`overdue` types exist in the schema but have no scheduled job producing them yet — see [Remaining Work](#remaining-work--future-improvements).)
+Fired directly from the RPC that causes them (not a generic afterthought trigger), so each notification always has full context: `new_request`, `counter_offer`, `offer_accepted`, `offer_declined`, `payment_recorded`, `fully_paid`. `deadline_reminder` and `overdue` are emitted by a separate scheduled job, `send_deadline_reminders()` (migration 0020) — see [Deadline Reminders](#deadline-reminders) below.
+
+## Deadline Reminders
+
+`send_deadline_reminders()` scans all `ACTIVE` loans daily and emits:
+- a `deadline_reminder` to both parties when a loan is within 3 days of `due_date`
+- an `overdue` notice to both parties the first time a loan crosses its `due_date` with a balance still outstanding
+
+Both are de-duplicated by checking whether a notification of that type already exists for the loan — so the job is safe to run as often as you like; it's a no-op after the first match. It's revoked from `authenticated` entirely (verified with an adversarial test: a normal logged-in user gets `permission denied` calling it directly) — only reachable via `pg_cron` or the service-role-gated `/api/cron/deadline-reminders` route. See Supabase Setup for wiring up either path.
 
 ## Project Structure
 
@@ -205,6 +214,16 @@ Beyond running the migrations, two pieces of dashboard configuration are require
    - **Site URL:** your production URL (or `http://localhost:3000` while developing)
    - **Redirect URLs:** must explicitly include `http://localhost:3000/auth/callback` (and the production equivalent) — if this app's callback URL isn't in this allow-list, Supabase will refuse the redirect and show its own error page instead of reaching `/auth/callback`.
 
+4. **(Optional) pg_cron for deadline reminders:** Dashboard → Database → Extensions → enable `pg_cron`, then in the SQL editor:
+   ```sql
+   select cron.schedule(
+     'monly-deadline-reminders',
+     '0 3 * * *', -- daily at 03:00 UTC
+     $$ select public.send_deadline_reminders(); $$
+   );
+   ```
+   If your plan doesn't support `pg_cron`, use the `/api/cron/deadline-reminders` route instead (see Deployment below) — it calls the exact same `send_deadline_reminders()` RPC via a service-role client, gated by `CRON_SECRET`.
+
 ## Database Migrations
 
 Apply with the Supabase CLI:
@@ -235,11 +254,11 @@ RLS and RPC authorization were verified manually against a disposable local Post
 2. Import into Vercel, set the three environment variables above (production `NEXT_PUBLIC_SITE_URL`).
 3. In Supabase, run `supabase db push` against your production project (or apply migrations via the SQL editor).
 4. Update Google Cloud Console + Supabase Auth URL Configuration with your production domain (see Supabase Setup above).
-5. Confirm `/auth/login` → Google → `/auth/callback` → `/dashboard` end-to-end on the deployed URL before considering it done — OAuth config mistakes only show up in the real environment, not in `next build`.
+5. **Deadline reminders:** either enable `pg_cron` (see Supabase Setup step 4, preferred — no extra secrets needed), or set `SUPABASE_SERVICE_ROLE_KEY` and `CRON_SECRET` as Vercel environment variables and let `vercel.json`'s cron entry hit `/api/cron/deadline-reminders` daily. Don't do both — one scheduled trigger is enough since the job is idempotent but there's no reason to run it twice.
+6. Confirm `/auth/login` → Google → `/auth/callback` → `/dashboard` end-to-end on the deployed URL before considering it done — OAuth config mistakes only show up in the real environment, not in `next build`.
 
 ## Future Improvements
 
-- **Deadline reminders / overdue notifications.** The `deadline_reminder` and `overdue` notification types exist in the schema but nothing produces them yet — needs a scheduled job (Supabase `pg_cron` calling a small SQL function daily is the natural fit given the existing architecture) plus de-duplication logic so a loan doesn't get reminded every single day.
 - **Avatar upload.** `avatar_url` is currently only ever set from the Google OAuth profile photo at signup; there's no in-app upload/change flow (would need Supabase Storage integration).
-- **Automated RLS/RPC integration tests.** Currently verified manually against a local Postgres; would be worth scripting as a repeatable suite (e.g. `pgTAP` or a small Node harness against a Supabase local dev stack) rather than one-off manual verification.
+- **Automated RLS/RPC integration tests.** Currently verified manually against a local Postgres (adversarial cross-user access, payment authorization, privacy-visibility gating, and deadline-reminder de-duplication were all tested this way); would be worth scripting as a repeatable suite (e.g. `pgTAP` or a small Node harness against a Supabase local dev stack) rather than one-off manual verification.
 - **Regenerate `database.types.ts` from a live project** via `supabase gen types` once CLI access to the real project is available, to eliminate any manual-maintenance drift risk.

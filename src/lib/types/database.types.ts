@@ -276,6 +276,10 @@ export type Database = {
         Args: { p_full_name?: string | null; p_phone_number?: string | null };
         Returns: void;
       };
+      send_deadline_reminders: {
+        Args: Record<string, never>;
+        Returns: { reminders_sent: number; overdue_sent: number }[];
+      };
     };
     Enums: {
       visibility_level: "everyone" | "participants" | "nobody";
