@@ -17,14 +17,11 @@ export function UsernameForm() {
   return (
     <form action={action} className="mt-8 space-y-5">
       <div className="space-y-2">
-        <label
-          htmlFor="username"
-          className="block text-sm font-medium text-zinc-800 dark:text-zinc-100"
-        >
+        <label htmlFor="username" className="block text-sm font-medium">
           Username
         </label>
-        <div className="flex rounded-md border border-zinc-300 bg-white focus-within:border-blue-600 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-blue-600 dark:border-zinc-700 dark:bg-zinc-950">
-          <span className="flex items-center border-r border-zinc-200 px-3 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+        <div className="flex rounded-lg border border-border bg-background focus-within:border-accent">
+          <span className="flex items-center border-r border-border px-3 text-muted-foreground">
             @
           </span>
           <input
@@ -36,17 +33,17 @@ export function UsernameForm() {
             maxLength={20}
             pattern="[a-z0-9_]{3,20}"
             autoComplete="username"
-            className="h-12 min-w-0 flex-1 bg-transparent px-3 text-zinc-950 outline-none placeholder:text-zinc-400 dark:text-zinc-50"
+            className="h-12 min-w-0 flex-1 bg-transparent px-3 text-foreground outline-none placeholder:text-muted-foreground"
             placeholder="ankit"
           />
         </div>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Use lowercase letters, numbers, and underscores.
         </p>
       </div>
 
       {state.error ? (
-        <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-200">
+        <p className="rounded-lg border border-danger/30 bg-danger/5 px-3 py-2 text-sm text-danger">
           {state.error}
         </p>
       ) : null}
@@ -54,9 +51,9 @@ export function UsernameForm() {
       <button
         type="submit"
         disabled={pending}
-        className="flex h-12 w-full items-center justify-center rounded-md bg-zinc-950 px-4 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
+        className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {pending ? "Saving..." : "Start using Monly"}
+        {pending ? "Saving…" : "Start using Monly"}
       </button>
     </form>
   );

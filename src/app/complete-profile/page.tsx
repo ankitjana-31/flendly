@@ -15,18 +15,25 @@ export default async function CompleteProfilePage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-12 text-foreground">
-      <section className="w-full max-w-lg rounded-lg border border-black/10 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[#1A1C23]">
+    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-12">
+      <section className="w-full max-w-lg rounded-2xl border border-border bg-card p-8 shadow-sm">
+        <div className="mb-8 flex items-center gap-2">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-heading text-base font-bold text-primary-foreground">
+            M
+          </div>
+          <span className="font-heading text-lg font-bold tracking-tight">Monly</span>
+        </div>
+
         <div className="space-y-3">
-          <p className="text-sm font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
             Finish setup
           </p>
-          <h1 className="text-3xl font-semibold text-zinc-950 dark:text-zinc-50">
+          <h1 className="font-heading text-2xl font-bold leading-tight sm:text-3xl">
             Choose your Monly username.
           </h1>
-          <p className="text-base leading-7 text-zinc-600 dark:text-zinc-300">
-            This is your public identifier. You can change it once after this
-            first pick.
+          <p className="text-base leading-7 text-muted-foreground">
+            This is your public identifier — it&apos;s how people find you to send
+            or request money. You can change it once after this first pick.
           </p>
         </div>
 
