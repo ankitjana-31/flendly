@@ -272,6 +272,10 @@ export type Database = {
           status: Database["public"]["Enums"]["loan_status"];
         }[];
       };
+      update_profile_details: {
+        Args: { p_full_name?: string | null; p_phone_number?: string | null };
+        Returns: void;
+      };
     };
     Enums: {
       visibility_level: "everyone" | "participants" | "nobody";

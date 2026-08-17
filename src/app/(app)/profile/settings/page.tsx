@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { Card } from "@/components/ui/button";
 import { ChangeUsernameForm } from "@/components/users/change-username-form";
+import { ProfileDetailsForm } from "@/components/users/profile-details-form";
 import { PrivacySettingsForm } from "@/components/users/privacy-settings-form";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { createClient } from "@/lib/supabase/server";
@@ -11,11 +12,16 @@ export default async function ProfileSettingsPage() {
   if (!user) redirect("/auth/login");
 
   const supabase = await createClient();
-  const { data: privacy } = await supabase
-    .from("privacy_settings")
-    .select("avatar_visibility, email_visibility, phone_visibility")
-    .eq("user_id", user.id)
-    .maybeSingle();
+  const [{ data: privacy }, { data: details }] = await Promise.all([
+    supabase
+      .from("privacy_settings")
+      .select("avatar_visibility, email_visibility, phone_visibility")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    supabase.rpc("get_profile_visible", { target_id: user.id }),
+  ]);
+
+  const own = Array.isArray(details) ? details[0] : details;
 
   return (
     <div className="mx-auto flex w-full max-w-lg flex-col gap-6 px-4 py-8 md:px-8">
@@ -27,6 +33,11 @@ export default async function ProfileSettingsPage() {
           currentUsername={profile?.username ?? ""}
           changesUsed={profile?.username_changed_count ?? 0}
         />
+      </Card>
+
+      <Card className="flex flex-col gap-3 p-5">
+        <h2 className="text-sm font-semibold text-muted-foreground">Your details</h2>
+        <ProfileDetailsForm fullName={own?.full_name ?? null} phoneNumber={own?.phone_number ?? null} />
       </Card>
 
       <Card className="flex flex-col gap-4 p-5">

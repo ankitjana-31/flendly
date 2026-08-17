@@ -45,3 +45,40 @@ export async function updatePrivacySettingsAction(
   revalidatePath("/profile/settings");
   return { success: true };
 }
+
+const profileDetailsSchema = z.object({
+  fullName: z.string().trim().max(100).optional(),
+  phoneNumber: z
+    .string()
+    .trim()
+    .regex(/^[0-9+()\-\s]{6,20}$/, "Enter a valid phone number.")
+    .optional()
+    .or(z.literal("")),
+});
+
+export type ProfileDetailsState = { error?: string; success?: boolean };
+
+export async function updateProfileDetailsAction(
+  _prev: ProfileDetailsState,
+  formData: FormData,
+): Promise<ProfileDetailsState> {
+  const parsed = profileDetailsSchema.safeParse({
+    fullName: formData.get("fullName") || undefined,
+    phoneNumber: formData.get("phoneNumber") || undefined,
+  });
+
+  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Invalid details." };
+
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("update_profile_details", {
+    p_full_name: parsed.data.fullName || null,
+    p_phone_number: parsed.data.phoneNumber || null,
+  });
+
+  if (error) return { error: error.message };
+
+  revalidatePath("/profile/settings");
+  revalidatePath("/profile");
+  revalidatePath("/", "layout");
+  return { success: true };
+}
