@@ -39,11 +39,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       />
 
       <section className="relative w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-sm">
-        <div className="mb-8 flex items-center gap-2">
+        <div className="mb-8 flex items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-heading text-base font-bold text-primary-foreground">
-            M
+            F
           </div>
-          <span className="font-heading text-lg font-bold tracking-tight">Monly</span>
+          <span className="font-heading text-xl font-bold tracking-tight">Flendly</span>
         </div>
 
         <div className="space-y-3">

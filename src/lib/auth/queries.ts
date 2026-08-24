@@ -1,7 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 
 export function isPlaceholderUsername(username: string | null | undefined) {
-  return Boolean(username?.match(/^user_[0-9a-f]{8}$/));
+  if (!username) return true;
+  return Boolean(username.match(/^user_[0-9a-f]{8}$/));
 }
 
 export async function getCurrentUserProfile() {

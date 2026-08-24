@@ -21,19 +21,18 @@ export default async function Home() {
         className="pointer-events-none absolute -top-40 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
       />
       <section className="relative w-full max-w-2xl text-center">
-        <div className="mx-auto mb-6 flex h-11 w-11 items-center justify-center rounded-xl bg-primary font-heading text-lg font-bold text-primary-foreground">
-          M
+        <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary font-heading text-xl font-bold text-primary-foreground shadow-sm">
+          F
         </div>
-        <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-          Monly
+        <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+          Flendly
         </p>
         <h1 className="mt-4 font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl">
           Friendly lending, clear records.
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
-          Negotiate terms, track interest correctly, and keep one shared ledger
-          with people you already trust — instead of a mental note or a
-          screenshot.
+          Negotiate terms, track interest accurately, and maintain one shared ledger
+          with people you already trust — instead of mental notes or screenshots.
         </p>
         <div className="mt-8">
           <Link

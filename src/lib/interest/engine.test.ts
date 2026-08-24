@@ -21,8 +21,6 @@ describe("calendarPeriodsElapsed", () => {
   });
 
   it("handles month-end rollover (Jan 31 -> Feb 28)", () => {
-    // Feb has no 31st, so +1 month from Jan 31 lands on Mar 3 in naive JS Date math
-    // (this is intentional/expected calendar-walk behavior, matching the SQL twin).
     const r = calendarPeriodsElapsed("monthly", "2026-01-31", "2026-03-01");
     expect(r.fullPeriods).toBeGreaterThanOrEqual(0);
   });
@@ -55,11 +53,24 @@ describe("accrueSimpleInterest", () => {
   });
 
   it("prorates a partial trailing period", () => {
-    // 1 full month + half of the next (Feb has 28 days in 2026, so partial ~14/28)
     const r = accrueSimpleInterest(10000, 5, "monthly", "2026-01-01", "2026-02-15");
-    // 1 full period (500) + partial period fraction of the 500/period rate
     expect(r.gt(500)).toBe(true);
     expect(r.lt(1000)).toBe(true);
+  });
+
+  it("calculates one-day duration correctly for daily interest", () => {
+    const r = accrueSimpleInterest(1000, 1, "daily", "2026-01-01", "2026-01-02");
+    expect(r.toString()).toBe("10"); // 1000 * 0.01 * 1 = 10
+  });
+
+  it("handles small loan amounts accurately without precision loss", () => {
+    const r = accrueSimpleInterest(100, 2.5, "monthly", "2026-01-01", "2026-02-01");
+    expect(r.toString()).toBe("2.5");
+  });
+
+  it("handles large loan amounts accurately", () => {
+    const r = accrueSimpleInterest(1000000, 12, "yearly", "2026-01-01", "2027-01-01");
+    expect(r.toString()).toBe("120000");
   });
 });
 
@@ -104,14 +115,12 @@ const baseTerms: LoanTerms = {
 describe("computeLedger", () => {
   it("with no payments, outstanding = principal + accrued interest", () => {
     const ledger = computeLedger(baseTerms, [], "2026-09-14");
-    // exactly 1 month elapsed @ 3% = 300 interest
     expect(ledger.principal.toString()).toBe("10000");
     expect(ledger.unpaidInterest.toString()).toBe("300");
     expect(ledger.outstanding.toString()).toBe("10300");
   });
 
   it("allocates a single payment interest-first", () => {
-    // 1 month elapsed -> 300 interest owed; pay 500 -> 300 to interest, 200 to principal
     const ledger = computeLedger(baseTerms, [{ amount: 500, paymentDate: "2026-09-14" }], "2026-09-14");
     const row = ledger.rows[0];
     expect(row.interestPortion.toString()).toBe("300");
@@ -124,8 +133,8 @@ describe("computeLedger", () => {
     const ledger = computeLedger(
       baseTerms,
       [
-        { amount: 400, paymentDate: "2026-08-14" }, // same-day: 0 interest, all principal
-        { amount: 9700, paymentDate: "2026-08-14" }, // pays off remainder same day, overpays by 100
+        { amount: 400, paymentDate: "2026-08-14" },
+        { amount: 9700, paymentDate: "2026-08-14" },
       ],
       "2026-08-14",
     );
@@ -135,16 +144,25 @@ describe("computeLedger", () => {
     expect(ledger.rows[1].overpaidExcess.toString()).toBe("100");
   });
 
+  it("handles payment larger than outstanding balance (overpayment)", () => {
+    const ledger = computeLedger(baseTerms, [{ amount: 12000, paymentDate: "2026-09-14" }], "2026-09-14");
+    const row = ledger.rows[0];
+    expect(row.interestPortion.toString()).toBe("300");
+    expect(row.principalPortion.toString()).toBe("10000");
+    expect(row.overpaidExcess.toString()).toBe("1700");
+    expect(ledger.outstanding.toString()).toBe("0");
+  });
+
   it("freezes accrual at paidOffDate for a closed loan", () => {
     const closedTerms: LoanTerms = { ...baseTerms, paidOffDate: "2026-09-14" };
     const before = computeLedger(closedTerms, [], "2026-09-14");
-    const after = computeLedger(closedTerms, [], "2026-12-14"); // 3 months later, should not accrue further
+    const after = computeLedger(closedTerms, [], "2026-12-14");
     expect(after.unpaidInterest.toString()).toBe(before.unpaidInterest.toString());
   });
 
   it("zero-interest loans never accrue", () => {
     const noInterest: LoanTerms = { ...baseTerms, interestType: "none", interestRate: null, interestFrequency: null };
-    const ledger = computeLedger(noInterest, [], "2027-08-14"); // 1 year later
+    const ledger = computeLedger(noInterest, [], "2027-08-14");
     expect(ledger.unpaidInterest.toString()).toBe("0");
     expect(ledger.outstanding.toString()).toBe("10000");
   });

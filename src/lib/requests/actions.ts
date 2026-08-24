@@ -55,7 +55,8 @@ export async function createRequestAction(
   const terms = parsed.data;
   const supabase = await createClient();
 
-  const { data: requestId, error } = await supabase.rpc("create_request", {
+  let requestId: string | null = null;
+  const { data: rpcResult, error: rpcError } = await supabase.rpc("create_request", {
     p_receiver_username: receiverUsername,
     p_direction: direction,
     p_amount: terms.amount,
@@ -67,7 +68,74 @@ export async function createRequestAction(
     p_message: terms.message ?? null,
   });
 
-  if (error) return { error: error.message };
+  if (!rpcError && rpcResult) {
+    requestId = String(rpcResult);
+  } else if (
+    rpcError &&
+    (rpcError.message.includes("schema cache") ||
+      rpcError.code === "PGRST202" ||
+      rpcError.code === "PGRST205")
+  ) {
+    // Fallback: Direct table operations if RPC is missing in Supabase schema cache
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return { error: "Authentication required." };
+
+    const { data: receiverProfile } = await supabase
+      .from("profiles")
+      .select("id")
+      .or(`username_normalized.eq.${receiverUsername},username.ilike.${receiverUsername}`)
+      .maybeSingle();
+
+    if (!receiverProfile) {
+      return { error: "No user found with that username." };
+    }
+    if (receiverProfile.id === user.id) {
+      return { error: "You cannot send a request to yourself." };
+    }
+
+    const { data: requestRow, error: reqErr } = await supabase
+      .from("loan_requests")
+      .insert({
+        sender_id: user.id,
+        receiver_id: receiverProfile.id,
+        direction,
+      })
+      .select("id")
+      .single();
+
+    if (reqErr || !requestRow) {
+      return { error: reqErr?.message ?? "Failed to create request." };
+    }
+
+    requestId = requestRow.id;
+
+    const { error: offerErr } = await supabase.from("loan_offers").insert({
+      request_id: requestId,
+      created_by: user.id,
+      amount: String(terms.amount),
+      interest_type: terms.interestType,
+      interest_rate: terms.interestType === "none" ? null : String(terms.interestRate),
+      interest_frequency: terms.interestType === "none" ? null : terms.interestFrequency ?? null,
+      compounding: terms.interestType === "compound" ? terms.compounding ?? null : null,
+      deadline: terms.deadline,
+      message: terms.message ?? null,
+    });
+
+    if (offerErr) return { error: offerErr.message };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (supabase.from("notifications") as any).insert({
+      user_id: receiverProfile.id,
+      type: "new_request",
+      payload: { request_id: requestId },
+    });
+  } else if (rpcError) {
+    return { error: rpcError.message };
+  }
+
+  if (!requestId) return { error: "Failed to create request." };
 
   revalidatePath("/requests");
   revalidatePath("/dashboard");
@@ -139,7 +207,14 @@ export async function declineRequestAction(requestId: string) {
   const supabase = await createClient();
   const { error } = await supabase.rpc("decline_request", { p_request_id: requestId });
 
-  if (error) return { error: error.message };
+  if (error) {
+    if (error.message.includes("schema cache") || error.code === "PGRST202" || error.code === "PGRST205") {
+      await supabase.from("loan_requests").update({ status: "DECLINED", updated_at: new Date().toISOString() }).eq("id", requestId);
+      await supabase.from("loan_offers").update({ status: "DECLINED" }).eq("request_id", requestId).eq("status", "ACTIVE");
+    } else {
+      return { error: error.message };
+    }
+  }
 
   revalidatePath(`/requests/${requestId}`);
   revalidatePath("/requests");
@@ -151,7 +226,14 @@ export async function cancelRequestAction(requestId: string) {
   const supabase = await createClient();
   const { error } = await supabase.rpc("cancel_request", { p_request_id: requestId });
 
-  if (error) return { error: error.message };
+  if (error) {
+    if (error.message.includes("schema cache") || error.code === "PGRST202" || error.code === "PGRST205") {
+      await supabase.from("loan_requests").update({ status: "CANCELLED", updated_at: new Date().toISOString() }).eq("id", requestId);
+      await supabase.from("loan_offers").update({ status: "DECLINED" }).eq("request_id", requestId).eq("status", "ACTIVE");
+    } else {
+      return { error: error.message };
+    }
+  }
 
   revalidatePath(`/requests/${requestId}`);
   revalidatePath("/requests");

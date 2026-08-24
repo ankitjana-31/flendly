@@ -7,8 +7,8 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakart
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
-  title: "Monly",
-  description: "Friendly peer-to-peer lending and debt tracking.",
+  title: "Flendly — Peer-to-Peer Lending & Debt Tracking",
+  description: "Friendly peer-to-peer lending, fair interest calculations, and transparent record keeping.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

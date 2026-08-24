@@ -24,8 +24,11 @@ export async function AppShell({
   return (
     <div className="flex min-h-screen w-full">
       <aside className="hidden w-64 shrink-0 flex-col border-r border-border bg-card px-4 py-6 md:flex">
-        <Link href="/dashboard" className="mb-8 px-2 font-heading text-xl font-bold tracking-tight">
-          Monly
+        <Link href="/dashboard" className="mb-8 flex items-center gap-2.5 px-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-heading text-sm font-bold text-primary-foreground">
+            F
+          </div>
+          <span className="font-heading text-xl font-bold tracking-tight">Flendly</span>
         </Link>
         <nav className="flex flex-1 flex-col gap-1">
           {NAV_ITEMS.map((item) => (
@@ -73,8 +76,11 @@ export async function AppShell({
 
       <div className="flex min-h-screen flex-1 flex-col">
         <header className="flex items-center justify-between border-b border-border bg-card px-4 py-3 md:hidden">
-          <Link href="/dashboard" className="font-heading text-lg font-bold">
-            Monly
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary font-heading text-xs font-bold text-primary-foreground">
+              F
+            </div>
+            <span className="font-heading text-lg font-bold">Flendly</span>
           </Link>
           <Link href="/notifications" className="relative rounded-full p-2 hover:bg-muted">
             <BellIcon className="h-5 w-5" />

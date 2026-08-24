@@ -17,6 +17,23 @@ export function UsernameForm() {
   return (
     <form action={action} className="mt-8 space-y-5">
       <div className="space-y-2">
+        <label htmlFor="fullName" className="block text-sm font-medium">
+          Full Name
+        </label>
+        <input
+          id="fullName"
+          name="fullName"
+          type="text"
+          maxLength={100}
+          className="h-12 w-full rounded-lg border border-border bg-background px-3 text-foreground outline-none transition-colors focus:border-accent placeholder:text-muted-foreground"
+          placeholder="e.g. Ankit Jana"
+        />
+        <p className="text-xs text-muted-foreground">
+          How your name will appear to people you transact with.
+        </p>
+      </div>
+
+      <div className="space-y-2">
         <label htmlFor="username" className="block text-sm font-medium">
           Username
         </label>
@@ -37,8 +54,8 @@ export function UsernameForm() {
             placeholder="ankit"
           />
         </div>
-        <p className="text-sm text-muted-foreground">
-          Use lowercase letters, numbers, and underscores.
+        <p className="text-xs text-muted-foreground">
+          3-20 characters: lowercase letters, numbers, underscores.
         </p>
       </div>
 
@@ -53,7 +70,7 @@ export function UsernameForm() {
         disabled={pending}
         className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {pending ? "Saving…" : "Start using Monly"}
+        {pending ? "Saving…" : "Start using Flendly"}
       </button>
     </form>
   );

@@ -42,7 +42,31 @@ export async function recordPaymentAction(
     p_note: note ?? null,
   });
 
-  if (error) return { error: error.message };
+  if (error) {
+    if (
+      error.message.includes("schema cache") ||
+      error.code === "PGRST202" ||
+      error.code === "PGRST205"
+    ) {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return { error: "Authentication required." };
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error: payErr } = await (supabase.from("payments") as any).insert({
+        loan_id: loanId,
+        recorded_by: user.id,
+        amount: String(amount),
+        payment_date: paymentDate,
+        note: note ?? null,
+      });
+
+      if (payErr) return { error: payErr.message };
+    } else {
+      return { error: error.message };
+    }
+  }
 
   revalidatePath(`/loans/${loanId}`);
   revalidatePath("/lent");

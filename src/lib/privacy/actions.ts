@@ -70,12 +70,37 @@ export async function updateProfileDetailsAction(
   if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Invalid details." };
 
   const supabase = await createClient();
-  const { error } = await supabase.rpc("update_profile_details", {
-    p_full_name: parsed.data.fullName || null,
-    p_phone_number: parsed.data.phoneNumber || null,
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return { error: "Authentication required." };
+
+  const fullNameVal = parsed.data.fullName || null;
+  const phoneVal = parsed.data.phoneNumber || null;
+
+  const { error: rpcError } = await supabase.rpc("update_profile_details", {
+    p_full_name: fullNameVal,
+    p_phone_number: phoneVal,
   });
 
-  if (error) return { error: error.message };
+  if (rpcError) {
+    if (rpcError.message.includes("schema cache") || rpcError.code === "PGRST202") {
+      // Fallback to direct profiles table update
+      const { error: directErr } = await supabase
+        .from("profiles")
+        .update({
+          full_name: fullNameVal,
+          phone_number: phoneVal,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", user.id);
+
+      if (directErr) return { error: directErr.message };
+    } else {
+      return { error: rpcError.message };
+    }
+  }
 
   revalidatePath("/profile/settings");
   revalidatePath("/profile");

@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 import { env } from "@/lib/env";
+import { isPlaceholderUsername } from "@/lib/auth/queries";
 import type { Database } from "@/lib/types/database.types";
 
 const protectedRoutes = [
@@ -14,7 +15,7 @@ const protectedRoutes = [
   "/notifications",
 ];
 
-const authRoutes = ["/auth/login", "/complete-profile"];
+const authRoutes = ["/auth/login"];
 
 function isProtectedRoute(pathname: string) {
   return protectedRoutes.some(
@@ -26,10 +27,6 @@ function isAuthRoute(pathname: string) {
   return authRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
-}
-
-function isPlaceholderUsername(username: string | null) {
-  return Boolean(username?.match(/^user_[0-9a-f]{8}$/));
 }
 
 export async function updateSession(request: NextRequest) {
@@ -75,7 +72,7 @@ export async function updateSession(request: NextRequest) {
       .eq("id", user.id)
       .maybeSingle();
 
-    const needsProfile = isPlaceholderUsername(profile?.username ?? null);
+    const needsProfile = isPlaceholderUsername(profile?.username);
 
     if (needsProfile && pathname !== "/complete-profile") {
       const url = request.nextUrl.clone();
@@ -84,7 +81,7 @@ export async function updateSession(request: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    if (!needsProfile && isAuthRoute(pathname)) {
+    if (!needsProfile && (isAuthRoute(pathname) || pathname === "/complete-profile")) {
       const url = request.nextUrl.clone();
       url.pathname = "/dashboard";
       url.search = "";

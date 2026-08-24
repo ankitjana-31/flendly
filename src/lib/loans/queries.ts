@@ -39,9 +39,13 @@ async function attachLedgers<T extends { id: string }>(
 ): Promise<(T & { ledger: LoanLedgerSummary | null })[]> {
   return Promise.all(
     loans.map(async (loan) => {
-      const { data } = await supabase.rpc("get_loan_ledger", { p_loan_id: loan.id });
-      const ledger = Array.isArray(data) ? (data[0] as LoanLedgerSummary | undefined) ?? null : null;
-      return { ...loan, ledger };
+      try {
+        const { data } = await supabase.rpc("get_loan_ledger", { p_loan_id: loan.id });
+        const ledger = Array.isArray(data) ? (data[0] as LoanLedgerSummary | undefined) ?? null : null;
+        return { ...loan, ledger };
+      } catch {
+        return { ...loan, ledger: null };
+      }
     }),
   );
 }
@@ -51,8 +55,8 @@ export async function listLoans(userId: string, role: "lender" | "borrower"): Pr
 
   const counterpartyRelation =
     role === "lender"
-      ? "counterparty:profiles!loans_borrower_id_fkey(id, username, full_name)"
-      : "counterparty:profiles!loans_lender_id_fkey(id, username, full_name)";
+      ? "counterparty:profiles!borrower_id(id, username, full_name)"
+      : "counterparty:profiles!lender_id(id, username, full_name)";
 
   const { data, error } = await supabase
     .from("loans")
@@ -62,7 +66,9 @@ export async function listLoans(userId: string, role: "lender" | "borrower"): Pr
     .eq(role === "lender" ? "lender_id" : "borrower_id", userId)
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
+  if (error) {
+    return [];
+  }
 
   const rows = (data ?? []) as unknown as Omit<LoanListItem, "ledger">[];
   return attachLedgers(supabase, rows);
@@ -95,8 +101,10 @@ export async function getLoanDetail(loanId: string, viewerId: string): Promise<L
     .eq("id", loanId)
     .maybeSingle();
 
-  if (error) throw error;
-  if (!loan) return null;
+  if (error || !loan) {
+    if (error) console.error("Error fetching loan detail:", error);
+    return null;
+  }
 
   const [{ data: lenderProfile }, { data: borrowerProfile }, { data: ledgerRows }, { data: payments }] =
     await Promise.all([
@@ -131,7 +139,7 @@ export async function getLoanDetail(loanId: string, viewerId: string): Promise<L
     lender,
     borrower,
     viewerRole,
-    counterparty: { id: counterparty.id, username: counterparty.username, full_name: counterparty.full_name },
+    counterparty: { id: counterparty?.id ?? "", username: counterparty?.username ?? "", full_name: counterparty?.full_name ?? null },
     ledger: ledger ?? null,
     payments: payments ?? [],
   };

@@ -29,8 +29,8 @@ export type RequestListItem = {
 
 const REQUEST_SELECT =
   "id, direction, status, created_at, updated_at, " +
-  "sender:profiles!loan_requests_sender_id_fkey(id, username, full_name), " +
-  "receiver:profiles!loan_requests_receiver_id_fkey(id, username, full_name), " +
+  "sender:profiles!sender_id(id, username, full_name), " +
+  "receiver:profiles!receiver_id(id, username, full_name), " +
   "loan_offers(id, amount, interest_type, interest_rate, interest_frequency, compounding, deadline, message, status, created_by, created_at)";
 
 type RawRequestRow = {
@@ -95,13 +95,15 @@ export async function listRequests(userId: string) {
     .order("updated_at", { ascending: false })
     .returns<RawRequestRow[]>();
 
-  if (error) throw error;
+  if (error) {
+    return { incoming: [], outgoing: [] };
+  }
 
   const rows = (data ?? []).map(normalizeRequest);
 
   return {
-    incoming: rows.filter((r) => r.receiver.id === userId),
-    outgoing: rows.filter((r) => r.sender.id === userId),
+    incoming: rows.filter((r) => r.receiver?.id === userId),
+    outgoing: rows.filter((r) => r.sender?.id === userId),
   };
 }
 
@@ -136,18 +138,12 @@ export async function getRequestDetail(requestId: string): Promise<RequestDetail
 
   const { data, error } = await supabase
     .from("loan_requests")
-    .select(
-      "id, direction, status, created_at, updated_at, " +
-        "sender:profiles!loan_requests_sender_id_fkey(id, username, full_name), " +
-        "receiver:profiles!loan_requests_receiver_id_fkey(id, username, full_name), " +
-        "loan_offers(id, amount, interest_type, interest_rate, interest_frequency, compounding, deadline, message, status, created_by, created_at)",
-    )
+    .select(REQUEST_SELECT)
     .eq("id", requestId)
     .maybeSingle()
     .returns<RawRequestRow>();
 
-  if (error) throw error;
-  if (!data) return null;
+  if (error || !data) return null;
 
   let resultingLoanId: string | null = null;
   if (data.status === "ACCEPTED") {
