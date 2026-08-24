@@ -70,7 +70,8 @@ export function PaymentForm({
           name="paymentDate"
           type="date"
           required
-          max={todayIso()}
+          min={terms.startDate}
+          max={terms.dueDate > todayIso() ? terms.dueDate : todayIso()}
           value={paymentDate}
           onChange={(e) => setPaymentDate(e.target.value)}
           className="h-11 w-full rounded-lg border border-border bg-background px-3 text-sm outline-none focus:border-accent"

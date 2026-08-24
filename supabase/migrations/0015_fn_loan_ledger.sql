@@ -155,6 +155,12 @@ $$;
 -- Internal building block only — no EXECUTE grant to `authenticated`.
 -- Walks payments chronologically, applying interest-first allocation, and
 -- freezes accrual at `paid_off_date` if the loan has already closed.
+do $$ begin
+  drop function if exists public.get_loan_ledger(uuid) cascade;
+  drop function if exists public.compute_loan_ledger(uuid, date) cascade;
+  drop function if exists public.compute_loan_ledger cascade;
+exception when others then null; end $$;
+
 create or replace function public.compute_loan_ledger(
   p_loan_id uuid,
   p_as_of date,

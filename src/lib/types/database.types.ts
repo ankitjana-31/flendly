@@ -175,6 +175,7 @@ export type Database = {
           overpaid_excess: string;
           payment_date: string;
           note: string | null;
+          status: Database["public"]["Enums"]["payment_status"];
           created_at: string;
         };
         Insert: Record<string, never>;
@@ -280,8 +281,17 @@ export type Database = {
         Args: Record<string, never>;
         Returns: { reminders_sent: number; overdue_sent: number }[];
       };
+      confirm_payment: {
+        Args: { p_payment_id: string };
+        Returns: void;
+      };
+      reject_payment: {
+        Args: { p_payment_id: string };
+        Returns: void;
+      };
     };
     Enums: {
+      payment_status: "PENDING" | "CONFIRMED" | "REJECTED";
       visibility_level: "everyone" | "participants" | "nobody";
       visibility_level_restricted: "only_me" | "participants";
       request_direction: "lend" | "borrow";

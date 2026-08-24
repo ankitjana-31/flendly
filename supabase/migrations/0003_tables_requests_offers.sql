@@ -84,6 +84,7 @@ begin
 end;
 $$;
 
+drop trigger if exists loan_offers_supersede_active on public.loan_offers;
 create trigger loan_offers_supersede_active
   before insert on public.loan_offers
   for each row execute function public.handle_active_offer_insert();

@@ -31,8 +31,8 @@ begin
     raise exception 'amount must be greater than zero';
   end if;
 
-  if p_payment_date is null or p_payment_date > current_date then
-    raise exception 'payment date cannot be in the future';
+  if p_payment_date is null then
+    raise exception 'payment date is required';
   end if;
 
   select * into v_loan from public.loans where id = p_loan_id for update;
@@ -40,8 +40,8 @@ begin
     raise exception 'loan not found';
   end if;
 
-  if auth.uid() <> v_loan.borrower_id then
-    raise exception 'only the borrower can record a payment';
+  if auth.uid() not in (v_loan.borrower_id, v_loan.lender_id) then
+    raise exception 'not a participant of this loan';
   end if;
 
   if v_loan.status <> 'ACTIVE' then
@@ -50,6 +50,10 @@ begin
 
   if p_payment_date < v_loan.start_date then
     raise exception 'payment date cannot be before the loan start date';
+  end if;
+
+  if p_payment_date > greatest(current_date + 1, v_loan.due_date) then
+    raise exception 'payment date cannot be beyond the loan due date';
   end if;
 
   select * into v_ledger from public.compute_loan_ledger(p_loan_id, p_payment_date);

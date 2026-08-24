@@ -9,9 +9,7 @@ import { todayIso } from "@/lib/format";
 const paymentSchema = z.object({
   loanId: z.string().uuid(),
   amount: z.coerce.number().positive("Amount must be greater than zero."),
-  paymentDate: z
-    .string()
-    .refine((d) => d <= todayIso(), { message: "Payment date cannot be in the future." }),
+  paymentDate: z.string().min(1, "Payment date is required."),
   note: z.string().trim().max(500).optional(),
 });
 
@@ -67,6 +65,32 @@ export async function recordPaymentAction(
       return { error: error.message };
     }
   }
+
+  revalidatePath(`/loans/${loanId}`);
+  revalidatePath("/lent");
+  revalidatePath("/borrowed");
+  revalidatePath("/dashboard");
+  return { success: true };
+}
+
+export async function confirmPaymentAction(paymentId: string, loanId: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("confirm_payment", { p_payment_id: paymentId });
+
+  if (error) return { error: error.message };
+
+  revalidatePath(`/loans/${loanId}`);
+  revalidatePath("/lent");
+  revalidatePath("/borrowed");
+  revalidatePath("/dashboard");
+  return { success: true };
+}
+
+export async function rejectPaymentAction(paymentId: string, loanId: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("reject_payment", { p_payment_id: paymentId });
+
+  if (error) return { error: error.message };
 
   revalidatePath(`/loans/${loanId}`);
   revalidatePath("/lent");

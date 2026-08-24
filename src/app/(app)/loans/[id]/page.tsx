@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { Card } from "@/components/ui/button";
 import { StatusBadge, loanDisplayStatus } from "@/components/ui/status-badge";
 import { RecordPaymentSection } from "@/components/loans/record-payment-section";
+import { PaymentConfirmActions } from "@/components/loans/payment-actions";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { getLoanDetail } from "@/lib/loans/queries";
 import { formatMoney, formatDate, interestSummary } from "@/lib/format";
@@ -86,19 +87,44 @@ export default async function LoanDetailPage({
           <Card className="p-6 text-center text-sm text-muted-foreground">No payments recorded yet.</Card>
         ) : (
           <div className="flex flex-col gap-2">
-            {[...loan.payments].reverse().map((p) => (
-              <Card key={p.id} className="flex items-center justify-between p-4">
-                <div>
-                  <p className="font-tabular text-sm font-semibold">{formatMoney(p.amount)}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {formatDate(p.payment_date)} · interest {formatMoney(p.interest_component)} · principal{" "}
-                    {formatMoney(p.principal_component)}
-                    {Number(p.overpaid_excess) > 0 && ` · overpaid ${formatMoney(p.overpaid_excess)}`}
-                  </p>
-                  {p.note && <p className="mt-1 text-xs text-muted-foreground">{p.note}</p>}
-                </div>
-              </Card>
-            ))}
+            {[...loan.payments].reverse().map((p) => {
+              const status = p.status ?? "CONFIRMED";
+              return (
+                <Card key={p.id} className="flex flex-col gap-2 p-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <p className="font-tabular text-sm font-semibold">{formatMoney(p.amount)}</p>
+                        {status === "PENDING" && (
+                          <span className="rounded bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-600 dark:text-amber-400">
+                            Pending Confirmation
+                          </span>
+                        )}
+                        {status === "REJECTED" && (
+                          <span className="rounded bg-red-500/10 px-2 py-0.5 text-[10px] font-medium text-red-600 dark:text-red-400">
+                            Rejected
+                          </span>
+                        )}
+                        {status === "CONFIRMED" && (
+                          <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                            Confirmed
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {formatDate(p.payment_date)} · interest {formatMoney(p.interest_component)} · principal{" "}
+                        {formatMoney(p.principal_component)}
+                        {Number(p.overpaid_excess) > 0 && ` · overpaid ${formatMoney(p.overpaid_excess)}`}
+                      </p>
+                      {p.note && <p className="mt-1 text-xs text-muted-foreground">{p.note}</p>}
+                    </div>
+                  </div>
+                  {status === "PENDING" && loan.viewerRole === "lender" && (
+                    <PaymentConfirmActions paymentId={p.id} loanId={loan.id} />
+                  )}
+                </Card>
+              );
+            })}
           </div>
         )}
       </section>

@@ -43,6 +43,7 @@ $$;
 
 -- Runs after the existing loan_offers_supersede_active (BEFORE INSERT)
 -- trigger from 0003, so the row count already reflects this new offer.
+drop trigger if exists loan_offers_notify_counter on public.loan_offers;
 create trigger loan_offers_notify_counter
   after insert on public.loan_offers
   for each row execute function public.notify_counter_offer();

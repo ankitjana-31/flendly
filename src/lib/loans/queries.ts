@@ -87,6 +87,7 @@ export type LoanDetail = LoanListItem & {
     overpaid_excess: string;
     note: string | null;
     payer_id: string;
+    status?: "PENDING" | "CONFIRMED" | "REJECTED";
   }>;
 };
 
@@ -113,7 +114,7 @@ export async function getLoanDetail(loanId: string, viewerId: string): Promise<L
       supabase.rpc("get_loan_ledger", { p_loan_id: loanId }),
       supabase
         .from("payments")
-        .select("id, payment_date, amount, interest_component, principal_component, overpaid_excess, note, payer_id")
+        .select("id, payment_date, amount, interest_component, principal_component, overpaid_excess, note, payer_id, status")
         .eq("loan_id", loanId)
         .order("payment_date", { ascending: true })
         .order("created_at", { ascending: true }),
