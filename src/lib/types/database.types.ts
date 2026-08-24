@@ -200,6 +200,31 @@ export type Database = {
     };
     Views: Record<string, never>;
     Functions: {
+      accept_offer: {
+        Args: { p_offer_id: string };
+        Returns: string;
+      };
+      decline_request: {
+        Args: { p_request_id: string };
+        Returns: void;
+      };
+      cancel_request: {
+        Args: { p_request_id: string };
+        Returns: void;
+      };
+      get_loan_ledger: {
+        Args: { p_loan_id: string };
+        Returns: Json;
+      };
+      record_payment: {
+        Args: {
+          p_loan_id: string;
+          p_amount: number;
+          p_payment_date: string;
+          p_note?: string | null;
+        };
+        Returns: string;
+      };
       get_profile_visible: {
         Args: { target_id: string };
         Returns: {
