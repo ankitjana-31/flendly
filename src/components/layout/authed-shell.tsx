@@ -87,7 +87,15 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
 
         {/* Header Right Actions */}
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          {/* Settings Link */}
+          <Link
+            href="/profile/settings"
+            title="Settings"
+            className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <Settings className="h-5 w-5" />
+          </Link>
+
           {/* Notification Bell */}
           <Link
             href="/notifications"
