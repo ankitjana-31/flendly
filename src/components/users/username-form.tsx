@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
+import { User, AtSign, ArrowRight, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 
 import { completeUsername } from "@/lib/users/actions";
 
@@ -13,34 +14,51 @@ export function UsernameForm() {
     completeUsername,
     initialState,
   );
+  const [usernameInput, setUsernameInput] = useState("");
+  const [fullNameInput, setFullNameInput] = useState("");
+
+  const cleanUsername = usernameInput.trim().toLowerCase();
+  const isValidUsername = /^[a-z0-9_]{3,20}$/.test(cleanUsername);
 
   return (
-    <form action={action} className="mt-8 space-y-5">
+    <form action={action} className="mt-8 space-y-6">
+      {/* Full Name Input */}
       <div className="space-y-2">
-        <label htmlFor="fullName" className="block text-sm font-medium">
+        <label htmlFor="fullName" className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Full Name
         </label>
-        <input
-          id="fullName"
-          name="fullName"
-          type="text"
-          maxLength={100}
-          className="h-12 w-full rounded-lg border border-border bg-background px-3 text-foreground outline-none transition-colors focus:border-accent placeholder:text-muted-foreground"
-          placeholder="e.g. Ankit Jana"
-        />
-        <p className="text-xs text-muted-foreground">
-          How your name will appear to people you transact with.
+        <div className="relative flex items-center rounded-xl border border-border bg-background/50 backdrop-blur-sm transition-all focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
+          <div className="flex h-12 w-11 items-center justify-center text-muted-foreground">
+            <User className="h-4 w-4" />
+          </div>
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            maxLength={100}
+            value={fullNameInput}
+            onChange={(e) => setFullNameInput(e.target.value)}
+            className="h-12 w-full bg-transparent pr-4 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground/60"
+            placeholder="e.g. Ankit Jana"
+          />
+        </div>
+        <p className="text-[11px] text-muted-foreground/80">
+          How your display name will appear to your friends & counterparties.
         </p>
       </div>
 
+      {/* Username Input */}
       <div className="space-y-2">
-        <label htmlFor="username" className="block text-sm font-medium">
-          Username
-        </label>
-        <div className="flex rounded-lg border border-border bg-background focus-within:border-accent">
-          <span className="flex items-center border-r border-border px-3 text-muted-foreground">
-            @
+        <label htmlFor="username" className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <span>Username</span>
+          <span className="text-[10px] font-normal text-muted-foreground/70">
+            {cleanUsername.length}/20 chars
           </span>
+        </label>
+        <div className="relative flex items-center rounded-xl border border-border bg-background/50 backdrop-blur-sm transition-all focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
+          <div className="flex h-12 w-11 items-center justify-center border-r border-border/60 text-muted-foreground">
+            <AtSign className="h-4 w-4" />
+          </div>
           <input
             id="username"
             name="username"
@@ -50,27 +68,51 @@ export function UsernameForm() {
             maxLength={20}
             pattern="[a-z0-9_]{3,20}"
             autoComplete="username"
-            className="h-12 min-w-0 flex-1 bg-transparent px-3 text-foreground outline-none placeholder:text-muted-foreground"
+            value={usernameInput}
+            onChange={(e) => setUsernameInput(e.target.value)}
+            className="h-12 min-w-0 flex-1 bg-transparent px-3 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground/60"
             placeholder="ankit"
           />
+          {cleanUsername.length >= 3 && (
+            <div className="pr-3">
+              {isValidUsername ? (
+                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+              ) : (
+                <AlertCircle className="h-4 w-4 text-amber-500" />
+              )}
+            </div>
+          )}
         </div>
-        <p className="text-xs text-muted-foreground">
-          3-20 characters: lowercase letters, numbers, underscores.
+        <p className="text-[11px] text-muted-foreground/80">
+          3–20 characters: lowercase letters, numbers, and underscores.
         </p>
       </div>
 
+      {/* Error Callout */}
       {state.error ? (
-        <p className="rounded-lg border border-danger/30 bg-danger/5 px-3 py-2 text-sm text-danger">
-          {state.error}
-        </p>
+        <div className="flex items-start gap-2.5 rounded-xl border border-destructive/30 bg-destructive/10 p-3.5 text-xs text-destructive">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          <p className="font-medium leading-relaxed">{state.error}</p>
+        </div>
       ) : null}
 
+      {/* Submit Button */}
       <button
         type="submit"
-        disabled={pending}
-        className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-60"
+        disabled={pending || !isValidUsername}
+        className="group relative flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {pending ? "Saving…" : "Start using Flendly"}
+        {pending ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span>Setting up your account...</span>
+          </>
+        ) : (
+          <>
+            <span>Start using Flendly</span>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </>
+        )}
       </button>
     </form>
   );

@@ -34,108 +34,86 @@ async function executeUsernameUpdate(
     return { error: "Authentication required." };
   }
 
-  // 1. Try standard RPC with p_new_username
-  let rpcRes = await supabase.rpc("update_username", {
-    p_new_username: newUsername,
-  });
+  // Check if profile exists
+  const { data: existingProfile } = await supabase
+    .from("profiles")
+    .select("id, username, username_changed_count")
+    .eq("id", user.id)
+    .maybeSingle();
 
-  // If fullName provided, update full_name via update_profile_details RPC or direct
-  if (fullName) {
-    await supabase.rpc("update_profile_details", {
-      p_full_name: fullName,
-      p_phone_number: null,
-    });
-  }
-
-  // 2. Try alternative RPC param name if PostgREST signature mismatch
-  if (rpcRes.error && (rpcRes.error.message.includes("schema cache") || rpcRes.error.code === "PGRST202")) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    rpcRes = await (supabase.rpc as any)("update_username", {
-      new_username: newUsername,
-    });
-  }
-
-  // 3. Fallback to direct profiles table update/upsert if RPC is missing in remote database schema cache
-  if (rpcRes.error && (rpcRes.error.message.includes("schema cache") || rpcRes.error.code === "PGRST202")) {
-    const { data: profile, error: profileErr } = await supabase
-      .from("profiles")
-      .select("username, username_changed_count")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    if (profileErr && !profileErr.message.includes("schema cache")) {
-      return { error: profileErr.message };
-    }
-
-    if (!profile) {
-      // Profile row missing — upsert profile row directly
-      const { error: upsertErr } = await supabase.from("profiles").upsert({
-        id: user.id,
-        email: user.email ?? "",
-        username: newUsername,
-        full_name: fullName ?? user.user_metadata?.full_name ?? user.user_metadata?.name ?? null,
-        avatar_url: user.user_metadata?.avatar_url ?? null,
-        username_changed_count: 0,
-      });
-
-      if (upsertErr) {
-        if (upsertErr.code === "23505" || upsertErr.message.toLowerCase().includes("duplicate")) {
-          return { error: "That username is already taken." };
-        }
-        return { error: upsertErr.message };
-      }
-
-      await supabase.from("privacy_settings").upsert({ user_id: user.id });
-      return {};
-    }
-
-    if (profile.username === newUsername) {
-      if (fullName) {
-        await supabase.from("profiles").update({ full_name: fullName }).eq("id", user.id);
-      }
-      return {};
-    }
-
-    const isFirstPick = Boolean(profile.username?.match(/^user_[0-9a-f]{8}$/));
-
-    if (!isFirstPick && (profile.username_changed_count ?? 0) >= 1) {
-      return { error: "Username can only be changed once." };
-    }
-
-    const updateData: {
-      username: string;
-      username_changed_count: number;
-      updated_at: string;
-      full_name?: string;
-    } = {
+  // If profile doesn't exist yet (e.g. trigger hasn't fired or fresh user), auto-create row directly
+  if (!existingProfile) {
+    const { error: upsertErr } = await supabase.from("profiles").upsert({
+      id: user.id,
+      email: user.email ?? "",
       username: newUsername,
-      username_changed_count: isFirstPick
-        ? profile.username_changed_count
-        : (profile.username_changed_count ?? 0) + 1,
-      updated_at: new Date().toISOString(),
-    };
-    if (fullName) updateData.full_name = fullName;
+      full_name: fullName ?? user.user_metadata?.full_name ?? user.user_metadata?.name ?? null,
+      avatar_url: user.user_metadata?.avatar_url ?? null,
+      username_changed_count: 0,
+    });
 
-    const { error: updateErr } = await supabase
-      .from("profiles")
-      .update(updateData)
-      .eq("id", user.id);
-
-    if (updateErr) {
-      if (updateErr.code === "23505" || updateErr.message.toLowerCase().includes("duplicate")) {
+    if (upsertErr) {
+      if (upsertErr.code === "23505" || upsertErr.message.toLowerCase().includes("duplicate")) {
         return { error: "That username is already taken." };
       }
-      return { error: updateErr.message };
+      return { error: upsertErr.message };
     }
 
+    await supabase.from("privacy_settings").upsert({ user_id: user.id });
     return {};
   }
 
-  if (rpcRes.error) {
-    if (rpcRes.error.code === "23505" || rpcRes.error.message.toLowerCase().includes("duplicate")) {
+  // Profile exists — call update_username RPC
+  const { error: rpcResError } = await supabase.rpc("update_username", {
+    p_new_username: newUsername,
+  });
+
+  if (fullName) {
+    await supabase.from("profiles").update({ full_name: fullName }).eq("id", user.id);
+  }
+
+  if (rpcResError) {
+    // If RPC failed or threw profile not found / schema cache error, fall back to direct update
+    if (
+      rpcResError.message.includes("profile not found") ||
+      rpcResError.message.includes("schema cache") ||
+      rpcResError.code === "PGRST202"
+    ) {
+      const isFirstPick = Boolean(existingProfile.username?.match(/^user_[0-9a-f]{8}$/));
+
+      if (!isFirstPick && (existingProfile.username_changed_count ?? 0) >= 1) {
+        return { error: "Username can only be changed once." };
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const updateData: any = {
+        username: newUsername,
+        username_changed_count: isFirstPick
+          ? existingProfile.username_changed_count
+          : (existingProfile.username_changed_count ?? 0) + 1,
+        updated_at: new Date().toISOString(),
+      };
+      if (fullName) updateData.full_name = fullName;
+
+      const { error: updateErr } = await supabase
+        .from("profiles")
+        .update(updateData)
+        .eq("id", user.id);
+
+      if (updateErr) {
+        if (updateErr.code === "23505" || updateErr.message.toLowerCase().includes("duplicate")) {
+          return { error: "That username is already taken." };
+        }
+        return { error: updateErr.message };
+      }
+
+      return {};
+    }
+
+    if (rpcResError.code === "23505" || rpcResError.message.toLowerCase().includes("duplicate")) {
       return { error: "That username is already taken." };
     }
-    return { error: rpcRes.error.message };
+    return { error: rpcResError.message };
   }
 
   return {};
