@@ -16,6 +16,7 @@ import {
   X
 } from "lucide-react";
 import { signOut } from "@/lib/auth/actions";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface AuthedShellProps {
   children: React.ReactNode;
@@ -53,7 +54,7 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
         <div className="flex items-center gap-6">
           <Link href="/dashboard" className="flex items-center gap-2">
             <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              Monly
+              Flendly
             </span>
             {/* Live Sync pulsing indicator */}
             <span className="relative flex h-2 w-2">
@@ -86,6 +87,7 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
 
         {/* Header Right Actions */}
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           {/* Notification Bell */}
           <Link
             href="/notifications"
