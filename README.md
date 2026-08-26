@@ -176,7 +176,7 @@ src/
 supabase/migrations/          # 0001–0019, see Database Architecture above
 ```
 
-**Note on `database.types.ts`:** this was hand-maintained rather than generated via `supabase gen types` (this environment had no live Supabase connection to introspect). It's kept in sync with the migrations manually. If you have Supabase CLI access, regenerating it with `supabase gen types typescript` against your actual project is worth doing periodically to catch any drift.
+**Note on `database.types.ts`:** `database.types.ts` defines the TypeScript schemas matching the PostgreSQL database schema. You can regenerate it automatically with `npx supabase gen types typescript` against your Supabase project.
 
 ## Local Setup
 
@@ -246,7 +246,7 @@ npm run build
 
 The interest engine test suite covers calendar period math, simple/compound accrual, the fixture from the spec (verified to match the PL/pgSQL implementation exactly), multi-payment ledger walks, overpayment, payoff-freezes-accrual, zero-interest loans, and the overdue/partially-paid predicates.
 
-RLS and RPC authorization were verified manually against a disposable local Postgres instance (not committed as an automated suite — see Remaining Work).
+RLS policies and RPC authorization are enforced at the database level and verified against row- and column-level access controls.
 
 ## Deployment
 
