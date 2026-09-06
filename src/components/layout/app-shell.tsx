@@ -53,6 +53,13 @@ export async function AppShell({
               </span>
             )}
           </Link>
+          <Link
+            href="/self-track"
+            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <WalletIcon className="h-5 w-5" />
+            Self Track
+          </Link>
         </nav>
         <div className="mt-auto flex flex-col gap-1 border-t border-border pt-4">
           <Link
@@ -93,14 +100,19 @@ export async function AppShell({
         <main className="flex-1 pb-20 md:pb-0">{children}</main>
 
         <nav className="fixed inset-x-0 bottom-0 z-10 flex border-t border-border bg-card md:hidden">
-          {[...NAV_ITEMS, { href: "/profile", label: "Profile", icon: UserIcon }].map((item) => (
+          {[
+            ...NAV_ITEMS,
+            { href: "/notifications", label: "Notifications", icon: BellIcon },
+            { href: "/self-track", label: "Self Track", icon: WalletIcon },
+            { href: "/profile", label: "Profile", icon: UserIcon },
+          ].map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-1 flex-col items-center gap-1 py-2.5 text-xs font-medium text-muted-foreground"
+              className="flex flex-1 flex-col items-center gap-1 py-2.5 text-xs font-medium text-muted-foreground hover:text-foreground"
             >
               <item.icon className="h-5 w-5" />
-              {item.label}
+              <span className="text-[10px]">{item.label}</span>
             </Link>
           ))}
         </nav>
@@ -110,6 +122,16 @@ export async function AppShell({
 }
 
 type IconProps = { className?: string };
+
+function WalletIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className={className}>
+      <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="18" cy="14" r="1" fill="currentColor" />
+    </svg>
+  );
+}
 
 function HomeIcon({ className }: IconProps) {
   return (
