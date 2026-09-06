@@ -81,27 +81,31 @@ export function LandingHero() {
       </motion.p>
 
       <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Link href="/auth/login" className="inline-block">
-          <motion.button
-            whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
-            whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+        <motion.div
+          whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
+          whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+          className="inline-block"
+        >
+          <Link
+            href="/auth/login"
             className="inline-flex h-12 items-center justify-center rounded-lg bg-blue-500 px-8 text-sm font-semibold text-white transition-all hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
-            type="button"
           >
             Get Started
-          </motion.button>
-        </Link>
+          </Link>
+        </motion.div>
 
-        <Link href="/auth/login" className="inline-block">
-          <motion.button
-            whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
-            whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+        <motion.div
+          whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
+          whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+          className="inline-block"
+        >
+          <Link
+            href="/auth/login"
             className="inline-flex h-12 items-center justify-center rounded-lg border border-slate-500 px-8 text-sm font-semibold text-white transition-all hover:border-blue-400 hover:text-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
-            type="button"
           >
             Learn More
-          </motion.button>
-        </Link>
+          </Link>
+        </motion.div>
       </motion.div>
 
       <motion.div

@@ -16,38 +16,67 @@ type LoginPageProps = {
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const { user, profile } = await getCurrentUserProfile();
-  const { error } = await searchParams;
+  try {
+    const { user, profile } = await getCurrentUserProfile();
+    const { error } = await searchParams;
 
-  if (user && isPlaceholderUsername(profile?.username)) {
-    redirect("/complete-profile");
+    if (user && isPlaceholderUsername(profile?.username)) {
+      redirect("/complete-profile");
+    }
+
+    if (user) {
+      redirect("/dashboard");
+    }
+
+    return (
+      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6 py-12">
+        {/* Dynamic Sparkles & Particle Background */}
+        <LoginSparklesBackground />
+
+        {/* Top Navigation / Theme Toggle */}
+        <div className="absolute top-6 right-6 z-20">
+          <ThemeToggle />
+        </div>
+
+        <div className="absolute top-6 left-6 z-20">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-medium text-slate-400 transition-colors hover:text-white"
+          >
+            <span aria-hidden>←</span> Back to home
+          </Link>
+        </div>
+
+        {/* Central Login Card */}
+        <LoginContent error={error} />
+      </main>
+    );
+  } catch (error) {
+    console.error("Login page error:", error);
+    const { error: errorParam } = await searchParams;
+
+    return (
+      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6 py-12">
+        {/* Dynamic Sparkles & Particle Background */}
+        <LoginSparklesBackground />
+
+        {/* Top Navigation / Theme Toggle */}
+        <div className="absolute top-6 right-6 z-20">
+          <ThemeToggle />
+        </div>
+
+        <div className="absolute top-6 left-6 z-20">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-medium text-slate-400 transition-colors hover:text-white"
+          >
+            <span aria-hidden>←</span> Back to home
+          </Link>
+        </div>
+
+        {/* Central Login Card */}
+        <LoginContent error={errorParam || "An error occurred. Please try again."} />
+      </main>
+    );
   }
-
-  if (user) {
-    redirect("/dashboard");
-  }
-
-  return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6 py-12">
-      {/* Dynamic Sparkles & Particle Background */}
-      <LoginSparklesBackground />
-
-      {/* Top Navigation / Theme Toggle */}
-      <div className="absolute top-6 right-6 z-20">
-        <ThemeToggle />
-      </div>
-
-      <div className="absolute top-6 left-6 z-20">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium text-slate-400 transition-colors hover:text-white"
-        >
-          <span aria-hidden>←</span> Back to home
-        </Link>
-      </div>
-
-      {/* Central Login Card */}
-      <LoginContent error={error} />
-    </main>
-  );
 }
