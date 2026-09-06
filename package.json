@@ -16,6 +16,7 @@
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
+    "@types/three": "^0.185.4",
     "clsx": "^2.1.1",
     "decimal.js": "^10.6.0",
     "framer-motion": "^13.2.0",
@@ -26,6 +27,7 @@
     "react-dom": "19.2.8",
     "server-only": "^0.0.1",
     "tailwind-merge": "^3.6.0",
+    "three": "^0.185.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
