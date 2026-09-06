@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -32,7 +32,7 @@ function createBeam(width: number, height: number): Beam {
         length: height * 2.5,
         angle: angle,
         speed: 0.6 + Math.random() * 1.2,
-        opacity: 0.12 + Math.random() * 0.16,
+        opacity: 0.14 + Math.random() * 0.18,
         hue: 190 + Math.random() * 70,
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: 0.02 + Math.random() * 0.03,
@@ -47,7 +47,7 @@ export function BeamsBackground({
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const beamsRef = useRef<Beam[]>([]);
     const animationFrameRef = useRef<number>(0);
-    const MINIMUM_BEAMS = 20;
+    const MINIMUM_BEAMS = 22;
 
     const opacityMap = {
         subtle: 0.7,
@@ -111,24 +111,24 @@ export function BeamsBackground({
             const gradient = ctx.createLinearGradient(0, 0, 0, beam.length);
 
             // Enhanced gradient with multiple color stops
-            gradient.addColorStop(0, `hsla(${beam.hue}, 85%, 65%, 0)`);
+            gradient.addColorStop(0, `hsla(${beam.hue}, 85%, 60%, 0)`);
             gradient.addColorStop(
                 0.1,
-                `hsla(${beam.hue}, 85%, 65%, ${pulsingOpacity * 0.5})`
+                `hsla(${beam.hue}, 85%, 60%, ${pulsingOpacity * 0.5})`
             );
             gradient.addColorStop(
                 0.4,
-                `hsla(${beam.hue}, 85%, 65%, ${pulsingOpacity})`
+                `hsla(${beam.hue}, 85%, 60%, ${pulsingOpacity})`
             );
             gradient.addColorStop(
                 0.6,
-                `hsla(${beam.hue}, 85%, 65%, ${pulsingOpacity})`
+                `hsla(${beam.hue}, 85%, 60%, ${pulsingOpacity})`
             );
             gradient.addColorStop(
                 0.9,
-                `hsla(${beam.hue}, 85%, 65%, ${pulsingOpacity * 0.5})`
+                `hsla(${beam.hue}, 85%, 60%, ${pulsingOpacity * 0.5})`
             );
-            gradient.addColorStop(1, `hsla(${beam.hue}, 85%, 65%, 0)`);
+            gradient.addColorStop(1, `hsla(${beam.hue}, 85%, 60%, 0)`);
 
             ctx.fillStyle = gradient;
             ctx.fillRect(-beam.width / 2, 0, beam.width, beam.length);
@@ -139,7 +139,7 @@ export function BeamsBackground({
             if (!canvas || !ctx) return;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.filter = "blur(35px)";
+            ctx.filter = "blur(32px)";
 
             const totalBeams = beamsRef.current.length;
             beamsRef.current.forEach((beam, index) => {
@@ -170,20 +170,23 @@ export function BeamsBackground({
     return (
         <div
             className={cn(
-                "relative min-h-screen w-full overflow-hidden bg-background dark:bg-[#0B0F14] transition-colors duration-200",
+                "relative min-h-screen w-full overflow-x-hidden bg-[#F4F6F9] dark:bg-[#0B0F14] text-foreground transition-colors duration-200",
                 className
             )}
         >
+            {/* Ambient subtle light glow in light mode */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-sky-200/30 via-indigo-100/20 to-teal-100/30 dark:opacity-0 transition-opacity duration-300" />
+
             <canvas
                 ref={canvasRef}
-                className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-100"
-                style={{ filter: "blur(15px)" }}
+                className="pointer-events-none fixed inset-0 h-full w-full opacity-60 dark:opacity-100"
+                style={{ filter: "blur(18px)" }}
             />
 
             <motion.div
-                className="pointer-events-none absolute inset-0 bg-foreground/5"
+                className="pointer-events-none fixed inset-0 bg-foreground/5"
                 animate={{
-                    opacity: [0.03, 0.08, 0.03],
+                    opacity: [0.02, 0.06, 0.02],
                 }}
                 transition={{
                     duration: 10,
@@ -191,7 +194,7 @@ export function BeamsBackground({
                     repeat: Number.POSITIVE_INFINITY,
                 }}
                 style={{
-                    backdropFilter: "blur(50px)",
+                    backdropFilter: "blur(40px)",
                 }}
             />
 
