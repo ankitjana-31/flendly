@@ -34,16 +34,6 @@ export function LandingHero() {
       animate="visible"
       className="relative w-full max-w-4xl text-center z-20"
     >
-      {/* Badge with subtle glow */}
-      <motion.div variants={itemVariants} className="mb-4 inline-block">
-        <div className="relative inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 backdrop-blur-md">
-          <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
-          <span className="text-xs font-bold tracking-widest text-blue-300 uppercase">
-            Personal Finance Ledger
-          </span>
-        </div>
-      </motion.div>
-
       {/* Big, Bold & Glowy Signature FLENDLY Brand Name */}
       <motion.div variants={itemVariants} className="relative mb-6">
         {/* Multi-tier ambient neon glow */}
