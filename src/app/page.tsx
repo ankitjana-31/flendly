@@ -1,14 +1,9 @@
 import { redirect } from "next/navigation";
+
 import { getCurrentUserProfile, isPlaceholderUsername } from "@/lib/auth/queries";
-import { LandingNavbar } from "@/components/landing/landing-navbar";
-import { HandshakeStoryScroll } from "@/components/landing/handshake-story-scroll";
-import { HowItWorksSection } from "@/components/landing/how-it-works-section";
-import { TrustSection } from "@/components/landing/trust-section";
-import { LenderSection } from "@/components/landing/lender-section";
-import { BorrowerSection } from "@/components/landing/borrower-section";
-import { NetworkSection } from "@/components/landing/network-section";
-import { FinalCtaSection } from "@/components/landing/final-cta-section";
-import { LandingFooter } from "@/components/landing/landing-footer";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LandingHero } from "@/components/landing/landing-hero";
+import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 
 export default async function Home() {
   const { user, profile } = await getCurrentUserProfile();
@@ -22,35 +17,26 @@ export default async function Home() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#0B0F14] text-[#F8FAFC] selection:bg-teal-400 selection:text-[#0B0F14]">
-      {/* Minimal Glass Navbar */}
-      <LandingNavbar />
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-12 bg-slate-950">
+      {/* Magic UI Animated Grid Pattern with Touch Glow */}
+      <AnimatedGridPattern
+        width={48}
+        height={48}
+        maxOpacity={0.6}
+        numSquares={35}
+        duration={3.5}
+        className="[mask-image:radial-gradient(ellipse_at_center,white_30%,transparent_95%)]"
+      />
 
-      <main>
-        {/* Core 3D Interactive Handshake Storyline */}
-        <HandshakeStoryScroll />
+      {/* Ambient background depth lights */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-blue-600/15 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[450px] w-[700px] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-[120px]" />
 
-        {/* How It Works - 4 Step Lifecycle */}
-        <HowItWorksSection />
+      <div className="absolute top-6 right-6 z-10">
+        <ThemeToggle />
+      </div>
 
-        {/* Institutional Trust & Cryptographic Verification */}
-        <TrustSection />
-
-        {/* Lender Experience & Yield Simulator */}
-        <LenderSection />
-
-        {/* Borrower Experience & Proposal System */}
-        <BorrowerSection />
-
-        {/* P2P Network Liquidity & Growth Metrics */}
-        <NetworkSection />
-
-        {/* Final Cinematic Call to Action */}
-        <FinalCtaSection />
-      </main>
-
-      {/* Footer */}
-      <LandingFooter />
-    </div>
+      <LandingHero />
+    </main>
   );
 }
