@@ -16,14 +16,11 @@ export function LoginSparklesBackground() {
         background="transparent"
         minSize={0.6}
         maxSize={1.8}
-        particleDensity={60}
+        particleDensity={50}
         speed={0.8}
         particleColor="#6366f1"
         className="h-full w-full"
       />
-
-      {/* Radial fade mask to keep content crisp and readable */}
-      <div className="absolute inset-0 bg-background/60 [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black_80%)]" />
     </div>
   );
 }

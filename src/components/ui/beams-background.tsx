@@ -170,20 +170,20 @@ export function BeamsBackground({
     return (
         <div
             className={cn(
-                "relative min-h-screen w-full overflow-hidden bg-neutral-950",
+                "relative min-h-screen w-full overflow-hidden bg-background dark:bg-[#0B0F14] transition-colors duration-200",
                 className
             )}
         >
             <canvas
                 ref={canvasRef}
-                className="pointer-events-none absolute inset-0"
+                className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-100"
                 style={{ filter: "blur(15px)" }}
             />
 
             <motion.div
-                className="pointer-events-none absolute inset-0 bg-neutral-950/5"
+                className="pointer-events-none absolute inset-0 bg-foreground/5"
                 animate={{
-                    opacity: [0.05, 0.15, 0.05],
+                    opacity: [0.03, 0.08, 0.03],
                 }}
                 transition={{
                     duration: 10,
