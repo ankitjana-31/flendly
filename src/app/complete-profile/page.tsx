@@ -22,14 +22,14 @@ export default async function CompleteProfilePage() {
       <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
 
-      <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border/80 bg-card/90 p-8 shadow-xl backdrop-blur-md sm:p-10">
+      <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-blue-500/30 bg-card/90 p-8 shadow-2xl shadow-blue-500/25 backdrop-blur-xl sm:p-10">
         {/* Magic UI Border Beam Animation */}
         <BorderBeam
-          size={180}
-          duration={8}
+          duration={6}
           colorFrom="#3b82f6"
-          colorTo="#8b5cf6"
-          borderWidth={1.5}
+          colorTo="#93c5fd"
+          borderWidth={2}
+          glow={true}
         />
         {/* Brand Header */}
         <div className="mb-8 flex items-center justify-between">

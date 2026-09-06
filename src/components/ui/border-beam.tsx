@@ -1,109 +1,72 @@
 "use client";
 
-import { motion, type MotionStyle, type Transition } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface BorderBeamProps {
-  /**
-   * The size of the border beam.
-   */
-  size?: number;
-  /**
-   * The duration of the border beam.
-   */
-  duration?: number;
-  /**
-   * The delay of the border beam.
-   */
-  delay?: number;
-  /**
-   * The color of the border beam from.
-   */
-  colorFrom?: string;
-  /**
-   * The color of the border beam to.
-   */
-  colorTo?: string;
-  /**
-   * The motion transition of the border beam.
-   */
-  transition?: Transition;
-  /**
-   * The class name of the border beam.
-   */
   className?: string;
-  /**
-   * The style of the border beam.
-   */
-  style?: React.CSSProperties;
-  /**
-   * Whether to reverse the animation direction.
-   */
-  reverse?: boolean;
-  /**
-   * The initial offset position (0-100).
-   */
-  initialOffset?: number;
-  /**
-   * The border width of the beam.
-   */
+  size?: number;
+  duration?: number;
+  delay?: number;
+  colorFrom?: string;
+  colorTo?: string;
   borderWidth?: number;
+  glow?: boolean;
 }
 
 export const BorderBeam = ({
   className,
-  size = 50,
-  delay = 0,
-  duration = 8,
+  duration = 6,
   colorFrom = "#3b82f6",
-  colorTo = "#8b5cf6",
-  transition,
-  style,
-  reverse = false,
-  initialOffset = 0,
-  borderWidth = 1,
+  colorTo = "#60a5fa",
+  borderWidth = 1.5,
+  glow = true,
 }: BorderBeamProps) => {
   return (
-    <div
-      className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent"
-      style={
-        {
-          "--border-beam-width": `${borderWidth}px`,
-          mask: "linear-gradient(transparent,transparent),linear-gradient(#000,#000)",
-          maskComposite: "intersect",
-          WebkitMaskComposite: "source-in",
-        } as React.CSSProperties
-      }
-    >
-      <motion.div
+    <>
+      {/* Outer ambient blur glow around the card border */}
+      {glow && (
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-1 -z-20 rounded-[inherit] opacity-70 blur-xl"
+          style={{
+            background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${colorFrom} 45deg, ${colorTo} 100deg, transparent 160deg)`,
+          }}
+          animate={{ rotate: 360 }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: duration,
+          }}
+        />
+      )}
+
+      {/* Crisp glowing border line */}
+      <div
+        aria-hidden="true"
         className={cn(
-          "absolute aspect-square",
+          "pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit]",
           className
         )}
-        style={
-          {
-            width: size,
-            height: size,
-            offsetPath: `rect(0 auto auto 0 round ${size}px)`,
-            background: `conic-gradient(from 0deg, ${colorFrom}, ${colorTo}, ${colorFrom})`,
-            ...style,
-          } as MotionStyle
-        }
-        initial={{ offsetDistance: `${initialOffset}%` }}
-        animate={{
-          offsetDistance: reverse
-            ? [`${100 - initialOffset}%`, `${-initialOffset}%`]
-            : [`${initialOffset}%`, `${100 + initialOffset}%`],
-        }}
-        transition={{
-          repeat: Infinity,
-          ease: "linear",
-          duration,
-          delay: -delay,
-          ...transition,
-        }}
-      />
-    </div>
+        style={{ padding: `${borderWidth}px` }}
+      >
+        <motion.div
+          className="absolute -inset-[150%] aspect-square"
+          style={{
+            background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${colorFrom} 45deg, ${colorTo} 100deg, transparent 160deg)`,
+          }}
+          animate={{ rotate: 360 }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: duration,
+          }}
+        />
+        {/* Inner cutout matching the card background */}
+        <div className="h-full w-full rounded-[inherit] bg-card/95 backdrop-blur-md" />
+      </div>
+    </>
   );
 };
 

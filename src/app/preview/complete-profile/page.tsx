@@ -25,14 +25,14 @@ export default function CompleteProfilePreviewPage() {
         </Link>
       </div>
 
-      <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border/80 bg-card/90 p-8 shadow-xl backdrop-blur-md sm:p-10">
+      <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-blue-500/30 bg-card/90 p-8 shadow-2xl shadow-blue-500/25 backdrop-blur-xl sm:p-10">
         {/* Magic UI Border Beam Animation */}
         <BorderBeam
-          size={180}
-          duration={8}
+          duration={6}
           colorFrom="#3b82f6"
-          colorTo="#8b5cf6"
-          borderWidth={1.5}
+          colorTo="#93c5fd"
+          borderWidth={2}
+          glow={true}
         />
 
         {/* Brand Header */}
