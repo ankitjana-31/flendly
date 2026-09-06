@@ -1,10 +1,10 @@
-﻿import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { listSelfTracks, getSelfTrackStats } from "@/lib/self-track/queries";
 import { SelfTrackForm } from "@/components/self-track/self-track-form";
 import { SelfTrackList } from "@/components/self-track/self-track-list";
 import { formatMoney } from "@/lib/format";
-import { Wallet, ArrowUpRight, ArrowDownLeft, CheckCircle2, Sparkles, Plus, ShieldCheck } from "lucide-react";
+import { Wallet, ArrowUpRight, ArrowDownLeft, CheckCircle2, Sparkles, Plus } from "lucide-react";
 
 export default async function SelfTrackPage() {
   const { user } = await getCurrentUserProfile();
@@ -21,7 +21,7 @@ export default async function SelfTrackPage() {
     <div className="flex flex-col gap-8 max-w-6xl mx-auto pb-12">
       {/* Header Banner */}
       <div className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-teal-500/10 via-blue-500/10 to-purple-500/10 border border-teal-500/20 backdrop-blur-xl overflow-hidden shadow-xl">
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="relative z-10">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-600 dark:text-teal-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
@@ -34,13 +34,6 @@ export default async function SelfTrackPage() {
               Keep a 100% private record of cash, offline debts, and micro-loans outside of Flendly deals. 
               Never notifies other users.
             </p>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-card/80 border border-border/80 shadow-sm text-xs font-semibold text-muted-foreground">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span>Isolated by Supabase RLS</span>
-            </div>
           </div>
         </div>
       </div>
