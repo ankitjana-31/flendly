@@ -43,12 +43,13 @@ export function LoginContent({ error }: LoginContentProps) {
         variants={itemVariants}
         className="relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl"
       >
-        {/* Glowing border beam animation - slower */}
+        {/* Glowing border beam animation - travels along border */}
         <BorderBeam
           colorFrom="#3b82f6"
           colorTo="#8b5cf6"
           duration={8}
-          width={1.5}
+          size={30}
+          borderWidth={1}
         />
 
         <motion.div variants={itemVariants} className="mb-8 flex items-center gap-2.5">
