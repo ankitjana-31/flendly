@@ -45,8 +45,12 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
     setIsUpdating(recordId);
     try {
       const newStatus = currentStatus === "active" ? "settled" : "active";
-      await updateSelfTrackStatus(recordId, newStatus as "active" | "settled");
-      onRecordDeleted?.();
+      const res = await updateSelfTrackStatus(recordId, newStatus as "active" | "settled");
+      if (res.success) {
+        onRecordDeleted?.();
+      } else {
+        alert(res.error || "Failed to update status");
+      }
     } catch (error) {
       console.error("Failed to update status:", error);
     } finally {
@@ -58,8 +62,12 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
     if (!confirm("Are you sure you want to delete this private record?")) return;
     setIsDeleting(recordId);
     try {
-      await deleteSelfTrack(recordId);
-      onRecordDeleted?.();
+      const res = await deleteSelfTrack(recordId);
+      if (res.success) {
+        onRecordDeleted?.();
+      } else {
+        alert(res.error || "Failed to delete record");
+      }
     } catch (error) {
       console.error("Failed to delete record:", error);
     } finally {
@@ -70,20 +78,27 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
   const handleRecordPayment = async (e: React.FormEvent, recordId: string) => {
     e.preventDefault();
     setPaymentError(null);
+
+    const amt = Number(paymentAmount);
+    if (!amt || amt <= 0) {
+      setPaymentError("Payment amount must be greater than 0");
+      return;
+    }
+
     setIsRecordingPayment(true);
 
     try {
-      const amt = Number(paymentAmount);
-      if (!amt || amt <= 0) {
-        throw new Error("Payment amount must be greater than 0");
-      }
-
-      await addSelfTrackPayment({
+      const res = await addSelfTrackPayment({
         self_track_id: recordId,
         amount: amt,
         payment_date: paymentDate,
         note: paymentNote.trim() || undefined,
       });
+
+      if (!res.success) {
+        setPaymentError(res.error || "Failed to record payment");
+        return;
+      }
 
       setPaymentAmount("");
       setPaymentNote("");
@@ -98,8 +113,12 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
 
   const handleDeletePayment = async (paymentId: string, recordId: string) => {
     try {
-      await deleteSelfTrackPayment(paymentId, recordId);
-      onRecordDeleted?.();
+      const res = await deleteSelfTrackPayment(paymentId, recordId);
+      if (res.success) {
+        onRecordDeleted?.();
+      } else {
+        alert(res.error || "Failed to delete payment");
+      }
     } catch (error) {
       console.error("Failed to delete payment:", error);
     }

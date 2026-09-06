@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Plus, X, ArrowUpRight, ArrowDownLeft, FileText, Calendar, User, IndianRupee, Sparkles } from "lucide-react";
 import { createSelfTrack } from "@/lib/self-track/actions";
 
@@ -25,17 +25,20 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
     e.preventDefault();
     setError(null);
     setSuccess(false);
+
+    if (!personName.trim()) {
+      setError("Please enter person name or note title");
+      return;
+    }
+    if (!amount || Number(amount) <= 0) {
+      setError("Amount must be greater than 0");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      if (!personName.trim()) {
-        throw new Error("Please enter person name or note title");
-      }
-      if (!amount || Number(amount) <= 0) {
-        throw new Error("Amount must be greater than 0");
-      }
-
-      await createSelfTrack({
+      const result = await createSelfTrack({
         type,
         person_name: personName.trim(),
         amount: Number(amount),
@@ -43,7 +46,12 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
         note: note.trim() || undefined,
       });
 
-      // Reset form
+      if (!result.success) {
+        setError(result.error || "Failed to create record");
+        return;
+      }
+
+      // Reset form on success
       setPersonName("");
       setAmount("");
       setRecordDate(new Date().toISOString().split("T")[0]);
@@ -54,9 +62,9 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
         setSuccess(false);
         onSuccess?.();
         if (onClose) onClose();
-      }, 800);
+      }, 1000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create record");
+      setError(err instanceof Error ? err.message : "An unexpected error occurred");
     } finally {
       setIsSubmitting(false);
     }
@@ -90,7 +98,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="px-4 py-3 rounded-2xl bg-danger/10 border border-danger/20 text-danger text-xs font-semibold"
+            className="px-4 py-3 rounded-2xl bg-danger/10 border border-danger/20 text-danger text-xs font-semibold leading-relaxed"
           >
             {error}
           </motion.div>
