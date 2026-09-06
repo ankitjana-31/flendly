@@ -34,23 +34,38 @@ export function LandingHero() {
       animate="visible"
       className="relative w-full max-w-4xl text-center z-20"
     >
-      <motion.p
-        variants={itemVariants}
-        className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-6"
-      >
-        Personal Finance Ledger
-      </motion.p>
+      {/* Badge with subtle glow */}
+      <motion.div variants={itemVariants} className="mb-4 inline-block">
+        <div className="relative inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 backdrop-blur-md">
+          <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+          <span className="text-xs font-bold tracking-widest text-blue-300 uppercase">
+            Personal Finance Ledger
+          </span>
+        </div>
+      </motion.div>
 
-      <motion.h1
+      {/* Big, Bold & Glowy Signature FLENDLY Brand Name */}
+      <motion.div variants={itemVariants} className="relative mb-6">
+        {/* Multi-tier ambient neon glow */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-36 w-96 rounded-full bg-gradient-to-r from-blue-600/40 via-indigo-500/30 to-cyan-400/40 blur-3xl -z-10" />
+        
+        <h1 className="font-brand text-6xl sm:text-8xl md:text-9xl font-black tracking-tight uppercase select-none">
+          <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-50 to-blue-200 drop-shadow-[0_0_35px_rgba(59,130,246,0.7)]">
+            FLENDLY
+          </span>
+        </h1>
+      </motion.div>
+
+      <motion.h2
         variants={itemVariants}
-        className="font-heading text-5xl sm:text-6xl font-bold leading-tight text-white mb-6"
+        className="font-heading text-3xl sm:text-5xl font-bold leading-tight text-white mb-6"
       >
         Make every loan between people
         <br />
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400">
           crystal clear
         </span>
-      </motion.h1>
+      </motion.h2>
 
       <motion.p
         variants={itemVariants}
