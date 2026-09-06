@@ -40,6 +40,7 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
     { name: "Lent", href: "/lent", icon: ArrowUpRight },
     { name: "Borrowed", href: "/borrowed", icon: ArrowDownLeft },
     { name: "Requests", href: "/requests", icon: MessageSquare },
+    { name: "Notifications", href: "/notifications", icon: Bell },
     { name: "Self Track", href: "/self-track", icon: Wallet },
   ];
 
