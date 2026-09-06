@@ -3,7 +3,6 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import Link from "next/link";
 import React from "react";
-import { MorphingText } from "@/components/ui/morphing-text";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -27,14 +26,6 @@ const itemVariants: Variants = {
 
 export function LandingHero() {
   const shouldReduceMotion = useReducedMotion();
-
-  const morphingTexts = [
-    "Clear agreements",
-    "Zero confusion",
-    "Transparent tracking",
-    "Shared trust",
-    "Personal control",
-  ];
 
   return (
     <motion.section
@@ -60,16 +51,6 @@ export function LandingHero() {
           crystal clear
         </span>
       </motion.h1>
-
-      <motion.div
-        variants={itemVariants}
-        className="mb-8"
-      >
-        <MorphingText
-          texts={morphingTexts}
-          className="text-blue-300 text-2xl"
-        />
-      </motion.div>
 
       <motion.p
         variants={itemVariants}
