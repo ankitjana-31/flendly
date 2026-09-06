@@ -61,11 +61,11 @@ export function LandingHero() {
         with the people you trust.
       </motion.p>
 
-      <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
+      <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center relative z-30">
         <motion.div
           whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
           whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
-          className="inline-block"
+          className="inline-block pointer-events-auto"
         >
           <Link
             href="/auth/login"
@@ -78,7 +78,7 @@ export function LandingHero() {
         <motion.div
           whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
           whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
-          className="inline-block"
+          className="inline-block pointer-events-auto"
         >
           <Link
             href="/auth/login"
