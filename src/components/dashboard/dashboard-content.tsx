@@ -9,6 +9,7 @@ import { AnimatedContainer } from "@/components/ui/animated-container";
 import { SelfTrackForm } from "@/components/self-track/self-track-form";
 import { SelfTrackList } from "@/components/self-track/self-track-list";
 import { clientListSelfTracks } from "@/lib/self-track/client";
+import { GlareHover } from "@/components/ui/glare-hover";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -84,120 +85,130 @@ export function DashboardContent({
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <Card className="p-6">
-            <p className="text-sm font-medium text-muted-foreground">You&apos;re owed</p>
-            <motion.p
-              className="mt-2 font-tabular text-3xl font-bold text-success"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-            >
-              {formatMoney(aggregates.totalLent)}
-            </motion.p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              across {aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
-            </p>
-          </Card>
+          <GlareHover>
+            <Card className="p-6">
+              <p className="text-sm font-medium text-muted-foreground">You&apos;re owed</p>
+              <motion.p
+                className="mt-2 font-tabular text-3xl font-bold text-success"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+              >
+                {formatMoney(aggregates.totalLent)}
+              </motion.p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                across {aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
+              </p>
+            </Card>
+          </GlareHover>
         </motion.div>
 
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <Card className="p-6">
-            <p className="text-sm font-medium text-muted-foreground">You owe</p>
-            <motion.p
-              className="mt-2 font-tabular text-3xl font-bold text-danger"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-            >
-              {formatMoney(aggregates.totalBorrowed)}
-            </motion.p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              across {aggregates.activeBorrowedCount} active loan
-              {aggregates.activeBorrowedCount === 1 ? "" : "s"}
-            </p>
-          </Card>
+          <GlareHover>
+            <Card className="p-6">
+              <p className="text-sm font-medium text-muted-foreground">You owe</p>
+              <motion.p
+                className="mt-2 font-tabular text-3xl font-bold text-danger"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
+              >
+                {formatMoney(aggregates.totalBorrowed)}
+              </motion.p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                across {aggregates.activeBorrowedCount} active loan
+                {aggregates.activeBorrowedCount === 1 ? "" : "s"}
+              </p>
+            </Card>
+          </GlareHover>
         </motion.div>
       </motion.div>
 
       {/* Overdue Section - Conditional */}
       {hasCompletedDeals && aggregates.overdue.length > 0 && (
         <AnimatedContainer animation="fadeInUp">
-          <Card className="border-danger/40 bg-danger/5 p-5">
-            <h2 className="font-heading text-sm font-semibold text-danger">Overdue</h2>
-            <ul className="mt-3 flex flex-col gap-2">
-              {aggregates.overdue.map((loan: any, idx: number) => (
-                <motion.li
-                  key={loan.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                >
-                  <a href={`/loans/${loan.id}`} className="flex items-center justify-between text-sm hover:underline">
-                    <span>
-                      {loan.counterparty.full_name ?? `@${loan.counterparty.username}`} ·{" "}
-                      {formatMoney(loan.ledger?.outstanding)}
-                    </span>
-                    <span className="text-muted-foreground">due {formatDate(loan.due_date)}</span>
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </Card>
+          <GlareHover>
+            <Card className="border-danger/40 bg-danger/5 p-5">
+              <h2 className="font-heading text-sm font-semibold text-danger">Overdue</h2>
+              <ul className="mt-3 flex flex-col gap-2">
+                {aggregates.overdue.map((loan: any, idx: number) => (
+                  <motion.li
+                    key={loan.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                  >
+                    <a href={`/loans/${loan.id}`} className="flex items-center justify-between text-sm hover:underline">
+                      <span>
+                        {loan.counterparty.full_name ?? `@${loan.counterparty.username}`} ·{" "}
+                        {formatMoney(loan.ledger?.outstanding)}
+                      </span>
+                      <span className="text-muted-foreground">due {formatDate(loan.due_date)}</span>
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </Card>
+          </GlareHover>
         </AnimatedContainer>
       )}
 
       {/* Due Soon Section - Conditional */}
       {hasCompletedDeals && aggregates.upcoming.length > 0 && (
         <AnimatedContainer animation="fadeInUp">
-          <Card className="border-warning/40 bg-warning/5 p-5">
-            <h2 className="font-heading text-sm font-semibold text-warning">Due soon</h2>
-            <ul className="mt-3 flex flex-col gap-2">
-              {aggregates.upcoming.map((loan: any, idx: number) => (
-                <motion.li
-                  key={loan.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                >
-                  <a href={`/loans/${loan.id}`} className="flex items-center justify-between text-sm hover:underline">
-                    <span>
-                      {loan.counterparty.full_name ?? `@${loan.counterparty.username}`} ·{" "}
-                      {formatMoney(loan.ledger?.outstanding)}
-                    </span>
-                    <span className="text-muted-foreground">
-                      {daysUntil(loan.due_date) === 0 ? "due today" : `due in ${daysUntil(loan.due_date)}d`}
-                    </span>
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </Card>
+          <GlareHover>
+            <Card className="border-warning/40 bg-warning/5 p-5">
+              <h2 className="font-heading text-sm font-semibold text-warning">Due soon</h2>
+              <ul className="mt-3 flex flex-col gap-2">
+                {aggregates.upcoming.map((loan: any, idx: number) => (
+                  <motion.li
+                    key={loan.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                  >
+                    <a href={`/loans/${loan.id}`} className="flex items-center justify-between text-sm hover:underline">
+                      <span>
+                        {loan.counterparty.full_name ?? `@${loan.counterparty.username}`} ·{" "}
+                        {formatMoney(loan.ledger?.outstanding)}
+                      </span>
+                      <span className="text-muted-foreground">
+                        {daysUntil(loan.due_date) === 0 ? "due today" : `due in ${daysUntil(loan.due_date)}d`}
+                      </span>
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </Card>
+          </GlareHover>
         </AnimatedContainer>
       )}
 
       {/* Analysis Section - Only shows if user has completed deals */}
       {hasCompletedDeals && (
         <AnimatedContainer animation="fadeInUp">
-          <Card className="p-5 border-primary/20 bg-primary/5">
-            <h2 className="font-heading text-sm font-semibold">Loan Summary</h2>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              <div>
-                <p className="text-xs text-muted-foreground">Total Lent</p>
-                <p className="mt-1 font-tabular text-lg font-bold text-success">
-                  {formatMoney(aggregates.totalLent)}
-                </p>
+          <GlareHover>
+            <Card className="p-5 border-primary/20 bg-primary/5">
+              <h2 className="font-heading text-sm font-semibold">Loan Summary</h2>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <div>
+                  <p className="text-xs text-muted-foreground">Total Lent</p>
+                  <p className="mt-1 font-tabular text-lg font-bold text-success">
+                    {formatMoney(aggregates.totalLent)}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">Total Borrowed</p>
+                  <p className="mt-1 font-tabular text-lg font-bold text-danger">
+                    {formatMoney(aggregates.totalBorrowed)}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Total Borrowed</p>
-                <p className="mt-1 font-tabular text-lg font-bold text-danger">
-                  {formatMoney(aggregates.totalBorrowed)}
-                </p>
-              </div>
-            </div>
-          </Card>
+            </Card>
+          </GlareHover>
         </AnimatedContainer>
       )}
 
@@ -216,9 +227,11 @@ export function DashboardContent({
         </div>
 
         {openRequests.length === 0 ? (
-          <Card className="p-8 text-center text-sm text-muted-foreground">
-            No open requests. Start one with the button above.
-          </Card>
+          <GlareHover>
+            <Card className="p-8 text-center text-sm text-muted-foreground">
+              No open requests. Start one with the button above.
+            </Card>
+          </GlareHover>
         ) : (
           <motion.div className="flex flex-col gap-2" variants={containerVariants} initial="hidden" animate="visible">
             {openRequests.slice(0, 5).map((r: any) => {
@@ -230,21 +243,23 @@ export function DashboardContent({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15 }}
                 >
-                  <motion.a href={`/requests/${r.id}`} whileHover={{ scale: 1.01 }}>
-                    <Card className="flex items-center justify-between p-4 transition-colors hover:bg-muted">
-                      <div>
-                        <p className="text-sm font-medium">
-                          {other.full_name ?? `@${other.username}`} ·{" "}
-                          {r.active_offer ? formatMoney(r.active_offer.amount) : "—"}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {r.sender.id === userId ? "You sent" : "Sent to you"} ·{" "}
-                          {r.direction === "lend" ? "you lend" : "you borrow"}
-                        </p>
-                      </div>
-                      <StatusBadge status={r.status} />
-                    </Card>
-                  </motion.a>
+                  <GlareHover>
+                    <motion.a href={`/requests/${r.id}`} whileHover={{ scale: 1.01 }}>
+                      <Card className="flex items-center justify-between p-4 transition-colors hover:bg-muted">
+                        <div>
+                          <p className="text-sm font-medium">
+                            {other.full_name ?? `@${other.username}`} ·{" "}
+                            {r.active_offer ? formatMoney(r.active_offer.amount) : "—"}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {r.sender.id === userId ? "You sent" : "Sent to you"} ·{" "}
+                            {r.direction === "lend" ? "you lend" : "you borrow"}
+                          </p>
+                        </div>
+                        <StatusBadge status={r.status} />
+                      </Card>
+                    </motion.a>
+                  </GlareHover>
                 </motion.div>
               );
             })}
