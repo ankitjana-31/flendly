@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function LearnMorePage() {
@@ -40,13 +40,6 @@ export default function LearnMorePage() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-gradient-to-br from-teal-500/15 via-blue-600/15 to-purple-600/10 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs sm:text-sm font-medium mb-8 backdrop-blur-md">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400" />
-            </span>
-            Reimagining Peer-to-Peer Finance for GenZ
-          </div>
 
           <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight mb-8">
             <span className="block text-white">No awkward chats.</span>

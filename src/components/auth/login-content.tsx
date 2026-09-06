@@ -3,7 +3,6 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { signInWithGoogle } from "@/lib/auth/actions";
 import { GoogleSignInButton } from "@/components/users/google-sign-in-button";
-import { BorderBeam } from "@/components/ui/border-beam";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -41,31 +40,22 @@ export function LoginContent({ error }: LoginContentProps) {
     >
       <motion.section
         variants={itemVariants}
-        className="relative overflow-hidden rounded-3xl border border-zinc-200/90 dark:border-slate-700/60 bg-white/95 dark:bg-slate-900/95 p-6 sm:p-7 shadow-2xl shadow-zinc-950/10 dark:shadow-black/60 backdrop-blur-2xl"
+        className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#111820]/95 p-7 sm:p-8 shadow-2xl shadow-black/80 backdrop-blur-2xl"
       >
-        {/* Glowing border beam animation - travels along border */}
-        <BorderBeam
-          colorFrom="#3b82f6"
-          colorTo="#8b5cf6"
-          duration={8}
-          size={30}
-          borderWidth={1.5}
-        />
-
         <motion.div variants={itemVariants} className="mb-6 flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 dark:bg-blue-500 font-heading text-sm font-bold text-white shadow-lg shadow-blue-500/30">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-teal-400 to-blue-500 font-heading text-sm font-bold text-black shadow-lg shadow-teal-500/20">
             F
           </div>
-          <span className="font-heading text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
+          <span className="font-heading text-xl font-bold tracking-tight text-white">
             Flendly
           </span>
         </motion.div>
 
         <motion.div variants={itemVariants} className="space-y-2">
-          <h1 className="font-heading text-xl font-bold leading-tight text-zinc-900 dark:text-white sm:text-2xl">
+          <h1 className="font-heading text-2xl font-bold leading-tight text-white">
             Track lending with people you trust.
           </h1>
-          <p className="text-sm leading-6 text-zinc-600 dark:text-slate-300">
+          <p className="text-sm leading-6 text-slate-300">
             Send a request, agree on terms, and keep one shared ledger instead of a
             screenshot of a bank transfer.
           </p>
@@ -74,7 +64,7 @@ export function LoginContent({ error }: LoginContentProps) {
         {error ? (
           <motion.p
             variants={itemVariants}
-            className="mt-4 rounded-xl border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-500 dark:text-red-400"
+            className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-3.5 py-2 text-xs text-red-400 font-medium"
           >
             {error}
           </motion.p>
@@ -83,14 +73,14 @@ export function LoginContent({ error }: LoginContentProps) {
         <motion.form
           variants={itemVariants}
           action={signInWithGoogle}
-          className="mt-6"
+          className="mt-7"
         >
           <GoogleSignInButton />
         </motion.form>
 
         <motion.p
           variants={itemVariants}
-          className="mt-5 text-center text-[11px] leading-4 text-zinc-500 dark:text-slate-400"
+          className="mt-6 text-center text-[11px] leading-4 text-slate-400"
         >
           Your email and phone number are private by default — you choose who,
           if anyone, can see them.
@@ -98,19 +88,19 @@ export function LoginContent({ error }: LoginContentProps) {
 
         <motion.div
           variants={itemVariants}
-          className="mt-6 flex justify-center gap-5 text-xs text-zinc-600 dark:text-slate-400"
+          className="mt-6 flex justify-center gap-6 text-xs text-slate-400 pt-2 border-t border-white/5"
         >
           <div className="flex items-center gap-1.5">
-            <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-            <span>Secure & Private</span>
+            <div className="h-1.5 w-1.5 rounded-full bg-teal-400" />
+            <span className="text-slate-300">Secure & Private</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="h-1.5 w-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
-            <span>Easy Setup</span>
+            <div className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+            <span className="text-slate-300">Easy Setup</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="h-1.5 w-1.5 rounded-full bg-purple-500 dark:bg-purple-400" />
-            <span>Transparent</span>
+            <div className="h-1.5 w-1.5 rounded-full bg-purple-400" />
+            <span className="text-slate-300">Transparent</span>
           </div>
         </motion.div>
       </motion.section>
