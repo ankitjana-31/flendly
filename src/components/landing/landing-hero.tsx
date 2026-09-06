@@ -34,13 +34,10 @@ export function LandingHero() {
       animate="visible"
       className="relative w-full max-w-4xl text-center z-20"
     >
-      {/* Big, Bold & Glowy Signature FLENDLY Brand Name */}
+      {/* FLENDLY Brand Name */}
       <motion.div variants={itemVariants} className="relative mb-6">
-        {/* Multi-tier ambient neon glow */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-36 w-96 rounded-full bg-gradient-to-r from-blue-600/40 via-indigo-500/30 to-cyan-400/40 blur-3xl -z-10" />
-        
-        <h1 className="font-brand text-6xl sm:text-8xl md:text-9xl font-black tracking-tight uppercase select-none">
-          <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-50 to-blue-200 drop-shadow-[0_0_35px_rgba(59,130,246,0.7)]">
+        <h1 className="font-brand text-6xl sm:text-8xl md:text-9xl font-bold tracking-wider uppercase select-none">
+          <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-50 to-blue-200">
             FLENDLY
           </span>
         </h1>

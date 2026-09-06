@@ -41,7 +41,7 @@ export function LoginContent({ error }: LoginContentProps) {
     >
       <motion.section
         variants={itemVariants}
-        className="relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-xl"
+        className="relative overflow-hidden rounded-2xl border border-border bg-card/90 p-8 shadow-2xl backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/80"
       >
         {/* Glowing border beam animation - travels along border */}
         <BorderBeam
@@ -56,16 +56,16 @@ export function LoginContent({ error }: LoginContentProps) {
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500 font-heading text-base font-bold text-white shadow-lg shadow-blue-500/30">
             F
           </div>
-          <span className="font-heading text-xl font-bold tracking-tight text-white">
+          <span className="font-heading text-xl font-bold tracking-tight text-foreground">
             Flendly
           </span>
         </motion.div>
 
         <motion.div variants={itemVariants} className="space-y-3">
-          <h1 className="font-heading text-2xl font-bold leading-tight text-white sm:text-3xl">
+          <h1 className="font-heading text-2xl font-bold leading-tight text-foreground sm:text-3xl">
             Track lending with people you trust.
           </h1>
-          <p className="text-base leading-7 text-slate-300">
+          <p className="text-base leading-7 text-muted-foreground">
             Send a request, agree on terms, and keep one shared ledger instead of a
             screenshot of a bank transfer.
           </p>
@@ -90,7 +90,7 @@ export function LoginContent({ error }: LoginContentProps) {
 
         <motion.p
           variants={itemVariants}
-          className="mt-6 text-center text-xs leading-5 text-slate-400"
+          className="mt-6 text-center text-xs leading-5 text-muted-foreground"
         >
           Your email and phone number are private by default — you choose who,
           if anyone, can see them.
@@ -98,7 +98,7 @@ export function LoginContent({ error }: LoginContentProps) {
 
         <motion.div
           variants={itemVariants}
-          className="mt-8 flex justify-center gap-6 text-sm text-slate-400"
+          className="mt-8 flex justify-center gap-6 text-sm text-muted-foreground"
         >
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-emerald-400" />
