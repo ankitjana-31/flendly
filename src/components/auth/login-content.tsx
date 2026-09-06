@@ -41,7 +41,7 @@ export function LoginContent({ error }: LoginContentProps) {
     >
       <motion.section
         variants={itemVariants}
-        className="relative overflow-hidden rounded-2xl border border-border bg-card/90 p-8 shadow-2xl backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/80"
+        className="relative overflow-hidden rounded-3xl border border-border bg-card/95 p-6 sm:p-7 shadow-2xl backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/90"
       >
         {/* Glowing border beam animation - travels along border */}
         <BorderBeam
@@ -52,20 +52,20 @@ export function LoginContent({ error }: LoginContentProps) {
           borderWidth={1}
         />
 
-        <motion.div variants={itemVariants} className="mb-8 flex items-center gap-2.5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500 font-heading text-base font-bold text-white shadow-lg shadow-blue-500/30">
+        <motion.div variants={itemVariants} className="mb-6 flex items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500 font-heading text-sm font-bold text-white shadow-lg shadow-blue-500/30">
             F
           </div>
-          <span className="font-heading text-xl font-bold tracking-tight text-foreground">
+          <span className="font-heading text-lg font-bold tracking-tight text-foreground">
             Flendly
           </span>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="space-y-3">
-          <h1 className="font-heading text-2xl font-bold leading-tight text-foreground sm:text-3xl">
+        <motion.div variants={itemVariants} className="space-y-2">
+          <h1 className="font-heading text-xl font-bold leading-tight text-foreground sm:text-2xl">
             Track lending with people you trust.
           </h1>
-          <p className="text-base leading-7 text-muted-foreground">
+          <p className="text-sm leading-6 text-muted-foreground">
             Send a request, agree on terms, and keep one shared ledger instead of a
             screenshot of a bank transfer.
           </p>
@@ -74,7 +74,7 @@ export function LoginContent({ error }: LoginContentProps) {
         {error ? (
           <motion.p
             variants={itemVariants}
-            className="mt-6 rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-2 text-sm text-red-400"
+            className="mt-4 rounded-xl border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-400"
           >
             {error}
           </motion.p>
@@ -83,14 +83,14 @@ export function LoginContent({ error }: LoginContentProps) {
         <motion.form
           variants={itemVariants}
           action={signInWithGoogle}
-          className="mt-8"
+          className="mt-6"
         >
           <GoogleSignInButton />
         </motion.form>
 
         <motion.p
           variants={itemVariants}
-          className="mt-6 text-center text-xs leading-5 text-muted-foreground"
+          className="mt-5 text-center text-[11px] leading-4 text-muted-foreground"
         >
           Your email and phone number are private by default — you choose who,
           if anyone, can see them.
@@ -98,18 +98,18 @@ export function LoginContent({ error }: LoginContentProps) {
 
         <motion.div
           variants={itemVariants}
-          className="mt-8 flex justify-center gap-6 text-sm text-muted-foreground"
+          className="mt-6 flex justify-center gap-5 text-xs text-muted-foreground"
         >
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-emerald-400" />
+          <div className="flex items-center gap-1.5">
+            <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span>Secure & Private</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-blue-400" />
+          <div className="flex items-center gap-1.5">
+            <div className="h-1.5 w-1.5 rounded-full bg-blue-400" />
             <span>Easy Setup</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-purple-400" />
+          <div className="flex items-center gap-1.5">
+            <div className="h-1.5 w-1.5 rounded-full bg-purple-400" />
             <span>Transparent</span>
           </div>
         </motion.div>

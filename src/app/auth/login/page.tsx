@@ -5,7 +5,6 @@ import { signInWithGoogle } from "@/lib/auth/actions";
 import { getCurrentUserProfile, isPlaceholderUsername } from "@/lib/auth/queries";
 import { GoogleSignInButton } from "@/components/users/google-sign-in-button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LoginSparklesBackground } from "@/components/auth/login-sparkles-background";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { LoginContent } from "@/components/auth/login-content";
 import { BeamsBackground } from "@/components/ui/beams-background";
@@ -38,26 +37,26 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   }
 
   return (
-    <BeamsBackground intensity="medium" className="px-6 py-12">
-      {/* Dynamic Sparkles & Particle Background */}
-      <LoginSparklesBackground />
+    <div className="relative h-screen w-screen overflow-hidden flex items-center justify-center bg-background dark:bg-[#0B0F14]">
+      {/* Animated Beams Background - Fixed to entire screen */}
+      <BeamsBackground intensity="medium" className="fixed inset-0 h-screen w-screen overflow-hidden flex items-center justify-center p-4">
+        {/* Top Navigation / Theme Toggle */}
+        <div className="absolute top-5 right-5 z-30">
+          <ThemeToggle />
+        </div>
 
-      {/* Top Navigation / Theme Toggle */}
-      <div className="absolute top-6 right-6 z-20">
-        <ThemeToggle />
-      </div>
+        <div className="absolute top-5 left-5 z-30">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-foreground/70 transition-colors hover:text-foreground bg-card/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-border/60 shadow-sm"
+          >
+            <span aria-hidden>←</span> Back to home
+          </Link>
+        </div>
 
-      <div className="absolute top-6 left-6 z-20">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium text-foreground/60 transition-colors hover:text-foreground bg-background/40 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/50"
-        >
-          <span aria-hidden>←</span> Back to home
-        </Link>
-      </div>
-
-      {/* Central Login Card */}
-      <LoginContent error={error} />
-    </BeamsBackground>
+        {/* Central Login Card */}
+        <LoginContent error={error} />
+      </BeamsBackground>
+    </div>
   );
 }
