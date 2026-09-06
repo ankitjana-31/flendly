@@ -3,10 +3,21 @@ import Link from "next/link";
 import { UsernameForm } from "@/components/users/username-form";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { GridPattern } from "@/components/ui/grid-pattern";
 
 export default function CompleteProfilePreviewPage() {
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 py-12">
+      {/* Magic UI Grid Pattern Background */}
+      <GridPattern
+        width={32}
+        height={32}
+        x={-1}
+        y={-1}
+        strokeDasharray="4 2"
+        className="[mask-image:radial-gradient(800px_circle_at_center,white,transparent)] opacity-40 dark:opacity-20"
+      />
+
       {/* Background Decorative Ambient Glow */}
       <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
