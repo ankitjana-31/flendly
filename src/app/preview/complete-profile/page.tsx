@@ -2,6 +2,7 @@ import { Sparkles, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { UsernameForm } from "@/components/users/username-form";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 export default function CompleteProfilePreviewPage() {
   return (
@@ -24,7 +25,16 @@ export default function CompleteProfilePreviewPage() {
         </Link>
       </div>
 
-      <section className="relative w-full max-w-md rounded-3xl border border-border/80 bg-card/90 p-8 shadow-xl backdrop-blur-md sm:p-10">
+      <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border/80 bg-card/90 p-8 shadow-xl backdrop-blur-md sm:p-10">
+        {/* Magic UI Border Beam Animation */}
+        <BorderBeam
+          size={180}
+          duration={8}
+          colorFrom="#3b82f6"
+          colorTo="#8b5cf6"
+          borderWidth={1.5}
+        />
+
         {/* Brand Header */}
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">

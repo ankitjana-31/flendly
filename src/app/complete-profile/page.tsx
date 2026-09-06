@@ -3,6 +3,7 @@ import { Sparkles, ShieldCheck } from "lucide-react";
 
 import { UsernameForm } from "@/components/users/username-form";
 import { getCurrentUserProfile, isPlaceholderUsername } from "@/lib/auth/queries";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 export default async function CompleteProfilePage() {
   const { user, profile } = await getCurrentUserProfile();
@@ -21,7 +22,15 @@ export default async function CompleteProfilePage() {
       <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
 
-      <section className="relative w-full max-w-md rounded-3xl border border-border/80 bg-card/90 p-8 shadow-xl backdrop-blur-md sm:p-10">
+      <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border/80 bg-card/90 p-8 shadow-xl backdrop-blur-md sm:p-10">
+        {/* Magic UI Border Beam Animation */}
+        <BorderBeam
+          size={180}
+          duration={8}
+          colorFrom="#3b82f6"
+          colorTo="#8b5cf6"
+          borderWidth={1.5}
+        />
         {/* Brand Header */}
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
