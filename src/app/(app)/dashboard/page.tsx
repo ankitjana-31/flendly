@@ -1,30 +1,26 @@
 import { redirect } from "next/navigation";
-import { motion } from "framer-motion";
+
 import { LinkButton, Card } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { getDashboardAggregates } from "@/lib/loans/queries";
 import { listRequests } from "@/lib/requests/queries";
-import { getSelfTrackStats, listSelfTracks } from "@/lib/self-track/queries";
 import { formatMoney, formatDate, daysUntil } from "@/lib/format";
-import { SelfTrackForm } from "@/components/self-track/self-track-form";
-import { SelfTrackList } from "@/components/self-track/self-track-list";
 
 export default async function DashboardPage() {
   const { user, profile } = await getCurrentUserProfile();
   if (!user) redirect("/auth/login");
 
-  const [aggregates, requests, selfTrackStats, selfTracks] = await Promise.all([
+  const [aggregates, requests] = await Promise.all([
     getDashboardAggregates(user.id),
     listRequests(user.id),
-    getSelfTrackStats(user.id),
-    listSelfTracks(user.id),
   ]);
 
   const openRequests = [...requests.incoming, ...requests.outgoing].filter((r) =>
     ["PENDING", "COUNTERED"].includes(r.status),
   );
 
+  // Check if user has any completed deals (non-zero aggregates indicate real activity)
   const hasCompletedDeals =
     aggregates.totalLent > 0 || aggregates.totalBorrowed > 0 ||
     aggregates.overdue.length > 0 || aggregates.upcoming.length > 0;
@@ -156,19 +152,6 @@ export default async function DashboardPage() {
             })}
           </div>
         )}
-      </section>
-
-      <section className="flex flex-col gap-3">
-        <div className="flex items-center justify-between">
-          <h2 className="font-heading text-lg font-semibold">Personal Tracking</h2>
-          <div className="text-xs text-muted-foreground">
-            {selfTracks.length > 0 && `${selfTracks.length} record${selfTracks.length !== 1 ? "s" : ""}`}
-          </div>
-        </div>
-
-        <SelfTrackForm />
-
-        {selfTracks.length > 0 && <SelfTrackList records={selfTracks} />}
       </section>
     </div>
   );

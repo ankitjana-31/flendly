@@ -9,6 +9,7 @@ interface BorderBeamProps {
   delay?: number;
   colorFrom?: string;
   colorTo?: string;
+  width?: number;
 }
 
 export const BorderBeam = ({
@@ -16,8 +17,9 @@ export const BorderBeam = ({
   size = 300,
   duration = 10,
   delay = 0,
-  colorFrom = "#ffaa40",
-  colorTo = "#9c40ff",
+  colorFrom = "#3b82f6",
+  colorTo = "#8b5cf6",
+  width = 2,
 }: BorderBeamProps) => {
   return (
     <div
@@ -25,37 +27,56 @@ export const BorderBeam = ({
         "pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]",
         className,
       )}
+      style={
+        {
+          "--duration": `${duration}s`,
+          "--delay": `${delay}s`,
+        } as React.CSSProperties
+      }
     >
-      <div
-        className="absolute inset-0 [border-radius:inherit]"
-        style={
-          {
-            "--size": size,
-            "--duration": duration,
-            "--delay": delay,
-            "--color-from": colorFrom,
-            "--color-to": colorTo,
-            animation: `beam var(--duration)s infinite`,
-            animationDelay: `var(--delay)s`,
-            background: `conic-gradient(from 90deg at 50% 0%, var(--color-from), var(--color-to), var(--color-from))`,
-            backgroundSize: `calc(var(--size) * 2) calc(var(--size) * 2)`,
-            backgroundPosition: "0% 0%",
-            opacity: 0.5,
-            WebkitMaskImage: `radial-gradient(circle at center, black, transparent 80%)`,
-            maskImage: `radial-gradient(circle at center, black, transparent 80%)`,
-          } as React.CSSProperties
-        }
-      />
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        style={{
+          animation: `beam-orbit var(--duration) linear infinite`,
+          animationDelay: `var(--delay)`,
+        } as React.CSSProperties}
+      >
+        <rect
+          x="1"
+          y="1"
+          width="98"
+          height="98"
+          fill="none"
+          stroke={`url(#beam-gradient)`}
+          strokeWidth={width}
+          opacity="0.8"
+        />
+        <defs>
+          <linearGradient id="beam-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={colorFrom} />
+            <stop offset="50%" stopColor={colorTo} />
+            <stop offset="100%" stopColor={colorFrom} />
+          </linearGradient>
+        </defs>
+      </svg>
       <style>{`
-        @keyframes beam {
+        @keyframes beam-orbit {
           0% {
-            background-position: 0% 0%;
+            opacity: 0.3;
+            transform: scale(0.8);
+          }
+          50% {
+            opacity: 0.8;
           }
           100% {
-            background-position: calc(var(--size) * 2) calc(var(--size) * 2);
+            opacity: 0.3;
+            transform: scale(1.1);
           }
         }
       `}</style>
     </div>
   );
 };
+

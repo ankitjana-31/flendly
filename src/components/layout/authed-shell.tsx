@@ -13,7 +13,8 @@ import {
   Settings,
   LogOut,
   Menu,
-  X
+  X,
+  Wallet
 } from "lucide-react";
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -39,6 +40,7 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
     { name: "Lent", href: "/lent", icon: ArrowUpRight },
     { name: "Borrowed", href: "/borrowed", icon: ArrowDownLeft },
     { name: "Requests", href: "/requests", icon: MessageSquare },
+    { name: "Self Track", href: "/self-track", icon: Wallet },
   ];
 
   const handleSignOut = async (e: React.FormEvent) => {

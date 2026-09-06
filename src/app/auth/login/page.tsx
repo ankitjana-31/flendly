@@ -6,6 +6,7 @@ import { getCurrentUserProfile, isPlaceholderUsername } from "@/lib/auth/queries
 import { GoogleSignInButton } from "@/components/users/google-sign-in-button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LoginSparklesBackground } from "@/components/auth/login-sparkles-background";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 type LoginPageProps = {
   searchParams: Promise<{
@@ -54,6 +55,14 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         </div>
 
         <section className="relative overflow-hidden rounded-2xl border border-border/80 bg-card/90 p-8 shadow-xl backdrop-blur-xl">
+          {/* Glowing border beam animation */}
+          <BorderBeam
+            colorFrom="#3b82f6"
+            colorTo="#8b5cf6"
+            duration={3}
+            width={1.5}
+          />
+
           <div className="mb-8 flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-heading text-base font-bold text-primary-foreground shadow-sm">
               F
