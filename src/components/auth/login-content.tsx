@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { signInWithGoogle } from "@/lib/auth/actions";
 import { GoogleSignInButton } from "@/components/users/google-sign-in-button";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -40,8 +41,17 @@ export function LoginContent({ error }: LoginContentProps) {
     >
       <motion.section
         variants={itemVariants}
-        className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#111820]/95 p-7 sm:p-8 shadow-2xl shadow-black/80 backdrop-blur-2xl"
+        className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-[#111820]/95 p-7 sm:p-8 shadow-2xl shadow-blue-500/20 backdrop-blur-2xl"
       >
+        {/* Glowing border beam animation with ambient blur */}
+        <BorderBeam
+          colorFrom="#3b82f6"
+          colorTo="#8b5cf6"
+          duration={7}
+          borderWidth={1.5}
+          glow={true}
+        />
+
         <motion.div variants={itemVariants} className="mb-6 flex items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-teal-400 to-blue-500 font-heading text-sm font-bold text-black shadow-lg shadow-teal-500/20">
             F
