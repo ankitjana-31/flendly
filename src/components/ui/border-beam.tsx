@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -17,21 +17,21 @@ interface BorderBeamProps {
 
 export const BorderBeam = ({
   className,
-  duration = 6,
-  colorFrom = "#3b82f6",
-  colorTo = "#60a5fa",
-  borderWidth = 1.5,
+  duration = 7,
+  colorFrom = "#38bdf8",
+  colorTo = "#818cf8",
+  borderWidth = 1,
   glow = true,
 }: BorderBeamProps) => {
   return (
     <>
-      {/* Outer ambient blur glow around the card border */}
+      {/* Sleek outer edge glow (strictly outside boundary, not inside) */}
       {glow && (
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute -inset-1 -z-20 rounded-[inherit] opacity-70 blur-xl"
+          className="pointer-events-none absolute -inset-[1px] -z-20 rounded-[inherit] opacity-40 blur-sm"
           style={{
-            background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${colorFrom} 45deg, ${colorTo} 100deg, transparent 160deg)`,
+            background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${colorFrom} 40deg, ${colorTo} 90deg, transparent 150deg)`,
           }}
           animate={{ rotate: 360 }}
           transition={{
@@ -42,7 +42,7 @@ export const BorderBeam = ({
         />
       )}
 
-      {/* Crisp glowing border line */}
+      {/* Crisp 1px traveling border line */}
       <div
         aria-hidden="true"
         className={cn(
@@ -54,7 +54,7 @@ export const BorderBeam = ({
         <motion.div
           className="absolute -inset-[150%] aspect-square"
           style={{
-            background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${colorFrom} 45deg, ${colorTo} 100deg, transparent 160deg)`,
+            background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${colorFrom} 40deg, ${colorTo} 90deg, transparent 150deg)`,
           }}
           animate={{ rotate: 360 }}
           transition={{
@@ -63,10 +63,9 @@ export const BorderBeam = ({
             duration: duration,
           }}
         />
-        {/* Inner cutout matching the card background */}
-        <div className="h-full w-full rounded-[inherit] bg-card/95 backdrop-blur-md" />
+        {/* Solid inner mask to ensure 0% glow bleed inside */}
+        <div className="h-full w-full rounded-[inherit] bg-[#111820]" />
       </div>
     </>
   );
 };
-
