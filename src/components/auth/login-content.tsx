@@ -43,13 +43,23 @@ export function LoginContent({ error }: LoginContentProps) {
         variants={itemVariants}
         className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#111820] p-7 sm:p-8 shadow-2xl shadow-black/80"
       >
+        {/* Glowing edge borders - top and sides */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/30 via-transparent to-indigo-500/30 pointer-events-none" />
+        <div className="absolute top-0 right-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/30 via-transparent to-cyan-500/30 pointer-events-none" />
+
+        {/* Corner glows */}
+        <div className="absolute top-0 left-0 w-20 h-20 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-20 h-20 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+
         {/* Sleek edge-only border beam */}
         <BorderBeam
           colorFrom="#38bdf8"
           colorTo="#818cf8"
           duration={7}
           borderWidth={1}
-          glow={true}
+          glow={false}
         />
 
         <motion.div variants={itemVariants} className="mb-6 flex items-center gap-2.5 relative z-10">
@@ -85,7 +95,17 @@ export function LoginContent({ error }: LoginContentProps) {
           action={signInWithGoogle}
           className="mt-7 relative z-10"
         >
-          <GoogleSignInButton />
+          <div className="group relative rounded-xl border border-white/15 bg-white/[0.03] p-4 backdrop-blur-md transition-all duration-300 hover:border-cyan-500/40 hover:bg-white/[0.08]">
+            {/* Glass morphism effect on hover */}
+            <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-br from-cyan-400/10 via-white/5 to-indigo-400/10 pointer-events-none" />
+
+            {/* Subtle glow on hover */}
+            <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-cyan-500/20 pointer-events-none" />
+
+            <div className="relative z-10">
+              <GoogleSignInButton />
+            </div>
+          </div>
         </motion.form>
 
         <motion.p
