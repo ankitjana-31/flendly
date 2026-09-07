@@ -9,18 +9,18 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 24 },
+    transition: { type: "spring", stiffness: 350, damping: 26 },
   },
 };
 
@@ -34,10 +34,10 @@ export function LandingHero() {
       animate="visible"
       className="relative w-full max-w-4xl text-center z-20"
     >
-      {/* FLENDLY Brand Name */}
+      {/* FLENDLY Brand Name with subtle sheen */}
       <motion.div variants={itemVariants} className="relative mb-6">
-        <h1 className="font-brand text-6xl sm:text-8xl md:text-9xl font-bold tracking-wider uppercase select-none">
-          <span className="bg-clip-text text-transparent bg-gradient-to-b from-zinc-950 via-slate-800 to-blue-900 dark:from-white dark:via-blue-50 dark:to-blue-200 drop-shadow-sm">
+        <h1 className="font-brand text-6xl sm:text-8xl md:text-9xl font-bold tracking-wider uppercase select-none group">
+          <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-50 to-blue-200 transition-all duration-300 group-hover:drop-shadow-[0_0_30px_rgba(45,212,191,0.4)]">
             FLENDLY
           </span>
         </h1>
@@ -45,65 +45,68 @@ export function LandingHero() {
 
       <motion.h2
         variants={itemVariants}
-        className="font-heading text-3xl sm:text-5xl font-bold leading-tight text-zinc-900 dark:text-white mb-6"
+        className="font-heading text-3xl sm:text-5xl font-bold leading-tight text-white mb-6"
       >
         Split the awkward. Keep the friendship.
         <br />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400">
           Track every rupee.
         </span>
       </motion.h2>
 
       <motion.p
         variants={itemVariants}
-        className="mx-auto max-w-2xl text-lg leading-8 text-zinc-600 dark:text-slate-300 mb-12"
+        className="mx-auto max-w-2xl text-lg leading-8 text-slate-300 mb-12"
       >
         Lend money without the drama. No screenshots, no memory games, no awkward reminders.
         Just a shared ledger that keeps you and your people honest.
       </motion.p>
 
+      {/* Buttons with cool hover animations */}
       <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center relative z-30">
         <motion.div
-          whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
-          whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+          whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
+          whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
           className="inline-block pointer-events-auto"
         >
           <Link
             href="/auth/login"
-            className="inline-flex h-12 items-center justify-center rounded-xl bg-blue-600 dark:bg-blue-500 px-8 text-sm font-semibold text-white transition-all hover:bg-blue-700 dark:hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/40"
+            className="inline-flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 px-8 text-sm font-bold text-black transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/40 hover:brightness-110 active:scale-[0.98]"
           >
             Start for free
           </Link>
         </motion.div>
 
+        {/* Empty-Inside Glowing Border Hover Button */}
         <motion.div
-          whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
-          whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+          whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
+          whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
           className="inline-block pointer-events-auto"
         >
           <Link
             href="/learn-more"
-            className="inline-flex h-12 items-center justify-center rounded-xl border border-zinc-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 backdrop-blur px-8 text-sm font-semibold text-zinc-900 dark:text-white transition-all hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+            className="inline-flex h-12 items-center justify-center rounded-xl border border-slate-700 bg-slate-900/60 backdrop-blur-md px-8 text-sm font-semibold text-white transition-all duration-300 hover:bg-transparent hover:border-teal-400 hover:text-teal-300 hover:shadow-[0_0_20px_rgba(45,212,191,0.25)]"
           >
             See how it works
           </Link>
         </motion.div>
       </motion.div>
 
+      {/* Feature Micro-Badges with Glassy Hover */}
       <motion.div
         variants={itemVariants}
-        className="mt-16 flex justify-center gap-8 text-sm text-zinc-500 dark:text-slate-400"
+        className="mt-16 flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-slate-400"
       >
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/5 bg-white/3 backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 hover:-translate-y-0.5 cursor-default">
+          <div className="h-2 w-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400" />
           <span>Secure & Private</span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-blue-500 dark:bg-blue-400" />
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/5 bg-white/3 backdrop-blur-sm transition-all duration-300 hover:border-blue-500/40 hover:bg-blue-500/10 hover:text-blue-300 hover:-translate-y-0.5 cursor-default">
+          <div className="h-2 w-2 rounded-full bg-blue-400 shadow-sm shadow-blue-400" />
           <span>Easy Setup</span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-purple-500 dark:bg-purple-400" />
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/5 bg-white/3 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-300 hover:-translate-y-0.5 cursor-default">
+          <div className="h-2 w-2 rounded-full bg-purple-400 shadow-sm shadow-purple-400" />
           <span>Transparent Tracking</span>
         </div>
       </motion.div>
