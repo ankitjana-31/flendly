@@ -40,22 +40,22 @@ export default async function Home() {
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1.5 font-mono text-xs">
+          <nav className="hidden md:flex items-center gap-2 font-mono text-xs">
             <Link
               href="/"
-              className="px-3 py-1.5 bg-[#2563EB] text-white border-[2px] border-black dark:border-white shadow-[2px_2px_0_0_#000000] font-bold"
+              className="px-3 py-1.5 bg-[#2563EB] text-white border-[2px] border-black dark:border-white shadow-[2px_2px_0_0_#000000] font-bold hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               FLENDLY_HOME.exe
             </Link>
             <Link
               href="/dashboard"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               DASHBOARD.exe
             </Link>
             <Link
               href="/self-track"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               LEDGER.sys
             </Link>
@@ -67,13 +67,13 @@ export default async function Home() {
 
             <Link
               href="/auth/login"
-              className="hidden sm:inline-flex px-3 py-1 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shadow-[2px_2px_0_0_#000000]"
+              className="hidden sm:inline-flex px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all shadow-[2px_2px_0_0_#000000]"
             >
               LOGIN.exe
             </Link>
             <Link
               href="/auth/login"
-              className="px-3.5 py-1.5 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all flex items-center gap-1"
+              className="px-4 py-1.5 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all flex items-center gap-1.5"
             >
               <span>⚡</span>
               <span>GET STARTED</span>

@@ -2,20 +2,20 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-bold border-[2px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_#2563EB] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] dark:hover:shadow-[5px_5px_0_0_#2563EB] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000000] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer";
 
 const variants = {
-  primary: "bg-primary text-primary-foreground hover:opacity-90",
-  secondary: "bg-muted text-foreground hover:bg-border/60",
-  outline: "border border-border text-foreground hover:bg-muted",
-  ghost: "text-foreground hover:bg-muted",
-  danger: "bg-danger text-white hover:opacity-90",
+  primary: "bg-[#FFE600] text-black hover:bg-yellow-300",
+  secondary: "bg-[#2563EB] text-white hover:bg-blue-600",
+  outline: "bg-white dark:bg-[#1E212D] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
+  ghost: "border-transparent shadow-none bg-transparent text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 hover:shadow-none hover:translate-y-0",
+  danger: "bg-[#F43F5E] text-white hover:bg-rose-600",
 };
 
 const sizes = {
-  sm: "h-9 px-3",
-  md: "h-11 px-4",
-  lg: "h-12 px-6",
+  sm: "h-8 px-3 text-xs",
+  md: "h-10 px-4 text-xs sm:text-sm",
+  lg: "h-12 px-6 text-sm sm:text-base",
 };
 
 type Variant = keyof typeof variants;

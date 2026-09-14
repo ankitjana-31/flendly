@@ -93,14 +93,14 @@ export function LandingHero() {
             >
               <Link
                 href="/auth/login"
-                className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+                className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-2"
               >
                 <span>⚡</span>
                 <span>BOOT FLENDLY DESKTOP</span>
               </Link>
               <Link
                 href="/learn-more"
-                className="px-6 py-3.5 bg-[#2563EB] text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-blue-600 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+                className="px-6 py-3.5 bg-[#2563EB] text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[4px_4px_0_0_#000] dark:shadow-[4px_4px_0_0_#ffffff] hover:bg-blue-600 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] dark:hover:shadow-[6px_6px_0_0_#ffffff] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-2"
               >
                 <span>ℹ</span>
                 <span>HOW IT WORKS</span>

@@ -65,7 +65,7 @@ export async function AppShell({
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+              className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
             >
               <item.icon className="h-4 w-4" />
               <span className="uppercase">{item.label}</span>
@@ -73,7 +73,7 @@ export async function AppShell({
           ))}
           <Link
             href="/notifications"
-            className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+            className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
           >
             <BellIcon className="h-4 w-4" />
             <span className="uppercase">Notifications</span>
@@ -85,7 +85,7 @@ export async function AppShell({
           </Link>
           <Link
             href="/self-track"
-            className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+            className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
           >
             <WalletIcon className="h-4 w-4" />
             <span className="uppercase">Self Track</span>
@@ -103,7 +103,7 @@ export async function AppShell({
           </div>
           <Link
             href="/profile"
-            className="flex items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] p-2 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100"
+            className="flex items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] p-2 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
           >
             <div className="h-7 w-7 border border-black bg-[#2563EB] flex items-center justify-center text-white">
               <UserIcon className="h-4 w-4" />
@@ -116,7 +116,7 @@ export async function AppShell({
           <form action={signOut}>
             <button
               type="submit"
-              className="flex w-full items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] px-3 py-2 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white active:translate-x-[1px] active:translate-y-[1px] active:shadow-none cursor-pointer transition-all"
+              className="flex w-full items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] px-3 py-2 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
             >
               <LogOutIcon className="h-4 w-4" />
               <span className="uppercase">Sign Out</span>
