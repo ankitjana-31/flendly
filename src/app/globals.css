@@ -1,38 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfbfa;
+  --background: #FAF8F5;
   --card: #ffffff;
-  --muted: #f4f4f2;
-  --foreground: #111318;
-  --muted-foreground: #6b7280;
-  --primary: #0f172a;
-  --primary-foreground: #fbfbfa;
-  --accent: #2563eb;
+  --muted: #F5F2EB;
+  --foreground: #000000;
+  --muted-foreground: #4B5563;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --accent: #FFE600;
   --success: #059669;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --border: #e5e7eb;
+  --warning: #FFE600;
+  --danger: #F43F5E;
+  --border: #000000;
 }
 
 .dark {
-  --background: #121316;
-  --card: #1a1c23;
-  --muted: #232630;
-  --foreground: #f3f4f6;
-  --muted-foreground: #9ca3af;
-  --primary: #f8fafc;
-  --primary-foreground: #0f172a;
-  --accent: #3b82f6;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --border: #2d323f;
-}
-
-html {
-  color-scheme: dark;
-  background-color: #0B0F14;
+  --background: #0F1117;
+  --card: #161821;
+  --muted: #1E212D;
+  --foreground: #F1F5F9;
+  --muted-foreground: #9CA3AF;
+  --primary: #3B82F6;
+  --primary-foreground: #0F1117;
+  --accent: #FFE600;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #F43F5E;
+  --border: #3A3F55;
 }
 
 body {
@@ -44,19 +39,36 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Exact Stitch Ambient Retro Geometric Grid Background */
+.stitch-ambient-grid {
+  background-image: 
+    radial-gradient(rgba(0, 0, 0, 0.12) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px, 64px 64px;
+}
+
+.dark .stitch-ambient-grid {
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px, 64px 64px;
+}
+
 /* Stitch Retro Grid Background */
 .retro-grid-bg {
   background-color: #FAF8F5;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 .dark .retro-grid-bg {
-  background-color: #0D0E15;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-color: #0F1117;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Retro Hard Border & Shadows (Neo-brutalist / OS 95 style) */

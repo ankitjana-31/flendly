@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { signOut } from "@/lib/auth/actions";
 import { getUnreadCount } from "@/lib/notifications/queries";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: HomeIcon },
@@ -22,9 +23,15 @@ export async function AppShell({
   const unread = await getUnreadCount();
 
   return (
-    <div className="flex min-h-screen w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-slate-100 transition-colors">
+    <div className="relative flex min-h-screen w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-slate-100 transition-colors">
+      {/* Ambient Retro Geometric Grid Layer */}
+      <div 
+        aria-hidden="true" 
+        className="pointer-events-none fixed inset-0 opacity-[0.06] dark:opacity-[0.14] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]" 
+      />
+
       {/* Retro OS Sidebar */}
-      <aside className="hidden w-64 shrink-0 flex-col border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-5 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)]">
+      <aside className="relative z-20 hidden w-64 shrink-0 flex-col border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-5 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)]">
         {/* Retro Window Title / Logo */}
         <div className="mb-6 px-2">
           <div className="flex items-center justify-between mb-3 border-b-[2px] border-black dark:border-white/20 pb-2">
@@ -88,8 +95,12 @@ export async function AppShell({
           </Link>
         </nav>
 
-        {/* User Account / Footer in Retro Window Style */}
+        {/* User Account & Theme Toggle Footer */}
         <div className="mt-auto flex flex-col gap-2 border-t-[2px] border-black dark:border-white/20 pt-4 font-mono text-xs">
+          <div className="flex items-center justify-between px-1 mb-1">
+            <span className="text-[10px] uppercase font-bold text-gray-500">THEME_MODE</span>
+            <ThemeToggle />
+          </div>
           <Link
             href="/profile"
             className="flex items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] p-2 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100"
@@ -115,29 +126,30 @@ export async function AppShell({
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex min-h-screen flex-1 flex-col">
+      <div className="relative z-10 flex min-h-screen flex-1 flex-col">
         {/* Mobile Header in Retro Style */}
-        <header className="flex items-center justify-between border-b border-[#1E2935] bg-[#0E141D] px-4 py-3 md:hidden">
+        <header className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-4 py-3 md:hidden">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 mr-2">
-              <span className="h-2 w-2 rounded-full bg-[#FF5F56]" />
-              <span className="h-2 w-2 rounded-full bg-[#FFBD2E]" />
-              <span className="h-2 w-2 rounded-full bg-[#27C93F]" />
+            <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black">
+              ⚡
             </div>
-            <span className="font-mono text-sm font-bold tracking-wider text-teal-400">FLENDLY.OS</span>
+            <span className="font-mono text-sm font-bold tracking-wider text-black dark:text-white">FLENDLY.OS</span>
           </Link>
-          <Link href="/notifications" className="relative rounded-lg p-2 bg-[#161F2B] border border-[#1E2935] text-slate-300 hover:text-white">
-            <BellIcon className="h-4 w-4" />
-            {unread > 0 && (
-              <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-teal-400 animate-pulse" />
-            )}
-          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link href="/notifications" className="relative p-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white">
+              <BellIcon className="h-4 w-4" />
+              {unread > 0 && (
+                <span className="absolute right-0.5 top-0.5 h-2 w-2 bg-[#F43F5E]" />
+              )}
+            </Link>
+          </div>
         </header>
 
         <main className="flex-1 pb-20 md:pb-0">{children}</main>
 
         {/* Mobile Bottom Navigation Bar */}
-        <nav className="fixed inset-x-0 bottom-0 z-10 flex border-t border-[#1E2935] bg-[#0E141D]/95 backdrop-blur-md md:hidden font-mono text-[10px]">
+        <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t-[2px] border-black bg-white dark:bg-[#161821] md:hidden font-mono text-[10px]">
           {[
             ...NAV_ITEMS,
             { href: "/notifications", label: "Alerts", icon: BellIcon },
@@ -147,7 +159,7 @@ export async function AppShell({
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-1 flex-col items-center gap-1 py-2 text-slate-400 hover:text-teal-300"
+              className="flex flex-1 flex-col items-center gap-1 py-2 text-black dark:text-gray-300 hover:bg-[#FFE600] hover:text-black font-bold border-r last:border-r-0 border-black/10 dark:border-white/10"
             >
               <item.icon className="h-4 w-4" />
               <span>{item.label}</span>

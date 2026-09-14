@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -13,19 +13,31 @@ export function ThemeToggle({ className }: { className?: string }) {
   }, []);
 
   if (!mounted) {
-    return <div className={`h-9 w-9 rounded-lg border border-border bg-card/50 ${className ?? ""}`} />;
+    return (
+      <div className={`h-8 w-24 border-[2px] border-black bg-[#FFE600] opacity-50 ${className ?? ""}`} />
+    );
   }
 
-  const isDark = theme === "dark";
+  const isDark = (theme === "system" ? resolvedTheme : theme) === "dark";
 
   return (
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label="Toggle Theme"
-      className={`flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:bg-accent/10 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent ${className ?? ""}`}
+      aria-label="Toggle retro theme mode"
+      className={`flex items-center gap-1.5 px-2.5 py-1 border-[2px] border-black dark:border-white bg-[#FFE600] dark:bg-[#1E212D] text-black dark:text-[#FFE600] shadow-[2px_2px_0_0_#000000] dark:shadow-[2px_2px_0_0_#FFE600] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none font-mono text-[11px] font-bold cursor-pointer transition-all ${className ?? ""}`}
     >
-      {isDark ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-slate-700" />}
+      {isDark ? (
+        <>
+          <Sun className="h-3.5 w-3.5 text-amber-400" />
+          <span className="hidden sm:inline">LIGHT.SYS</span>
+        </>
+      ) : (
+        <>
+          <Moon className="h-3.5 w-3.5 text-black" />
+          <span className="hidden sm:inline">DARK.SYS</span>
+        </>
+      )}
     </button>
   );
 }
