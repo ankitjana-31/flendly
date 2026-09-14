@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -154,15 +154,21 @@ export function BeamsBackground({
     return (
         <div
             className={cn(
-                "relative min-h-screen w-full overflow-x-hidden bg-[#0B0F14] text-white transition-colors duration-200",
+                "relative min-h-screen w-full overflow-x-hidden bg-[#0B0F14] bg-retro-grid text-white transition-colors duration-200",
                 className
             )}
         >
             {/* GPU-accelerated CSS blur canvas (0% CPU overhead) */}
             <canvas
                 ref={canvasRef}
-                className="pointer-events-none fixed inset-0 h-full w-full opacity-80 transform-gpu"
-                style={{ filter: "blur(24px)", transform: "translateZ(0)" }}
+                className="pointer-events-none fixed inset-0 h-full w-full opacity-60 transform-gpu"
+                style={{ filter: "blur(30px)", transform: "translateZ(0)" }}
+            />
+
+            {/* Subtle retro scanline texture overlay */}
+            <div 
+                aria-hidden="true" 
+                className="pointer-events-none fixed inset-0 z-[1] scanlines-overlay opacity-30" 
             />
 
             <div className="relative z-10 flex min-h-screen w-full items-center justify-center transform-gpu">

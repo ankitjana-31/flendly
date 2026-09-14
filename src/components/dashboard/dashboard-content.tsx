@@ -10,6 +10,7 @@ import { SelfTrackForm } from "@/components/self-track/self-track-form";
 import { SelfTrackList } from "@/components/self-track/self-track-list";
 import { clientListSelfTracks } from "@/lib/self-track/client";
 import { GlareHover } from "@/components/ui/glare-hover";
+import { RetroWindow } from "@/components/ui/retro-window";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -61,69 +62,93 @@ export function DashboardContent({
       initial="hidden"
       animate="visible"
     >
-      {/* Header */}
+      {/* Retro Header */}
       <motion.header
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col gap-1"
+        className="flex flex-col gap-1 border-b border-[#1E2935] pb-5"
       >
-        <p className="text-sm font-medium text-muted-foreground">Welcome back</p>
-        <h1 className="font-heading text-2xl font-bold sm:text-3xl">
-          {profile?.full_name ?? `@${profile?.username}`}
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-xs text-teal-400 font-semibold">[SYS.SESSION_ACTIVE]</span>
+          <span className="text-slate-500 font-mono text-xs">//</span>
+          <span className="font-mono text-xs text-slate-400">FLENDLY.OS MASTER DASHBOARD</span>
+        </div>
+        <h1 className="font-mono text-2xl font-bold sm:text-3xl tracking-tight text-white mt-1">
+          Welcome back, {profile?.full_name ?? `@${profile?.username}`}
         </h1>
       </motion.header>
 
-      {/* Main Stats Cards */}
+      {/* Main Retro Stats Windows */}
       <motion.div
-        className="grid gap-4 sm:grid-cols-2"
+        className="grid gap-5 sm:grid-cols-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
       >
         <motion.div
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ scale: 1.01 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <GlareHover>
-            <Card className="p-6">
-              <p className="text-sm font-medium text-muted-foreground">You&apos;re owed</p>
+          <RetroWindow
+            title="sys.ledger // receivables"
+            subtitle="owed_to_you"
+            glow={aggregates.totalLent > 0}
+            className="border-teal-500/30 bg-[#0E141D]"
+            contentClassName="p-5 sm:p-6"
+            headerRight={
+              <span className="px-2 py-0.5 rounded bg-teal-400/10 text-teal-300 font-mono text-[10px] border border-teal-400/30 font-bold">
+                +INCOMING
+              </span>
+            }
+          >
+            <div>
+              <p className="font-mono text-xs text-slate-400 font-medium">You&apos;re owed</p>
               <motion.p
-                className="mt-2 font-tabular text-3xl font-bold text-success"
+                className="mt-2 font-mono text-3xl sm:text-4xl font-black text-teal-400 tracking-tight"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
               >
                 {formatMoney(aggregates.totalLent)}
               </motion.p>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-2 font-mono text-[11px] text-slate-400">
                 across {aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
               </p>
-            </Card>
-          </GlareHover>
+            </div>
+          </RetroWindow>
         </motion.div>
 
         <motion.div
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ scale: 1.01 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          <GlareHover>
-            <Card className="p-6">
-              <p className="text-sm font-medium text-muted-foreground">You owe</p>
+          <RetroWindow
+            title="sys.ledger // payables"
+            subtitle="you_owe"
+            className="border-rose-500/30 bg-[#0E141D]"
+            contentClassName="p-5 sm:p-6"
+            headerRight={
+              <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 font-mono text-[10px] border border-rose-500/30 font-bold">
+                -OUTGOING
+              </span>
+            }
+          >
+            <div>
+              <p className="font-mono text-xs text-slate-400 font-medium">You owe</p>
               <motion.p
-                className="mt-2 font-tabular text-3xl font-bold text-danger"
+                className="mt-2 font-mono text-3xl sm:text-4xl font-black text-rose-400 tracking-tight"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
               >
                 {formatMoney(aggregates.totalBorrowed)}
               </motion.p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                across {aggregates.activeBorrowedCount} active loan
-                {aggregates.activeBorrowedCount === 1 ? "" : "s"}
+              <p className="mt-2 font-mono text-[11px] text-slate-400">
+                across {aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
               </p>
-            </Card>
-          </GlareHover>
+            </div>
+          </RetroWindow>
         </motion.div>
       </motion.div>
 

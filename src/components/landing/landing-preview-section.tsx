@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { LayoutDashboard, ArrowUpRight, ArrowDownLeft, Bell, Wallet, Zap, Sparkles } from "lucide-react";
+import { RetroWindow } from "@/components/ui/retro-window";
 
 export function LandingPreviewSection() {
   const [activeTab, setActiveTab] = useState<"dashboard" | "lent" | "borrowed" | "notifications" | "selftrack">("dashboard");
@@ -16,22 +17,22 @@ export function LandingPreviewSection() {
   ] as const;
 
   return (
-    <section className="relative z-20 w-full max-w-6xl mx-auto mt-24 px-4 sm:px-6 pb-20">
+    <section className="relative z-20 w-full max-w-6xl mx-auto mt-20 px-4 sm:px-6 pb-20">
       {/* Section Header */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-semibold mb-4 backdrop-blur-md hover:border-teal-400/50 hover:bg-teal-500/10 hover:text-teal-300 transition-all duration-300 cursor-default">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal-500/30 bg-[#121822]/90 text-teal-300 font-mono text-xs font-semibold mb-4 backdrop-blur-md retro-raised hover:border-teal-400/50 transition-all duration-300 cursor-default">
           <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-          Interactive Product Showcase
+          INTERACTIVE OS SHOWCASE
         </div>
-        <h2 className="font-heading text-3xl sm:text-5xl font-black text-white tracking-tight">
-          Everything you need in one sleek hub
+        <h2 className="font-mono text-3xl sm:text-5xl font-black text-white tracking-tight">
+          Everything in one retro command center
         </h2>
-        <p className="mt-3 text-slate-300 max-w-2xl mx-auto text-base sm:text-lg">
-          Explore how Flendly organizes every loan, request, reminder, and private cash record.
+        <p className="mt-3 text-slate-400 max-w-2xl mx-auto font-sans text-base sm:text-lg">
+          Explore how Flendly OS organizes every loan, request, live reminder, and private cash ledger.
         </p>
       </div>
 
-      {/* Interactive Tabs Selector with Smooth Hover Effects */}
+      {/* Interactive Tabs Selector with Retro OS Styling */}
       <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-8">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -40,16 +41,16 @@ export function LandingPreviewSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 border ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs font-semibold transition-all duration-200 border cursor-pointer ${
                 isActive
-                  ? "bg-gradient-to-r from-blue-500/20 to-teal-500/20 border-teal-400 text-white shadow-lg shadow-teal-500/20 scale-105"
-                  : "bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800/80 hover:border-teal-500/40 hover:shadow-[0_0_15px_rgba(45,212,191,0.15)] hover:-translate-y-0.5"
+                  ? "bg-[#182330] border-teal-400 text-teal-300 retro-inset shadow-[0_0_15px_rgba(45,212,191,0.25)] scale-102"
+                  : "bg-[#0E141D] border-[#1E2935] text-slate-400 retro-raised hover:text-white hover:bg-[#141C28] hover:border-teal-500/40"
               }`}
             >
               <Icon className={`w-4 h-4 ${isActive ? "text-teal-400" : "text-slate-400"}`} />
               <span>{tab.label}</span>
               <span className={`hidden md:inline-block text-[10px] px-1.5 py-0.5 rounded-md transition-colors ${
-                isActive ? "bg-teal-400/20 text-teal-300 font-bold" : "bg-slate-800 text-slate-400"
+                isActive ? "bg-teal-400/20 text-teal-300 font-bold" : "bg-black/30 text-slate-500"
               }`}>
                 {tab.tag}
               </span>
@@ -58,21 +59,21 @@ export function LandingPreviewSection() {
         })}
       </div>
 
-      {/* Main Preview Glass Card with Hover Border Glow */}
-      <div className="relative rounded-3xl border border-slate-700/60 bg-gradient-to-b from-slate-900/90 to-slate-950/95 backdrop-blur-2xl p-6 sm:p-10 shadow-2xl overflow-hidden transition-all duration-300 hover:border-teal-500/30">
-        {/* Top Browser/App Bar Simulation */}
-        <div className="flex items-center justify-between pb-6 border-b border-slate-800/80 mb-8">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-            <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-            <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-            <span className="ml-2 text-xs font-mono text-slate-400 hidden sm:inline">app.flendly.io/{activeTab}</span>
+      {/* Main Preview Retro Window */}
+      <RetroWindow
+        title={`app.flendly.os // ${activeTab}`}
+        subtitle="active_workspace"
+        glow={true}
+        className="border-teal-500/30 bg-[#0A0E14] shadow-[0_0_35px_-5px_rgba(45,212,191,0.2)]"
+        headerClassName="bg-[#121822]"
+        contentClassName="p-6 sm:p-10"
+        headerRight={
+          <div className="flex items-center gap-2 text-xs font-mono text-teal-400">
+            <span className="flex h-2 w-2 rounded-full bg-teal-400 animate-pulse" />
+            <span className="hidden sm:inline">LIVE_SYNC_READY</span>
           </div>
-          <div className="flex items-center gap-2 text-xs text-slate-400 font-medium">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            Live Sync Active
-          </div>
-        </div>
+        }
+      >
 
         {/* Tab 1: Dashboard View */}
         {activeTab === "dashboard" && (
@@ -311,7 +312,7 @@ export function LandingPreviewSection() {
             </div>
           </motion.div>
         )}
-      </div>
+      </RetroWindow>
     </section>
   );
 }

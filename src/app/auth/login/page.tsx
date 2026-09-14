@@ -1,4 +1,4 @@
-﻿import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import { signInWithGoogle } from "@/lib/auth/actions";
@@ -40,9 +40,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <div className="absolute top-6 left-6 z-30">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 transition-colors hover:text-white bg-[#111820]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-sm"
+            className="inline-flex items-center gap-2 font-mono text-xs font-medium text-slate-300 transition-all duration-200 hover:text-white hover:border-teal-400/50 bg-[#121822]/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/10 retro-raised"
           >
-            <span aria-hidden>←</span> Back to home
+            <span aria-hidden className="text-teal-400">◄</span> [ESC] Back to Home
           </Link>
         </div>
 

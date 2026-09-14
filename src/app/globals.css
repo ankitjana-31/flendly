@@ -44,6 +44,47 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Retro Grid Backgrounds */
+.bg-retro-grid {
+  background-image: 
+    linear-gradient(to right, rgba(45, 212, 191, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(45, 212, 191, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-retro-dots {
+  background-image: radial-gradient(rgba(45, 212, 191, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Retro Bevel & Button Utilities */
+.retro-raised {
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.15), inset -1px -1px 0 rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.retro-raised:active {
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.6), inset -1px -1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(1px);
+}
+
+.retro-inset {
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5), inset -1px -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Sleek Edge-Only Glow Utility */
+.sleek-edge-glow {
+  box-shadow: 0 0 20px -3px rgba(45, 212, 191, 0.25), 0 0 0 1px rgba(45, 212, 191, 0.35);
+}
+
+/* Subtle CRT Scanline overlay */
+.scanlines-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.18) 50%
+  );
+  background-size: 100% 4px;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -59,3 +100,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #2D3D4F;
 }
+
