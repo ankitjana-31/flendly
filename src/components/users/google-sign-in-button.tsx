@@ -6,21 +6,21 @@ export function GoogleSignInButton() {
   const { pending } = useFormStatus();
 
   return (
-    <div className="relative rounded-2xl border border-white/10 bg-[#161D27]/80 p-1.5 shadow-inner transition-all duration-300">
+    <div className="relative">
       <button
         type="submit"
         disabled={pending}
-        className="group relative flex h-13 w-full items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-[#0B0F14]/90 px-4 font-mono text-sm font-semibold text-slate-100 transition-all duration-300 retro-raised hover:border-teal-400/50 hover:bg-white/[0.08] hover:text-white hover:backdrop-blur-md hover:shadow-[0_0_20px_rgba(45,212,191,0.2)] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer"
+        className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden border-[2.5px] border-black bg-white dark:bg-[#1E212D] px-6 font-mono text-sm font-bold text-black dark:text-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#FFE600] transition-all hover:bg-[#FFE600] dark:hover:bg-[#FFE600] hover:text-black dark:hover:text-black active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer"
       >
-        {/* Subtle glass reflection gradient on hover */}
+        {/* Subtle sleek glass sheen reflection on hover */}
         <div 
           aria-hidden="true" 
-          className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" 
+          className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" 
         />
 
         {pending ? (
           <>
-            <svg className="h-4 w-4 animate-spin text-teal-400" viewBox="0 0 24 24" fill="none">
+            <svg className="h-5 w-5 animate-spin text-black dark:text-white" viewBox="0 0 24 24" fill="none">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path
                 className="opacity-75"
@@ -28,11 +28,11 @@ export function GoogleSignInButton() {
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
               />
             </svg>
-            <span className="font-mono text-xs tracking-wider">Connecting…</span>
+            <span className="font-mono text-xs tracking-wider uppercase font-bold">CONNECTING_SESSION…</span>
           </>
         ) : (
           <>
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 shadow-sm transition-transform group-hover:scale-110">
+            <div className="flex h-7 w-7 items-center justify-center border border-black bg-white shadow-[1px_1px_0_0_#000000] transition-transform group-hover:scale-105">
               <svg className="h-4 w-4" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
@@ -52,8 +52,8 @@ export function GoogleSignInButton() {
                 />
               </svg>
             </div>
-            <span className="font-mono text-sm tracking-tight text-slate-100 group-hover:text-white">
-              Continue with Google
+            <span className="font-mono text-sm uppercase tracking-wide font-bold">
+              CONTINUE WITH GOOGLE
             </span>
           </>
         )}

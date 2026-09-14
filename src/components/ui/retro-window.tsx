@@ -13,7 +13,8 @@ export interface RetroWindowProps {
   contentClassName?: string;
   headerRight?: React.ReactNode;
   glow?: boolean;
-  variant?: "default" | "active" | "terminal" | "glass";
+  colorBar?: "blue" | "yellow" | "pink" | "green" | "dark" | "default";
+  controlsStyle?: "win95" | "traffic";
 }
 
 export function RetroWindow({
@@ -26,18 +27,25 @@ export function RetroWindow({
   contentClassName,
   headerRight,
   glow = false,
-  variant = "default",
+  colorBar = "default",
+  controlsStyle = "win95",
 }: RetroWindowProps) {
+  // Title bar colors based on Stitch project screens
+  const titleBarStyles = {
+    blue: "bg-[#2563EB] text-white border-b-[2.5px] border-black dark:border-white/70",
+    yellow: "bg-[#FFE600] text-black border-b-[2.5px] border-black dark:border-white/70 font-bold",
+    pink: "bg-[#F43F5E] text-white border-b-[2.5px] border-black dark:border-white/70",
+    green: "bg-[#059669] text-white border-b-[2.5px] border-black dark:border-white/70",
+    dark: "bg-[#141B26] text-white border-b-[2.5px] border-[#1E2935]",
+    default: "bg-[#2563EB] text-white border-b-[2.5px] border-black dark:border-white/70",
+  }[colorBar];
+
   return (
     <div
       className={cn(
-        "group relative rounded-2xl border transition-all duration-300",
-        // Dark & light theme background & borders
-        "border-[#1E2935] bg-[#0E131A] text-slate-100 shadow-2xl",
-        "dark:border-[#1E2935] dark:bg-[#0E131A] dark:text-slate-100",
-        glow && "border-teal-500/40 shadow-[0_0_25px_-5px_rgba(45,212,191,0.2)]",
-        variant === "glass" && "bg-[#0E131A]/80 backdrop-blur-xl border-white/10",
-        variant === "terminal" && "border-teal-500/30 bg-[#080C10] font-mono",
+        "group relative rounded-sm border-[2.5px] border-black bg-white dark:border-[#3A3F55] dark:bg-[#161821] transition-all duration-200",
+        "shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_rgba(0,0,0,0.8)]",
+        glow && "shadow-[0_0_25px_-4px_rgba(45,212,191,0.35),5px_5px_0_0_#000000]",
         className
       )}
     >
@@ -56,30 +64,34 @@ export function RetroWindow({
       {/* Retro OS Window Title Bar */}
       <div
         className={cn(
-          "flex items-center justify-between border-b border-[#1E2935] px-4 py-3 select-none",
-          "bg-[#141B24]/90 rounded-t-2xl",
+          "flex h-10 items-center justify-between px-3 select-none",
+          titleBarStyles,
           headerClassName
         )}
       >
-        {/* Left: Window Control Dots (Retro Traffic Lights) */}
+        {/* Left: Window Control or Title */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 transition-transform duration-150 group-hover:scale-105" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 transition-transform duration-150 group-hover:scale-105" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 transition-transform duration-150 group-hover:scale-105" />
-          </div>
+          {controlsStyle === "traffic" ? (
+            <div className="flex items-center gap-1.5 mr-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50" />
+            </div>
+          ) : (
+            <span className="inline-flex h-4 w-4 items-center justify-center border border-black bg-[#FFE600] text-[10px] font-mono font-bold text-black shadow-sm">
+              ▲
+            </span>
+          )}
 
-          {/* Optional Icon */}
-          {icon && <span className="ml-2 text-slate-400">{icon}</span>}
+          {icon && <span className="text-current opacity-80">{icon}</span>}
 
-          {/* Monospace Title */}
           {title && (
-            <div className="ml-2 flex items-center gap-2">
-              <span className="font-mono text-xs font-medium tracking-wide text-slate-300">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs font-bold tracking-wider uppercase">
                 {title}
               </span>
               {subtitle && (
-                <span className="hidden font-mono text-[10px] text-slate-500 sm:inline">
+                <span className="hidden font-mono text-[10px] opacity-75 sm:inline">
                   — {subtitle}
                 </span>
               )}
@@ -87,21 +99,33 @@ export function RetroWindow({
           )}
         </div>
 
-        {/* Right side controls or status */}
-        <div className="flex items-center gap-2">
+        {/* Right side: Win95 Window Buttons or custom actions */}
+        <div className="flex items-center gap-1">
           {headerRight ? (
             headerRight
+          ) : controlsStyle === "win95" ? (
+            <div className="flex items-center gap-1">
+              <span className="flex h-5 w-5 items-center justify-center border border-black bg-white text-[10px] font-mono font-bold text-black shadow-sm">
+                _
+              </span>
+              <span className="flex h-5 w-5 items-center justify-center border border-black bg-white text-[10px] font-mono font-bold text-black shadow-sm">
+                □
+              </span>
+              <span className="flex h-5 w-5 items-center justify-center border border-black bg-[#F43F5E] text-[10px] font-mono font-bold text-white shadow-sm">
+                ✕
+              </span>
+            </div>
           ) : (
-            <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400">
+            <div className="flex items-center gap-1 text-[11px] font-mono text-teal-400">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
-              <span className="hidden sm:inline text-teal-400/90">ready</span>
+              <span className="hidden sm:inline">ONLINE</span>
             </div>
           )}
         </div>
       </div>
 
       {/* Content Area */}
-      <div className={cn("p-6", contentClassName)}>{children}</div>
+      <div className={cn("p-6 text-gray-900 dark:text-gray-100", contentClassName)}>{children}</div>
     </div>
   );
 }

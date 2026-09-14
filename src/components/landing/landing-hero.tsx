@@ -32,112 +32,151 @@ export function LandingHero() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative w-full max-w-5xl text-center z-20 py-8 sm:py-12"
+      className="relative w-full max-w-6xl z-20 py-4 sm:py-8"
     >
-      {/* Retro OS Header Pill */}
-      <motion.div variants={itemVariants} className="mb-8 flex justify-center">
-        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-teal-500/30 bg-[#121822]/90 text-teal-300 text-xs font-mono tracking-wider shadow-lg shadow-teal-500/10 retro-raised backdrop-blur-md">
-          <div className="flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-[#FF5F56]" />
-            <span className="h-2 w-2 rounded-full bg-[#FFBD2E]" />
-            <span className="h-2 w-2 rounded-full bg-[#27C93F]" />
+      {/* Stitch HERO_PROMISE.exe Main Window */}
+      <div className="w-full bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden">
+        {/* Title bar */}
+        <div className="h-10 bg-[#2563EB] text-white px-4 border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase font-bold tracking-wider">
+            <span className="w-4 h-4 bg-[#FFE600] border border-black inline-flex items-center justify-center text-[10px] text-black font-bold">
+              ▲
+            </span>
+            <span>HERO_PROMISE.exe</span>
           </div>
-          <span className="text-slate-400">|</span>
-          <span className="font-semibold text-teal-300">FLENDLY OS v1.0 // P2P LEDGER</span>
-        </div>
-      </motion.div>
-
-      {/* Main Retro Headline */}
-      <motion.div variants={itemVariants} className="mb-4">
-        <h1 className="font-mono text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-white select-none">
-          FLENDLY
-        </h1>
-        <div className="font-mono text-sm sm:text-base md:text-lg text-teal-400 tracking-widest mt-2 uppercase font-semibold">
-          Peer-to-Peer Lending, Simple & Safe
-        </div>
-      </motion.div>
-
-      {/* Subheading in clean retro container */}
-      <motion.p
-        variants={itemVariants}
-        className="mx-auto max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300 mb-10 mt-6 font-sans"
-      >
-        Lend money without the drama. No screenshots, no memory games, no awkward reminders.
-        Just a shared ledger that keeps you and your people honest.
-      </motion.p>
-
-      {/* Retro Action Buttons with Glass Hover */}
-      <motion.div
-        variants={itemVariants}
-        className="flex flex-col sm:flex-row gap-4 justify-center relative z-30 mb-16"
-      >
-        <motion.div
-          whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
-          whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-          className="inline-block"
-        >
-          <Link
-            href="/auth/login"
-            className="group relative inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-400 to-cyan-400 px-8 font-mono text-sm font-bold text-slate-950 transition-all duration-300 retro-raised hover:shadow-[0_0_25px_rgba(45,212,191,0.4)]"
-          >
-            <span>►</span>
-            <span>GET STARTED</span>
-          </Link>
-        </motion.div>
-
-        <motion.div
-          whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
-          whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-          className="inline-block"
-        >
-          <Link
-            href="/learn-more"
-            className="group relative inline-flex h-13 items-center justify-center gap-2 rounded-xl border border-white/10 bg-[#141B26]/80 backdrop-blur-md px-8 font-mono text-sm font-semibold text-slate-200 transition-all duration-300 retro-raised hover:border-teal-400/50 hover:bg-white/[0.08] hover:text-white hover:shadow-[0_0_20px_rgba(45,212,191,0.15)]"
-          >
-            <span>ℹ</span>
-            <span>HOW IT WORKS</span>
-          </Link>
-        </motion.div>
-      </motion.div>
-
-      {/* Trust Indicators in Retro Stat Boxes */}
-      <motion.div
-        variants={itemVariants}
-        className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-left"
-      >
-        <div className="p-4 rounded-xl border border-[#1E2935] bg-[#0E131A]/80 backdrop-blur-md shadow-lg transition-all duration-200 hover:border-teal-500/40 retro-raised">
-          <div className="flex items-center justify-between pb-2 border-b border-white/5 font-mono text-[11px] text-slate-400">
-            <span>[METRIC_01]</span>
-            <span className="text-teal-400 font-semibold">VERIFIED</span>
-          </div>
-          <div className="mt-3">
-            <div className="text-2xl sm:text-3xl font-mono font-black text-teal-400">100%</div>
-            <div className="text-xs text-slate-300 font-mono mt-1 uppercase">Transparent Ledger</div>
+          <div className="flex items-center gap-1">
+            <span className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center">
+              _
+            </span>
+            <span className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center">
+              □
+            </span>
+            <span className="w-5 h-5 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-[10px] font-bold flex items-center justify-center">
+              ✕
+            </span>
           </div>
         </div>
 
-        <div className="p-4 rounded-xl border border-[#1E2935] bg-[#0E131A]/80 backdrop-blur-md shadow-lg transition-all duration-200 hover:border-cyan-500/40 retro-raised">
-          <div className="flex items-center justify-between pb-2 border-b border-white/5 font-mono text-[11px] text-slate-400">
-            <span>[METRIC_02]</span>
-            <span className="text-cyan-400 font-semibold">ACTIVE</span>
-          </div>
-          <div className="mt-3">
-            <div className="text-2xl sm:text-3xl font-mono font-black text-cyan-400">Real-Time</div>
-            <div className="text-xs text-slate-300 font-mono mt-1 uppercase">Dual Confirmation</div>
-          </div>
-        </div>
+        {/* Window Content */}
+        <div className="p-6 md:p-10 grid lg:grid-cols-12 gap-8 items-center text-left">
+          {/* Left Column (Headline + Actions) */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            <motion.div variants={itemVariants}>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold shadow-[2px_2px_0_0_#000]">
+                <span>⚡</span>
+                <span>NO MORE AWKWARD CHAT TEXTS</span>
+              </span>
+            </motion.div>
 
-        <div className="p-4 rounded-xl border border-[#1E2935] bg-[#0E131A]/80 backdrop-blur-md shadow-lg transition-all duration-200 hover:border-indigo-500/40 retro-raised">
-          <div className="flex items-center justify-between pb-2 border-b border-white/5 font-mono text-[11px] text-slate-400">
-            <span>[METRIC_03]</span>
-            <span className="text-indigo-400 font-semibold">FREE</span>
+            <motion.h1
+              variants={itemVariants}
+              className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-black dark:text-white leading-[1.15]"
+            >
+              Money between friends shouldn&apos;t become a{" "}
+              <span className="bg-[#FF2E93] text-white px-2 py-0.5 border-[2.5px] border-black shadow-[3px_3px_0_0_#000] inline-block -rotate-1">
+                friendship
+              </span>{" "}
+              problem.
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed max-w-xl"
+            >
+              Track split expenses, informal loans, and IOUs without awkward reminders, endless screenshots, or broken trust.
+            </motion.p>
+
+            {/* Action Buttons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-3 pt-2"
+            >
+              <Link
+                href="/auth/login"
+                className="px-6 py-3.5 bg-[#FFE600] text-black border-[2.5px] border-black font-mono text-sm font-bold shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+              >
+                <span>⚡</span>
+                <span>BOOT FLENDLY DESKTOP</span>
+              </Link>
+              <Link
+                href="/learn-more"
+                className="px-6 py-3.5 bg-[#2563EB] text-white border-[2.5px] border-black dark:border-white font-mono text-sm font-bold shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-blue-600 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+              >
+                <span>ℹ</span>
+                <span>HOW IT WORKS</span>
+              </Link>
+            </motion.div>
+
+            {/* Feature Bullets */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-4 pt-2 font-mono text-xs text-gray-700 dark:text-gray-300"
+            >
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 bg-[#10B981] inline-block border border-black" />
+                <span>Zero Awkward Calls</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 bg-[#FFE600] inline-block border border-black" />
+                <span>Mutual Agreements</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 bg-[#2563EB] inline-block border border-black" />
+                <span>Direct UPI Ledger</span>
+              </span>
+            </motion.div>
           </div>
-          <div className="mt-3">
-            <div className="text-2xl sm:text-3xl font-mono font-black text-indigo-400">₹0.00</div>
-            <div className="text-xs text-slate-300 font-mono mt-1 uppercase">Zero Hidden Fees</div>
+
+          {/* Right Column: Diagnostic Leak Dilemma Card */}
+          <div className="lg:col-span-5">
+            <motion.div
+              variants={itemVariants}
+              className="w-full bg-white dark:bg-[#1E212D] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000] dark:shadow-[4px_4px_0_0_#ffffff] rounded-sm overflow-hidden"
+            >
+              {/* Card Titlebar */}
+              <div className="h-8 bg-[#F43F5E] text-white px-3 border-b-[2px] border-black dark:border-white flex items-center justify-between font-mono text-[11px] font-bold uppercase select-none">
+                <span>⚠️ LEAK_DIAGNOSTIC.TRP</span>
+                <span className="w-3.5 h-3.5 bg-white text-black text-[9px] flex items-center justify-center border border-black">
+                  ✕
+                </span>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-4 space-y-3 font-mono text-xs">
+                <div className="p-3 bg-[#FAF8F5] dark:bg-[#161821] border-[1.5px] border-black dark:border-gray-700">
+                  <div className="text-[10px] text-gray-500 dark:text-gray-400 mb-1">
+                    Rohit (3 months ago via WhatsApp):
+                  </div>
+                  <p className="italic text-gray-800 dark:text-gray-200">
+                    &ldquo;Bro, will pay my ₹500 for the Goa trip dinner booking tomorrow morning!&rdquo;
+                  </p>
+                </div>
+
+                <div className="p-3 bg-[#FFE4E6] border-[1.5px] border-[#F43F5E] text-[#9F1239] flex items-center gap-2">
+                  <span className="text-base">⚠️</span>
+                  <div>
+                    <div className="font-bold text-[11px]">TOMORROW WAS 90 DAYS AGO</div>
+                    <div className="text-[10px] opacity-80">Unrecovered informal loan · Friendship strained</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between p-3 bg-white dark:bg-[#161821] border-[1.5px] border-black dark:border-gray-700">
+                  <span className="text-gray-500 font-bold uppercase text-[11px]">UNPAID BALANCE:</span>
+                  <span className="text-lg font-black text-[#F43F5E]">₹500.00</span>
+                </div>
+
+                <button
+                  type="button"
+                  className="w-full py-2.5 bg-[#2DD4BF] text-black border-[2px] border-black font-bold shadow-[2px_2px_0_0_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center justify-center gap-1.5 transition-all cursor-default"
+                >
+                  <span>⚡</span>
+                  <span>AUTO-REMIND WITHOUT AWKWARDNESS</span>
+                </button>
+              </div>
+            </motion.div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </motion.section>
   );
 }

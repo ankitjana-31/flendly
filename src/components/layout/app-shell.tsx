@@ -22,89 +22,93 @@ export async function AppShell({
   const unread = await getUnreadCount();
 
   return (
-    <div className="flex min-h-screen w-full bg-[#080C11] bg-retro-grid text-slate-100">
+    <div className="flex min-h-screen w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-slate-100 transition-colors">
       {/* Retro OS Sidebar */}
-      <aside className="hidden w-64 shrink-0 flex-col border-r border-[#1E2935] bg-[#0E141D]/95 px-4 py-5 md:flex shadow-2xl">
+      <aside className="hidden w-64 shrink-0 flex-col border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-5 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)]">
         {/* Retro Window Title / Logo */}
         <div className="mb-6 px-2">
-          <div className="flex items-center gap-1.5 mb-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50" />
-            <span className="ml-2 font-mono text-[10px] text-slate-500">SYS.NAV // v1.0</span>
+          <div className="flex items-center justify-between mb-3 border-b-[2px] border-black dark:border-white/20 pb-2">
+            <span className="font-mono text-[11px] font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY_OS // v2.4</span>
+            <div className="flex items-center gap-1">
+              <span className="w-3 h-3 bg-[#FFE600] border border-black inline-block text-[8px] font-bold text-center leading-none">▲</span>
+              <span className="w-3 h-3 bg-[#F43F5E] border border-black inline-block text-[8px] font-bold text-center text-white leading-none">✕</span>
+            </div>
           </div>
           <Link href="/dashboard" className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-400 font-mono text-sm font-bold text-slate-950 retro-raised shadow-md shadow-teal-500/20">
-              F
+            <div className="flex h-9 w-9 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000000]">
+              ⚡
             </div>
             <div>
-              <span className="font-mono text-lg font-bold tracking-wider text-white block">
-                FLENDLY
+              <span className="font-mono text-lg font-black tracking-tight text-black dark:text-white block">
+                FLENDLY OS
+              </span>
+              <span className="font-mono text-[9px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block">
+                PEER LEDGER REALTIME
               </span>
             </div>
           </Link>
         </div>
 
-        {/* Navigation Menu with Retro Buttons */}
-        <nav className="flex flex-1 flex-col gap-1.5 font-mono text-xs">
-          <div className="px-2 py-1 text-[10px] uppercase tracking-wider text-slate-500 font-bold">
-            Applications
+        {/* Navigation Menu with Stitch Neo-Brutalist Buttons */}
+        <nav className="flex flex-1 flex-col gap-2 font-mono text-xs">
+          <div className="px-2 py-1 text-[10px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold">
+            APPLICATIONS
           </div>
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-slate-400 transition-all duration-150 hover:bg-[#161F2B] hover:text-teal-300 hover:border-teal-500/30 border border-transparent"
+              className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
             >
               <item.icon className="h-4 w-4" />
-              <span>{item.label}</span>
+              <span className="uppercase">{item.label}</span>
             </Link>
           ))}
           <Link
             href="/notifications"
-            className="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-slate-400 transition-all duration-150 hover:bg-[#161F2B] hover:text-teal-300 hover:border-teal-500/30 border border-transparent"
+            className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
           >
             <BellIcon className="h-4 w-4" />
-            <span>Notifications</span>
+            <span className="uppercase">Notifications</span>
             {unread > 0 && (
-              <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-md bg-teal-400 px-1 text-[10px] font-bold text-slate-950">
+              <span className="ml-auto flex h-5 min-w-5 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[10px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
                 {unread > 9 ? "9+" : unread}
               </span>
             )}
           </Link>
           <Link
             href="/self-track"
-            className="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-slate-400 transition-all duration-150 hover:bg-[#161F2B] hover:text-teal-300 hover:border-teal-500/30 border border-transparent"
+            className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
           >
             <WalletIcon className="h-4 w-4" />
-            <span>Self Track</span>
-            <span className="ml-auto text-[9px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+            <span className="uppercase">Self Track</span>
+            <span className="ml-auto text-[9px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
               PRIV
             </span>
           </Link>
         </nav>
 
         {/* User Account / Footer in Retro Window Style */}
-        <div className="mt-auto flex flex-col gap-2 border-t border-[#1E2935] pt-4 font-mono text-xs">
+        <div className="mt-auto flex flex-col gap-2 border-t-[2px] border-black dark:border-white/20 pt-4 font-mono text-xs">
           <Link
             href="/profile"
-            className="flex items-center gap-3 rounded-xl p-2.5 text-slate-300 transition-all hover:bg-[#161F2B] hover:text-white border border-transparent hover:border-white/10"
+            className="flex items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] p-2 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100"
           >
-            <div className="h-7 w-7 rounded-lg bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
+            <div className="h-7 w-7 border border-black bg-[#2563EB] flex items-center justify-center text-white">
               <UserIcon className="h-4 w-4" />
             </div>
             <div className="overflow-hidden">
               <span className="block truncate font-bold">{fullName ?? `@${username}`}</span>
-              <span className="block text-[10px] text-teal-400/80">ONLINE // AUTH</span>
+              <span className="block text-[10px] text-[#059669] dark:text-[#2DD4BF] font-bold">ONLINE // AUTH</span>
             </div>
           </Link>
           <form action={signOut}>
             <button
               type="submit"
-              className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left font-mono text-xs text-slate-400 transition-all hover:bg-rose-500/10 hover:text-rose-300 border border-transparent cursor-pointer"
+              className="flex w-full items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] px-3 py-2 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white active:translate-x-[1px] active:translate-y-[1px] active:shadow-none cursor-pointer transition-all"
             >
               <LogOutIcon className="h-4 w-4" />
-              <span>Sign Out</span>
+              <span className="uppercase">Sign Out</span>
             </button>
           </form>
         </div>

@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LearnMoreHero } from "@/components/learn-more/hero-section";
 import { LoanAnatomySection } from "@/components/learn-more/loan-anatomy-section";
-import { SolvesItSection } from "@/components/learn-more/solves-it-section";
 import { SelfTrackShowcase } from "@/components/learn-more/self-track-showcase";
 import { FinalCTAFooter } from "@/components/learn-more/final-cta-footer";
 
@@ -20,7 +18,6 @@ export default function LearnMorePage() {
           </span>
         </Link>
         <div className="flex items-center gap-4">
-          <ThemeToggle />
           <Link
             href="/auth/login"
             className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#2DD4BF] to-[#60A5FA] text-[#0B0F14] text-sm font-bold shadow-lg shadow-teal-500/20 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -36,10 +33,7 @@ export default function LearnMorePage() {
       {/* The Anatomy of a Forgotten Loan */}
       <LoanAnatomySection />
 
-      {/* How Flendly Solves It */}
-      <SolvesItSection />
-
-      {/* Self Track Showcase */}
+      {/* Self Track - private money ledger */}
       <SelfTrackShowcase />
 
       {/* Final CTA */}

@@ -21,22 +21,18 @@ const itemVariants = {
 
 const features = [
   {
-    icon: "💰",
     title: "Partial Repayment Logs",
     description: "Track repayments bit-by-bit. Balance auto-calculates. No mental math required.",
   },
   {
-    icon: "📝",
     title: "Personal Notes",
     description: "Add context for each record. Why did you lend it? When do you expect it back?",
   },
   {
-    icon: "🔒",
     title: "100% Private",
     description: "Completely isolated to your account. Your mate has no idea this ledger exists.",
   },
   {
-    icon: "⚡",
     title: "Instant Settlement",
     description: "Mark debts as settled with one tap. Clean slate mentality.",
   },
@@ -83,19 +79,29 @@ export function SelfTrackShowcase() {
               viewport={{ once: true }}
               className="space-y-4 mb-8"
             >
-              {features.map((feature, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="flex items-start gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors"
-                >
-                  <div className="text-2xl shrink-0">{feature.icon}</div>
-                  <div>
-                    <h3 className="font-bold text-white text-sm">{feature.title}</h3>
-                    <p className="text-xs text-[#94A3B8] mt-1">{feature.description}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {features.map((feature, idx) => {
+      const emojis = ["💰", "📝", "🔒", "⚡"];
+      return (
+        <motion.div
+          key={idx}
+          variants={itemVariants}
+          className="flex items-start gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors"
+        >
+          <div className="h-8 w-8 flex-shrink-0">
+            <div className="relative h-full w-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-blue-500 rounded-full opacity-20" />
+              <div className="absolute inset-0 rounded-full bg-white/5 flex items-center justify-center text-teal-400 text-xs font-medium">
+                {emojis[idx]}
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-bold text-white text-sm">{feature.title}</h3>
+            <p className="text-xs text-[#94A3B8] mt-1">{feature.description}</p>
+          </div>
+        </motion.div>
+      );
+    })}
             </motion.div>
 
             <motion.div

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Sparkles, ShieldCheck } from "lucide-react";
 
 import { Card } from "@/components/ui/button";
+import { signOut } from "@/lib/auth/actions";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { GridPattern } from "@/components/ui/grid-pattern";
@@ -48,7 +48,7 @@ export default async function ProfilePage() {
           </div>
 
           <span className="flex items-center gap-1 rounded-full bg-accent/10 px-3 py-1 text-[11px] font-semibold text-accent">
-            <Sparkles className="h-3 w-3" /> Step 1 of 1
+            Step 1 of 1
           </span>
         </div>
 

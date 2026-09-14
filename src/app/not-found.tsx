@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GalleryHeading } from "@/components/threeui/gallery-heading";
 
 export default function NotFound() {
   return (
@@ -8,12 +9,24 @@ export default function NotFound() {
       <p className="max-w-sm text-sm text-muted-foreground">
         That page doesn&apos;t exist, or you don&apos;t have access to it.
       </p>
-      <Link
-        href="/dashboard"
-        className="mt-2 inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90"
-      >
-        Back to dashboard
-      </Link>
+      {/* 3D Animation for when page fails to load */}
+      <div className="absolute inset-0 w-full h-full">
+        <GalleryHeading
+          headline={{
+            line1: "PAGE NOT",
+            line2: "FOUND",
+          }}
+          className="w-full h-full"
+        />
+      </div>
+      <div className="relative z-10">
+        <Link
+          href="/dashboard"
+          className="mt-2 inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90"
+        >
+          Back to dashboard
+        </Link>
+      </div>
     </main>
   );
 }

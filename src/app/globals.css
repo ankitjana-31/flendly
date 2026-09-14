@@ -44,6 +44,42 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Stitch Retro Grid Background */
+.retro-grid-bg {
+  background-color: #FAF8F5;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.dark .retro-grid-bg {
+  background-color: #0D0E15;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Retro Hard Border & Shadows (Neo-brutalist / OS 95 style) */
+.shadow-retro-sm {
+  box-shadow: 2px 2px 0 0 #000000;
+}
+.shadow-retro {
+  box-shadow: 4px 4px 0 0 #000000;
+}
+.shadow-retro-lg {
+  box-shadow: 6px 6px 0 0 #000000;
+}
+
+.dark .shadow-retro-sm {
+  box-shadow: 2px 2px 0 0 #3A3F55;
+}
+.dark .shadow-retro {
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.8);
+}
+.dark .shadow-retro-lg {
+  box-shadow: 6px 6px 0 0 #2563EB;
+}
+
 /* Retro Grid Backgrounds */
 .bg-retro-grid {
   background-image: 

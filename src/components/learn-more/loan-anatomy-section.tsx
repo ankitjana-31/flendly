@@ -22,7 +22,6 @@ const cardVariants = {
 
 const archetypes = [
   {
-    emoji: "🤐",
     name: "The Silent Sufferer",
     behavior: "Lent ₹15,000 for a party. Never mentioned it again. Remembers it every time you hang out.",
     vibe: "Passive aggressive energy",
@@ -30,7 +29,6 @@ const archetypes = [
     bgColor: "bg-blue-500/5",
   },
   {
-    emoji: "💬",
     name: "The Text Nagger",
     behavior: "Sends reminders every week. Friendship toxified. Still only half-paid after 3 months.",
     vibe: "Constant notifications",
@@ -38,7 +36,6 @@ const archetypes = [
     bgColor: "bg-purple-500/5",
   },
   {
-    emoji: "🚀",
     name: "The Ghost",
     behavior: "Borrowed ₹8,000. Changed their number. Moved cities. You see them on Instagram thriving.",
     vibe: "Completely vanished",
@@ -46,7 +43,6 @@ const archetypes = [
     bgColor: "bg-rose-500/5",
   },
   {
-    emoji: "🤝",
     name: "The Over-Promiser",
     behavior: "Swears they'll pay next week. Then next month. Then once they get the bonus. Spoiler: they never do.",
     vibe: "Endless excuses",
@@ -95,7 +91,9 @@ export function LoanAnatomySection() {
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
 
               <div className="relative z-10">
-                <div className="text-5xl mb-4">{archetype.emoji}</div>
+                <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-br from-teal-400 to-blue-500/20 flex items-center justify-center text-teal-400 text-xs font-medium">
+                  {/* Removed emoji for cleaner design */}
+                </div>
                 <h3 className="text-2xl font-black text-white mb-3">{archetype.name}</h3>
 
                 <p className="text-[#94A3B8] text-base leading-relaxed mb-4">

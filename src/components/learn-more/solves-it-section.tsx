@@ -23,7 +23,6 @@ const cardVariants = {
 const solutions = [
   {
     num: "01",
-    icon: "📋",
     title: "Mutual Requests (No Awkward Convos)",
     description:
       "Send a clean request with exact amount, due date, and interest (if any). Your mate gets notified. They accept or counter-offer. No guessing games.",
@@ -33,7 +32,6 @@ const solutions = [
   },
   {
     num: "02",
-    icon: "⚡",
     title: "1-Click Counter-Offers",
     description:
       "They say they can only pay ₹6,000 of the ₹10,000? Counter back in seconds. Lock down terms that work for everyone without 10 rounds of texts.",
@@ -43,7 +41,6 @@ const solutions = [
   },
   {
     num: "03",
-    icon: "✅",
     title: "Dual-Proof Payment Confirmations",
     description:
       "When they transfer via UPI or hand over cash, both of you log it into Flendly. Once confirmed, the ledger auto-updates. No more 'Did you send it?' texts.",
@@ -53,7 +50,6 @@ const solutions = [
   },
   {
     num: "04",
-    icon: "📊",
     title: "Live Shared Ledger",
     description:
       "Both of you see the exact amount owed, repayments logged, and remaining balance. One source of truth. Friendship saved.",
@@ -109,7 +105,9 @@ export function SolvesItSection() {
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-6">
-                  <div className="text-4xl">{solution.icon}</div>
+                  <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-800/50 flex items-center justify-center text-sm font-medium text-gray-300">
+                    {solution.num}
+                  </div>
                   <div className={`${solution.badgeColor} px-3 py-1 rounded-full text-xs font-bold`}>
                     Step {solution.num}
                   </div>

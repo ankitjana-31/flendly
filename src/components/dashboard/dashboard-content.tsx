@@ -91,28 +91,29 @@ export function DashboardContent({
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           <RetroWindow
-            title="sys.ledger // receivables"
+            title="RECEIVABLES.sys // INCOMING"
             subtitle="owed_to_you"
+            colorBar="green"
             glow={aggregates.totalLent > 0}
-            className="border-teal-500/30 bg-[#0E141D]"
+            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#059669]"
             contentClassName="p-5 sm:p-6"
             headerRight={
-              <span className="px-2 py-0.5 rounded bg-teal-400/10 text-teal-300 font-mono text-[10px] border border-teal-400/30 font-bold">
+              <span className="px-2 py-0.5 border border-black bg-white text-black font-mono text-[10px] font-bold">
                 +INCOMING
               </span>
             }
           >
             <div>
-              <p className="font-mono text-xs text-slate-400 font-medium">You&apos;re owed</p>
+              <p className="font-mono text-xs text-gray-600 dark:text-gray-400 font-bold uppercase">You&apos;re owed</p>
               <motion.p
-                className="mt-2 font-mono text-3xl sm:text-4xl font-black text-teal-400 tracking-tight"
+                className="mt-2 font-mono text-3xl sm:text-4xl font-black text-[#059669] dark:text-[#2DD4BF] tracking-tight"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
               >
                 {formatMoney(aggregates.totalLent)}
               </motion.p>
-              <p className="mt-2 font-mono text-[11px] text-slate-400">
+              <p className="mt-2 font-mono text-[11px] text-gray-500 dark:text-gray-400">
                 across {aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
               </p>
             </div>
@@ -124,27 +125,28 @@ export function DashboardContent({
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           <RetroWindow
-            title="sys.ledger // payables"
+            title="PAYABLES.sys // OUTGOING"
             subtitle="you_owe"
-            className="border-rose-500/30 bg-[#0E141D]"
+            colorBar="pink"
+            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#F43F5E]"
             contentClassName="p-5 sm:p-6"
             headerRight={
-              <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 font-mono text-[10px] border border-rose-500/30 font-bold">
+              <span className="px-2 py-0.5 border border-black bg-white text-black font-mono text-[10px] font-bold">
                 -OUTGOING
               </span>
             }
           >
             <div>
-              <p className="font-mono text-xs text-slate-400 font-medium">You owe</p>
+              <p className="font-mono text-xs text-gray-600 dark:text-gray-400 font-bold uppercase">You owe</p>
               <motion.p
-                className="mt-2 font-mono text-3xl sm:text-4xl font-black text-rose-400 tracking-tight"
+                className="mt-2 font-mono text-3xl sm:text-4xl font-black text-[#F43F5E] tracking-tight"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
               >
                 {formatMoney(aggregates.totalBorrowed)}
               </motion.p>
-              <p className="mt-2 font-mono text-[11px] text-slate-400">
+              <p className="mt-2 font-mono text-[11px] text-gray-500 dark:text-gray-400">
                 across {aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
               </p>
             </div>
