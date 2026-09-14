@@ -23,28 +23,28 @@ const cardVariants = {
 const archetypes = [
   {
     name: "The Silent Sufferer",
-    tag: "RESENTMENT_OVERFLOW",
+    tag: "RESENTMENT OVERFLOW",
     behavior: "Lent ₹15,000 for a trip deposit. Never brought it up again. Silently counts it every single time you meet for brunch.",
     vibe: "Passive aggressive energy",
     tagColor: "bg-[#2563EB] text-white",
   },
   {
     name: "The Text Nagger",
-    tag: "AWKWARD_PING_SPAM",
+    tag: "AWKWARD PING SPAM",
     behavior: "Sends follow-up pings every single week. Ruins the friendship dynamic. Still only half-paid after 4 months.",
     vibe: "Constant notifications",
     tagColor: "bg-[#F43F5E] text-white",
   },
   {
     name: "The Ghost",
-    tag: "COMMUNICATION_BREAKDOWN",
+    tag: "COMMUNICATION BREAKDOWN",
     behavior: "Borrowed ₹8,000. Changed their number. Moved to a new city. You see them thriving in Goa on Instagram stories.",
     vibe: "Completely vanished",
     tagColor: "bg-[#FFE600] text-black",
   },
   {
     name: "The Over-Promiser",
-    tag: "RECURRING_EXCUSES",
+    tag: "RECURRING EXCUSES",
     behavior: "Swears they will GPay next Friday. Then next month. Then when bonus credits. Spoiler: tonight never comes.",
     vibe: "Infinite postponements",
     tagColor: "bg-[#2DD4BF] text-black",
@@ -55,7 +55,7 @@ export function LoanAnatomySection() {
   return (
     <section className="w-full max-w-6xl mx-auto z-10">
       <RetroWindow
-        title="PSYCHOLOGY_AUDIT.sys // THE_FRIEND_SQUAD"
+        title="PSYCHOLOGY AUDIT // THE FRIEND SQUAD"
         subtitle="v2.4"
         colorBar="pink"
         className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#F43F5E]"
@@ -63,7 +63,7 @@ export function LoanAnatomySection() {
       >
         <div className="mb-6 text-left">
           <span className="inline-block px-3 py-1 bg-[#F43F5E] text-white border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-2">
-            SOCIAL_DYNAMIC_FAILURE
+            SOCIAL DYNAMICS
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white uppercase tracking-tight">
             The Anatomy of a Forgotten Loan

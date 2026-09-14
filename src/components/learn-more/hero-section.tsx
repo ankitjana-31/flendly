@@ -30,7 +30,7 @@ export function LearnMoreHero() {
       className="relative z-10 w-full max-w-6xl mx-auto"
     >
       <RetroWindow
-        title="PROBLEM_STATEMENT.exe // WHY_WE_BUILT_THIS"
+        title="PROBLEM STATEMENT // WHY WE BUILT THIS"
         subtitle="v2.4"
         colorBar="blue"
         glow={true}
@@ -39,7 +39,7 @@ export function LearnMoreHero() {
         headerRight={
           <div className="flex items-center gap-2 font-mono text-xs text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
             <span className="w-2 h-2 rounded-full bg-[#FFE600] animate-pulse" />
-            <span>REAL_TALK</span>
+            <span>REAL TALK</span>
           </div>
         }
       >

@@ -47,14 +47,14 @@ export function SelfTrackShowcase() {
   return (
     <section className="w-full max-w-6xl mx-auto z-10">
       <RetroWindow
-        title="SELF_TRACK_VAULT.sys // OFFLINE_PRIVATE_LEDGER"
+        title="SELF TRACK VAULT // OFFLINE PRIVATE LEDGER"
         subtitle="v2.4"
         colorBar="yellow"
         className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
         contentClassName="p-6 sm:p-8 text-left"
         headerRight={
           <span className="px-2 py-0.5 border border-black bg-black text-white font-mono text-[10px] font-bold uppercase">
-            PRIVACY_MAX
+            PRIVACY MAX
           </span>
         }
       >
@@ -63,7 +63,7 @@ export function SelfTrackShowcase() {
           <div className="lg:col-span-6 flex flex-col gap-4">
             <div>
               <span className="inline-block px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-2">
-                STANDALONE_FEATURE
+                STANDALONE FEATURE
               </span>
               <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white uppercase tracking-tight">
                 Self Track: Private Offline Ledger
@@ -93,7 +93,7 @@ export function SelfTrackShowcase() {
               <div className="flex items-center justify-between pb-3 border-b-[2px] border-black dark:border-white/30 mb-4 font-mono text-xs">
                 <span className="font-bold text-black dark:text-white uppercase flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 bg-[#10B981] border border-black inline-block" />
-                  SELF_TRACK // REGISTER
+                  SELF TRACK // REGISTER
                 </span>
                 <span className="px-2 py-0.5 border border-black bg-[#FFE600] text-black font-bold">3 ACTIVE</span>
               </div>
@@ -103,7 +103,7 @@ export function SelfTrackShowcase() {
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="text-[10px] px-2 py-0.5 border border-black bg-[#2DD4BF] text-black font-bold uppercase">LENT</span>
-                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹5,000 to Ananya</h4>
+                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹5,000 to Supriya</h4>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-sans">Trip fuel & tolls split</p>
                   </div>
                   <span className="text-base font-bold text-[#059669] dark:text-[#2DD4BF]">₹2,000 left</span>
@@ -122,7 +122,7 @@ export function SelfTrackShowcase() {
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="text-[10px] px-2 py-0.5 border border-black bg-[#F43F5E] text-white font-bold uppercase">BORROWED</span>
-                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹3,500 from Siddharth</h4>
+                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹3,500 from Rahul</h4>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-sans">Gym membership annual share</p>
                   </div>
                   <span className="text-base font-bold text-[#F43F5E]">₹3,500 due</span>

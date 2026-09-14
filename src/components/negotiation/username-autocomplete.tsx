@@ -63,7 +63,7 @@ export function UsernameAutocomplete({ defaultValue = "" }: { defaultValue?: str
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}
-        placeholder="ankitjana_01"
+        placeholder="e.g. rahul, supriya, junaid"
         className="h-11 w-full rounded-lg border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-accent"
       />
       {open && results.length > 0 && (

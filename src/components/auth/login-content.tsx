@@ -40,7 +40,7 @@ export function LoginContent({ error }: LoginContentProps) {
       className="relative z-20 w-full max-w-md px-4"
     >
       <RetroWindow
-        title="AUTH_LOGIN.sys // SESSION"
+        title="FLENDLY // AUTHENTICATION"
         subtitle="v2.4"
         colorBar="blue"
         glow={true}
@@ -50,7 +50,7 @@ export function LoginContent({ error }: LoginContentProps) {
         headerRight={
           <div className="flex items-center gap-1.5 font-mono text-[10px] text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2DD4BF] animate-pulse" />
-            <span>SECURE_SESSION</span>
+            <span>SECURE SESSION</span>
           </div>
         }
       >
@@ -60,7 +60,7 @@ export function LoginContent({ error }: LoginContentProps) {
           </div>
           <div>
             <span className="font-mono text-xl font-bold tracking-tight text-black dark:text-white block">
-              FLENDLY OS
+              FLENDLY
             </span>
             <span className="font-mono text-[10px] text-[#2563EB] dark:text-[#60A5FA] font-bold tracking-wider uppercase block">
               Peer-to-Peer Finance

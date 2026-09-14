@@ -23,7 +23,7 @@ export default function LearnMorePage() {
             </div>
             <div className="flex flex-col">
               <span className="font-mono text-sm font-bold text-black dark:text-white uppercase tracking-wider">
-                Flendly OS v2.4
+                FLENDLY // v2.4
               </span>
             </div>
           </div>
@@ -33,25 +33,25 @@ export default function LearnMorePage() {
               href="/"
               className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
             >
-              FLENDLY_HOME.exe
+              HOME
             </Link>
             <Link
               href="/learn-more"
               className="px-3 py-1.5 bg-[#2563EB] text-white border-[2px] border-black dark:border-white shadow-[2px_2px_0_0_#000000] font-bold"
             >
-              HOW_IT_WORKS.doc
+              HOW IT WORKS
             </Link>
             <Link
               href="/dashboard"
               className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
             >
-              DASHBOARD.exe
+              DASHBOARD
             </Link>
             <Link
               href="/self-track"
               className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
             >
-              LEDGER.sys
+              SELF TRACK
             </Link>
           </nav>
 

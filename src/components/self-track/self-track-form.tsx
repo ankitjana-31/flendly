@@ -73,8 +73,8 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
 
   return (
     <RetroWindow
-      title="NEW_RECORD.exe // LOG_OFFLINE"
-      subtitle="private_entry"
+      title="NEW RECORD // LOG OFFLINE"
+      subtitle="private entry"
       colorBar="yellow"
       className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
       contentClassName="p-5 sm:p-6"
@@ -158,7 +158,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
-              placeholder="e.g. Rahul, Aman, Roommate"
+              placeholder="e.g. Supriya, Junaid, Rahul"
               className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>

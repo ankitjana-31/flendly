@@ -36,12 +36,12 @@ export default async function ProfileSettingsPage() {
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>BACK TO PROFILE</span>
         </Link>
-        <span className="font-mono text-xs font-bold text-gray-500">[CONFIG.sys]</span>
+        <span className="font-mono text-xs font-bold text-gray-500">[CONFIGURATION]</span>
       </div>
 
       <RetroWindow
-        title="SETTINGS.exe // PREFERENCES"
-        subtitle="user_configuration"
+        title="SETTINGS // PREFERENCES"
+        subtitle="USER CONFIGURATION"
         colorBar="blue"
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
         contentClassName="p-5 sm:p-6 space-y-6"

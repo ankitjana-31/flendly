@@ -42,7 +42,7 @@ export function LandingHero() {
             <span className="w-4 h-4 bg-[#FFE600] border border-black inline-flex items-center justify-center text-[10px] text-black font-bold">
               ▲
             </span>
-            <span>HERO_PROMISE.exe</span>
+            <span>HERO PROMISE</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center">
@@ -96,7 +96,7 @@ export function LandingHero() {
                 className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-2"
               >
                 <span>⚡</span>
-                <span>BOOT FLENDLY DESKTOP</span>
+                <span>LAUNCH FLENDLY</span>
               </Link>
               <Link
                 href="/learn-more"
@@ -137,7 +137,7 @@ export function LandingHero() {
               <div className="h-9 bg-[#F43F5E] text-white px-3.5 border-b-[2.5px] border-black dark:border-white flex items-center justify-between font-mono text-xs font-bold uppercase select-none">
                 <span className="flex items-center gap-1.5">
                   <span>⚠️</span>
-                  <span>LEAK_DIAGNOSTIC.tmp</span>
+                  <span>LEAK DIAGNOSTIC</span>
                 </span>
                 <span className="w-4 h-4 bg-white text-black text-[10px] font-bold flex items-center justify-center border border-black">
                   ✕
@@ -148,7 +148,7 @@ export function LandingHero() {
               <div className="p-5 space-y-4 font-mono text-xs sm:text-sm">
                 <div className="p-3.5 bg-[#FAF8F5] dark:bg-[#161821] border-[2px] border-black dark:border-gray-700 shadow-[2px_2px_0_0_#000]">
                   <div className="text-xs text-gray-500 dark:text-gray-400 mb-1.5 font-bold">
-                    Rohit (3 months ago via WhatsApp):
+                    Rahul (3 months ago via WhatsApp):
                   </div>
                   <p className="italic text-gray-900 dark:text-white font-sans text-sm leading-relaxed">
                     &ldquo;Bro, will pay my ₹500 for the Goa trip dinner booking tomorrow morning!&rdquo;

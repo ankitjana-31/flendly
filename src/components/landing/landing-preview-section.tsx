@@ -28,7 +28,7 @@ export function LandingPreviewSection() {
           Everything in one retro command center
         </h2>
         <p className="mt-1.5 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-sans text-sm sm:text-base">
-          Explore how Flendly OS organizes every loan, request, live reminder, and private cash ledger.
+          Explore how Flendly organizes every loan, request, live reminder, and private cash ledger.
         </p>
       </div>
 
@@ -61,8 +61,8 @@ export function LandingPreviewSection() {
 
       {/* Main Preview Retro Window */}
       <RetroWindow
-        title={`APP_PREVIEW.exe // ${activeTab.toUpperCase()}`}
-        subtitle="active_workspace"
+        title={`FLENDLY // ${activeTab.toUpperCase()}`}
+        subtitle="LIVE PREVIEW"
         colorBar="blue"
         glow={true}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
@@ -71,7 +71,7 @@ export function LandingPreviewSection() {
         headerRight={
           <div className="flex items-center gap-2 text-xs font-mono text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
             <span className="flex h-2 w-2 rounded-full bg-[#2DD4BF] animate-pulse" />
-            <span className="hidden sm:inline">LIVE_SYNC_READY</span>
+            <span className="hidden sm:inline">LIVE SYNC READY</span>
           </div>
         }
       >
@@ -115,7 +115,7 @@ export function LandingPreviewSection() {
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 border border-black bg-[#2DD4BF] text-black flex items-center justify-center font-bold text-xs">IN</div>
                       <div>
-                        <p className="text-sm font-bold text-black dark:text-white">Rohit repaid installment</p>
+                        <p className="text-sm font-bold text-black dark:text-white">Rahul repaid installment</p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">Via UPI · 2 hours ago</p>
                       </div>
                     </div>
@@ -125,7 +125,7 @@ export function LandingPreviewSection() {
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 border border-black bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">OUT</div>
                       <div>
-                        <p className="text-sm font-bold text-black dark:text-white">Loan disbursed to Shreya</p>
+                        <p className="text-sm font-bold text-black dark:text-white">Loan disbursed to Supriya</p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">Fixed terms · Yesterday</p>
                       </div>
                     </div>
@@ -166,9 +166,9 @@ export function LandingPreviewSection() {
               <span className="font-mono text-xs font-bold text-[#059669] dark:text-[#2DD4BF] bg-emerald-500/10 px-2 py-0.5 border border-emerald-500/30">3 active borrowers</span>
             </div>
             {[
-              { name: "Aarav Sharma", amount: "₹12,000", repaid: "₹8,000", remaining: "₹4,000", progress: 66, status: "On Track" },
-              { name: "Priya Nair", amount: "₹15,000", repaid: "₹5,000", remaining: "₹10,000", progress: 33, status: "Due 15 Oct" },
-              { name: "Vikram Mehta", amount: "₹5,000", repaid: "₹5,000", remaining: "₹0", progress: 100, status: "Settled" },
+              { name: "Rahul", amount: "₹12,000", repaid: "₹8,000", remaining: "₹4,000", progress: 66, status: "On Track" },
+              { name: "Supriya", amount: "₹15,000", repaid: "₹5,000", remaining: "₹10,000", progress: 33, status: "Due 15 Oct" },
+              { name: "Junaid", amount: "₹5,000", repaid: "₹5,000", remaining: "₹0", progress: 100, status: "Settled" },
             ].map((deal) => (
               <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
                 <div>
@@ -209,8 +209,8 @@ export function LandingPreviewSection() {
               <span className="font-mono text-xs font-bold text-[#F43F5E] bg-rose-500/10 px-2 py-0.5 border border-rose-500/30">Clear repayment paths</span>
             </div>
             {[
-              { name: "Devansh Roy", amount: "₹10,000", repaid: "₹6,000", remaining: "₹4,000", progress: 60, nextDue: "Due in 8 days" },
-              { name: "Neha Gupta", amount: "₹4,000", repaid: "₹2,000", remaining: "₹2,000", progress: 50, nextDue: "Due in 20 days" },
+              { name: "Junaid", amount: "₹10,000", repaid: "₹6,000", remaining: "₹4,000", progress: 60, nextDue: "Due in 8 days" },
+              { name: "Supriya", amount: "₹4,000", repaid: "₹2,000", remaining: "₹2,000", progress: 50, nextDue: "Due in 20 days" },
             ].map((deal) => (
               <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
                 <div>
@@ -249,9 +249,9 @@ export function LandingPreviewSection() {
               <span className="font-mono text-xs font-bold text-[#2563EB] dark:text-[#60A5FA]">Zero spam</span>
             </div>
             {[
-              { title: "Payment Recorded", desc: "Aarav recorded ₹2,000 repayment. Please review and confirm.", time: "10 mins ago", unread: true },
-              { title: "Counter-Offer Received", desc: "Priya modified repayment schedule to monthly ₹3,000.", time: "2 hours ago", unread: false },
-              { title: "Friendly Reminder", desc: "Repayment of ₹4,000 to Devansh scheduled for Friday.", time: "Yesterday", unread: false },
+              { title: "Payment Recorded", desc: "Rahul recorded ₹2,000 repayment. Please review and confirm.", time: "10 mins ago", unread: true },
+              { title: "Counter-Offer Received", desc: "Supriya modified repayment schedule to monthly ₹3,000.", time: "2 hours ago", unread: false },
+              { title: "Friendly Reminder", desc: "Repayment of ₹4,000 to Junaid scheduled for Friday.", time: "Yesterday", unread: false },
             ].map((notif, idx) => (
               <div key={idx} className={`p-4 border-[2px] border-black shadow-[3px_3px_0_0_#000000] flex items-start justify-between gap-4 font-mono ${
                 notif.unread ? "bg-[#FFE600]/20 dark:bg-[#2E2800]" : "bg-[#FAF8F5] dark:bg-[#1E212D]"
@@ -290,7 +290,7 @@ export function LandingPreviewSection() {
                   <span className="text-xs font-bold text-[#059669] dark:text-[#2DD4BF] uppercase">Lent Offline</span>
                   <span className="text-xs font-bold text-black dark:text-white">₹3,500</span>
                 </div>
-                <h5 className="font-bold text-sm text-black dark:text-white">Kunal (Concert Tickets)</h5>
+                <h5 className="font-bold text-sm text-black dark:text-white">Rahul (Concert Tickets)</h5>
                 <p className="text-xs text-gray-600 dark:text-gray-400">Note: Told me he will pay via GPay next weekend</p>
                 <div className="pt-2 flex justify-between items-center text-xs border-t border-black/10 dark:border-white/10">
                   <span className="text-[#059669] dark:text-[#2DD4BF] font-bold">₹1,500 repaid</span>

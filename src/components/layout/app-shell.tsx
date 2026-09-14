@@ -35,7 +35,7 @@ export async function AppShell({
         {/* Retro Window Title / Logo */}
         <div className="mb-6 px-2">
           <div className="flex items-center justify-between mb-3 border-b-[2px] border-black dark:border-white/20 pb-2">
-            <span className="font-mono text-[11px] font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY_OS // v2.4</span>
+            <span className="font-mono text-[11px] font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY // v2.4</span>
             <div className="flex items-center gap-1">
               <span className="w-3 h-3 bg-[#FFE600] border border-black inline-block text-[8px] font-bold text-center leading-none">▲</span>
               <span className="w-3 h-3 bg-[#F43F5E] border border-black inline-block text-[8px] font-bold text-center text-white leading-none">✕</span>
@@ -47,7 +47,7 @@ export async function AppShell({
             </div>
             <div>
               <span className="font-mono text-lg font-black tracking-tight text-black dark:text-white block">
-                FLENDLY OS
+                FLENDLY
               </span>
               <span className="font-mono text-[9px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block">
                 PEER LEDGER REALTIME
@@ -98,7 +98,7 @@ export async function AppShell({
         {/* User Account & Theme Toggle Footer */}
         <div className="mt-auto flex flex-col gap-2 border-t-[2px] border-black dark:border-white/20 pt-4 font-mono text-xs">
           <div className="flex items-center justify-between px-1 mb-1">
-            <span className="text-[10px] uppercase font-bold text-gray-500">THEME_MODE</span>
+            <span className="text-[10px] uppercase font-bold text-gray-500">THEME MODE</span>
             <ThemeToggle />
           </div>
           <Link
@@ -133,7 +133,7 @@ export async function AppShell({
             <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black">
               ⚡
             </div>
-            <span className="font-mono text-sm font-bold tracking-wider text-black dark:text-white">FLENDLY.OS</span>
+            <span className="font-mono text-sm font-bold tracking-wider text-black dark:text-white">FLENDLY</span>
           </Link>
           <div className="flex items-center gap-2">
             <ThemeToggle />

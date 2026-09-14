@@ -25,7 +25,7 @@ export function FinalCTAFooter() {
   return (
     <section className="w-full max-w-6xl mx-auto z-10">
       <RetroWindow
-        title="SYSTEM_BOOT.exe // GET_STARTED"
+        title="SYSTEM BOOT // GET STARTED"
         subtitle="v2.4"
         colorBar="green"
         glow={true}
@@ -41,7 +41,7 @@ export function FinalCTAFooter() {
         >
           <motion.div variants={itemVariants} className="mb-4">
             <span className="inline-block px-3 py-1 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
-              READY_TO_LAUNCH
+              READY TO LAUNCH
             </span>
           </motion.div>
 

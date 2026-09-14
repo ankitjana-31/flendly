@@ -35,7 +35,7 @@ export default async function Home() {
             </div>
             <div className="flex flex-col">
               <span className="font-mono text-sm font-bold text-black dark:text-white uppercase tracking-wider">
-                Flendly OS v2.4
+                FLENDLY // v2.4
               </span>
             </div>
           </div>
@@ -45,19 +45,19 @@ export default async function Home() {
               href="/"
               className="px-3 py-1.5 bg-[#2563EB] text-white border-[2px] border-black dark:border-white shadow-[2px_2px_0_0_#000000] font-bold hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
-              FLENDLY_HOME.exe
+              HOME
             </Link>
             <Link
               href="/dashboard"
               className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
-              DASHBOARD.exe
+              DASHBOARD
             </Link>
             <Link
               href="/self-track"
               className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
-              LEDGER.sys
+              LEDGER
             </Link>
           </nav>
 
@@ -69,7 +69,7 @@ export default async function Home() {
               href="/auth/login"
               className="hidden sm:inline-flex px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all shadow-[2px_2px_0_0_#000000]"
             >
-              LOGIN.exe
+              LOGIN
             </Link>
             <Link
               href="/auth/login"

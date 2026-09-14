@@ -13,8 +13,8 @@ export default async function ProfilePage() {
     <div className="relative flex min-h-[80vh] items-center justify-center px-4 py-8 md:py-12">
       <div className="w-full max-w-lg">
         <RetroWindow
-          title="USER_PROFILE.sys // IDENTITY"
-          subtitle="session_authenticated"
+          title="USER PROFILE // IDENTITY"
+          subtitle="AUTHENTICATED SESSION"
           colorBar="yellow"
           glow={true}
           className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
@@ -34,7 +34,7 @@ export default async function ProfilePage() {
               </div>
               <div>
                 <span className="font-mono text-base font-bold tracking-tight text-black dark:text-white block">
-                  FLENDLY OS
+                  FLENDLY
                 </span>
                 <span className="font-mono text-[10px] text-gray-500 uppercase">
                   PEER LEDGER AUTH V2.4
@@ -43,7 +43,7 @@ export default async function ProfilePage() {
             </div>
 
             <span className="px-2.5 py-1 border border-black bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold shadow-[1px_1px_0_0_#000]">
-              SYS.USER_01
+              VERIFIED USER
             </span>
           </div>
 
@@ -86,7 +86,7 @@ export default async function ProfilePage() {
               className="flex-1 py-3 px-4 bg-[#2563EB] text-white border-[2px] border-black font-bold uppercase shadow-[3px_3px_0_0_#000000] hover:bg-blue-600 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all flex items-center justify-center gap-2"
             >
               <Settings className="w-4 h-4" />
-              <span>Settings.exe</span>
+              <span>Settings</span>
             </Link>
             <form action={signOut} className="flex-1">
               <button

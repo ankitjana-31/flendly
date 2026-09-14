@@ -82,9 +82,9 @@ export function DashboardContent({
         className="flex flex-col gap-1.5 border-b-[2px] border-black/10 dark:border-[#1E2935] pb-4"
       >
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs sm:text-sm text-teal-600 dark:text-teal-400 font-bold">[SYS.SESSION_ACTIVE]</span>
+          <span className="font-mono text-xs sm:text-sm text-teal-600 dark:text-teal-400 font-bold">[SESSION ACTIVE]</span>
           <span className="text-gray-400 font-mono text-xs">//</span>
-          <span className="font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-bold uppercase">FLENDLY.OS MASTER DASHBOARD</span>
+          <span className="font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-bold uppercase">FLENDLY MASTER DASHBOARD</span>
         </div>
         <h1 className="font-mono text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-black dark:text-white">
           Welcome back, {profile?.full_name ?? `@${profile?.username}`}
@@ -100,8 +100,8 @@ export function DashboardContent({
       >
         <div>
           <RetroWindow
-            title="RECEIVABLES.sys // INCOMING"
-            subtitle="owed_to_you"
+            title="RECEIVABLES // INCOMING"
+            subtitle="owed to you"
             colorBar="green"
             glow={aggregates.totalLent > 0}
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#059669]"
@@ -133,8 +133,8 @@ export function DashboardContent({
 
         <div>
           <RetroWindow
-            title="PAYABLES.sys // OUTGOING"
-            subtitle="you_owe"
+            title="PAYABLES // OUTGOING"
+            subtitle="you owe"
             colorBar="pink"
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#F43F5E]"
             contentClassName="p-5 sm:p-6"
@@ -167,8 +167,8 @@ export function DashboardContent({
       {/* Overdue Section - Conditional Retro Window */}
       {hasCompletedDeals && aggregates.overdue.length > 0 && (
         <RetroWindow
-          title="OVERDUE_ALERTS.sys // ACTION_REQUIRED"
-          subtitle="past_due_date"
+          title="OVERDUE ALERTS // ACTION REQUIRED"
+          subtitle="past due date"
           colorBar="pink"
           className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
           contentClassName="p-5"
@@ -205,8 +205,8 @@ export function DashboardContent({
       {/* Due Soon Section - Conditional Retro Window */}
       {hasCompletedDeals && aggregates.upcoming.length > 0 && (
         <RetroWindow
-          title="UPCOMING_DUE.sys // TIMELINE"
-          subtitle="due_soon"
+          title="UPCOMING DUE // TIMELINE"
+          subtitle="due soon"
           colorBar="yellow"
           className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
           contentClassName="p-5"
@@ -240,8 +240,8 @@ export function DashboardContent({
       {/* Loan Summary Section */}
       {hasCompletedDeals && (
         <RetroWindow
-          title="LEDGER_TOTALS.sys // LIFETIME_SUMMARY"
-          subtitle="aggregate_view"
+          title="LEDGER TOTALS // LIFETIME SUMMARY"
+          subtitle="aggregate view"
           colorBar="blue"
           className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
           contentClassName="p-5"
@@ -272,11 +272,14 @@ export function DashboardContent({
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs sm:text-sm font-bold text-teal-600 dark:text-teal-400">[REQUESTS.sys]</span>
-            <h2 className="font-mono text-base sm:text-lg font-black text-black dark:text-white uppercase tracking-tight">Open Requests</h2>
+            <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">[ACTIVE PROPOSALS]</span>
+            <span className="text-gray-400 font-mono text-xs">//</span>
+            <h2 className="font-mono text-base sm:text-lg font-black text-black dark:text-white uppercase tracking-tight">
+              Open Requests
+            </h2>
           </div>
-          <LinkButton href="/requests/new" size="sm" className="bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs sm:text-sm font-black shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all cursor-pointer">
-            + New request
+          <LinkButton href="/requests/new" size="sm">
+            <span>+ NEW REQUEST</span>
           </LinkButton>
         </div>
 
@@ -328,8 +331,8 @@ export function DashboardContent({
         transition={{ delay: 0.4 }}
       >
         <RetroWindow
-          title="PERSONAL_TRACKER.sys // OFFLINE_LEDGER"
-          subtitle="self_track_summary"
+          title="PERSONAL TRACKER // OFFLINE LEDGER"
+          subtitle="self track summary"
           colorBar="yellow"
           className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
           contentClassName="p-5 sm:p-6"

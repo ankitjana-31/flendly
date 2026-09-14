@@ -50,7 +50,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           href="/"
           className="inline-flex items-center gap-2 font-mono text-xs font-bold text-black dark:text-white transition-all duration-200 hover:bg-[#FFE600] hover:text-black bg-white dark:bg-[#161821] px-3.5 py-1.5 border-[2px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_#2563EB] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
         >
-          <span aria-hidden className="text-[#2563EB] dark:text-[#60A5FA]">◄</span> [ESC] BACK_HOME.exe
+          <span aria-hidden className="text-[#2563EB] dark:text-[#60A5FA]">◄</span> [ESC] BACK TO HOME
         </Link>
       </div>
 

@@ -19,11 +19,11 @@ export default async function SelfTrackPage() {
   const netOutstanding = stats.activeLent - stats.activeBorrowed;
 
   return (
-    <div className="flex flex-col gap-6 max-w-6xl mx-auto px-4 py-4 md:py-6 md:px-6 pb-12">
+    <div className="flex flex-col gap-6 w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16">
       {/* Retro OS Header Banner */}
       <RetroWindow
-        title="PRIVATE_LEDGER.sys // OFFLINE_TRACKER"
-        subtitle="standalone_cash_records"
+        title="PRIVATE LEDGER // OFFLINE TRACKER"
+        subtitle="standalone cash records"
         colorBar="blue"
         glow={true}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB]"
@@ -141,16 +141,16 @@ export default async function SelfTrackPage() {
 
       {/* Main Grid: Form on Left + Records List on Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left Column: Form */}
-        <div className="lg:col-span-5 sticky top-20">
+        {/* Left Column: Form (only sticky on large desktop screens to prevent mobile overlap) */}
+        <div className="lg:col-span-5 lg:sticky lg:top-20 relative z-10">
           <SelfTrackForm />
         </div>
 
         {/* Right Column: Records */}
-        <div className="lg:col-span-7 space-y-4">
+        <div className="lg:col-span-7 space-y-4 relative z-0">
           <div className="flex items-center justify-between border-b-[2px] border-black dark:border-white/30 pb-2">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">[ENTRIES.sys]</span>
+              <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">[ENTRIES]</span>
               <h2 className="font-mono text-base font-bold text-black dark:text-white uppercase tracking-tight">
                 Your Private Records ({selfTracks.length})
               </h2>
