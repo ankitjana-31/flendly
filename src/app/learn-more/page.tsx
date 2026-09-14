@@ -3,41 +3,79 @@ import { LearnMoreHero } from "@/components/learn-more/hero-section";
 import { LoanAnatomySection } from "@/components/learn-more/loan-anatomy-section";
 import { SelfTrackShowcase } from "@/components/learn-more/self-track-showcase";
 import { FinalCTAFooter } from "@/components/learn-more/final-cta-footer";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function LearnMorePage() {
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-[#F8FAFC] overflow-x-hidden selection:bg-teal-500/30 selection:text-teal-200">
-      {/* Top Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 py-4 backdrop-blur-xl border-b border-[#1E2935]/80 bg-[#0B0F14]/80">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-teal-400 to-blue-500 font-heading text-base font-bold text-black shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
-            F
+    <div className="relative min-h-screen w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-[#F1F5F9] font-sans selection:bg-[#FFE600] selection:text-black transition-colors duration-200">
+      {/* Ambient Retro Geometric Grid Layer */}
+      <div 
+        aria-hidden="true" 
+        className="pointer-events-none fixed inset-0 opacity-[0.08] dark:opacity-[0.16] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]" 
+      />
+
+      {/* Stitch Flendly OS v2.4 Fixed Top Navigation Bar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#F5F2EB] dark:bg-[#161821] border-b-[2.5px] border-black dark:border-white/80 shadow-[0_3px_0_0_#000000] dark:shadow-[0_3px_0_0_rgba(255,255,255,0.3)] transition-colors">
+        <div className="h-14 max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-sm font-black text-black shadow-[2px_2px_0_0_#000]">
+              ⚡
+            </div>
+            <div className="flex flex-col">
+              <span className="font-mono text-sm font-bold text-black dark:text-white uppercase tracking-wider">
+                Flendly OS v2.4
+              </span>
+            </div>
           </div>
-          <span className="font-brand text-2xl font-bold tracking-wider text-white group-hover:text-teal-300 transition-colors">
-            FLENDLY
-          </span>
-        </Link>
-        <div className="flex items-center gap-4">
-          <Link
-            href="/auth/login"
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#2DD4BF] to-[#60A5FA] text-[#0B0F14] text-sm font-bold shadow-lg shadow-teal-500/20 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
-          >
-            Launch App
-          </Link>
+
+          <nav className="hidden md:flex items-center gap-1.5 font-mono text-xs">
+            <Link
+              href="/"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+            >
+              FLENDLY_HOME.exe
+            </Link>
+            <Link
+              href="/learn-more"
+              className="px-3 py-1.5 bg-[#2563EB] text-white border-[2px] border-black dark:border-white shadow-[2px_2px_0_0_#000000] font-bold"
+            >
+              HOW_IT_WORKS.doc
+            </Link>
+            <Link
+              href="/dashboard"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+            >
+              DASHBOARD.exe
+            </Link>
+            <Link
+              href="/self-track"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+            >
+              LEDGER.sys
+            </Link>
+          </nav>
+
+          <div className="flex items-center gap-2.5">
+            <ThemeToggle />
+
+            <Link
+              href="/auth/login"
+              className="px-3.5 py-1.5 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all flex items-center gap-1"
+            >
+              <span>⚡</span>
+              <span>LAUNCH APP</span>
+            </Link>
+          </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero Section */}
-      <LearnMoreHero />
-
-      {/* The Anatomy of a Forgotten Loan */}
-      <LoanAnatomySection />
-
-      {/* Self Track - private money ledger */}
-      <SelfTrackShowcase />
-
-      {/* Final CTA */}
-      <FinalCTAFooter />
+      {/* Main Container */}
+      <main className="relative z-20 max-w-6xl mx-auto pt-24 px-4 md:px-6 pb-24 flex flex-col gap-16 md:gap-24 items-center">
+        <LearnMoreHero />
+        <LoanAnatomySection />
+        <SelfTrackShowcase />
+        <FinalCTAFooter />
+      </main>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { RetroWindow } from "@/components/ui/retro-window";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -11,116 +12,108 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
-  hover: { y: -8, transition: { duration: 0.2 } },
 };
 
 const archetypes = [
   {
     name: "The Silent Sufferer",
-    behavior: "Lent ₹15,000 for a party. Never mentioned it again. Remembers it every time you hang out.",
+    tag: "RESENTMENT_OVERFLOW",
+    behavior: "Lent ₹15,000 for a trip deposit. Never brought it up again. Silently counts it every single time you meet for brunch.",
     vibe: "Passive aggressive energy",
-    borderColor: "from-blue-500/30",
-    bgColor: "bg-blue-500/5",
+    tagColor: "bg-[#2563EB] text-white",
   },
   {
     name: "The Text Nagger",
-    behavior: "Sends reminders every week. Friendship toxified. Still only half-paid after 3 months.",
+    tag: "AWKWARD_PING_SPAM",
+    behavior: "Sends follow-up pings every single week. Ruins the friendship dynamic. Still only half-paid after 4 months.",
     vibe: "Constant notifications",
-    borderColor: "from-purple-500/30",
-    bgColor: "bg-purple-500/5",
+    tagColor: "bg-[#F43F5E] text-white",
   },
   {
     name: "The Ghost",
-    behavior: "Borrowed ₹8,000. Changed their number. Moved cities. You see them on Instagram thriving.",
+    tag: "COMMUNICATION_BREAKDOWN",
+    behavior: "Borrowed ₹8,000. Changed their number. Moved to a new city. You see them thriving in Goa on Instagram stories.",
     vibe: "Completely vanished",
-    borderColor: "from-rose-500/30",
-    bgColor: "bg-rose-500/5",
+    tagColor: "bg-[#FFE600] text-black",
   },
   {
     name: "The Over-Promiser",
-    behavior: "Swears they'll pay next week. Then next month. Then once they get the bonus. Spoiler: they never do.",
-    vibe: "Endless excuses",
-    borderColor: "from-orange-500/30",
-    bgColor: "bg-orange-500/5",
+    tag: "RECURRING_EXCUSES",
+    behavior: "Swears they will GPay next Friday. Then next month. Then when bonus credits. Spoiler: tonight never comes.",
+    vibe: "Infinite postponements",
+    tagColor: "bg-[#2DD4BF] text-black",
   },
 ];
 
 export function LoanAnatomySection() {
   return (
-    <section className="relative py-28 overflow-hidden bg-[#111820]/50 border-y border-[#1E2935]">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-[#2DD4BF] text-xs font-bold tracking-widest uppercase mb-3 block">
-            The Friend Squad
+    <section className="w-full max-w-6xl mx-auto z-10">
+      <RetroWindow
+        title="PSYCHOLOGY_AUDIT.sys // THE_FRIEND_SQUAD"
+        subtitle="v2.4"
+        colorBar="pink"
+        className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#F43F5E]"
+        contentClassName="p-8 sm:p-12"
+      >
+        <div className="mb-10 text-left">
+          <span className="inline-block px-3 py-1 bg-[#F43F5E] text-white border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-4">
+            SOCIAL_DYNAMIC_FAILURE
           </span>
-          <h2 className="font-heading text-3xl sm:text-5xl font-black text-white">
+          <h2 className="text-3xl sm:text-5xl font-black text-black dark:text-white uppercase tracking-tight">
             The Anatomy of a Forgotten Loan
           </h2>
-          <p className="text-[#94A3B8] text-lg mt-4 max-w-2xl mx-auto">
-            Ever lend money to a friend? One of these vibes definitely went down.
+          <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl mt-3 max-w-3xl leading-relaxed">
+            Ever lend money to a friend? One of these four exact archetypes always unfolds without a structured agreement.
           </p>
-        </motion.div>
+        </div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           className="grid md:grid-cols-2 gap-6"
         >
           {archetypes.map((archetype, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
-              whileHover="hover"
-              className={`rounded-2xl border ${archetype.borderColor} to-transparent bg-gradient-to-br ${archetype.bgColor} p-6 sm:p-8 relative overflow-hidden group cursor-default`}
+              className="border-[2.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[#1E212D] p-6 sm:p-8 shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_rgba(255,255,255,0.2)] flex flex-col justify-between text-left transition-all hover:-translate-y-1"
             >
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-
-              <div className="relative z-10">
-                <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-br from-teal-400 to-blue-500/20 flex items-center justify-center text-teal-400 text-xs font-medium">
-                  {/* Removed emoji for cleaner design */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`px-2.5 py-0.5 border border-black font-mono text-[10px] font-bold uppercase shadow-[1px_1px_0_0_#000] ${archetype.tagColor}`}>
+                    {archetype.tag}
+                  </span>
+                  <span className="font-mono text-xs font-bold text-gray-500">#{idx + 1}</span>
                 </div>
-                <h3 className="text-2xl font-black text-white mb-3">{archetype.name}</h3>
-
-                <p className="text-[#94A3B8] text-base leading-relaxed mb-4">
+                <h3 className="text-2xl font-black text-black dark:text-white mb-3">{archetype.name}</h3>
+                <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed mb-6 font-normal">
                   {archetype.behavior}
                 </p>
+              </div>
 
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20">
-                  <span className="text-xs font-semibold text-white/80">The Vibe:</span>
-                  <span className="text-xs text-white/60">{archetype.vibe}</span>
-                </div>
+              <div className="pt-4 border-t-[2px] border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-xs">
+                <span className="font-bold text-gray-600 dark:text-gray-400">THE VIBE:</span>
+                <span className="font-bold text-black dark:text-white bg-black/5 dark:bg-white/10 px-2 py-0.5 border border-black/20">{archetype.vibe}</span>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 rounded-2xl border border-[#1E2935] bg-[#0B0F14]/50 p-8 text-center"
-        >
-          <p className="text-[#94A3B8] text-lg">
-            <strong className="text-white">The Common Thread:</strong> No clear record, no accountability, just awkwardness and lost money.
+        <div className="mt-8 p-5 border-[2px] border-black bg-[#FFE600]/20 dark:bg-[#2E2800] shadow-[3px_3px_0_0_#000000] flex items-center gap-4 text-left">
+          <span className="text-2xl">⚠️</span>
+          <p className="font-mono text-sm sm:text-base font-bold text-black dark:text-white">
+            <strong>THE COMMON ROOT CAUSE:</strong> Zero mutual agreement record, no clear repayment schedule, leading directly to resentment.
           </p>
-        </motion.div>
-      </div>
+        </div>
+      </RetroWindow>
     </section>
   );
 }
