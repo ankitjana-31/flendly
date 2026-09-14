@@ -88,6 +88,21 @@ export default async function Home() {
         <LandingAuditSection />
         <LandingPreviewSection />
       </main>
+
+      {/* Landing Footer */}
+      <footer className="relative z-20 w-full border-t-[2.5px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] py-8">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black shadow-[2px_2px_0_0_#000]">
+              ⚡
+            </div>
+            <span className="font-bold tracking-wider text-black dark:text-white uppercase">FLENDLY</span>
+          </div>
+          <p className="text-gray-600 dark:text-gray-400 text-center sm:text-right font-semibold">
+            FLENDLY, all rights reserved under NEXCHARIS, 2026.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

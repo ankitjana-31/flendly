@@ -127,22 +127,79 @@ export async function AppShell({
 
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col">
-        {/* Mobile Header in Retro Style */}
-        <header className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-4 py-3 md:hidden">
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black">
-              ⚡
-            </div>
-            <span className="font-mono text-sm font-bold tracking-wider text-black dark:text-white">FLENDLY</span>
-          </Link>
+        {/* Desktop Top Header Bar */}
+        <header className="hidden md:flex h-14 w-full items-center justify-between border-b-[2px] border-black dark:border-white/20 bg-white/90 dark:bg-[#161821]/90 px-6 backdrop-blur-sm sticky top-0 z-30 font-mono text-xs">
           <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Link href="/notifications" className="relative p-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white">
-              <BellIcon className="h-4 w-4" />
+            <span className="h-2 w-2 rounded-full bg-[#2DD4BF] animate-pulse" />
+            <span className="font-bold text-gray-600 dark:text-gray-300 uppercase">[SESSION ACTIVE]</span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href="/notifications"
+              className="relative flex items-center gap-1.5 px-2.5 py-1.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white font-bold shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black transition-all"
+            >
+              <BellIcon className="h-3.5 w-3.5" />
+              <span className="uppercase text-[11px]">Alerts</span>
               {unread > 0 && (
-                <span className="absolute right-0.5 top-0.5 h-2 w-2 bg-[#F43F5E]" />
+                <span className="flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9px] font-black text-white shadow-[1px_1px_0_0_#000]">
+                  {unread > 9 ? "9+" : unread}
+                </span>
               )}
             </Link>
+
+            <ThemeToggle />
+
+            <Link
+              href="/profile"
+              className="flex items-center gap-2 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-1.5 text-black dark:text-white font-bold shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 transition-all"
+            >
+              <div className="h-5 w-5 border border-black bg-[#2563EB] flex items-center justify-center text-white text-[10px]">
+                <UserIcon className="h-3 w-3" />
+              </div>
+              <span className="text-xs font-bold truncate max-w-[120px]">@{username}</span>
+            </Link>
+
+            <form action={signOut}>
+              <button
+                type="submit"
+                className="flex items-center gap-1.5 border-[2px] border-black bg-[#F43F5E] text-white px-3 py-1.5 font-bold shadow-[2px_2px_0_0_#000] hover:bg-rose-700 active:translate-y-0.5 active:shadow-none cursor-pointer transition-all uppercase text-[11px]"
+              >
+                <LogOutIcon className="h-3.5 w-3.5" />
+                <span>Sign Out</span>
+              </button>
+            </form>
+          </div>
+        </header>
+
+        {/* Mobile Header in Retro Style */}
+        <header className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-3 py-2.5 md:hidden sticky top-0 z-40">
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black shadow-[1px_1px_0_0_#000]">
+              ⚡
+            </div>
+            <span className="font-mono text-sm font-black tracking-wider text-black dark:text-white">FLENDLY</span>
+          </Link>
+          <div className="flex items-center gap-1.5 font-mono">
+            <ThemeToggle />
+            <Link href="/notifications" className="relative p-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[1px_1px_0_0_#000]">
+              <BellIcon className="h-4 w-4" />
+              {unread > 0 && (
+                <span className="absolute -top-1 -right-1 h-2.5 w-2.5 bg-[#F43F5E] border border-black" />
+              )}
+            </Link>
+            <Link href="/profile" className="p-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[1px_1px_0_0_#000]">
+              <UserIcon className="h-4 w-4" />
+            </Link>
+            <form action={signOut}>
+              <button
+                type="submit"
+                title="Sign Out"
+                className="p-1.5 border-[2px] border-black bg-[#F43F5E] text-white shadow-[1px_1px_0_0_#000] active:translate-y-0.5 cursor-pointer flex items-center justify-center"
+              >
+                <LogOutIcon className="h-4 w-4" />
+              </button>
+            </form>
           </div>
         </header>
 

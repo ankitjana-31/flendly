@@ -4,29 +4,23 @@
 
 ### Recent Fixes & Feature Implementations:
 
-1. **Brand Identity Normalization**:
-   - Standardized application naming to **FLENDLY** across all components (removed FLENDLY OS and .exe/.sys suffixes).
+1. **Complete User Profile Retro Overhaul**:
+   - Upgraded /complete-profile and /preview/complete-profile to the full Stitch Retro OS design with RetroWindow, ambient geometric grid, ThemeToggle, and CursorGlow.
+   - Updated UsernameForm with neo-brutalist inputs, hard shadows, monospace typography, and responsive validation feedback.
 
-2. **Typography & Heading Cleanup**:
-   - Removed ugly underscore characters (_) from all headings and titles (e.g. SYSTEM_AUDIT -> SYSTEM AUDIT, DIFF_VIEW -> COMPARISON VIEW, AUTH_LOGIN.sys -> FLENDLY // AUTHENTICATION, SETTINGS.exe -> SETTINGS // PREFERENCES, etc.).
-   - Replaced placeholder names throughout landing, demo mocks, and input fields with realistic names: **Supriya**, **Junaid**, **Rahul**.
-   - Increased font sizes and contrast for enhanced legibility across desktop and mobile screens.
+2. **Static Retro Window Controls**:
+   - Converted the _, □, and ✕ window buttons in RetroWindow to clean, static decorative window headers, removing disruptive click collapse/close actions.
 
-3. **Layout Spacing & Mobile Viewport Polish**:
-   - Fixed side spacing across all authenticated pages (dashboard, self-track, equests, lent, orrowed, 
-otifications) using responsive containers (max-w-6xl, balanced padding px-4 sm:px-6 md:px-8).
-   - Fixed mobile layout bug in the Self Track private ledger where the record cards overlapped under the sticky creation card. Changed sticky position from mobile sticky to desktop lg:sticky lg:top-20 with clean z-indexing.
+3. **Top Bar Profile & Sign Out Accessibility**:
+   - Added sticky top header on desktop with session status, notifications alert pill, theme toggle, profile handle pill (@{username}), and direct Sign Out button.
+   - Enhanced mobile header with FLENDLY logo, theme toggle, notifications badge, quick profile link, and one-tap sign out icon.
 
-4. **Interactive Window Controls**:
-   - Upgraded RetroWindow into a fully stateful client component supporting interactive minimize (_), maximize (□), and close/reopen (✕) controls with hover transitions.
+4. **Mobile Viewport & Zoom Optimization**:
+   - Added explicit responsive Viewport metadata in src/app/layout.tsx (width: device-width, initialScale: 1).
+   - Replaced fixed min-widths in preview section with w-full sm:w-auto sm:min-w-[180px] to eliminate horizontal overflow on small mobile viewports.
 
-5. **Theme Support**:
-   - Light mode default background set to crisp retro warm cream/white (#FAF8F5) while respecting system device dark mode and user toggles.
-   - Reactive cursor glow animation (CursorGlow) styled to illuminate gracefully in both light and dark modes.
+5. **Landing & Learn More Footer**:
+   - Added standardized footer with FLENDLY, all rights reserved under NEXCHARIS, 2026. to landing and learn-more pages.
 
-6. **Self Track Ledger Synchronization**:
-   - Fixed query hydration on Dashboard so personal offline tracks and calculations (lent/borrowed amounts) update immediately in parallel.
-
-7. **Documentation**:
-   - Created CONTEXT.md for full project architecture and workflow reference for future agents and developers.
-   - Created MEM.md for tracking recent change history.
+6. **Storytelling Names**:
+   - Updated mock and showcase names across the Learn More section to **Rajarshi**, **Rahul**, and **Ayush**.

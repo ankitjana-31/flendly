@@ -103,7 +103,7 @@ export function SelfTrackShowcase() {
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="text-[10px] px-2 py-0.5 border border-black bg-[#2DD4BF] text-black font-bold uppercase">LENT</span>
-                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹5,000 to Supriya</h4>
+                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹5,000 to Rajarshi</h4>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-sans">Trip fuel & tolls split</p>
                   </div>
                   <span className="text-base font-bold text-[#059669] dark:text-[#2DD4BF]">₹2,000 left</span>
@@ -122,7 +122,7 @@ export function SelfTrackShowcase() {
                 <div className="flex justify-between items-start">
                   <div>
                     <span className="text-[10px] px-2 py-0.5 border border-black bg-[#F43F5E] text-white font-bold uppercase">BORROWED</span>
-                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹3,500 from Rahul</h4>
+                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹3,500 from Ayush</h4>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-sans">Gym membership annual share</p>
                   </div>
                   <span className="text-base font-bold text-[#F43F5E]">₹3,500 due</span>

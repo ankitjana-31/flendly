@@ -182,14 +182,14 @@ export function LandingPreviewSection() {
                   </div>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Total: {deal.amount} · Repaid: {deal.repaid}</p>
                 </div>
-                <div className="flex items-center gap-4 min-w-[200px]">
+                <div className="flex items-center gap-4 w-full sm:w-auto sm:min-w-[180px]">
                   <div className="flex-1">
                     <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden">
                       <div className="bg-[#2DD4BF] h-full" style={{ width: `${deal.progress}%` }} />
                     </div>
                     <span className="text-[10px] text-gray-500 dark:text-gray-400 mt-1 block text-right font-bold">{deal.progress}% returned</span>
                   </div>
-                  <span className="text-sm font-bold text-[#059669] dark:text-[#2DD4BF]">{deal.remaining} left</span>
+                  <span className="text-sm font-bold text-[#059669] dark:text-[#2DD4BF] shrink-0">{deal.remaining} left</span>
                 </div>
               </div>
             ))}
@@ -222,14 +222,14 @@ export function LandingPreviewSection() {
                   </div>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Initial loan: {deal.amount} · Paid so far: {deal.repaid}</p>
                 </div>
-                <div className="flex items-center gap-4 min-w-[200px]">
+                <div className="flex items-center gap-4 w-full sm:w-auto sm:min-w-[180px]">
                   <div className="flex-1">
                     <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden">
                       <div className="bg-[#F43F5E] h-full" style={{ width: `${deal.progress}%` }} />
                     </div>
                     <span className="text-[10px] text-gray-500 dark:text-gray-400 mt-1 block text-right font-bold">{deal.progress}% settled</span>
                   </div>
-                  <span className="text-sm font-bold text-[#F43F5E]">{deal.remaining} due</span>
+                  <span className="text-sm font-bold text-[#F43F5E] shrink-0">{deal.remaining} due</span>
                 </div>
               </div>
             ))}
