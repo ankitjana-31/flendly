@@ -1,4 +1,4 @@
-﻿# MEM.md — Project Activity & Recent Changes Log
+# MEM.md — Project Activity & Recent Changes Log
 
 ## Current Version: v2.4 (Stitch Neo-Brutalist Retro OS Overhaul)
 
@@ -24,3 +24,8 @@
 
 6. **Storytelling Names**:
    - Updated mock and showcase names across the Learn More section to **Rajarshi**, **Rahul**, and **Ayush**.
+
+7. **Context-Aware Profile & Sign Out Bar**:
+   - On the **Dashboard**, the profile pill and Sign Out action are displayed in a sticky top header bar on desktop.
+   - On all **other sections** (`/lent`, `/borrowed`, `/requests`, `/notifications`, `/self-track`, `/profile`), the profile card and Sign Out button remain placed in the bottom-left sidebar footer for immediate accessibility without top clutter.
+
