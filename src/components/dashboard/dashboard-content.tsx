@@ -69,7 +69,7 @@ export function DashboardContent({
 
   return (
     <motion.div
-      className="w-full max-w-6xl mx-auto flex flex-col gap-5 px-4 sm:px-6 md:px-8 py-4 md:py-6"
+      className="w-full max-w-[1440px] mx-auto flex flex-col gap-6 px-4 sm:px-6 lg:px-8 py-6 sm:py-8"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -105,7 +105,7 @@ export function DashboardContent({
             colorBar="green"
             glow={aggregates.totalLent > 0}
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#059669]"
-            contentClassName="p-5 sm:p-6"
+            contentClassName="p-6 sm:p-7"
             headerRight={
               <span className="px-2.5 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-xs font-bold uppercase shadow-[1px_1px_0_0_#000]">
                 +INCOMING
@@ -117,7 +117,7 @@ export function DashboardContent({
                 You&apos;re owed
               </p>
               <motion.p
-                className="mt-2 font-mono text-4xl sm:text-5xl font-black text-[#059669] dark:text-[#2DD4BF] tracking-tight"
+                className="mt-2 font-mono text-4xl sm:text-5xl lg:text-6xl font-black text-[#059669] dark:text-[#2DD4BF] tracking-tight"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
@@ -149,7 +149,7 @@ export function DashboardContent({
                 You owe
               </p>
               <motion.p
-                className="mt-2 font-mono text-4xl sm:text-5xl font-black text-[#F43F5E] tracking-tight"
+                className="mt-2 font-mono text-4xl sm:text-5xl lg:text-6xl font-black text-[#F43F5E] tracking-tight"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, type: "spring", stiffness: 100 }}

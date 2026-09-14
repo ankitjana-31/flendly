@@ -36,26 +36,26 @@ export function AppShell({
       />
 
       {/* Retro OS Sidebar - Fixed / Sticky at full screen height */}
-      <aside className="relative z-20 hidden w-60 xl:w-64 shrink-0 flex flex-col justify-between border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-3.5 py-4 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] sticky top-0 h-screen overflow-y-auto">
-        <div className="flex flex-col gap-3">
+      <aside className="relative z-20 hidden w-64 lg:w-72 shrink-0 flex flex-col justify-between border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-5 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] sticky top-0 h-screen overflow-y-auto">
+        <div className="flex flex-col gap-4">
           {/* Retro Window Title / Logo */}
           <div className="px-1">
-            <div className="flex items-center justify-between mb-2.5 border-b-[2px] border-black dark:border-white/20 pb-1.5">
-              <span className="font-mono text-[11px] font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY</span>
-              <div className="flex items-center gap-1">
-                <span className="w-3 h-3 bg-[#FFE600] border border-black inline-block text-[8px] font-bold text-center leading-none select-none">▲</span>
-                <span className="w-3 h-3 bg-[#F43F5E] border border-black inline-block text-[8px] font-bold text-center text-white leading-none select-none">✕</span>
+            <div className="flex items-center justify-between mb-3 border-b-[2px] border-black dark:border-white/20 pb-2">
+              <span className="font-mono text-xs font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY</span>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3.5 h-3.5 bg-[#FFE600] border border-black inline-block text-[9px] font-bold text-center leading-none select-none">▲</span>
+                <span className="w-3.5 h-3.5 bg-[#F43F5E] border border-black inline-block text-[9px] font-bold text-center text-white leading-none select-none">✕</span>
               </div>
             </div>
-            <Link href="/dashboard" className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-sm font-black text-black shadow-[2px_2px_0_0_#000000]">
+            <Link href="/dashboard" className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000000]">
                 ⚡
               </div>
               <div>
-                <span className="font-mono text-base font-black tracking-tight text-black dark:text-white block leading-none">
+                <span className="font-mono text-lg font-black tracking-tight text-black dark:text-white block leading-none">
                   FLENDLY
                 </span>
-                <span className="font-mono text-[8.5px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block mt-0.5">
+                <span className="font-mono text-[9px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block mt-1 tracking-wider">
                   PEER LEDGER REALTIME
                 </span>
               </div>
@@ -63,39 +63,39 @@ export function AppShell({
           </div>
 
           {/* Navigation Menu with Stitch Neo-Brutalist Buttons */}
-          <nav className="flex flex-col gap-1.5 font-mono text-xs mt-1">
-            <div className="px-1 text-[9.5px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold">
+          <nav className="flex flex-col gap-2 font-mono mt-1">
+            <div className="px-1 text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold">
               APPLICATIONS
             </div>
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-2.5 py-1.5 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+                className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3.5 py-2.5 font-bold text-black dark:text-white transition-all shadow-[2.5px_2.5px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
               >
-                <item.icon className="h-3.5 w-3.5 shrink-0" />
-                <span className="uppercase text-[11px]">{item.label}</span>
+                <item.icon className="h-4.5 w-4.5 shrink-0" />
+                <span className="uppercase text-xs sm:text-sm font-bold">{item.label}</span>
               </Link>
             ))}
             <Link
               href="/notifications"
-              className="flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-2.5 py-1.5 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+              className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3.5 py-2.5 font-bold text-black dark:text-white transition-all shadow-[2.5px_2.5px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
             >
-              <BellIcon className="h-3.5 w-3.5 shrink-0" />
-              <span className="uppercase text-[11px]">Notifications</span>
+              <BellIcon className="h-4.5 w-4.5 shrink-0" />
+              <span className="uppercase text-xs sm:text-sm font-bold">Notifications</span>
               {unreadCount > 0 && (
-                <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
+                <span className="ml-auto flex h-4.5 min-w-4.5 items-center justify-center border border-black bg-[#F43F5E] px-1.5 text-[10px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
                   {unreadCount > 9 ? "9+" : unreadCount}
                 </span>
               )}
             </Link>
             <Link
               href="/self-track"
-              className="flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-2.5 py-1.5 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+              className="flex items-center gap-3 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3.5 py-2.5 font-bold text-black dark:text-white transition-all shadow-[2.5px_2.5px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
             >
-              <WalletIcon className="h-3.5 w-3.5 shrink-0" />
-              <span className="uppercase text-[11px]">Self Track</span>
-              <span className="ml-auto text-[8.5px] px-1 py-0.2 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
+              <WalletIcon className="h-4.5 w-4.5 shrink-0" />
+              <span className="uppercase text-xs sm:text-sm font-bold">Self Track</span>
+              <span className="ml-auto text-[9px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
                 PRIV
               </span>
             </Link>
@@ -103,9 +103,9 @@ export function AppShell({
         </div>
 
         {/* User Account & Theme Toggle Footer */}
-        <div className="flex flex-col gap-1.5 border-t-[2px] border-black dark:border-white/20 pt-2.5 font-mono text-xs mt-2">
+        <div className="flex flex-col gap-2 border-t-[2px] border-black dark:border-white/20 pt-3 font-mono mt-2">
           <div className="flex items-center justify-between px-1">
-            <span className="text-[9.5px] uppercase font-bold text-gray-500">THEME</span>
+            <span className="text-[11px] uppercase font-bold text-gray-500">THEME</span>
             <ThemeToggle />
           </div>
 
@@ -114,23 +114,23 @@ export function AppShell({
             <>
               <Link
                 href="/profile"
-                className="flex items-center gap-2.5 border-[2px] border-black bg-white dark:bg-[#1E212D] p-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+                className="flex items-center gap-3 border-[2px] border-black bg-white dark:bg-[#1E212D] p-2 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
               >
-                <div className="h-6 w-6 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
-                  <UserIcon className="h-3.5 w-3.5" />
+                <div className="h-7 w-7 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
+                  <UserIcon className="h-4 w-4" />
                 </div>
                 <div className="overflow-hidden min-w-0">
-                  <span className="block truncate font-bold text-xs">{fullName ?? `@${username}`}</span>
-                  <span className="block text-[9px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none">ONLINE // AUTH</span>
+                  <span className="block truncate font-bold text-xs sm:text-sm">{fullName ?? ("@" + username)}</span>
+                  <span className="block text-[9.5px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none mt-0.5">ONLINE // AUTH</span>
                 </div>
               </Link>
               <form action={signOut}>
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
+                  className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-3 py-2 text-left font-mono text-xs sm:text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
                 >
-                  <LogOutIcon className="h-3.5 w-3.5" />
-                  <span className="uppercase text-[11px]">Sign Out</span>
+                  <LogOutIcon className="h-4 w-4" />
+                  <span className="uppercase text-xs sm:text-sm">Sign Out</span>
                 </button>
               </form>
             </>
@@ -142,35 +142,35 @@ export function AppShell({
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0">
         {/* Desktop Top Profile & Signout Bar - ONLY on Dashboard */}
         {isDashboard && (
-          <header className="hidden md:flex items-center justify-between border-b-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-6 py-2.5 shadow-[0_2px_0_0_#000000] dark:shadow-[0_2px_0_0_rgba(0,0,0,0.5)] sticky top-0 z-30 font-mono">
-            <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300">
+          <header className="hidden md:flex items-center justify-between border-b-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-6 lg:px-10 py-3 shadow-[0_2px_0_0_#000000] dark:shadow-[0_2px_0_0_rgba(0,0,0,0.5)] sticky top-0 z-30 font-mono">
+            <div className="flex items-center gap-2.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#10B981] animate-pulse" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200">
                 DASHBOARD // SYSTEM READY
               </span>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3.5">
               <Link
                 href="/profile"
-                className="flex items-center gap-2.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+                className="flex items-center gap-2.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] px-3.5 py-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
               >
                 <div className="h-6 w-6 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
                   <UserIcon className="h-3.5 w-3.5" />
                 </div>
                 <div className="overflow-hidden min-w-0">
-                  <span className="block truncate font-bold text-xs">{fullName ?? `@${username}`}</span>
-                  <span className="block text-[8.5px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none">ONLINE // AUTH</span>
+                  <span className="block truncate font-bold text-xs sm:text-sm">{fullName ?? ("@" + username)}</span>
+                  <span className="block text-[9px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none">ONLINE // AUTH</span>
                 </div>
               </Link>
 
               <form action={signOut}>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] px-3 py-1.5 font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
+                  className="flex items-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-3.5 py-2 font-mono text-xs sm:text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
                 >
-                  <LogOutIcon className="h-3.5 w-3.5" />
-                  <span className="uppercase text-[11px]">Sign Out</span>
+                  <LogOutIcon className="h-4 w-4" />
+                  <span className="uppercase text-xs sm:text-sm">Sign Out</span>
                 </button>
               </form>
             </div>
@@ -211,7 +211,7 @@ export function AppShell({
         <main className="flex-1 pb-20 md:pb-6">{children}</main>
 
         {/* Mobile Bottom Navigation Bar */}
-        <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t-[2px] border-black bg-white dark:bg-[#161821] md:hidden font-mono text-[10px]">
+        <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t-[2px] border-black bg-white dark:bg-[#161821] md:hidden font-mono text-xs">
           {[
             ...NAV_ITEMS,
             { href: "/notifications", label: "Alerts", icon: BellIcon },
@@ -223,8 +223,8 @@ export function AppShell({
               href={item.href}
               className="flex flex-1 flex-col items-center gap-1 py-2 text-black dark:text-gray-300 hover:bg-[#FFE600] hover:text-black font-bold border-r last:border-r-0 border-black/10 dark:border-white/10"
             >
-              <item.icon className="h-4 w-4" />
-              <span>{item.label}</span>
+              <item.icon className="h-4.5 w-4.5" />
+              <span className="text-[11px]">{item.label}</span>
             </Link>
           ))}
         </nav>

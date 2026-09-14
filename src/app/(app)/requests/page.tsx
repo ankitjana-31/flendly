@@ -64,7 +64,7 @@ export default async function RequestsPage({
   const rows = activeTab === "incoming" ? incoming : outgoing;
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
       {/* Top Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
         <div>
