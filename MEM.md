@@ -25,7 +25,9 @@
 6. **Storytelling Names**:
    - Updated mock and showcase names across the Learn More section to **Rajarshi**, **Rahul**, and **Ayush**.
 
-7. **Context-Aware Profile & Sign Out Bar**:
-   - On the **Dashboard**, the profile pill and Sign Out action are displayed in a sticky top header bar on desktop.
-   - On all **other sections** (`/lent`, `/borrowed`, `/requests`, `/notifications`, `/self-track`, `/profile`), the profile card and Sign Out button remain placed in the bottom-left sidebar footer for immediate accessibility without top clutter.
+7. **Persistent Left-Bottom Profile & Fixed Sidebar**:
+   - Removed the desktop top header bar. Profile pill and Sign Out button are persistently placed at the left corner bottom in the sidebar across all pages (including `/dashboard`).
+   - Fixed sidebar layout with locked viewport height (`h-screen`) and removed unwanted sidebar scroll behavior.
+   - Mobile dashboard header simplified to clean retro branding with all actions in the bottom navigation bar.
+
 
