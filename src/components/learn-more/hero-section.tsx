@@ -31,7 +31,7 @@ export function LearnMoreHero() {
     >
       <RetroWindow
         title="PROBLEM STATEMENT // WHY WE BUILT THIS"
-        subtitle="v2.4"
+        subtitle="OVERVIEW"
         colorBar="blue"
         glow={true}
         className="bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"

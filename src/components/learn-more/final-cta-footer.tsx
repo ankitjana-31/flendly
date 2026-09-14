@@ -26,7 +26,7 @@ export function FinalCTAFooter() {
     <section className="w-full max-w-6xl mx-auto z-10">
       <RetroWindow
         title="SYSTEM BOOT // GET STARTED"
-        subtitle="v2.4"
+        subtitle="INSTANT ONBOARDING"
         colorBar="green"
         glow={true}
         className="bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#059669]"

@@ -48,7 +48,7 @@ export function SelfTrackShowcase() {
     <section className="w-full max-w-6xl mx-auto z-10">
       <RetroWindow
         title="SELF TRACK VAULT // OFFLINE PRIVATE LEDGER"
-        subtitle="v2.4"
+        subtitle="OFFLINE VAULT"
         colorBar="yellow"
         className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
         contentClassName="p-6 sm:p-8 text-left"

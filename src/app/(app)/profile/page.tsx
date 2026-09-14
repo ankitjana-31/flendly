@@ -37,7 +37,7 @@ export default async function ProfilePage() {
                   FLENDLY
                 </span>
                 <span className="font-mono text-[10px] text-gray-500 uppercase">
-                  PEER LEDGER AUTH V2.4
+                  PEER LEDGER AUTH
                 </span>
               </div>
             </div>

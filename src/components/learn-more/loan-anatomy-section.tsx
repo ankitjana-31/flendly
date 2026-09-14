@@ -56,7 +56,7 @@ export function LoanAnatomySection() {
     <section className="w-full max-w-6xl mx-auto z-10">
       <RetroWindow
         title="PSYCHOLOGY AUDIT // THE FRIEND SQUAD"
-        subtitle="v2.4"
+        subtitle="ANALYSIS"
         colorBar="pink"
         className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#F43F5E]"
         contentClassName="p-6 sm:p-8"

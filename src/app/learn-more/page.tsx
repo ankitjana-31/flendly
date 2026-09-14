@@ -23,7 +23,7 @@ export default function LearnMorePage() {
             </div>
             <div className="flex flex-col">
               <span className="font-mono text-sm font-bold text-black dark:text-white uppercase tracking-wider">
-                FLENDLY // v2.4
+                FLENDLY
               </span>
             </div>
           </div>

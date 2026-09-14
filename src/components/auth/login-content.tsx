@@ -41,7 +41,7 @@ export function LoginContent({ error }: LoginContentProps) {
     >
       <RetroWindow
         title="FLENDLY // AUTHENTICATION"
-        subtitle="v2.4"
+        subtitle="SECURE SESSION"
         colorBar="blue"
         glow={true}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
@@ -50,7 +50,7 @@ export function LoginContent({ error }: LoginContentProps) {
         headerRight={
           <div className="flex items-center gap-1.5 font-mono text-[10px] text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
             <span className="h-1.5 w-1.5 rounded-full bg-[#2DD4BF] animate-pulse" />
-            <span>SECURE SESSION</span>
+            <span>AUTHENTICATED</span>
           </div>
         }
       >
