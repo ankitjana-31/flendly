@@ -82,8 +82,8 @@ export default async function Home() {
         </div>
       </header>
 
-      {/* Main Content Area with Generous Breathing Room */}
-      <main className="relative z-20 max-w-6xl mx-auto pt-24 px-4 md:px-6 pb-24 flex flex-col gap-16 md:gap-24 items-center">
+      {/* Main Content Area with Clean, Balanced Spacing */}
+      <main className="relative z-20 max-w-6xl mx-auto pt-16 md:pt-18 px-4 md:px-6 pb-12 flex flex-col gap-8 md:gap-10 items-center">
         <LandingHero />
         <LandingAuditSection />
         <LandingPreviewSection />

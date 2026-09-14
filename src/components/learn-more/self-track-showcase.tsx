@@ -51,37 +51,37 @@ export function SelfTrackShowcase() {
         subtitle="v2.4"
         colorBar="yellow"
         className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
-        contentClassName="p-8 sm:p-12 text-left"
+        contentClassName="p-6 sm:p-8 text-left"
         headerRight={
           <span className="px-2 py-0.5 border border-black bg-black text-white font-mono text-[10px] font-bold uppercase">
             PRIVACY_MAX
           </span>
         }
       >
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 items-start">
           {/* Left Column: Pitch & Features */}
-          <div className="lg:col-span-6 flex flex-col gap-6">
+          <div className="lg:col-span-6 flex flex-col gap-4">
             <div>
-              <span className="inline-block px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-4">
+              <span className="inline-block px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-2">
                 STANDALONE_FEATURE
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-black dark:text-white uppercase tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white uppercase tracking-tight">
                 Self Track: Private Offline Ledger
               </h2>
-              <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl mt-3 leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg mt-2 leading-relaxed">
                 Lent ₹500 for chai? Paid ₹3,000 for concert tickets? Covered your roommate&apos;s Wi-Fi? Self Track is your personal offline record. Zero notifications to anyone. 100% peace of mind.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-3">
               {features.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000]"
+                  className="p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000000]"
                 >
-                  <span className="text-2xl mb-2 block">{feature.icon}</span>
-                  <h3 className="font-mono text-sm font-bold text-black dark:text-white uppercase">{feature.title}</h3>
-                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">{feature.description}</p>
+                  <span className="text-xl mb-1 block">{feature.icon}</span>
+                  <h3 className="font-mono text-xs sm:text-sm font-bold text-black dark:text-white uppercase">{feature.title}</h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5 leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>

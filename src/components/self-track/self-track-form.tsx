@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Plus, X, ArrowUpRight, ArrowDownLeft, FileText, Calendar, User, IndianRupee, Sparkles } from "lucide-react";
 import { createSelfTrack } from "@/lib/self-track/actions";
+import { RetroWindow } from "@/components/ui/retro-window";
 
 export interface SelfTrackFormProps {
   isOpen?: boolean;
@@ -71,36 +72,31 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
   };
 
   return (
-    <div className="relative rounded-3xl border border-border/80 bg-card/95 p-6 sm:p-8 shadow-2xl backdrop-blur-xl transition-all">
-      {/* Header */}
-      <div className="flex items-center justify-between pb-6 border-b border-border/60 mb-6">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-teal-400 to-blue-500 text-white font-bold shadow-lg shadow-teal-500/25">
-            <Sparkles className="w-5 h-5" />
-          </div>
-          <div>
-            <h3 className="font-heading text-lg font-bold text-foreground">Add Self Track Record</h3>
-            <p className="text-xs text-muted-foreground">Private ledger entry · Only visible to you</p>
-          </div>
-        </div>
-        {onClose && (
+    <RetroWindow
+      title="NEW_RECORD.exe // LOG_OFFLINE"
+      subtitle="private_entry"
+      colorBar="yellow"
+      className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
+      contentClassName="p-5 sm:p-6"
+      headerRight={
+        onClose ? (
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+            className="w-5 h-5 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-xs font-bold flex items-center justify-center hover:opacity-90"
           >
-            <X className="w-5 h-5" />
+            ✕
           </button>
-        )}
-      </div>
-
-      <form onSubmit={handleSubmit} className="space-y-5">
+        ) : undefined
+      }
+    >
+      <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            className="px-4 py-3 rounded-2xl bg-danger/10 border border-danger/20 text-danger text-xs font-semibold leading-relaxed"
+            className="p-3 border-[2px] border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] font-mono text-xs font-bold shadow-[2px_2px_0_0_#000]"
           >
-            {error}
+            ⚠️ {error}
           </motion.div>
         )}
 
@@ -108,25 +104,25 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="px-4 py-3 rounded-2xl bg-success/15 border border-success/30 text-success text-xs font-bold flex items-center gap-2"
+            className="p-3 border-[2px] border-black bg-[#2DD4BF] text-black font-mono text-xs font-black shadow-[2px_2px_0_0_#000] flex items-center gap-2"
           >
-            <span>✓</span> Record successfully saved to your private ledger!
+            <span>✓</span> RECORD SAVED TO PRIVATE LEDGER!
           </motion.div>
         )}
 
         {/* Dynamic Type Selector */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2.5">
-            Transaction Type
+          <label className="block font-mono text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-2">
+            Transaction Direction
           </label>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 font-mono text-xs">
             <button
               type="button"
               onClick={() => setType("lent")}
-              className={`flex items-center justify-center gap-2.5 py-3 px-4 rounded-2xl font-bold text-sm transition-all border ${
+              className={`flex items-center justify-center gap-2 py-2.5 px-3 border-[2px] border-black font-bold uppercase transition-all ${
                 type === "lent"
-                  ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-transparent shadow-lg shadow-emerald-500/25 scale-[1.02]"
-                  : "bg-muted/50 border-border/70 text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-[#2DD4BF] text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5"
+                  : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
               <ArrowUpRight className="w-4 h-4" />
@@ -136,10 +132,10 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
             <button
               type="button"
               onClick={() => setType("borrowed")}
-              className={`flex items-center justify-center gap-2.5 py-3 px-4 rounded-2xl font-bold text-sm transition-all border ${
+              className={`flex items-center justify-center gap-2 py-2.5 px-3 border-[2px] border-black font-bold uppercase transition-all ${
                 type === "borrowed"
-                  ? "bg-gradient-to-r from-rose-500 to-red-500 text-white border-transparent shadow-lg shadow-rose-500/25 scale-[1.02]"
-                  : "bg-muted/50 border-border/70 text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-[#F43F5E] text-white shadow-[3px_3px_0_0_#000000] -translate-y-0.5"
+                  : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
               <ArrowDownLeft className="w-4 h-4" />
@@ -149,11 +145,11 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
         </div>
 
         {/* Form Inputs Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           {/* Person Name */}
           <div>
-            <label htmlFor="person-name" className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1.5">
-              <User className="w-3.5 h-3.5 text-teal-500" />
+            <label htmlFor="person-name" className="block font-mono text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1.5">
+              <User className="w-3.5 h-3.5 text-[#2563EB]" />
               {type === "lent" ? "Lent To (Person)" : "Borrowed From (Person)"}
             </label>
             <input
@@ -163,14 +159,14 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
               placeholder="e.g. Rahul, Aman, Roommate"
-              className="w-full h-12 px-4 rounded-2xl border border-border bg-background/80 text-foreground placeholder:text-muted-foreground/60 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500 transition-all"
+              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
 
           {/* Amount */}
           <div>
-            <label htmlFor="amount" className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1.5">
-              <IndianRupee className="w-3.5 h-3.5 text-blue-500" />
+            <label htmlFor="amount" className="block font-mono text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1.5">
+              <IndianRupee className="w-3.5 h-3.5 text-[#059669]" />
               Amount (₹)
             </label>
             <input
@@ -182,17 +178,17 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="e.g. 2500"
-              className="w-full h-12 px-4 rounded-2xl border border-border bg-background/80 text-foreground placeholder:text-muted-foreground/60 text-sm font-bold font-tabular focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all"
+              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-black shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
         </div>
 
         {/* Date & Note Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
           {/* Date */}
           <div>
-            <label htmlFor="record-date" className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-purple-500" />
+            <label htmlFor="record-date" className="block font-mono text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-[#2563EB]" />
               Date
             </label>
             <input
@@ -201,23 +197,23 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={recordDate}
               onChange={(e) => setRecordDate(e.target.value)}
-              className="w-full h-12 px-4 rounded-2xl border border-border bg-background/80 text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 transition-all"
+              className="w-full h-10 px-2.5 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
 
           {/* Note */}
           <div className="sm:col-span-2">
-            <label htmlFor="note" className="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1.5">
+            <label htmlFor="note" className="block font-mono text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1.5">
               <FileText className="w-3.5 h-3.5 text-amber-500" />
-              Personal Note / Reminder (Optional)
+              Note / Context (Optional)
             </label>
             <input
               id="note"
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="e.g. For dinner bill, promised to pay via UPI"
-              className="w-full h-12 px-4 rounded-2xl border border-border bg-background/80 text-foreground placeholder:text-muted-foreground/60 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500 transition-all"
+              placeholder="e.g. Dinner bill, promised to pay via UPI"
+              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
         </div>
@@ -227,13 +223,14 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-12 rounded-2xl bg-gradient-to-r from-teal-400 via-blue-500 to-indigo-500 text-white font-bold text-sm shadow-xl shadow-teal-500/20 hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+            className="w-full h-11 bg-[#FFE600] text-black border-[2.5px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
-            {isSubmitting ? "Saving to Private Ledger..." : "Save Record"}
+            {isSubmitting ? "SAVING RECORD..." : "COMMIT TO PRIVATE LEDGER"}
           </button>
         </div>
       </form>
-    </div>
+    </RetroWindow>
   );
 }
+

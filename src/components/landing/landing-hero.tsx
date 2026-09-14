@@ -32,7 +32,7 @@ export function LandingHero() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative w-full max-w-6xl z-20 py-4 sm:py-8"
+      className="relative w-full max-w-6xl z-20 py-2 sm:py-4"
     >
       {/* Stitch HERO_PROMISE.exe Main Window */}
       <div className="w-full bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden">
@@ -58,11 +58,11 @@ export function LandingHero() {
         </div>
 
         {/* Window Content */}
-        <div className="p-8 md:p-12 lg:p-14 grid lg:grid-cols-12 gap-10 items-center text-left">
+        <div className="p-6 md:p-8 lg:p-10 grid lg:grid-cols-12 gap-6 lg:gap-8 items-center text-left">
           {/* Left Column (Headline + Actions) */}
-          <div className="lg:col-span-7 flex flex-col gap-7">
+          <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-5">
             <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-black shadow-[2px_2px_0_0_#000] uppercase tracking-wider">
+              <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-black shadow-[2px_2px_0_0_#000] uppercase tracking-wider">
                 <span>⚡</span>
                 <span>NO MORE AWKWARD CHAT TEXTS</span>
               </span>
@@ -70,10 +70,10 @@ export function LandingHero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-black dark:text-white leading-[1.1]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-black dark:text-white leading-[1.1]"
             >
               Money between friends shouldn&apos;t become a{" "}
-              <span className="bg-[#FF2E93] text-white px-3 py-0.5 border-[2.5px] border-black shadow-[4px_4px_0_0_#000] inline-block -rotate-1">
+              <span className="bg-[#FF2E93] text-white px-2.5 py-0.5 border-[2.5px] border-black shadow-[3px_3px_0_0_#000] inline-block -rotate-1">
                 friendship
               </span>{" "}
               problem.
@@ -81,7 +81,7 @@ export function LandingHero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-gray-700 dark:text-gray-200 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl font-normal"
+              className="text-gray-700 dark:text-gray-200 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl font-normal"
             >
               Track split expenses, informal loans, and IOUs without awkward reminders, endless screenshots, or broken trust.
             </motion.p>
@@ -89,18 +89,18 @@ export function LandingHero() {
             {/* Action Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-4 pt-2"
+              className="flex flex-wrap items-center gap-3 pt-1"
             >
               <Link
                 href="/auth/login"
-                className="px-8 py-4 bg-[#FFE600] text-black border-[3px] border-black font-mono text-sm sm:text-base font-black uppercase shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2.5"
+                className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
               >
                 <span>⚡</span>
                 <span>BOOT FLENDLY DESKTOP</span>
               </Link>
               <Link
                 href="/learn-more"
-                className="px-7 py-4 bg-[#2563EB] text-white border-[2.5px] border-black dark:border-white font-mono text-sm sm:text-base font-bold uppercase shadow-[4px_4px_0_0_#000] dark:shadow-[4px_4px_0_0_#ffffff] hover:bg-blue-600 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+                className="px-6 py-3.5 bg-[#2563EB] text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-blue-600 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
               >
                 <span>ℹ</span>
                 <span>HOW IT WORKS</span>
@@ -110,17 +110,17 @@ export function LandingHero() {
             {/* Feature Bullets */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-5 pt-2 font-mono text-xs sm:text-sm text-gray-800 dark:text-gray-200 font-bold"
+              className="flex flex-wrap gap-4 pt-1 font-mono text-xs sm:text-sm text-gray-800 dark:text-gray-200 font-bold"
             >
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 bg-[#10B981] inline-block border border-black" />
                 <span>Zero Awkward Calls</span>
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 bg-[#FFE600] inline-block border border-black" />
                 <span>Mutual Agreements</span>
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 bg-[#2563EB] inline-block border border-black" />
                 <span>Direct UPI Ledger</span>
               </span>

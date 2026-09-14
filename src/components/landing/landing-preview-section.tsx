@@ -17,23 +17,23 @@ export function LandingPreviewSection() {
   ] as const;
 
   return (
-    <section className="relative z-20 w-full max-w-6xl mx-auto mt-20 px-4 sm:px-6 pb-20">
+    <section className="relative z-20 w-full max-w-6xl mx-auto mt-2 px-4 sm:px-6 pb-6">
       {/* Section Header */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[3px_3px_0_0_#000000] font-mono text-xs font-bold uppercase mb-4">
+      <div className="text-center mb-6">
+        <div className="inline-flex items-center gap-2 px-3 py-0.5 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[2px_2px_0_0_#000000] font-mono text-xs font-bold uppercase mb-2">
           <Sparkles className="w-3.5 h-3.5 text-black" />
           INTERACTIVE OS SHOWCASE
         </div>
-        <h2 className="font-mono text-3xl sm:text-5xl font-black text-black dark:text-white tracking-tight uppercase">
+        <h2 className="font-mono text-2xl sm:text-4xl font-black text-black dark:text-white tracking-tight uppercase">
           Everything in one retro command center
         </h2>
-        <p className="mt-3 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-sans text-base sm:text-lg">
+        <p className="mt-1.5 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-sans text-sm sm:text-base">
           Explore how Flendly OS organizes every loan, request, live reminder, and private cash ledger.
         </p>
       </div>
 
       {/* Interactive Tabs Selector with Stitch Retro OS Styling */}
-      <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-8">
+      <div className="flex items-center justify-center gap-2 sm:gap-2.5 flex-wrap mb-5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;

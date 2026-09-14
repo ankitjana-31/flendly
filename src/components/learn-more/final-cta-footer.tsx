@@ -30,7 +30,7 @@ export function FinalCTAFooter() {
         colorBar="green"
         glow={true}
         className="bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#059669]"
-        contentClassName="p-8 sm:p-14 text-center"
+        contentClassName="p-6 sm:p-10 text-center"
       >
         <motion.div
           variants={containerVariants}
@@ -39,7 +39,7 @@ export function FinalCTAFooter() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          <motion.div variants={itemVariants} className="mb-6">
+          <motion.div variants={itemVariants} className="mb-4">
             <span className="inline-block px-3 py-1 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
               READY_TO_LAUNCH
             </span>
@@ -47,7 +47,7 @@ export function FinalCTAFooter() {
 
           <motion.h2
             variants={itemVariants}
-            className="text-4xl sm:text-6xl md:text-7xl font-black text-black dark:text-white mb-6 leading-tight tracking-tight uppercase"
+            className="text-3xl sm:text-5xl md:text-6xl font-black text-black dark:text-white mb-4 leading-tight tracking-tight uppercase"
           >
             Stop overthinking it.{" "}
             <span className="bg-[#2563EB] text-white px-3 py-0.5 border-[2.5px] border-black shadow-[4px_4px_0_0_#000] inline-block -rotate-1">
@@ -57,7 +57,7 @@ export function FinalCTAFooter() {
 
           <motion.p
             variants={itemVariants}
-            className="text-gray-700 dark:text-gray-200 text-xl sm:text-2xl max-w-2xl mx-auto mb-10 leading-relaxed font-normal"
+            className="text-gray-700 dark:text-gray-200 text-lg sm:text-xl max-w-2xl mx-auto mb-6 leading-relaxed font-normal"
           >
             Setup takes 30 seconds. One click with Google. Start sending requests. Watch friendships stay intact while money gets tracked.
           </motion.p>
@@ -67,12 +67,12 @@ export function FinalCTAFooter() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="flex flex-wrap gap-4 justify-center items-center mb-10"
+            className="flex flex-wrap gap-3 justify-center items-center mb-6"
           >
             <motion.div variants={itemVariants}>
               <Link
                 href="/auth/login"
-                className="px-8 py-4 bg-[#FFE600] text-black border-[3px] border-black font-mono text-base font-black uppercase shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+                className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
               >
                 <span>⚡</span>
                 <span>LAUNCH FLENDLY FREE</span>
@@ -82,7 +82,7 @@ export function FinalCTAFooter() {
             <motion.div variants={itemVariants}>
               <Link
                 href="/"
-                className="px-7 py-4 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-base font-bold uppercase shadow-[4px_4px_0_0_#000] dark:shadow-[4px_4px_0_0_#ffffff] hover:bg-gray-100 dark:hover:bg-gray-800 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+                className="px-6 py-3.5 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-gray-100 dark:hover:bg-gray-800 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
               >
                 <span>◄</span>
                 <span>BACK TO HOME</span>

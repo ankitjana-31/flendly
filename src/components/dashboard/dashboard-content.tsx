@@ -57,7 +57,7 @@ export function DashboardContent({
 
   return (
     <motion.div
-      className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-8 md:px-8"
+      className="mx-auto flex w-full max-w-5xl flex-col gap-5 px-4 py-4 md:py-6 md:px-6"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -67,14 +67,14 @@ export function DashboardContent({
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col gap-1 border-b border-[#1E2935] pb-5"
+        className="flex flex-col gap-1 border-b border-black/10 dark:border-[#1E2935] pb-3"
       >
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs text-teal-400 font-semibold">[SYS.SESSION_ACTIVE]</span>
-          <span className="text-slate-500 font-mono text-xs">//</span>
-          <span className="font-mono text-xs text-slate-400">FLENDLY.OS MASTER DASHBOARD</span>
+          <span className="font-mono text-xs text-teal-600 dark:text-teal-400 font-semibold">[SYS.SESSION_ACTIVE]</span>
+          <span className="text-gray-400 font-mono text-xs">//</span>
+          <span className="font-mono text-xs text-gray-500 dark:text-gray-400">FLENDLY.OS MASTER DASHBOARD</span>
         </div>
-        <h1 className="font-mono text-2xl font-bold sm:text-3xl tracking-tight text-white mt-1">
+        <h1 className="font-mono text-2xl font-bold sm:text-3xl tracking-tight text-black dark:text-white mt-0.5">
           Welcome back, {profile?.full_name ?? `@${profile?.username}`}
         </h1>
       </motion.header>
@@ -247,18 +247,21 @@ export function DashboardContent({
         transition={{ delay: 0.5 }}
       >
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-lg font-semibold">Open requests</h2>
-          <LinkButton href="/requests/new" size="sm">
-            New request
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">[REQUESTS.sys]</span>
+            <h2 className="font-mono text-base font-bold text-black dark:text-white uppercase tracking-tight">Open Requests</h2>
+          </div>
+          <LinkButton href="/requests/new" size="sm" className="bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-bold shadow-[2px_2px_0_0_#000] hover:bg-yellow-300">
+            + New request
           </LinkButton>
         </div>
 
         {openRequests.length === 0 ? (
-          <GlareHover>
-            <Card className="p-8 text-center text-sm text-muted-foreground">
-              No open requests. Start one with the button above.
-            </Card>
-          </GlareHover>
+          <div className="border-[2px] border-black dark:border-white/40 bg-white dark:bg-[#161821] p-6 text-center shadow-[3px_3px_0_0_#000]">
+            <p className="font-mono text-xs text-gray-600 dark:text-gray-400">
+              No open requests. Start a new peer deal with the button above.
+            </p>
+          </div>
         ) : (
           <motion.div className="flex flex-col gap-2" variants={containerVariants} initial="hidden" animate="visible">
             {openRequests.slice(0, 5).map((r: any) => {
@@ -270,23 +273,22 @@ export function DashboardContent({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ type: "spring", stiffness: 100, damping: 15 }}
                 >
-                  <GlareHover>
-                    <motion.a href={`/requests/${r.id}`} whileHover={{ scale: 1.01 }}>
-                      <Card className="flex items-center justify-between p-4 transition-colors hover:bg-muted">
-                        <div>
-                          <p className="text-sm font-medium">
-                            {other.full_name ?? `@${other.username}`} ·{" "}
-                            {r.active_offer ? formatMoney(r.active_offer.amount) : "—"}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {r.sender.id === userId ? "You sent" : "Sent to you"} ·{" "}
-                            {r.direction === "lend" ? "you lend" : "you borrow"}
-                          </p>
-                        </div>
-                        <StatusBadge status={r.status} />
-                      </Card>
-                    </motion.a>
-                  </GlareHover>
+                  <a
+                    href={`/requests/${r.id}`}
+                    className="flex items-center justify-between p-4 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[#161821] shadow-[3px_3px_0_0_#000] hover:bg-[#FEF08A] hover:text-black dark:hover:bg-[#1E212D] transition-all"
+                  >
+                    <div>
+                      <p className="font-mono text-sm font-bold">
+                        {other.full_name ?? `@${other.username}`} ·{" "}
+                        {r.active_offer ? formatMoney(r.active_offer.amount) : "—"}
+                      </p>
+                      <p className="font-mono text-xs text-gray-500 dark:text-gray-400">
+                        {r.sender.id === userId ? "You sent" : "Sent to you"} ·{" "}
+                        {r.direction === "lend" ? "you lend" : "you borrow"}
+                      </p>
+                    </div>
+                    <StatusBadge status={r.status} />
+                  </a>
                 </motion.div>
               );
             })}
@@ -294,25 +296,150 @@ export function DashboardContent({
         )}
       </motion.section>
 
-      {/* Self Track Section */}
+      {/* Personal Tracker (Self Track) Overview Section */}
       <motion.section
         className="flex flex-col gap-3"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
       >
-        <div className="flex items-center justify-between">
-          <h2 className="font-heading text-lg font-semibold">Personal Tracking</h2>
-          <div className="text-xs text-muted-foreground">
-            {selfTracks.length > 0 && `${selfTracks.length} record${selfTracks.length !== 1 ? "s" : ""}`}
+        <RetroWindow
+          title="PERSONAL_TRACKER.sys // OFFLINE_LEDGER"
+          subtitle="self_track_summary"
+          colorBar="yellow"
+          className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
+          contentClassName="p-5"
+          headerRight={
+            <a
+              href="/self-track"
+              className="px-2.5 py-1 border border-black bg-[#FFE600] text-black font-mono text-[11px] font-bold shadow-[2px_2px_0_0_#000] hover:bg-yellow-300 transition-all flex items-center gap-1"
+            >
+              <span>MANAGE LEDGER</span>
+              <span>→</span>
+            </a>
+          }
+        >
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-black/10 dark:border-white/10 pb-3">
+              <div>
+                <h3 className="font-mono text-sm font-bold text-black dark:text-white uppercase">
+                  Private Cash & Offline Records
+                </h3>
+                <p className="font-mono text-xs text-gray-500 dark:text-gray-400">
+                  100% private to you · Untracked by other users
+                </p>
+              </div>
+              <div className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950/60 px-2.5 py-1 border border-purple-300 dark:border-purple-800 self-start sm:self-auto">
+                {selfTracks.length} TOTAL RECORD{selfTracks.length !== 1 ? "S" : ""}
+              </div>
+            </div>
+
+            {/* Borrowed vs Lent Breakdown Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Personal Lent */}
+              <div className="p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono text-[11px] font-bold text-[#059669] dark:text-[#2DD4BF] uppercase">
+                    Money You Lent (Offline)
+                  </span>
+                  <span className="font-mono text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 px-1.5 py-0.5 border border-emerald-300 font-bold">
+                    {selfTracks.filter((r) => r.type === "lent" && r.status === "active").length} ACTIVE
+                  </span>
+                </div>
+                <p className="font-mono text-2xl font-black text-[#059669] dark:text-[#2DD4BF]">
+                  {formatMoney(
+                    selfTracks
+                      .filter((r) => r.type === "lent")
+                      .reduce((acc, r) => {
+                        const paid = (r.payments || []).reduce((pAcc: number, p: any) => pAcc + Number(p.amount), 0);
+                        return acc + Math.max(0, Number(r.amount) - paid);
+                      }, 0)
+                  )}
+                </p>
+                <p className="font-mono text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">
+                  Outstanding to collect from friends
+                </p>
+              </div>
+
+              {/* Personal Borrowed */}
+              <div className="p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono text-[11px] font-bold text-[#F43F5E] uppercase">
+                    Money You Borrowed (Offline)
+                  </span>
+                  <span className="font-mono text-[10px] bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 px-1.5 py-0.5 border border-rose-300 font-bold">
+                    {selfTracks.filter((r) => r.type === "borrowed" && r.status === "active").length} ACTIVE
+                  </span>
+                </div>
+                <p className="font-mono text-2xl font-black text-[#F43F5E]">
+                  {formatMoney(
+                    selfTracks
+                      .filter((r) => r.type === "borrowed")
+                      .reduce((acc, r) => {
+                        const paid = (r.payments || []).reduce((pAcc: number, p: any) => pAcc + Number(p.amount), 0);
+                        return acc + Math.max(0, Number(r.amount) - paid);
+                      }, 0)
+                  )}
+                </p>
+                <p className="font-mono text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">
+                  Remaining debt for you to repay
+                </p>
+              </div>
+            </div>
+
+            {/* Recent Personal Track Entries Snippet */}
+            {selfTracks.length > 0 && (
+              <div className="space-y-2 pt-1">
+                <div className="flex items-center justify-between text-xs font-mono font-bold text-gray-600 dark:text-gray-400">
+                  <span>RECENT LOGS</span>
+                  <a href="/self-track" className="text-[#2563EB] dark:text-[#60A5FA] hover:underline flex items-center gap-1">
+                    View All & Record New →
+                  </a>
+                </div>
+                <div className="grid gap-2">
+                  {selfTracks.slice(0, 3).map((r) => {
+                    const isLent = r.type === "lent";
+                    const paid = (r.payments || []).reduce((pAcc: number, p: any) => pAcc + Number(p.amount), 0);
+                    const remaining = Math.max(0, Number(r.amount) - paid);
+                    return (
+                      <div
+                        key={r.id}
+                        className="flex items-center justify-between p-3 border border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[#1E212D] text-xs font-mono"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <span
+                            className={`px-2 py-0.5 border border-black text-[10px] font-bold uppercase ${
+                              isLent ? "bg-[#2DD4BF] text-black" : "bg-[#F43F5E] text-white"
+                            }`}
+                          >
+                            {isLent ? "LENT" : "BORROWED"}
+                          </span>
+                          <span className="font-bold text-black dark:text-white truncate max-w-[140px] sm:max-w-[200px]">
+                            {r.person_name}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className={`font-bold ${isLent ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"}`}>
+                            {formatMoney(remaining > 0 ? remaining : Number(r.amount))}
+                          </span>
+                          <span className="text-[10px] text-gray-500 uppercase">
+                            {r.status === "settled" || remaining === 0 ? "SETTLED" : "ACTIVE"}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {selfTracks.length === 0 && (
+              <div className="p-4 border border-dashed border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] text-center font-mono text-xs text-gray-500">
+                No offline cash tracks recorded yet. Keep private notes on informal debts anytime.
+              </div>
+            )}
           </div>
-        </div>
-
-        <SelfTrackForm onSuccess={handleSelfTrackRefresh} />
-
-        {selfTracks.length > 0 && (
-          <SelfTrackList records={selfTracks} onRecordDeleted={handleSelfTrackRefresh} />
-        )}
+        </RetroWindow>
       </motion.section>
     </motion.div>
   );

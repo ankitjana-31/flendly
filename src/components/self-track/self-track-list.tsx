@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -133,23 +133,23 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
   });
 
   return (
-    <div className="space-y-6">
-      {/* Category Filter Pills */}
-      <div className="flex items-center gap-2 flex-wrap pb-2 border-b border-border/50">
+    <div className="space-y-4 font-mono">
+      {/* Category Filter Tabs */}
+      <div className="flex items-center gap-1.5 flex-wrap pb-2 border-b border-black/10 dark:border-white/10">
         {[
-          { id: "all", label: `All (${records.length})` },
-          { id: "lent", label: `Lent (${records.filter(r => r.type === "lent").length})` },
-          { id: "borrowed", label: `Borrowed (${records.filter(r => r.type === "borrowed").length})` },
-          { id: "active", label: `Active (${records.filter(r => r.status === "active").length})` },
-          { id: "settled", label: `Settled (${records.filter(r => r.status === "settled").length})` },
+          { id: "all", label: `ALL [${records.length}]` },
+          { id: "lent", label: `LENT [${records.filter(r => r.type === "lent").length}]` },
+          { id: "borrowed", label: `BORROWED [${records.filter(r => r.type === "borrowed").length}]` },
+          { id: "active", label: `ACTIVE [${records.filter(r => r.status === "active").length}]` },
+          { id: "settled", label: `SETTLED [${records.filter(r => r.status === "settled").length}]` },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setFilter(tab.id as any)}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`px-3 py-1 text-xs font-bold uppercase transition-all border-[2px] border-black cursor-pointer ${
               filter === tab.id
-                ? "bg-foreground text-background shadow-md"
-                : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
+                ? "bg-[#FFE600] text-black shadow-[2px_2px_0_0_#000000] -translate-y-0.5"
+                : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
             }`}
           >
             {tab.label}
@@ -158,17 +158,17 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
       </div>
 
       {filteredRecords.length === 0 ? (
-        <div className="rounded-3xl border border-dashed border-border/80 p-12 text-center bg-card/40 backdrop-blur-sm">
-          <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mx-auto mb-4 text-muted-foreground">
-            <Sparkles className="w-6 h-6" />
+        <div className="border-[2px] border-dashed border-black/40 dark:border-white/40 p-8 text-center bg-white dark:bg-[#161821] shadow-[3px_3px_0_0_#000]">
+          <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 text-black font-bold">
+            ⚡
           </div>
-          <h3 className="font-heading text-base font-bold text-foreground">No records in this view</h3>
-          <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto">
-            Use the form above to add your first private record for cash or offline transactions.
+          <h3 className="font-mono text-sm font-bold text-black dark:text-white uppercase">No records in this category</h3>
+          <p className="font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">
+            Use the form to add your first private record for cash or offline transactions.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-3.5">
           {filteredRecords.map((record) => {
             const isLent = record.type === "lent";
             const originalAmount = Number(record.amount);
@@ -185,157 +185,141 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
                 layout
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`rounded-3xl border transition-all overflow-hidden ${
-                  isSettled
-                    ? "bg-card/40 border-border/60 opacity-80"
-                    : isLent
-                    ? "bg-card/90 border-emerald-500/30 hover:border-emerald-500/60 shadow-lg shadow-emerald-500/5"
-                    : "bg-card/90 border-rose-500/30 hover:border-rose-500/60 shadow-lg shadow-rose-500/5"
+                className={`border-[2.5px] border-black dark:border-white/60 bg-white dark:bg-[#161821] transition-all shadow-[4px_4px_0_0_#000000] ${
+                  isSettled ? "opacity-85" : ""
                 }`}
               >
-                <div className="p-5 sm:p-6">
-                  {/* Top Bar: Badges and Amount */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-2.5 flex-wrap">
-                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${
-                        isLent 
-                          ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25"
-                          : "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/25"
-                      }`}>
-                        {isLent ? <ArrowUpRight className="w-3.5 h-3.5" /> : <ArrowDownLeft className="w-3.5 h-3.5" />}
-                        {isLent ? "I Lent" : "I Borrowed"}
-                      </span>
+                {/* Header Bar of Entry */}
+                <div className={`px-4 py-2 border-b-[2px] border-black dark:border-white/40 flex items-center justify-between font-mono text-xs ${
+                  isLent ? "bg-[#2DD4BF]/20 dark:bg-[#0B3D30]" : "bg-[#F43F5E]/15 dark:bg-[#3D0C1D]"
+                }`}>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-0.5 border border-black font-bold text-[10px] uppercase ${
+                      isLent ? "bg-[#2DD4BF] text-black" : "bg-[#F43F5E] text-white"
+                    }`}>
+                      {isLent ? "I LENT" : "I BORROWED"}
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-300 font-bold flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      {formatDate(record.record_date)}
+                    </span>
+                  </div>
 
-                      <span className={`px-2.5 py-1 rounded-full text-[11px] font-semibold ${
-                        isSettled
-                          ? "bg-muted text-muted-foreground"
-                          : "bg-blue-500/10 text-blue-500 dark:text-blue-400 border border-blue-500/20"
-                      }`}>
-                        {isSettled ? "Settled" : "Active"}
-                      </span>
+                  <span className={`px-2 py-0.5 border border-black text-[10px] font-bold uppercase ${
+                    isSettled ? "bg-[#10B981] text-black" : "bg-[#FFE600] text-black"
+                  }`}>
+                    {isSettled ? "SETTLED" : "ACTIVE"}
+                  </span>
+                </div>
 
-                      <span className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {formatDate(record.record_date)}
-                      </span>
+                <div className="p-4 sm:p-5 space-y-3">
+                  {/* Person and Amount Row */}
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h4 className="font-mono text-base sm:text-lg font-black text-black dark:text-white">
+                        {isLent ? "Lent to: " : "Borrowed from: "} 
+                        <span className="bg-[#FFE600] text-black px-1.5 py-0.5 border border-black inline-block ml-1">
+                          {record.person_name}
+                        </span>
+                      </h4>
+                      {record.note && (
+                        <p className="font-mono text-xs text-gray-600 dark:text-gray-400 mt-1 flex items-center gap-1.5 italic">
+                          <FileText className="w-3.5 h-3.5 shrink-0 text-amber-500" />
+                          {record.note}
+                        </p>
+                      )}
                     </div>
 
-                    {/* Amount Block */}
-                    <div className="text-right">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground block">
-                        Original Amount
-                      </span>
-                      <p className={`font-tabular text-xl sm:text-2xl font-black ${
-                        isLent ? "text-emerald-500" : "text-rose-500"
-                      }`}>
+                    <div className="text-right shrink-0 font-mono">
+                      <span className="text-[10px] uppercase text-gray-500 block font-bold">Total Record</span>
+                      <p className={`text-xl font-black ${isLent ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"}`}>
                         {formatMoney(originalAmount)}
                       </p>
                     </div>
                   </div>
 
-                  {/* Person and Note */}
-                  <div className="mt-3">
-                    <h4 className="font-heading text-lg font-bold text-foreground">
-                      {isLent ? "Lent to" : "Borrowed from"} <span className="underline decoration-dotted underline-offset-4">{record.person_name}</span>
-                    </h4>
-                    {record.note && (
-                      <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5 italic">
-                        <FileText className="w-3.5 h-3.5 shrink-0 opacity-70" />
-                        {record.note}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Repayment Progress Bar */}
-                  <div className="mt-5 space-y-2 bg-muted/40 p-3.5 rounded-2xl border border-border/50">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-muted-foreground">Repayment Progress: {progress}%</span>
-                      <span className={remaining === 0 ? "text-emerald-500 font-bold" : "text-foreground font-tabular"}>
+                  {/* Progress Bar Container */}
+                  <div className="p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[#1E212D] space-y-1.5">
+                    <div className="flex justify-between text-xs font-bold">
+                      <span className="text-gray-600 dark:text-gray-400">Repayment: {progress}%</span>
+                      <span className={remaining === 0 ? "text-[#059669] dark:text-[#2DD4BF]" : "text-black dark:text-white"}>
                         {remaining === 0 ? "Fully Repaid" : `${formatMoney(remaining)} Remaining`}
                       </span>
                     </div>
 
-                    <div className="w-full bg-border/60 h-2.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        className={`h-full rounded-full ${
-                          isLent
-                            ? "bg-gradient-to-r from-emerald-500 to-teal-400"
-                            : "bg-gradient-to-r from-rose-500 to-amber-400"
-                        }`}
+                        transition={{ duration: 0.4 }}
+                        className={`h-full ${isLent ? "bg-[#2DD4BF]" : "bg-[#F43F5E]"}`}
                       />
                     </div>
 
-                    <div className="flex justify-between text-[11px] text-muted-foreground pt-1">
+                    <div className="flex justify-between text-[10px] text-gray-500 pt-0.5">
                       <span>Total Paid: {formatMoney(totalPaid)}</span>
                       <span>{record.payments.length} installments logged</span>
                     </div>
                   </div>
 
-                  {/* Actions Row */}
-                  <div className="mt-4 pt-4 border-t border-border/50 flex items-center justify-between gap-2 flex-wrap">
+                  {/* Action Buttons */}
+                  <div className="pt-2 flex items-center justify-between gap-2 flex-wrap border-t border-black/10 dark:border-white/10">
                     <div className="flex items-center gap-2">
-                      {/* Add Repayment Button */}
                       {!isSettled && (
                         <button
                           onClick={() => {
                             setActivePaymentRecordId(isAddingPayment ? null : record.id);
                             setPaymentAmount(remaining.toString());
                           }}
-                          className="px-3 py-1.5 rounded-xl bg-teal-500/15 hover:bg-teal-500/25 border border-teal-500/30 text-teal-600 dark:text-teal-300 text-xs font-bold transition-all flex items-center gap-1.5"
+                          className="px-3 py-1 border-[2px] border-black bg-[#FFE600] text-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-yellow-300 cursor-pointer flex items-center gap-1"
                         >
                           <IndianRupee className="w-3.5 h-3.5" />
-                          Record Repayment
+                          <span>Record Repayment</span>
                         </button>
                       )}
 
-                      {/* Payment History Toggle */}
                       {record.payments.length > 0 && (
                         <button
                           onClick={() => setExpandedId(isExpanded ? null : record.id)}
-                          className="px-3 py-1.5 rounded-xl bg-muted hover:bg-muted/80 text-foreground text-xs font-medium transition-all flex items-center gap-1.5"
+                          className="px-2.5 py-1 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 cursor-pointer flex items-center gap-1"
                         >
-                          <History className="w-3.5 h-3.5 text-muted-foreground" />
-                          History ({record.payments.length})
-                          {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          <History className="w-3.5 h-3.5 text-gray-500" />
+                          <span>Log ({record.payments.length})</span>
+                          {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                         </button>
                       )}
                     </div>
 
                     <div className="flex items-center gap-2">
-                      {/* Toggle Settle Status */}
                       <button
                         onClick={() => handleToggleStatus(record.id, record.status)}
                         disabled={isUpdating === record.id}
-                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                        className={`px-3 py-1 border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] cursor-pointer flex items-center gap-1 ${
                           isSettled
-                            ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                            : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
+                            ? "bg-[#2DD4BF] text-black hover:bg-teal-300"
+                            : "bg-white dark:bg-[#1E212D] text-black dark:text-white hover:bg-gray-100"
                         }`}
                       >
                         {isSettled ? (
                           <>
-                            <CheckCircle2 className="w-3.5 h-3.5" />
-                            Settled
+                            <CheckCircle2 className="w-3.5 h-3.5 text-black" />
+                            <span>Settled</span>
                           </>
                         ) : (
                           <>
                             <Circle className="w-3.5 h-3.5" />
-                            Mark Settled
+                            <span>Mark Settled</span>
                           </>
                         )}
                       </button>
 
-                      {/* Delete Button */}
                       <button
                         onClick={() => handleDelete(record.id)}
                         disabled={isDeleting === record.id}
-                        className="p-1.5 rounded-xl text-muted-foreground hover:text-danger hover:bg-danger/10 transition-colors"
+                        className="p-1.5 border border-black bg-[#F43F5E] text-white shadow-[1px_1px_0_0_#000] hover:opacity-90 cursor-pointer"
                         title="Delete record"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
@@ -347,30 +331,31 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="mt-4 pt-4 border-t border-teal-500/30 bg-teal-500/5 p-4 rounded-2xl"
+                        className="mt-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000]"
                       >
-                        <div className="flex justify-between items-center mb-3">
-                          <span className="text-xs font-bold text-teal-500 uppercase tracking-wider">
-                            Record Partial or Full Repayment
+                        <div className="flex justify-between items-center mb-2.5 pb-1 border-b border-black/20 dark:border-white/20">
+                          <span className="text-xs font-black uppercase text-black dark:text-white flex items-center gap-1.5">
+                            <span>⚡</span>
+                            <span>Record Installment Repayment</span>
                           </span>
                           <button
                             onClick={() => setActivePaymentRecordId(null)}
-                            className="text-muted-foreground hover:text-foreground"
+                            className="w-4 h-4 border border-black bg-white text-black text-[10px] font-bold flex items-center justify-center hover:bg-gray-200"
                           >
-                            <X className="w-4 h-4" />
+                            ✕
                           </button>
                         </div>
 
                         {paymentError && (
-                          <div className="p-2.5 rounded-xl bg-danger/10 text-danger text-xs mb-3">
-                            {paymentError}
+                          <div className="p-2 border border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] text-xs font-bold mb-2">
+                            ⚠️ {paymentError}
                           </div>
                         )}
 
-                        <form onSubmit={(e) => handleRecordPayment(e, record.id)} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <form onSubmit={(e) => handleRecordPayment(e, record.id)} className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                           <div>
-                            <label className="text-[11px] font-semibold text-muted-foreground block mb-1">
-                              Repaid Amount (₹)
+                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-1 uppercase">
+                              Amount (₹)
                             </label>
                             <input
                               type="number"
@@ -380,12 +365,12 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
                               value={paymentAmount}
                               onChange={(e) => setPaymentAmount(e.target.value)}
                               placeholder={`Max ₹${remaining}`}
-                              className="w-full h-10 px-3 rounded-xl border border-border bg-background text-sm font-bold font-tabular focus:outline-none focus:ring-2 focus:ring-teal-500/40"
+                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[#161821] text-xs font-bold focus:bg-[#FEF08A] focus:text-black"
                             />
                           </div>
 
                           <div>
-                            <label className="text-[11px] font-semibold text-muted-foreground block mb-1">
+                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-1 uppercase">
                               Payment Date
                             </label>
                             <input
@@ -393,20 +378,20 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
                               required
                               value={paymentDate}
                               onChange={(e) => setPaymentDate(e.target.value)}
-                              className="w-full h-10 px-3 rounded-xl border border-border bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500/40"
+                              className="w-full h-8 px-2 border-[1.5px] border-black bg-white dark:bg-[#161821] text-xs font-bold"
                             />
                           </div>
 
                           <div>
-                            <label className="text-[11px] font-semibold text-muted-foreground block mb-1">
+                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-1 uppercase">
                               Note (Optional)
                             </label>
                             <input
                               type="text"
                               value={paymentNote}
                               onChange={(e) => setPaymentNote(e.target.value)}
-                              placeholder="e.g. Paid via GPay"
-                              className="w-full h-10 px-3 rounded-xl border border-border bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500/40"
+                              placeholder="e.g. UPI transfer"
+                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[#161821] text-xs font-bold"
                             />
                           </div>
 
@@ -414,16 +399,16 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
                             <button
                               type="button"
                               onClick={() => setActivePaymentRecordId(null)}
-                              className="px-4 py-2 rounded-xl text-xs font-semibold bg-muted text-muted-foreground hover:bg-muted/80"
+                              className="px-3 py-1 border border-black bg-white text-black text-xs font-bold"
                             >
-                              Cancel
+                              CANCEL
                             </button>
                             <button
                               type="submit"
                               disabled={isRecordingPayment}
-                              className="px-5 py-2 rounded-xl text-xs font-bold bg-teal-500 text-white hover:bg-teal-600 disabled:opacity-50 shadow-md shadow-teal-500/20"
+                              className="px-4 py-1 border-[2px] border-black bg-[#2DD4BF] text-black text-xs font-black shadow-[2px_2px_0_0_#000] hover:bg-teal-300"
                             >
-                              {isRecordingPayment ? "Saving..." : "Save Payment"}
+                              {isRecordingPayment ? "SAVING..." : "COMMIT PAYMENT"}
                             </button>
                           </div>
                         </form>
@@ -438,25 +423,25 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="mt-4 pt-4 border-t border-border/50 space-y-2"
+                        className="mt-3 p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[#1E212D] space-y-2"
                       >
-                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
-                          Repayment History Log
+                        <p className="text-[10px] font-black text-gray-500 uppercase tracking-wider">
+                          PAYMENT AUDIT TRAIL ({record.payments.length})
                         </p>
-                        <div className="space-y-1.5">
+                        <div className="space-y-1">
                           {record.payments.map((p) => (
                             <div
                               key={p.id}
-                              className="flex items-center justify-between p-2.5 rounded-xl bg-muted/40 border border-border/40 text-xs"
+                              className="flex items-center justify-between p-2 border border-black/20 dark:border-white/20 bg-white dark:bg-[#161821] text-xs"
                             >
                               <div className="flex items-center gap-2">
-                                <span className="font-bold text-emerald-500 font-tabular">{formatMoney(p.amount)}</span>
-                                <span className="text-muted-foreground">· {formatDate(p.payment_date)}</span>
-                                {p.note && <span className="text-foreground/80 italic">({p.note})</span>}
+                                <span className="font-bold text-[#059669] dark:text-[#2DD4BF]">{formatMoney(p.amount)}</span>
+                                <span className="text-gray-500">· {formatDate(p.payment_date)}</span>
+                                {p.note && <span className="text-gray-700 dark:text-gray-300 italic">({p.note})</span>}
                               </div>
                               <button
                                 onClick={() => handleDeletePayment(p.id, record.id)}
-                                className="text-muted-foreground hover:text-danger p-1 rounded-lg transition-colors"
+                                className="text-gray-400 hover:text-[#F43F5E] p-1"
                                 title="Delete payment log"
                               >
                                 <Trash2 className="w-3.5 h-3.5" />
@@ -476,3 +461,4 @@ export function SelfTrackList({ records, onRecordDeleted }: SelfTrackListProps) 
     </div>
   );
 }
+
