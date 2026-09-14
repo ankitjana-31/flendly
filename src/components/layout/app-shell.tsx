@@ -178,34 +178,24 @@ export function AppShell({
         )}
 
         {/* Mobile Header in Retro Style */}
-        <header className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-4 py-3 md:hidden sticky top-0 z-40">
+        <header className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-4 py-2.5 md:hidden sticky top-0 z-40">
           <Link href="/dashboard" className="flex items-center gap-2">
             <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black shadow-[1px_1px_0_0_#000]">
               ⚡
             </div>
             <span className="font-mono text-sm font-bold tracking-wider text-black dark:text-white">FLENDLY</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Link href="/notifications" className="relative p-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[1px_1px_0_0_#000]">
-              <BellIcon className="h-4 w-4" />
-              {unreadCount > 0 && (
-                <span className="absolute right-0.5 top-0.5 h-2 w-2 bg-[#F43F5E]" />
-              )}
-            </Link>
-            <Link href="/profile" className="p-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[1px_1px_0_0_#000]">
-              <UserIcon className="h-4 w-4" />
-            </Link>
-            <form action={signOut}>
-              <button
-                type="submit"
-                className="p-1.5 border-[2px] border-black bg-[#F43F5E] text-white shadow-[1px_1px_0_0_#000]"
-                title="Sign Out"
-              >
-                <LogOutIcon className="h-4 w-4" />
-              </button>
-            </form>
-          </div>
+          {!isDashboard && (
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <Link href="/notifications" className="relative p-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[1px_1px_0_0_#000]">
+                <BellIcon className="h-4 w-4" />
+                {unreadCount > 0 && (
+                  <span className="absolute right-0.5 top-0.5 h-2 w-2 bg-[#F43F5E]" />
+                )}
+              </Link>
+            </div>
+          )}
         </header>
 
         <main className="flex-1 pb-20 md:pb-6">{children}</main>

@@ -45,9 +45,9 @@ export function RetroWindow({
   return (
     <div
       className={cn(
-        "group relative rounded-sm border-[2.5px] border-black bg-white dark:border-[#3A3F55] dark:bg-[#161821] transition-all duration-200",
-        "shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_rgba(0,0,0,0.8)]",
-        glow && "shadow-[0_0_25px_-4px_rgba(45,212,191,0.35),5px_5px_0_0_#000000]",
+        "group relative rounded-sm border-[2.5px] border-black bg-white dark:border-[#3A3F55] dark:bg-[#161821] transition-all duration-200 w-full max-w-full",
+        "shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_rgba(0,0,0,0.8)]",
+        glow && "shadow-[0_0_25px_-4px_rgba(45,212,191,0.35),4px_4px_0_0_#000000]",
         className
       )}
     >
@@ -66,21 +66,21 @@ export function RetroWindow({
       {/* Retro Window Title Bar */}
       <div
         className={cn(
-          "flex h-11 items-center justify-between px-3.5 select-none",
+          "flex h-10 sm:h-11 items-center justify-between px-2.5 sm:px-3.5 select-none min-w-0 max-w-full overflow-hidden",
           titleBarStyles,
           headerClassName
         )}
       >
         {/* Left: Window Icon or Title */}
-        <div className="flex items-center gap-2 overflow-hidden">
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-hidden min-w-0 flex-1 mr-2">
           {controlsStyle === "traffic" ? (
-            <div className="flex items-center gap-1.5 mr-2">
-              <span className="h-3 w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 inline-block" />
-              <span className="h-3 w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block" />
-              <span className="h-3 w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block" />
+            <div className="flex items-center gap-1.5 mr-2 shrink-0">
+              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 inline-block" />
+              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block" />
+              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block" />
             </div>
           ) : (
-            <span className="inline-flex h-4.5 w-4.5 items-center justify-center border border-black bg-[#FFE600] text-[10px] font-mono font-bold text-black shadow-sm select-none">
+            <span className="inline-flex h-4 w-4 sm:h-4.5 sm:w-4.5 items-center justify-center border border-black bg-[#FFE600] text-[9px] sm:text-[10px] font-mono font-bold text-black shadow-sm select-none shrink-0">
               ▲
             </span>
           )}
@@ -88,12 +88,12 @@ export function RetroWindow({
           {icon && <span className="text-current opacity-80 shrink-0">{icon}</span>}
 
           {title && (
-            <div className="flex items-center gap-2 truncate">
-              <span className="font-mono text-xs sm:text-sm font-black tracking-wider uppercase truncate">
+            <div className="flex items-center gap-2 min-w-0 truncate">
+              <span className="font-mono text-xs sm:text-sm font-black tracking-wider uppercase truncate block">
                 {title}
               </span>
               {subtitle && (
-                <span className="hidden font-mono text-xs opacity-85 sm:inline truncate">
+                <span className="hidden font-mono text-xs opacity-85 md:inline truncate">
                   — {subtitle}
                 </span>
               )}
@@ -102,18 +102,18 @@ export function RetroWindow({
         </div>
 
         {/* Right side: Static Retro Win95 Window Controls or custom actions */}
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           {headerRight}
 
           {controlsStyle === "win95" && (
-            <div className="flex items-center gap-1 ml-1.5 select-none" aria-hidden="true">
-              <span className="flex h-5.5 w-5.5 items-center justify-center border border-black bg-white text-xs font-mono font-black text-black shadow-[1px_1px_0_0_#000]">
+            <div className="hidden sm:flex items-center gap-1 ml-1.5 select-none" aria-hidden="true">
+              <span className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-xs font-mono font-black text-black shadow-[1px_1px_0_0_#000]">
                 _
               </span>
-              <span className="flex h-5.5 w-5.5 items-center justify-center border border-black bg-white text-[11px] font-mono font-black text-black shadow-[1px_1px_0_0_#000]">
+              <span className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-[11px] font-mono font-black text-black shadow-[1px_1px_0_0_#000]">
                 □
               </span>
-              <span className="flex h-5.5 w-5.5 items-center justify-center border border-black bg-[#F43F5E] text-[11px] font-mono font-black text-white shadow-[1px_1px_0_0_#000]">
+              <span className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-[#F43F5E] text-[11px] font-mono font-black text-white shadow-[1px_1px_0_0_#000]">
                 ✕
               </span>
             </div>
@@ -122,7 +122,7 @@ export function RetroWindow({
       </div>
 
       {/* Content Area */}
-      <div className={cn("p-5 sm:p-6 text-gray-900 dark:text-gray-100", contentClassName)}>
+      <div className={cn("p-4 sm:p-5 text-gray-900 dark:text-gray-100", contentClassName)}>
         {children}
       </div>
     </div>
