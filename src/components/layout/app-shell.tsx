@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
+// hoverClass: yellow for main nav, pink for lent/requests/self-track
 const NAV_ITEMS = [
-  { href: "/dashboard", label: "Dashboard", icon: HomeIcon },
-  { href: "/lent", label: "Lent", icon: ArrowUpIcon },
-  { href: "/borrowed", label: "Borrowed", icon: ArrowDownIcon },
-  { href: "/requests", label: "Requests", icon: InboxIcon },
+  { href: "/dashboard", label: "Dashboard", icon: "HomeIcon", hoverClass: "hover:bg-[#FFE600] hover:text-black" },
+  { href: "/lent", label: "Lent", icon: "ArrowUpIcon", hoverClass: "hover:bg-[#FB7185] hover:text-white" },
+  { href: "/borrowed", label: "Borrowed", icon: "ArrowDownIcon", hoverClass: "hover:bg-[#FFE600] hover:text-black" },
+  { href: "/requests", label: "Requests", icon: "InboxIcon", hoverClass: "hover:bg-[#FB7185] hover:text-white" },
 ];
 
 export function AppShell({
@@ -25,21 +26,20 @@ export function AppShell({
   unreadCount?: number;
 }) {
   const pathname = usePathname();
-  const isDashboard = pathname === "/dashboard";
 
   return (
-    <div className="relative flex min-h-screen w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-slate-100 transition-colors">
+    <div className="relative flex w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-slate-100 transition-colors">
       {/* Ambient Retro Geometric Grid Layer */}
-      <div 
-        aria-hidden="true" 
-        className="pointer-events-none fixed inset-0 opacity-[0.06] dark:opacity-[0.14] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]" 
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 opacity-[0.06] dark:opacity-[0.14] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]"
       />
 
-      {/* Retro OS Sidebar - Fixed / Sticky at full screen height, non-scrolling */}
-      <aside className="relative z-20 hidden w-64 lg:w-72 shrink-0 flex-col justify-between border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-4 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] sticky top-0 h-screen select-none">
-        <div className="flex flex-col gap-3">
+      {/* FIXED Sidebar — never scrolls with page */}
+      <aside className="fixed left-0 top-0 z-20 hidden h-screen w-64 lg:w-72 flex-col justify-between border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-4 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] select-none overflow-hidden">
+        <div className="flex flex-col gap-3 min-h-0 flex-1">
           {/* Retro Window Title / Logo */}
-          <div className="px-1">
+          <div className="px-1 shrink-0">
             <div className="flex items-center justify-between mb-2.5 border-b-[2px] border-black dark:border-white/20 pb-1.5">
               <span className="font-mono text-xs font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY</span>
               <div className="flex items-center gap-1.5">
@@ -47,8 +47,8 @@ export function AppShell({
                 <span className="w-3.5 h-3.5 bg-[#F43F5E] border border-black inline-block text-[9px] font-bold text-center text-white leading-none select-none">✕</span>
               </div>
             </div>
-            <Link href="/dashboard" className="flex items-center gap-2.5">
-              <div className="flex h-8.5 w-8.5 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000000]">
+            <Link href="/dashboard" className="flex items-center gap-2.5" prefetch={true}>
+              <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000000] shrink-0">
                 ⚡
               </div>
               <div>
@@ -62,24 +62,38 @@ export function AppShell({
             </Link>
           </div>
 
-          {/* Navigation Menu with Stitch Neo-Brutalist Buttons */}
-          <nav className="flex flex-col gap-1.5 font-mono mt-0.5">
+          {/* Navigation Menu */}
+          <nav className="flex flex-col gap-1.5 font-mono mt-0.5 shrink-0">
             <div className="px-1 text-[10.5px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold">
               APPLICATIONS
             </div>
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
-              >
-                <item.icon className="h-4 w-4 shrink-0" />
-                <span className="uppercase text-xs sm:text-[13px] font-bold">{item.label}</span>
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              const Icon = iconMap[item.icon];
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  prefetch={true}
+                  className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
+                    isActive
+                      ? "bg-[#FFE600] text-black"
+                      : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+                  }`}
+                >
+                  <Icon className="h-4 w-4 shrink-0" />
+                  <span className="uppercase text-xs sm:text-[13px] font-bold">{item.label}</span>
+                </Link>
+              );
+            })}
             <Link
               href="/notifications"
-              className="flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+              prefetch={true}
+              className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                pathname === "/notifications"
+                  ? "bg-[#FFE600] text-black"
+                  : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+              }`}
             >
               <BellIcon className="h-4 w-4 shrink-0" />
               <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
@@ -91,19 +105,24 @@ export function AppShell({
             </Link>
             <Link
               href="/self-track"
-              className="flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] px-3 py-2 font-bold text-black dark:text-white transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+              prefetch={true}
+              className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                pathname === "/self-track"
+                  ? "bg-[#FFE600] text-black"
+                  : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+              }`}
             >
               <WalletIcon className="h-4 w-4 shrink-0" />
               <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
-              <span className="ml-auto text-[8.5px] px-1.5 py-0.2 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
+              <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
                 PRIV
               </span>
             </Link>
           </nav>
         </div>
 
-        {/* User Account & Theme Toggle Footer (Fixed at Left Corner Bottom for all pages) */}
-        <div className="flex flex-col gap-1.5 border-t-[2px] border-black dark:border-white/20 pt-2.5 font-mono mt-auto shrink-0">
+        {/* User Account & Theme Toggle Footer — pinned to bottom */}
+        <div className="flex flex-col gap-1.5 border-t-[2px] border-black dark:border-white/20 pt-2.5 font-mono shrink-0">
           <div className="flex items-center justify-between px-1">
             <span className="text-[10px] uppercase font-bold text-gray-500">THEME</span>
             <ThemeToggle />
@@ -111,9 +130,10 @@ export function AppShell({
 
           <Link
             href="/profile"
+            prefetch={true}
             className="flex items-center gap-2.5 border-[2px] border-black bg-white dark:bg-[#1E212D] p-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
           >
-            <div className="h-6.5 w-6.5 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
+            <div className="h-6 w-6 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
               <UserIcon className="h-3.5 w-3.5" />
             </div>
             <div className="overflow-hidden min-w-0">
@@ -133,6 +153,9 @@ export function AppShell({
         </div>
       </aside>
 
+      {/* Spacer for fixed sidebar — pushes main content right */}
+      <div className="hidden md:block w-64 lg:w-72 shrink-0" />
+
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0 overflow-x-hidden">
         {/* Mobile Header in Retro Style */}
@@ -151,24 +174,44 @@ export function AppShell({
         <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t-[2px] border-black bg-white dark:bg-[#161821] md:hidden font-mono text-xs">
           {[
             ...NAV_ITEMS,
-            { href: "/notifications", label: "Alerts", icon: BellIcon },
-            { href: "/self-track", label: "Ledger", icon: WalletIcon },
-            { href: "/profile", label: "Profile", icon: UserIcon },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex flex-1 flex-col items-center gap-1 py-2 text-black dark:text-gray-300 hover:bg-[#FFE600] hover:text-black font-bold border-r last:border-r-0 border-black/10 dark:border-white/10"
-            >
-              <item.icon className="h-4 w-4" />
-              <span className="text-[10px]">{item.label}</span>
-            </Link>
-          ))}
+            { href: "/notifications", label: "Alerts", icon: "BellIcon", hoverClass: "" },
+            { href: "/self-track", label: "Ledger", icon: "WalletIcon", hoverClass: "" },
+            { href: "/profile", label: "Profile", icon: "UserIcon", hoverClass: "" },
+          ].map((item) => {
+            const Icon = iconMap[item.icon];
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                prefetch={true}
+                className={`flex flex-1 flex-col items-center gap-1 py-2 font-bold border-r last:border-r-0 border-black/10 dark:border-white/10 transition-colors ${
+                  isActive
+                    ? "bg-[#FFE600] text-black"
+                    : "text-black dark:text-gray-300 hover:bg-[#FFE600] hover:text-black"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                <span className="text-[10px]">{item.label}</span>
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </div>
   );
 }
+
+// Icon lookup map (used in JSX to avoid dynamic component issues)
+const iconMap: Record<string, React.FC<{ className?: string }>> = {
+  HomeIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
+  InboxIcon,
+  BellIcon,
+  WalletIcon,
+  UserIcon,
+};
 
 type IconProps = { className?: string };
 
