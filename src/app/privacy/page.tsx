@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Flendly",
+  title: "Flendly | Who Lends Who?",
   description: "How Flendly collects, uses, and protects account and lending records.",
+  alternates: { canonical: "/privacy" },
 };
 
 const sections = [

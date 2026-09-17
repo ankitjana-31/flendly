@@ -3,8 +3,10 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, HandCoins, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Lend Money With Clear Records | Flendly",
-  description: "Anyone can lend money to friends and keep an official, shared track of the agreement.",
+  title: "Flendly | Who Lends Who?",
+  description:
+    "Learn how Flendly helps anyone lend money to friends while tracking loans, repayments, and money owed through clear peer-to-peer lending records.",
+  alternates: { canonical: "/learn-more/lending" },
 };
 
 const steps = [

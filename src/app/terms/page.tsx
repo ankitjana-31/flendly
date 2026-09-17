@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Flendly",
+  title: "Flendly | Who Lends Who?",
   description: "The terms that apply when you use Flendly.",
+  alternates: { canonical: "/terms" },
 };
 
 const sections = [
