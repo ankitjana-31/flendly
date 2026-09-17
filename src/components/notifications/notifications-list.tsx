@@ -1,25 +1,25 @@
 "use client";
 
-import { useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
+import { Bell, CheckCheck, Clock, ArrowUpRight, ArrowDownLeft, Wallet, CheckCircle2, AlertTriangle, ShieldCheck } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { RetroWindow } from "@/components/ui/retro-window";
 import { markAllNotificationsReadAction, markNotificationReadAction } from "@/lib/notifications/actions";
 import type { NotificationItem } from "@/lib/notifications/queries";
-import { formatDateTime } from "@/lib/format";
-import { Bell, CheckCheck, Sparkles, Clock } from "lucide-react";
+import { formatDateTime, formatMoney } from "@/lib/format";
+import { createClient } from "@/lib/supabase/client";
 
-const LABELS: Record<NotificationItem["type"], string> = {
-  new_request: "Sent you a new lending request",
-  counter_offer: "Submitted a counter-offer",
-  offer_accepted: "Accepted your proposal",
-  offer_declined: "Declined the proposal",
-  payment_recorded: "Logged a payment receipt",
-  deadline_reminder: "Payment due date approaching",
-  overdue: "Payment is past due date",
-  fully_paid: "Loan deal fully settled & cleared",
+const TYPE_CONFIG: Record<string, { label: string; icon: any; color: string }> = {
+  new_request: { label: "New Peer Proposal", icon: ArrowUpRight, color: "bg-[#FFE600] text-black" },
+  counter_offer: { label: "Counter Proposal Submitted", icon: ArrowDownLeft, color: "bg-[#FFE600] text-black" },
+  offer_accepted: { label: "Proposal Accepted & Loan Created", icon: CheckCircle2, color: "bg-[#2DD4BF] text-black" },
+  offer_declined: { label: "Proposal Declined", icon: AlertTriangle, color: "bg-[#F43F5E] text-white" },
+  payment_recorded: { label: "Repayment Receipt Logged", icon: Wallet, color: "bg-[#2DD4BF] text-black" },
+  deadline_reminder: { label: "Upcoming Due Date Reminder", icon: Clock, color: "bg-[#FFE600] text-black" },
+  overdue: { label: "Past Due Date Alert", icon: AlertTriangle, color: "bg-[#F43F5E] text-white" },
+  fully_paid: { label: "Loan Fully Settled & Cleared", icon: ShieldCheck, color: "bg-[#2DD4BF] text-black" },
 };
 
 const containerVariants: Variants = {
@@ -41,14 +41,66 @@ const itemVariants: Variants = {
   },
 };
 
-export function NotificationsList({ notifications }: { notifications: NotificationItem[] }) {
+export function NotificationsList({ notifications: initialNotifications }: { notifications: NotificationItem[] }) {
   const router = useRouter();
+  const [notifications, setNotifications] = useState<NotificationItem[]>(initialNotifications);
   const [isPending, startTransition] = useTransition();
   const shouldReduceMotion = useReducedMotion();
+
+  // Sync state if server props change
+  useEffect(() => {
+    setNotifications(initialNotifications);
+  }, [initialNotifications]);
+
+  // Realtime Supabase Channel Subscription for Live Notifications
+  useEffect(() => {
+    const supabase = createClient();
+    const channel = supabase
+      .channel("live_notifications_feed")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "notifications" },
+        (payload) => {
+          const newNotif = payload.new as NotificationItem;
+          setNotifications((prev) => [newNotif, ...prev.filter((n) => n.id !== newNotif.id)]);
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "notifications" },
+        (payload) => {
+          const updated = payload.new as NotificationItem;
+          setNotifications((prev) => prev.map((n) => (n.id === updated.id ? updated : n)));
+        }
+      )
+      .subscribe();
+
+    // Fallback polling every 8 seconds for smooth background refresh
+    const interval = setInterval(() => {
+      router.refresh();
+    }, 8000);
+
+    return () => {
+      supabase.removeChannel(channel);
+      clearInterval(interval);
+    };
+  }, [router]);
+
   const unreadCount = notifications.filter((n) => !n.read_at).length;
 
+  const handleMarkAllRead = () => {
+    // Instant optimistic update
+    setNotifications((prev) =>
+      prev.map((n) => ({ ...n, read_at: n.read_at || new Date().toISOString() }))
+    );
+    startTransition(async () => {
+      await markAllNotificationsReadAction();
+      router.refresh();
+    });
+  };
+
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
         <div>
@@ -56,6 +108,7 @@ export function NotificationsList({ notifications }: { notifications: Notificati
             <span>[REALTIME_LOGS]</span>
             <span className="text-gray-400">//</span>
             <span className="text-gray-600 dark:text-gray-300 uppercase">SYSTEM NOTIFICATIONS</span>
+            <span className="inline-block w-2 h-2 rounded-full bg-[#059669] animate-pulse ml-1" title="Realtime socket connected" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-black dark:text-white tracking-tight mt-1">
             Activity & Notifications
@@ -63,28 +116,29 @@ export function NotificationsList({ notifications }: { notifications: Notificati
         </div>
 
         {unreadCount > 0 && (
-          <Button
-            variant="outline"
-            size="sm"
+          <button
             disabled={isPending}
-            onClick={() => startTransition(async () => { await markAllNotificationsReadAction(); router.refresh(); })}
-            className="flex items-center gap-2"
+            onClick={handleMarkAllRead}
+            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-2 transition-all"
           >
             <CheckCheck className="w-4 h-4 text-[#059669]" />
             <span>MARK ALL AS READ</span>
-          </Button>
+          </button>
         )}
       </div>
 
       {/* Main Window */}
       <RetroWindow
         title="NOTIFICATIONS // AUDIT STREAM"
-        subtitle={`${unreadCount} unread items`}
+        subtitle={`${unreadCount} unread items · live socket sync`}
         colorBar="yellow"
+        glow={true}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
-          <span className="px-2.5 py-0.5 border border-black bg-black text-white font-mono text-[11px] font-black uppercase">
+          <span className={`px-2.5 py-0.5 border border-black font-mono text-[11px] font-black uppercase ${
+            unreadCount > 0 ? "bg-[#FFE600] text-black" : "bg-black text-white"
+          }`}>
             {unreadCount > 0 ? `${unreadCount} NEW` : "ALL READ"}
           </span>
         }
@@ -111,6 +165,11 @@ export function NotificationsList({ notifications }: { notifications: Notificati
             <AnimatePresence>
               {notifications.map((n) => {
                 const isUnread = !n.read_at;
+                const config = TYPE_CONFIG[n.type] ?? { label: "System Notification", icon: Bell, color: "bg-gray-200 text-black" };
+                const IconComponent = config.icon;
+                const payload = (n.payload ?? {}) as { direction?: string; amount?: string; sender_username?: string };
+                const direction = payload.direction;
+
                 return (
                   <motion.div
                     key={n.id}
@@ -119,42 +178,70 @@ export function NotificationsList({ notifications }: { notifications: Notificati
                   >
                     <button
                       className="w-full text-left cursor-pointer group"
-                      onClick={() =>
+                      onClick={() => {
+                        // Mark locally read immediately
+                        setNotifications((prev) =>
+                          prev.map((item) => (item.id === n.id ? { ...item, read_at: new Date().toISOString() } : item))
+                        );
                         startTransition(async () => {
                           const { href } = await markNotificationReadAction(n);
                           router.push(href);
-                        })
-                      }
+                        });
+                      }}
                     >
                       <div
-                        className={`flex items-start sm:items-center justify-between gap-4 p-4 border-[2px] border-black dark:border-white/40 transition-all font-mono shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 ${
+                        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-[2px] border-black dark:border-white/40 transition-all font-mono shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 ${
                           isUnread
                             ? "bg-[#FFE600]/20 dark:bg-[#2E2800] border-l-[6px] border-l-[#2563EB]"
                             : "bg-[#FAF8F5] dark:bg-[#1E212D]"
                         }`}
                       >
-                        <div className="flex items-start sm:items-center gap-3">
-                          <div className={`w-8 h-8 border border-black flex items-center justify-center text-xs font-bold shrink-0 ${
+                        <div className="flex items-start sm:items-center gap-3.5">
+                          <div className={`w-9 h-9 border border-black flex items-center justify-center text-xs font-bold shrink-0 shadow-[1px_1px_0_0_#000] ${
                             isUnread ? "bg-[#2563EB] text-white" : "bg-gray-300 dark:bg-gray-700 text-black dark:text-white"
                           }`}>
-                            <Bell className="w-4 h-4" />
+                            <IconComponent className="w-4.5 h-4.5" />
                           </div>
+
                           <div>
-                            <p className="text-sm sm:text-base font-bold text-black dark:text-white">
-                              {LABELS[n.type]}
-                            </p>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <p className="text-sm sm:text-base font-black text-black dark:text-white">
+                                {config.label}
+                              </p>
+                              {direction && (
+                                <span className={`px-1.5 py-0.2 border border-black text-[9px] font-black uppercase ${
+                                  direction === "lend" ? "bg-[#FB7185] text-white" : "bg-[#FFE600] text-black"
+                                }`}>
+                                  {direction === "lend" ? "LENDING" : "BORROWING"}
+                                </span>
+                              )}
+                              {payload.amount && (
+                                <span className="text-xs font-black text-[#059669] dark:text-[#2DD4BF]">
+                                  ({formatMoney(payload.amount)})
+                                </span>
+                              )}
+                            </div>
+
                             <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mt-0.5">
                               <Clock className="w-3 h-3" />
                               {formatDateTime(n.created_at)}
+                              {payload.sender_username && (
+                                <span>· from @{payload.sender_username}</span>
+                              )}
                             </p>
                           </div>
                         </div>
 
-                        {isUnread && (
-                          <span className="px-2 py-0.5 border border-black bg-[#2563EB] text-white font-mono text-[10px] font-black uppercase shrink-0">
-                            UNREAD
+                        <div className="flex items-center gap-2 self-end sm:self-center">
+                          {isUnread && (
+                            <span className="px-2 py-0.5 border border-black bg-[#2563EB] text-white font-mono text-[10px] font-black uppercase shrink-0 shadow-[1px_1px_0_0_#000]">
+                              UNREAD
+                            </span>
+                          )}
+                          <span className="text-xs font-bold text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
+                            VIEW →
                           </span>
-                        )}
+                        </div>
                       </div>
                     </button>
                   </motion.div>

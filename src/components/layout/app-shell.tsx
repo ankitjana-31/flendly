@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { createClient } from "@/lib/supabase/client";
 
 // hoverClass: yellow for main nav, pink for lent/requests/self-track
 const NAV_ITEMS = [
@@ -18,7 +20,7 @@ export function AppShell({
   children,
   fullName,
   username,
-  unreadCount = 0,
+  unreadCount: initialUnreadCount = 0,
 }: {
   children: React.ReactNode;
   fullName: string | null;
@@ -26,6 +28,39 @@ export function AppShell({
   unreadCount?: number;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const [unreadCount, setUnreadCount] = useState(initialUnreadCount);
+
+  useEffect(() => {
+    setUnreadCount(initialUnreadCount);
+  }, [initialUnreadCount]);
+
+  // Realtime Supabase listener for notifications counter
+  useEffect(() => {
+    const supabase = createClient();
+    const channel = supabase
+      .channel("app_shell_notifications_counter")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "notifications" },
+        () => {
+          setUnreadCount((c) => c + 1);
+          router.refresh();
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "notifications" },
+        () => {
+          router.refresh();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [router]);
 
   return (
     <div className="relative flex w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-slate-100 transition-colors">
@@ -98,7 +133,7 @@ export function AppShell({
               <BellIcon className="h-4 w-4 shrink-0" />
               <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
               {unreadCount > 0 && (
-                <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
+                <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000] animate-bounce">
                   {unreadCount > 9 ? "9+" : unreadCount}
                 </span>
               )}
@@ -202,7 +237,7 @@ export function AppShell({
   );
 }
 
-// Icon lookup map (used in JSX to avoid dynamic component issues)
+// Icon lookup map
 const iconMap: Record<string, React.FC<{ className?: string }>> = {
   HomeIcon,
   ArrowUpIcon,

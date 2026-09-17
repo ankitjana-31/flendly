@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
+import { ArrowDownLeft, Plus } from "lucide-react";
 
-import { LinkButton } from "@/components/ui/button";
 import { LoanListCard } from "@/components/loans/loan-list-card";
 import { RetroWindow } from "@/components/ui/retro-window";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { listLoans } from "@/lib/loans/queries";
 import { formatMoney } from "@/lib/format";
-import { ArrowDownLeft, Plus } from "lucide-react";
 
 export default async function BorrowedPage() {
   const { user } = await getCurrentUserProfile();
@@ -26,7 +26,7 @@ export default async function BorrowedPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-[#F43F5E]">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#EAB308] dark:text-[#FFE600]">
             <span>[PAYABLES]</span>
             <span className="text-gray-400">//</span>
             <span className="text-gray-600 dark:text-gray-300 uppercase">MONEY YOU BORROWED</span>
@@ -36,29 +36,32 @@ export default async function BorrowedPage() {
           </h1>
         </div>
 
-        <LinkButton href="/requests/new" size="md">
-          <Plus className="w-4 h-4" />
-          <span>NEW BORROW REQUEST</span>
-        </LinkButton>
+        <Link
+          href="/requests/new"
+          className="inline-flex items-center gap-2 px-4 py-2 border-[2.5px] border-black bg-[#FFE600] text-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
+        >
+          <Plus className="w-4 h-4 stroke-[3]" />
+          <span>NEW BORROW PROPOSAL</span>
+        </Link>
       </div>
 
-      {/* Summary Window */}
+      {/* Summary Window - Yellow accented */}
       <RetroWindow
-        title="BORROWED LIABILITIES // ACTIVE DEBT"
+        title="BORROWED LIABILITIES // PAYABLES"
         subtitle={`${active.length} active counterparties`}
-        colorBar="pink"
+        colorBar="yellow"
         glow={true}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
-          <span className="px-2.5 py-0.5 border border-black bg-[#F43F5E] text-white font-mono text-[11px] font-black uppercase">
+          <span className="px-2.5 py-0.5 border border-black bg-[#FFE600] text-black font-mono text-[11px] font-black uppercase">
             ACTIVE TOTAL: {formatMoney(totalActiveBorrowed)}
           </span>
         }
       >
         {loans.length === 0 ? (
           <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
-            <div className="w-10 h-10 border-[2px] border-black bg-[#F43F5E] text-white flex items-center justify-center mx-auto mb-3 font-bold">
+            <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] text-black flex items-center justify-center mx-auto mb-3 font-bold">
               <ArrowDownLeft className="w-6 h-6" />
             </div>
             <h3 className="font-mono text-base font-bold text-black dark:text-white uppercase">
@@ -73,10 +76,10 @@ export default async function BorrowedPage() {
             {active.length > 0 && (
               <section className="space-y-3">
                 <div className="flex items-center justify-between pb-1 border-b border-black/10 dark:border-white/10">
-                  <h2 className="text-xs sm:text-sm font-black text-black dark:text-white uppercase tracking-wider">
+                  <h2 className="text-xs sm:text-sm font-black text-amber-600 dark:text-[#FFE600] uppercase tracking-wider">
                     ACTIVE BORROWINGS ({active.length})
                   </h2>
-                  <span className="text-xs text-[#F43F5E] font-bold">
+                  <span className="text-xs text-amber-600 dark:text-[#FFE600] font-bold">
                     {formatMoney(totalActiveBorrowed)} to repay
                   </span>
                 </div>

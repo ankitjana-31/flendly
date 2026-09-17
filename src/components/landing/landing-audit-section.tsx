@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 
 export function LandingAuditSection() {
   return (
-    <section className="w-full max-w-6xl z-20 flex flex-col bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#10B981] transition-colors rounded-sm overflow-hidden">
+    <section className="w-full max-w-[1400px] z-20 flex flex-col bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#10B981] transition-colors rounded-sm overflow-hidden">
       {/* Titlebar */}
       <div className="h-10 bg-[#10B981] text-black px-4 sm:px-6 border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
         <div className="flex items-center gap-2 font-mono text-xs sm:text-sm uppercase font-black tracking-wider">
@@ -31,11 +30,11 @@ export function LandingAuditSection() {
           </p>
           <div className="flex flex-col gap-3 font-mono text-xs">
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
-              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Junaid • 14 Feb</div>
+              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Ankit • 14 Feb</div>
               <div className="text-black dark:text-white italic">&quot;Hey bro, did you get a chance to send the Airbnb share?&quot;</div>
             </div>
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
-              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Junaid (4 days later)</div>
+              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Kunal (4 days later)</div>
               <div className="text-black dark:text-white italic">&quot;Totally missed this! How much was it again?&quot;</div>
             </div>
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
@@ -61,9 +60,9 @@ export function LandingAuditSection() {
           <div className="flex flex-col gap-3">
             <div className="bg-[#FAF8F5] dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-[#2563EB] text-white border border-black dark:border-white flex items-center justify-center font-bold text-xs font-mono">JN</div>
+                <div className="w-8 h-8 bg-[#2563EB] text-white border border-black dark:border-white flex items-center justify-center font-bold text-xs font-mono">AK</div>
                 <div className="flex flex-col">
-                  <span className="font-mono text-xs font-bold text-black dark:text-white uppercase">Airbnb Split</span>
+                  <span className="font-mono text-xs font-bold text-black dark:text-white uppercase">Airbnb Split (Ankit)</span>
                   <span className="font-mono text-[11px] text-gray-500 dark:text-gray-400">Dual-Signed • Auto-UPI</span>
                 </div>
               </div>
@@ -74,9 +73,9 @@ export function LandingAuditSection() {
             </div>
             <div className="bg-[#FAF8F5] dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-[#F43F5E] text-white border border-black dark:border-white flex items-center justify-center font-bold text-xs font-mono">SP</div>
+                <div className="w-8 h-8 bg-[#F43F5E] text-white border border-black dark:border-white flex items-center justify-center font-bold text-xs font-mono">KN</div>
                 <div className="flex flex-col">
-                  <span className="font-mono text-xs font-bold text-black dark:text-white uppercase">Concert Ticket Advance</span>
+                  <span className="font-mono text-xs font-bold text-black dark:text-white uppercase">Concert Advance (Kunal)</span>
                   <span className="font-mono text-[11px] text-gray-500 dark:text-gray-400">Scheduled: 2-Part Tranche</span>
                 </div>
               </div>

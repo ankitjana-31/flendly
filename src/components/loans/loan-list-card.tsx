@@ -1,9 +1,8 @@
 import Link from "next/link";
-
 import { StatusBadge, loanDisplayStatus } from "@/components/ui/status-badge";
 import { formatMoney, formatDate, interestSummary } from "@/lib/format";
 import type { LoanListItem } from "@/lib/loans/queries";
-import { Calendar, User, ArrowUpRight, ArrowDownLeft } from "lucide-react";
+import { Calendar, ArrowUpRight, ArrowDownLeft } from "lucide-react";
 
 export function LoanListCard({ loan, role = "lender" }: { loan: LoanListItem; role?: "lender" | "borrower" }) {
   const isLender = role === "lender";
@@ -12,13 +11,15 @@ export function LoanListCard({ loan, role = "lender" }: { loan: LoanListItem; ro
   return (
     <Link
       href={`/loans/${loan.id}`}
-      className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
+      className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono ${
+        isLender ? "hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-black" : "hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black"
+      }`}
     >
       <div className="flex items-center gap-3.5">
         <div className={`w-10 h-10 border-[2px] border-black flex items-center justify-center font-mono font-black text-sm shrink-0 shadow-[2px_2px_0_0_#000] ${
-          isLender ? "bg-[#2DD4BF] text-black" : "bg-[#F43F5E] text-white"
+          isLender ? "bg-[#FB7185] text-white" : "bg-[#FFE600] text-black"
         }`}>
-          {isLender ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
+          {isLender ? <ArrowUpRight className="w-5 h-5 stroke-[2.5]" /> : <ArrowDownLeft className="w-5 h-5 stroke-[2.5]" />}
         </div>
         <div>
           <p className="text-base sm:text-lg font-black tracking-tight">
@@ -41,7 +42,7 @@ export function LoanListCard({ loan, role = "lender" }: { loan: LoanListItem; ro
             {isLender ? "To Collect" : "To Repay"}
           </span>
           <p className={`font-mono text-lg sm:text-xl font-black ${
-            isLender ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"
+            isLender ? "text-[#F43F5E] dark:text-[#FB7185]" : "text-amber-600 dark:text-[#FFE600]"
           }`}>
             {formatMoney(outstanding)}
           </p>

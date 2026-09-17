@@ -33,6 +33,41 @@ export async function recordPaymentAction(
   const { loanId, amount, paymentDate, note } = parsed.data;
   const supabase = await createClient();
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { error: "Authentication required." };
+
+  // Fetch loan and existing pending payments to prevent duplicate payments exceeding remaining balance
+  const [{ data: ledgerRows }, { data: existingPayments }] = await Promise.all([
+    supabase.rpc("get_loan_ledger", { p_loan_id: loanId }),
+    supabase
+      .from("payments")
+      .select("amount, status")
+      .eq("loan_id", loanId),
+  ]);
+
+  const ledger = Array.isArray(ledgerRows) ? ledgerRows[0] : ledgerRows;
+  const totalOutstanding = Number(ledger?.outstanding ?? 0);
+
+  const pendingSum = (existingPayments ?? [])
+    .filter((p: { status?: string }) => p.status === "PENDING")
+    .reduce((sum: number, p: { amount: string }) => sum + Number(p.amount), 0);
+
+  const remainingAvailable = Math.max(0, totalOutstanding - pendingSum);
+
+  if (totalOutstanding > 0 && pendingSum >= totalOutstanding) {
+    return {
+      error: `A payment of ₹${pendingSum.toFixed(2)} is already pending confirmation. You cannot submit another payment until it is confirmed or rejected by the lender.`,
+    };
+  }
+
+  if (totalOutstanding > 0 && amount > remainingAvailable + 0.01) {
+    return {
+      error: `Amount exceeds maximum payable amount (₹${remainingAvailable.toFixed(2)} remaining after ₹${pendingSum.toFixed(2)} pending).`,
+    };
+  }
+
   const { error } = await supabase.rpc("record_payment", {
     p_loan_id: loanId,
     p_amount: amount,
@@ -46,18 +81,14 @@ export async function recordPaymentAction(
       error.code === "PGRST202" ||
       error.code === "PGRST205"
     ) {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return { error: "Authentication required." };
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // Fallback direct insert
       const { error: payErr } = await (supabase.from("payments") as any).insert({
         loan_id: loanId,
         recorded_by: user.id,
         amount: String(amount),
         payment_date: paymentDate,
         note: note ?? null,
+        status: "PENDING",
       });
 
       if (payErr) return { error: payErr.message };

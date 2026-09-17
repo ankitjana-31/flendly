@@ -32,7 +32,7 @@ export function LandingHero() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative w-full max-w-6xl z-20 py-2 sm:py-4"
+      className="relative w-full max-w-[1400px] z-20 py-2 sm:py-4"
     >
       {/* Stitch HERO_PROMISE.exe Main Window */}
       <div className="w-full bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden">
@@ -81,103 +81,81 @@ export function LandingHero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-gray-700 dark:text-gray-200 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl font-normal"
+              className="text-base sm:text-lg text-gray-700 dark:text-gray-300 font-medium leading-relaxed max-w-xl"
             >
               Track split expenses, informal loans, and IOUs without awkward reminders, endless screenshots, or broken trust.
             </motion.p>
 
-            {/* Action Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-3 pt-1"
+              className="flex flex-wrap items-center gap-3 pt-2 font-mono"
             >
               <Link
                 href="/auth/login"
-                className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-2"
+                className="px-6 py-3 bg-[#FFE600] text-black border-[2.5px] border-black font-mono text-sm font-black shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2"
               >
                 <span>⚡</span>
                 <span>LAUNCH FLENDLY</span>
               </Link>
               <Link
                 href="/learn-more"
-                className="px-6 py-3.5 bg-[#2563EB] text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[4px_4px_0_0_#000] dark:shadow-[4px_4px_0_0_#ffffff] hover:bg-blue-600 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] dark:hover:shadow-[6px_6px_0_0_#ffffff] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-2"
+                className="px-5 py-3 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white/60 font-mono text-sm font-bold shadow-[4px_4px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2"
               >
-                <span>ℹ</span>
+                <span className="text-[#2563EB] dark:text-[#60A5FA]">ℹ</span>
                 <span>HOW IT WORKS</span>
               </Link>
             </motion.div>
-
-            {/* Feature Bullets */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap gap-4 pt-1 font-mono text-xs sm:text-sm text-gray-800 dark:text-gray-200 font-bold"
-            >
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 bg-[#10B981] inline-block border border-black" />
-                <span>Zero Awkward Calls</span>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 bg-[#FFE600] inline-block border border-black" />
-                <span>Mutual Agreements</span>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 bg-[#2563EB] inline-block border border-black" />
-                <span>Direct UPI Ledger</span>
-              </span>
-            </motion.div>
           </div>
 
-          {/* Right Column: Diagnostic Leak Dilemma Card */}
-          <div className="lg:col-span-5">
-            <motion.div
-              variants={itemVariants}
-              className="w-full bg-white dark:bg-[#1E212D] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000] dark:shadow-[6px_6px_0_0_#FFE600] rounded-sm overflow-hidden"
-            >
-              {/* Card Titlebar */}
-              <div className="h-9 bg-[#F43F5E] text-white px-3.5 border-b-[2.5px] border-black dark:border-white flex items-center justify-between font-mono text-xs font-bold uppercase select-none">
-                <span className="flex items-center gap-1.5">
-                  <span>⚠️</span>
-                  <span>LEAK DIAGNOSTIC</span>
-                </span>
-                <span className="w-4 h-4 bg-white text-black text-[10px] font-bold flex items-center justify-center border border-black">
-                  ✕
+          {/* Right Column (Retro OS Diagnostic Widget) */}
+          <motion.div
+            variants={itemVariants}
+            className="lg:col-span-5 flex flex-col gap-3 font-mono"
+          >
+            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[#1A1D27] shadow-[4px_4px_0_0_#000000] p-4 flex flex-col gap-3">
+              {/* Card Header */}
+              <div className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 pb-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 bg-[#F43F5E] inline-block border border-black" />
+                  <span className="text-xs font-black text-black dark:text-white uppercase tracking-wider">
+                    LEAK DIAGNOSTIC
+                  </span>
+                </div>
+                <span className="text-[10px] text-gray-500 font-bold">STATUS // ACTIVE</span>
+              </div>
+
+              {/* Chat Simulation */}
+              <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000]">
+                <div className="text-[10px] text-gray-500 dark:text-gray-400 font-bold mb-1">
+                  Kunal (3 months ago via WhatsApp):
+                </div>
+                <p className="text-xs text-black dark:text-white italic">
+                  &quot;Bro, will pay my ₹500 for the Goa trip dinner booking tomorrow morning!&quot;
+                </p>
+              </div>
+
+              {/* Consequence Alert */}
+              <div className="p-3 bg-[#FF2E93]/15 border-[2px] border-[#F43F5E] text-xs font-bold text-black dark:text-white flex items-center gap-2.5">
+                <span className="text-[#F43F5E] text-base">⚠️</span>
+                <div>
+                  <div className="text-[#F43F5E] font-black uppercase text-[11px]">TOMORROW WAS 90 DAYS AGO</div>
+                  <div className="text-gray-600 dark:text-gray-300 text-[10px]">Unrecovered informal loan · Friendship strained</div>
+                </div>
+              </div>
+
+              {/* Live Metric */}
+              <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 flex items-center justify-between">
+                <span className="text-[11px] font-bold text-gray-600 dark:text-gray-300 uppercase">UNPAID BALANCE:</span>
+                <span className="text-base font-black text-[#F43F5E] bg-[#FF2E93]/15 px-2 py-0.5 border border-[#F43F5E]">
+                  ₹500.00
                 </span>
               </div>
 
-              {/* Card Body */}
-              <div className="p-5 space-y-4 font-mono text-xs sm:text-sm">
-                <div className="p-3.5 bg-[#FAF8F5] dark:bg-[#161821] border-[2px] border-black dark:border-gray-700 shadow-[2px_2px_0_0_#000]">
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mb-1.5 font-bold">
-                    Rahul (3 months ago via WhatsApp):
-                  </div>
-                  <p className="italic text-gray-900 dark:text-white font-sans text-sm leading-relaxed">
-                    &ldquo;Bro, will pay my ₹500 for the Goa trip dinner booking tomorrow morning!&rdquo;
-                  </p>
-                </div>
-
-                <div className="p-3.5 bg-[#FF2E93]/15 border-[2px] border-[#F43F5E] text-[#9F1239] dark:text-[#FDA4AF] flex items-center gap-3 shadow-[2px_2px_0_0_#000]">
-                  <span className="text-2xl">⚠️</span>
-                  <div>
-                    <div className="font-bold text-xs sm:text-sm text-[#F43F5E]">TOMORROW WAS 90 DAYS AGO</div>
-                    <div className="text-xs opacity-90 font-sans text-gray-700 dark:text-gray-300">Unrecovered informal loan · Friendship strained</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between p-3.5 bg-[#FAF8F5] dark:bg-[#161821] border-[2px] border-black dark:border-gray-700 shadow-[2px_2px_0_0_#000]">
-                  <span className="text-gray-700 dark:text-gray-300 font-black uppercase text-xs">UNPAID BALANCE:</span>
-                  <span className="text-2xl font-black text-[#F43F5E] bg-white dark:bg-[#242938] px-3 py-0.5 border border-black">₹500.00</span>
-                </div>
-
-                <button
-                  type="button"
-                  className="w-full py-3 bg-[#2DD4BF] hover:bg-[#10B981] text-black border-[2.5px] border-black font-black uppercase text-xs tracking-wider shadow-[3px_3px_0_0_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center justify-center gap-2 transition-all cursor-default"
-                >
-                  <span>⚡</span>
-                  <span>AUTO-REMIND WITHOUT AWKWARDNESS</span>
-                </button>
+              <div className="bg-[#2DD4BF] border-[2px] border-black p-2 text-center text-xs font-black text-black shadow-[2px_2px_0_0_#000]">
+                ⚡ AUTO-REMIND WITHOUT AWKWARDNESS
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>

@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
+import { ArrowUpRight, Plus } from "lucide-react";
 
-import { LinkButton } from "@/components/ui/button";
 import { LoanListCard } from "@/components/loans/loan-list-card";
 import { RetroWindow } from "@/components/ui/retro-window";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { listLoans } from "@/lib/loans/queries";
 import { formatMoney } from "@/lib/format";
-import { ArrowUpRight, Plus } from "lucide-react";
 
 export default async function LentPage() {
   const { user } = await getCurrentUserProfile();
@@ -26,7 +26,7 @@ export default async function LentPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-[#059669] dark:text-[#2DD4BF]">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#F43F5E] dark:text-[#FB7185]">
             <span>[RECEIVABLES]</span>
             <span className="text-gray-400">//</span>
             <span className="text-gray-600 dark:text-gray-300 uppercase">MONEY GIVEN OUT</span>
@@ -36,29 +36,32 @@ export default async function LentPage() {
           </h1>
         </div>
 
-        <LinkButton href="/requests/new" size="md">
-          <Plus className="w-4 h-4" />
-          <span>NEW LOAN REQUEST</span>
-        </LinkButton>
+        <Link
+          href="/requests/new"
+          className="inline-flex items-center gap-2 px-4 py-2 border-[2.5px] border-black bg-[#FB7185] text-white font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-[#F43F5E] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
+        >
+          <Plus className="w-4 h-4 stroke-[3]" />
+          <span>NEW LOAN PROPOSAL</span>
+        </Link>
       </div>
 
-      {/* Summary Window */}
+      {/* Summary Window - Pink accented */}
       <RetroWindow
-        title="LENT PORTFOLIO // ACTIVE DEALS"
-        subtitle={`${active.length} active borrowers`}
-        colorBar="blue"
+        title="LENT PORTFOLIO // RECEIVABLES"
+        subtitle={`${active.length} active peer loans`}
+        colorBar="pink"
         glow={true}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
-          <span className="px-2.5 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-[11px] font-black uppercase">
+          <span className="px-2.5 py-0.5 border border-black bg-[#FB7185] text-white font-mono text-[11px] font-black uppercase">
             ACTIVE TOTAL: {formatMoney(totalActiveLent)}
           </span>
         }
       >
         {loans.length === 0 ? (
           <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
-            <div className="w-10 h-10 border-[2px] border-black bg-[#2DD4BF] text-black flex items-center justify-center mx-auto mb-3 font-bold">
+            <div className="w-10 h-10 border-[2px] border-black bg-[#FB7185] text-white flex items-center justify-center mx-auto mb-3 font-bold">
               <ArrowUpRight className="w-6 h-6" />
             </div>
             <h3 className="font-mono text-base font-bold text-black dark:text-white uppercase">
@@ -73,11 +76,11 @@ export default async function LentPage() {
             {active.length > 0 && (
               <section className="space-y-3">
                 <div className="flex items-center justify-between pb-1 border-b border-black/10 dark:border-white/10">
-                  <h2 className="text-xs sm:text-sm font-black text-black dark:text-white uppercase tracking-wider">
+                  <h2 className="text-xs sm:text-sm font-black text-[#F43F5E] dark:text-[#FB7185] uppercase tracking-wider">
                     ACTIVE LOANS ({active.length})
                   </h2>
-                  <span className="text-xs text-[#059669] dark:text-[#2DD4BF] font-bold">
-                    {formatMoney(totalActiveLent)} outstanding
+                  <span className="text-xs text-[#F43F5E] dark:text-[#FB7185] font-bold">
+                    {formatMoney(totalActiveLent)} to receive
                   </span>
                 </div>
                 <div className="grid gap-3">
