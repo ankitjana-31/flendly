@@ -1,4 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
+import { notificationHref } from "@/lib/notifications/links";
+
+export { notificationHref } from "@/lib/notifications/links";
 
 export type NotificationItem = {
   id: string;
@@ -15,13 +18,6 @@ export type NotificationItem = {
   read_at: string | null;
   created_at: string;
 };
-
-export function notificationHref(n: NotificationItem): string {
-  const payload = n.payload as { loan_id?: string; request_id?: string };
-  if (payload.loan_id) return `/loans/${payload.loan_id}`;
-  if (payload.request_id) return `/requests/${payload.request_id}`;
-  return "/notifications";
-}
 
 export async function listNotifications(limit = 50): Promise<NotificationItem[]> {
   const supabase = await createClient();

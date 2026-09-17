@@ -7,7 +7,8 @@ import { Bell, CheckCheck, Clock, ArrowUpRight, ArrowDownLeft, Wallet, CheckCirc
 
 import { RetroWindow } from "@/components/ui/retro-window";
 import { deleteNotificationAction, markAllNotificationsReadAction, markNotificationReadAction } from "@/lib/notifications/actions";
-import { notificationHref, type NotificationItem } from "@/lib/notifications/queries";
+import { notificationHref } from "@/lib/notifications/links";
+import type { NotificationItem } from "@/lib/notifications/queries";
 import { formatDateTime, formatMoney } from "@/lib/format";
 import { createClient } from "@/lib/supabase/client";
 
