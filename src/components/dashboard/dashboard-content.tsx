@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { LinkButton } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/status-badge";
@@ -41,7 +42,9 @@ export function DashboardContent({
   selfTracks: initialSelfTracks,
   userId,
 }: DashboardContentProps) {
+  const router = useRouter();
   const [selfTracks, setSelfTracks] = useState(initialSelfTracks || []);
+  const [hideSelfTrack, setHideSelfTrack] = useState(false);
 
   const handleSelfTrackRefresh = async () => {
     try {
@@ -331,6 +334,7 @@ export function DashboardContent({
       </motion.section>
 
       {/* Personal Tracker (Self Track) Overview Section - Tighter, space-optimized */}
+      {!hideSelfTrack && (
       <motion.section
         className="flex flex-col gap-2 w-full min-w-0"
         initial={{ opacity: 0 }}
@@ -340,6 +344,8 @@ export function DashboardContent({
         <div className="w-full min-w-0">
           <RetroWindow
             title="PERSONAL TRACKER // OFFLINE LEDGER"
+              onClose={() => setHideSelfTrack(true)}
+              onMaximize={() => router.push("/self-track")}
             subtitle="self track summary"
             colorBar="yellow"
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
@@ -471,6 +477,7 @@ export function DashboardContent({
           </RetroWindow>
         </div>
       </motion.section>
+      )}
     </motion.div>
   );
 }

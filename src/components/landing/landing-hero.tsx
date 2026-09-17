@@ -42,7 +42,7 @@ export function LandingHero() {
             <span className="w-4 h-4 bg-[#FFE600] border border-black inline-flex items-center justify-center text-[10px] text-black font-bold">
               ▲
             </span>
-            <span>HERO PROMISE</span>
+            <span>THE PROMISE</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center">

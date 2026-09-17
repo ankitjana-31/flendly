@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { ChevronRight, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -30,6 +31,7 @@ export function AppShell({
   const pathname = usePathname();
   const router = useRouter();
   const [unreadCount, setUnreadCount] = useState(initialUnreadCount);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   useEffect(() => {
     setUnreadCount(initialUnreadCount);
@@ -70,126 +72,153 @@ export function AppShell({
         className="pointer-events-none fixed inset-0 opacity-[0.06] dark:opacity-[0.14] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]"
       />
 
-      {/* FIXED Sidebar — never scrolls with page */}
-      <aside className="fixed left-0 top-0 z-20 hidden h-screen w-64 lg:w-72 flex-col justify-between border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-4 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] select-none overflow-hidden">
-        <div className="flex flex-col gap-3 min-h-0 flex-1">
-          {/* Retro Window Title / Logo */}
-          <div className="px-1 shrink-0">
-            <div className="flex items-center justify-between mb-2.5 border-b-[2px] border-black dark:border-white/20 pb-1.5">
-              <span className="font-mono text-xs font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY</span>
-              <div className="flex items-center gap-1.5">
-                <span className="w-3.5 h-3.5 bg-[#FFE600] border border-black inline-block text-[9px] font-bold text-center leading-none select-none">▲</span>
-                <span className="w-3.5 h-3.5 bg-[#F43F5E] border border-black inline-block text-[9px] font-bold text-center text-white leading-none select-none">✕</span>
+      {/* FIXED Sidebar — Collapsible on ✕ click */}
+      {!isSidebarCollapsed ? (
+        <aside className="fixed left-0 top-0 z-30 hidden h-screen w-64 lg:w-72 flex-col justify-between border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-4 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] select-none overflow-hidden transition-all duration-200">
+          <div className="flex flex-col gap-3 min-h-0 flex-1">
+            {/* Retro Window Title / Logo */}
+            <div className="px-1 shrink-0">
+              <div className="flex items-center justify-between mb-2.5 border-b-[2px] border-black dark:border-white/20 pb-1.5">
+                <span className="font-mono text-xs font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY OS</span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setIsSidebarCollapsed(true)}
+                    className="w-4 h-4 bg-[#FFE600] border border-black inline-flex items-center justify-center text-[9px] font-bold text-black cursor-pointer hover:bg-yellow-300"
+                    title="Collapse Sidebar"
+                  >
+                    _
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsSidebarCollapsed(true)}
+                    className="w-4 h-4 bg-[#F43F5E] border border-black inline-flex items-center justify-center text-[9px] font-bold text-white cursor-pointer hover:bg-red-600"
+                    title="Collapse Sidebar"
+                  >
+                    ✕
+                  </button>
+                </div>
               </div>
+              <Link href="/dashboard" className="flex items-center gap-2.5" prefetch={true}>
+                <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000000] shrink-0">
+                  ⚡
+                </div>
+                <div>
+                  <span className="font-mono text-base lg:text-lg font-black tracking-tight text-black dark:text-white block leading-none">
+                    FLENDLY
+                  </span>
+                  <span className="font-mono text-[9px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block mt-0.5 tracking-wider">
+                    PEER LEDGER REALTIME
+                  </span>
+                </div>
+              </Link>
             </div>
-            <Link href="/dashboard" className="flex items-center gap-2.5" prefetch={true}>
-              <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000000] shrink-0">
-                ⚡
+
+            {/* Navigation Menu */}
+            <nav className="flex flex-col gap-1.5 font-mono mt-0.5 shrink-0">
+              <div className="px-1 text-[10.5px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold">
+                APPLICATIONS
               </div>
-              <div>
-                <span className="font-mono text-base lg:text-lg font-black tracking-tight text-black dark:text-white block leading-none">
-                  FLENDLY
+              {NAV_ITEMS.map((item) => {
+                const isActive = pathname === item.href;
+                const Icon = iconMap[item.icon];
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    prefetch={true}
+                    className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
+                      isActive
+                        ? "bg-[#FFE600] text-black"
+                        : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 shrink-0" />
+                    <span className="uppercase text-xs sm:text-[13px] font-bold">{item.label}</span>
+                  </Link>
+                );
+              })}
+              <Link
+                href="/notifications"
+                prefetch={true}
+                className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                  pathname === "/notifications"
+                    ? "bg-[#FFE600] text-black"
+                    : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+                }`}
+              >
+                <BellIcon className="h-4 w-4 shrink-0" />
+                <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
+                {unreadCount > 0 && (
+                  <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
+                    {unreadCount > 9 ? "9+" : unreadCount}
+                  </span>
+                )}
+              </Link>
+              <Link
+                href="/self-track"
+                prefetch={true}
+                className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                  pathname === "/self-track"
+                    ? "bg-[#FFE600] text-black"
+                    : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+                }`}
+              >
+                <WalletIcon className="h-4 w-4 shrink-0" />
+                <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
+                <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
+                  PRIV
                 </span>
-                <span className="font-mono text-[9px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block mt-0.5 tracking-wider">
-                  PEER LEDGER REALTIME
-                </span>
-              </div>
-            </Link>
+              </Link>
+            </nav>
           </div>
 
-          {/* Navigation Menu */}
-          <nav className="flex flex-col gap-1.5 font-mono mt-0.5 shrink-0">
-            <div className="px-1 text-[10.5px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold">
-              APPLICATIONS
+          {/* User Account & Theme Toggle Footer */}
+          <div className="flex flex-col gap-1.5 border-t-[2px] border-black dark:border-white/20 pt-2.5 font-mono shrink-0">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-[10px] uppercase font-bold text-gray-500">THEME</span>
+              <ThemeToggle />
             </div>
-            {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href;
-              const Icon = iconMap[item.icon];
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  prefetch={true}
-                  className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
-                    isActive
-                      ? "bg-[#FFE600] text-black"
-                      : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
-                  }`}
-                >
-                  <Icon className="h-4 w-4 shrink-0" />
-                  <span className="uppercase text-xs sm:text-[13px] font-bold">{item.label}</span>
-                </Link>
-              );
-            })}
-            <Link
-              href="/notifications"
-              prefetch={true}
-              className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
-                pathname === "/notifications"
-                  ? "bg-[#FFE600] text-black"
-                  : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
-              }`}
-            >
-              <BellIcon className="h-4 w-4 shrink-0" />
-              <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
-              {unreadCount > 0 && (
-                <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000] animate-bounce">
-                  {unreadCount > 9 ? "9+" : unreadCount}
-                </span>
-              )}
-            </Link>
-            <Link
-              href="/self-track"
-              prefetch={true}
-              className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
-                pathname === "/self-track"
-                  ? "bg-[#FFE600] text-black"
-                  : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
-              }`}
-            >
-              <WalletIcon className="h-4 w-4 shrink-0" />
-              <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
-              <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
-                PRIV
-              </span>
-            </Link>
-          </nav>
-        </div>
 
-        {/* User Account & Theme Toggle Footer — pinned to bottom */}
-        <div className="flex flex-col gap-1.5 border-t-[2px] border-black dark:border-white/20 pt-2.5 font-mono shrink-0">
-          <div className="flex items-center justify-between px-1">
-            <span className="text-[10px] uppercase font-bold text-gray-500">THEME</span>
-            <ThemeToggle />
+            <Link
+              href="/profile"
+              prefetch={true}
+              className="flex items-center gap-2.5 border-[2px] border-black bg-white dark:bg-[#1E212D] p-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+            >
+              <div className="h-6 w-6 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
+                <UserIcon className="h-3.5 w-3.5" />
+              </div>
+              <div className="overflow-hidden min-w-0">
+                <span className="block truncate font-bold text-xs sm:text-[13px]">{fullName ?? ("@" + username)}</span>
+                <span className="block text-[9px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none mt-0.5">ONLINE // AUTH</span>
+              </div>
+            </Link>
+            <form action={signOut}>
+              <button
+                type="submit"
+                className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
+              >
+                <LogOutIcon className="h-3.5 w-3.5" />
+                <span className="uppercase text-xs font-bold">Sign Out</span>
+              </button>
+            </form>
           </div>
+        </aside>
+      ) : (
+        /* Collapsed Floating Re-Open Button for PC */
+        <button
+          type="button"
+          onClick={() => setIsSidebarCollapsed(false)}
+          className="fixed left-3 top-3 z-50 hidden md:flex items-center gap-1.5 px-3 py-2 border-[2.5px] border-black bg-[#FFE600] text-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 cursor-pointer uppercase transition-all"
+          title="Expand Sidebar"
+        >
+          <span>⚡ FLENDLY</span>
+          <ChevronRight className="w-3.5 h-3.5 stroke-[3]" />
+        </button>
+      )}
 
-          <Link
-            href="/profile"
-            prefetch={true}
-            className="flex items-center gap-2.5 border-[2px] border-black bg-white dark:bg-[#1E212D] p-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
-          >
-            <div className="h-6 w-6 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
-              <UserIcon className="h-3.5 w-3.5" />
-            </div>
-            <div className="overflow-hidden min-w-0">
-              <span className="block truncate font-bold text-xs sm:text-[13px]">{fullName ?? ("@" + username)}</span>
-              <span className="block text-[9px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none mt-0.5">ONLINE // AUTH</span>
-            </div>
-          </Link>
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
-            >
-              <LogOutIcon className="h-3.5 w-3.5" />
-              <span className="uppercase text-xs font-bold">Sign Out</span>
-            </button>
-          </form>
-        </div>
-      </aside>
-
-      {/* Spacer for fixed sidebar — pushes main content right */}
-      <div className="hidden md:block w-64 lg:w-72 shrink-0" />
+      {/* Spacer for fixed sidebar */}
+      {!isSidebarCollapsed && <div className="hidden md:block w-64 lg:w-72 shrink-0" />}
 
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0 overflow-x-hidden">

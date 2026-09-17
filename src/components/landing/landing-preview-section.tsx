@@ -290,7 +290,7 @@ export function LandingPreviewSection() {
                   <span className="text-xs font-bold text-[#059669] dark:text-[#2DD4BF] uppercase">Lent Offline</span>
                   <span className="text-xs font-bold text-black dark:text-white">₹3,500</span>
                 </div>
-                <h5 className="font-bold text-sm text-black dark:text-white">Shanaya (Concert Tickets)</h5>
+                <h5 className="font-bold text-sm text-black dark:text-white">Ashok (Concert Tickets)</h5>
                 <p className="text-xs text-gray-600 dark:text-gray-400">Note: Told me she will pay via UPI next weekend</p>
                 <div className="pt-2 flex justify-between items-center text-xs border-t border-black/10 dark:border-white/10">
                   <span className="text-[#059669] dark:text-[#2DD4BF] font-bold">₹1,500 repaid</span>

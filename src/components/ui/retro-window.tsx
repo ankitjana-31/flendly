@@ -16,6 +16,7 @@ export interface RetroWindowProps {
   colorBar?: "blue" | "yellow" | "pink" | "green" | "dark" | "default";
   controlsStyle?: "win95" | "traffic";
   onClose?: () => void;
+  onMaximize?: () => void;
   defaultMinimized?: boolean;
 }
 
@@ -31,7 +32,11 @@ export function RetroWindow({
   glow = false,
   colorBar = "default",
   controlsStyle = "win95",
+  onClose,
+  onMaximize,
 }: RetroWindowProps) {
+  const [isMinimized, setIsMinimized] = useState(false);
+
   // Title bar colors based on Stitch project styling
   const titleBarStyles = {
     blue: "bg-[#2563EB] text-white border-b-[2.5px] border-black dark:border-white/70",
@@ -75,9 +80,21 @@ export function RetroWindow({
         <div className="flex items-center gap-1.5 sm:gap-2 overflow-hidden min-w-0 flex-1 mr-2">
           {controlsStyle === "traffic" ? (
             <div className="flex items-center gap-1.5 mr-2 shrink-0">
-              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 inline-block" />
-              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block" />
-              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block" />
+              <button
+                type="button"
+                onClick={onClose}
+                className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 inline-block cursor-pointer hover:opacity-80"
+              />
+              <button
+                type="button"
+                onClick={() => setIsMinimized(!isMinimized)}
+                className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block cursor-pointer hover:opacity-80"
+              />
+              <button
+                type="button"
+                onClick={onMaximize}
+                className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block cursor-pointer hover:opacity-80"
+              />
             </div>
           ) : (
             <span className="inline-flex h-4 w-4 sm:h-4.5 sm:w-4.5 items-center justify-center border border-black bg-[#FFE600] text-[9px] sm:text-[10px] font-mono font-bold text-black shadow-sm select-none shrink-0">
@@ -101,30 +118,47 @@ export function RetroWindow({
           )}
         </div>
 
-        {/* Right side: Static Retro Win95 Window Controls or custom actions */}
+        {/* Right side: Interactive Retro Win95 Window Controls */}
         <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           {headerRight}
 
           {controlsStyle === "win95" && (
-            <div className="hidden sm:flex items-center gap-1 ml-1.5 select-none" aria-hidden="true">
-              <span className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-xs font-mono font-black text-black shadow-[1px_1px_0_0_#000]">
+            <div className="hidden sm:flex items-center gap-1 ml-1.5 select-none">
+              <button
+                type="button"
+                onClick={() => setIsMinimized(!isMinimized)}
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-xs font-mono font-black text-black shadow-[1px_1px_0_0_#000] hover:bg-gray-200 cursor-pointer active:translate-y-0.5"
+                title={isMinimized ? "Restore" : "Minimize"}
+              >
                 _
-              </span>
-              <span className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-[11px] font-mono font-black text-black shadow-[1px_1px_0_0_#000]">
+              </button>
+              <button
+                type="button"
+                onClick={onMaximize}
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-[11px] font-mono font-black text-black shadow-[1px_1px_0_0_#000] hover:bg-gray-200 cursor-pointer active:translate-y-0.5"
+                title="Maximize / Open Page"
+              >
                 □
-              </span>
-              <span className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-[#F43F5E] text-[11px] font-mono font-black text-white shadow-[1px_1px_0_0_#000]">
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-[#F43F5E] text-[11px] font-mono font-black text-white shadow-[1px_1px_0_0_#000] hover:bg-red-600 cursor-pointer active:translate-y-0.5"
+                title="Close Window"
+              >
                 ✕
-              </span>
+              </button>
             </div>
           )}
         </div>
       </div>
 
       {/* Content Area */}
-      <div className={cn("p-4 sm:p-5 text-gray-900 dark:text-gray-100", contentClassName)}>
-        {children}
-      </div>
+      {!isMinimized && (
+        <div className={cn("p-4 sm:p-5 text-gray-900 dark:text-gray-100", contentClassName)}>
+          {children}
+        </div>
+      )}
     </div>
   );
 }
