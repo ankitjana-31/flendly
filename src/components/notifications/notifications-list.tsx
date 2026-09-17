@@ -3,15 +3,15 @@
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
-import { Bell, CheckCheck, Clock, ArrowUpRight, ArrowDownLeft, Wallet, CheckCircle2, AlertTriangle, ShieldCheck } from "lucide-react";
+import { Bell, CheckCheck, Clock, ArrowUpRight, ArrowDownLeft, Wallet, CheckCircle2, AlertTriangle, ShieldCheck, LoaderCircle, X, type LucideIcon } from "lucide-react";
 
 import { RetroWindow } from "@/components/ui/retro-window";
-import { markAllNotificationsReadAction, markNotificationReadAction } from "@/lib/notifications/actions";
-import type { NotificationItem } from "@/lib/notifications/queries";
+import { deleteNotificationAction, markAllNotificationsReadAction, markNotificationReadAction } from "@/lib/notifications/actions";
+import { notificationHref, type NotificationItem } from "@/lib/notifications/queries";
 import { formatDateTime, formatMoney } from "@/lib/format";
 import { createClient } from "@/lib/supabase/client";
 
-const TYPE_CONFIG: Record<string, { label: string; icon: any; color: string }> = {
+const TYPE_CONFIG: Record<string, { label: string; icon: LucideIcon; color: string }> = {
   new_request: { label: "New Peer Proposal", icon: ArrowUpRight, color: "bg-[#FFE600] text-black" },
   counter_offer: { label: "Counter Proposal Submitted", icon: ArrowDownLeft, color: "bg-[#FFE600] text-black" },
   offer_accepted: { label: "Proposal Accepted & Loan Created", icon: CheckCircle2, color: "bg-[#2DD4BF] text-black" },
@@ -45,6 +45,8 @@ export function NotificationsList({ notifications: initialNotifications }: { not
   const router = useRouter();
   const [notifications, setNotifications] = useState<NotificationItem[]>(initialNotifications);
   const [isPending, startTransition] = useTransition();
+  const [openingId, setOpeningId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
   // Sync state if server props change
@@ -73,6 +75,13 @@ export function NotificationsList({ notifications: initialNotifications }: { not
           setNotifications((prev) => prev.map((n) => (n.id === updated.id ? updated : n)));
         }
       )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "notifications" },
+        (payload) => {
+          setNotifications((prev) => prev.filter((n) => n.id !== payload.old.id));
+        }
+      )
       .subscribe();
 
     // Fallback polling every 8 seconds for smooth background refresh
@@ -99,6 +108,27 @@ export function NotificationsList({ notifications: initialNotifications }: { not
     });
   };
 
+  const handleOpen = (notification: NotificationItem) => {
+    setNotifications((prev) =>
+      prev.map((item) => (item.id === notification.id ? { ...item, read_at: new Date().toISOString() } : item))
+    );
+    setOpeningId(notification.id);
+    void markNotificationReadAction(notification);
+    startTransition(() => {
+      router.push(notificationHref(notification));
+    });
+  };
+
+  const handleDelete = async (notificationId: string) => {
+    const previous = notifications;
+    setDeletingId(notificationId);
+    setNotifications((current) => current.filter((notification) => notification.id !== notificationId));
+
+    const result = await deleteNotificationAction(notificationId);
+    if (result.error) setNotifications(previous);
+    setDeletingId(null);
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
       {/* Header */}
@@ -106,7 +136,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-[#2563EB] dark:text-[#60A5FA]">
             <span>[REALTIME_LOGS]</span>
-            <span className="text-gray-400">//</span>
+            <span className="text-gray-400">{"//"}</span>
             <span className="text-gray-600 dark:text-gray-300 uppercase">SYSTEM NOTIFICATIONS</span>
             <span className="inline-block w-2 h-2 rounded-full bg-[#059669] animate-pulse ml-1" title="Realtime socket connected" />
           </div>
@@ -176,17 +206,17 @@ export function NotificationsList({ notifications: initialNotifications }: { not
                     variants={shouldReduceMotion ? undefined : itemVariants}
                     layout={!shouldReduceMotion}
                   >
-                    <button
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      aria-busy={openingId === n.id}
                       className="w-full text-left cursor-pointer group"
-                      onClick={() => {
-                        // Mark locally read immediately
-                        setNotifications((prev) =>
-                          prev.map((item) => (item.id === n.id ? { ...item, read_at: new Date().toISOString() } : item))
-                        );
-                        startTransition(async () => {
-                          const { href } = await markNotificationReadAction(n);
-                          router.push(href);
-                        });
+                      onClick={() => handleOpen(n)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          handleOpen(n);
+                        }
                       }}
                     >
                       <div
@@ -239,11 +269,30 @@ export function NotificationsList({ notifications: initialNotifications }: { not
                             </span>
                           )}
                           <span className="text-xs font-bold text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
-                            VIEW →
+                            {openingId === n.id ? (
+                              <span className="inline-flex items-center gap-1 text-[#2563EB]">
+                                <LoaderCircle className="h-3.5 w-3.5 animate-spin" /> OPENING...
+                              </span>
+                            ) : (
+                              "VIEW →"
+                            )}
                           </span>
+                          <button
+                            type="button"
+                            aria-label="Delete notification"
+                            title="Delete notification"
+                            disabled={deletingId === n.id}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              void handleDelete(n.id);
+                            }}
+                            className="inline-flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#F43F5E] text-white shadow-[1px_1px_0_0_#000] hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
+                          >
+                            {deletingId === n.id ? <LoaderCircle className="h-3.5 w-3.5 animate-spin" /> : <X className="h-3.5 w-3.5" />}
+                          </button>
                         </div>
                       </div>
-                    </button>
+                    </div>
                   </motion.div>
                 );
               })}

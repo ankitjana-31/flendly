@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, ArrowDownLeft, Calendar, FileText, CheckCircle
 import { RetroWindow } from "@/components/ui/retro-window";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { RequestActions } from "@/components/negotiation/request-actions";
+import { NotificationDetailWindow } from "@/components/notifications/notification-detail-window";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { getRequestDetail } from "@/lib/requests/queries";
 import { formatMoney, formatDateTime, formatDate, interestSummary } from "@/lib/format";
@@ -133,12 +134,9 @@ export default async function RequestDetailPage({
       )}
 
       {/* Negotiation History Window */}
-      <RetroWindow
+      <NotificationDetailWindow
         title="NEGOTIATION AUDIT TRAIL"
         subtitle={`${request.offers.length} recorded proposals`}
-        colorBar="blue"
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
-        contentClassName="p-5 sm:p-6"
       >
         <div className="space-y-3">
           {request.offers.map((offer, idx) => {
@@ -181,7 +179,7 @@ export default async function RequestDetailPage({
             );
           })}
         </div>
-      </RetroWindow>
+      </NotificationDetailWindow>
     </div>
   );
 }

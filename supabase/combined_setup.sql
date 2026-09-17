@@ -350,6 +350,7 @@ grant select on public.loans to authenticated;
 grant select on public.payments to authenticated;
 grant select on public.notifications to authenticated;
 grant update (read_at) on public.notifications to authenticated;
+grant delete on public.notifications to authenticated;
 
 create policy loans_select_participant
   on public.loans
@@ -375,6 +376,12 @@ create policy notifications_mark_read_own
   to authenticated
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
+
+create policy notifications_delete_own
+  on public.notifications
+  for delete
+  to authenticated
+  using (auth.uid() = user_id);
 create or replace function public.get_profile_visible(target_id uuid)
 returns table (
   id uuid,

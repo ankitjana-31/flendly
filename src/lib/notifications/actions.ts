@@ -28,3 +28,14 @@ export async function markAllNotificationsReadAction() {
   revalidatePath("/notifications");
   revalidatePath("/dashboard");
 }
+
+export async function deleteNotificationAction(notificationId: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("notifications").delete().eq("id", notificationId);
+
+  if (error) return { error: error.message };
+
+  revalidatePath("/notifications");
+  revalidatePath("/dashboard");
+  return { success: true };
+}
