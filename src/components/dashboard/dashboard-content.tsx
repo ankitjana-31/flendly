@@ -86,8 +86,8 @@ export function DashboardContent({
       >
         <div className="flex items-center gap-2">
           <span className="font-mono text-xs text-teal-600 dark:text-teal-400 font-bold">[SESSION ACTIVE]</span>
-          <span className="text-gray-400 font-mono text-xs">//</span>
-          <span className="font-mono text-xs text-gray-600 dark:text-gray-300 font-bold uppercase tracking-wider">FLENDLY MASTER DASHBOARD</span>
+          <span className="hidden sm:inline text-gray-400 font-mono text-xs">//</span>
+          <span className="hidden sm:inline font-mono text-xs text-gray-600 dark:text-gray-300 font-bold uppercase tracking-wider">FLENDLY MASTER DASHBOARD</span>
         </div>
         <h1 className="font-mono text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-black dark:text-white truncate">
           Welcome back, {profile?.full_name ?? ("@" + profile?.username)}
@@ -103,7 +103,7 @@ export function DashboardContent({
       >
         <div className="w-full min-w-0">
           <RetroWindow
-            title="RECEIVABLES // INCOMING"
+            title={<><span>RECEIVABLES</span><span className="hidden sm:inline"> // INCOMING</span></>}
             subtitle="owed to you"
             colorBar="green"
             glow={aggregates.totalLent > 0}
@@ -128,7 +128,7 @@ export function DashboardContent({
                 {formatMoney(aggregates.totalLent)}
               </motion.p>
               <p className="mt-1 font-mono text-xs text-gray-600 dark:text-gray-400 font-bold">
-                across {aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
+                <span className="hidden sm:inline">across </span>{aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
               </p>
             </div>
           </RetroWindow>
@@ -136,7 +136,7 @@ export function DashboardContent({
 
         <div className="w-full min-w-0">
           <RetroWindow
-            title="PAYABLES // OUTGOING"
+            title={<><span>PAYABLES</span><span className="hidden sm:inline"> // OUTGOING</span></>}
             subtitle="you owe"
             colorBar="pink"
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#F43F5E]"
@@ -160,7 +160,7 @@ export function DashboardContent({
                 {formatMoney(aggregates.totalBorrowed)}
               </motion.p>
               <p className="mt-1 font-mono text-xs text-gray-600 dark:text-gray-400 font-bold">
-                across {aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
+                <span className="hidden sm:inline">across </span>{aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
               </p>
             </div>
           </RetroWindow>
@@ -171,7 +171,7 @@ export function DashboardContent({
       {hasCompletedDeals && aggregates.overdue.length > 0 && (
         <div className="w-full min-w-0">
           <RetroWindow
-            title="OVERDUE ALERTS // ACTION REQUIRED"
+            title={<><span>OVERDUE ALERTS</span><span className="hidden sm:inline"> // ACTION REQUIRED</span></>}
             subtitle="past due date"
             colorBar="pink"
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
@@ -194,7 +194,7 @@ export function DashboardContent({
                         {loan.counterparty.full_name ?? ("@" + loan.counterparty.username)} ·{" "}
                         <span className="text-[#F43F5E] font-black">{formatMoney(loan.ledger?.outstanding)}</span>
                       </span>
-                      <span className="text-[11px] text-gray-500 block truncate">Click to view deal details and repayment ledger</span>
+                      <span className="hidden sm:block text-[11px] text-gray-500 truncate">Click to view deal details and repayment ledger</span>
                     </div>
                     <span className="text-[11px] sm:text-xs font-black bg-[#F43F5E] text-white px-2 py-0.5 border border-black shadow-[1px_1px_0_0_#000] uppercase shrink-0 self-start sm:self-auto">
                       DUE {formatDate(loan.due_date)}
@@ -211,7 +211,7 @@ export function DashboardContent({
       {hasCompletedDeals && aggregates.upcoming.length > 0 && (
         <div className="w-full min-w-0">
           <RetroWindow
-            title="UPCOMING DUE // TIMELINE"
+            title={<><span>UPCOMING DUE</span><span className="hidden sm:inline"> // TIMELINE</span></>}
             subtitle="due soon"
             colorBar="yellow"
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
@@ -248,7 +248,7 @@ export function DashboardContent({
       {hasCompletedDeals && (
         <div className="w-full min-w-0">
           <RetroWindow
-            title="LEDGER TOTALS // LIFETIME SUMMARY"
+            title={<><span>LEDGER TOTALS</span><span className="hidden sm:inline"> // LIFETIME SUMMARY</span></>}
             subtitle="aggregate view"
             colorBar="blue"
             className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"

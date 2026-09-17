@@ -7,7 +7,8 @@ import { RetroWindow } from "@/components/ui/retro-window";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { listRequests, type RequestListItem } from "@/lib/requests/queries";
 import { formatMoney, interestSummary } from "@/lib/format";
-import { Inbox, Send, Plus, ArrowUpRight, ArrowDownLeft } from "lucide-react";
+import { Plus, ArrowUpRight, ArrowDownLeft } from "lucide-react";
+import { RequestsTabs } from "@/components/requests/requests-tabs";
 
 function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId: string }) {
   const other = request.sender.id === viewerId ? request.receiver : request.sender;
@@ -70,8 +71,8 @@ export default async function RequestsPage({
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-teal-600 dark:text-teal-400">
             <span>[PEER_NEGOTIATIONS]</span>
-            <span className="text-gray-400">//</span>
-            <span className="text-gray-600 dark:text-gray-300 uppercase">PROPOSALS & AGREEMENTS</span>
+            <span className="hidden sm:inline text-gray-400">//</span>
+            <span className="hidden sm:inline text-gray-600 dark:text-gray-300 uppercase">PROPOSALS & AGREEMENTS</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-black dark:text-white tracking-tight mt-1">
             Requests & Agreements
@@ -86,7 +87,12 @@ export default async function RequestsPage({
 
       {/* Main Window */}
       <RetroWindow
-        title={`REQUESTS // ${activeTab.toUpperCase()}`}
+        title={
+          <>
+            <span>REQUESTS</span>
+            <span className="hidden sm:inline"> // {activeTab.toUpperCase()}</span>
+          </>
+        }
         subtitle={`${rows.length} total entries`}
         colorBar={activeTab === "incoming" ? "blue" : "yellow"}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
@@ -98,31 +104,7 @@ export default async function RequestsPage({
         }
       >
         {/* Tab Controls */}
-        <div className="flex items-center gap-2 mb-6 border-b-[2px] border-black/10 dark:border-white/10 pb-4">
-          <Link
-            href="/requests?tab=incoming"
-            className={`flex items-center gap-2 px-4 py-2 border-[2px] border-black font-mono text-xs sm:text-sm font-bold uppercase transition-all ${
-              activeTab === "incoming"
-                ? "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
-                : "bg-[#FAF8F5] dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000] hover:bg-gray-100"
-            }`}
-          >
-            <Inbox className="w-4 h-4" />
-            <span>INCOMING ({incoming.length})</span>
-          </Link>
-
-          <Link
-            href="/requests?tab=outgoing"
-            className={`flex items-center gap-2 px-4 py-2 border-[2px] border-black font-mono text-xs sm:text-sm font-bold uppercase transition-all ${
-              activeTab === "outgoing"
-                ? "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
-                : "bg-[#FAF8F5] dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000] hover:bg-gray-100"
-            }`}
-          >
-            <Send className="w-4 h-4" />
-            <span>SENT ({outgoing.length})</span>
-          </Link>
-        </div>
+        <RequestsTabs incomingCount={incoming.length} outgoingCount={outgoing.length} activeTab={activeTab} />
 
         {/* Requests List */}
         {rows.length === 0 ? (

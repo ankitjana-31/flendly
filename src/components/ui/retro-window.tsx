@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export interface RetroWindowProps {
-  title?: string;
+  title?: React.ReactNode;
   subtitle?: string;
   icon?: React.ReactNode;
   children: React.ReactNode;
