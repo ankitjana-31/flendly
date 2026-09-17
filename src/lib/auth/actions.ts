@@ -1,19 +1,32 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 import { createClient } from "@/lib/supabase/server";
+import { env } from "@/lib/env";
 
-function getBaseUrl() {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+async function getBaseUrl() {
+  const requestHeaders = await headers();
+  const forwardedHost = requestHeaders.get("x-forwarded-host");
+  const host = forwardedHost ?? requestHeaders.get("host");
+
+  if (host) {
+    const forwardedProto = requestHeaders.get("x-forwarded-proto");
+    const protocol = forwardedProto ?? (host.startsWith("localhost") ? "http" : "https");
+    return `${protocol}://${host}`;
+  }
+
+  return env.siteUrl ?? "http://localhost:3000";
 }
 
 export async function signInWithGoogle() {
   const supabase = await createClient();
+  const baseUrl = await getBaseUrl();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${getBaseUrl()}/auth/callback`,
+      redirectTo: `${baseUrl}/auth/callback`,
     },
   });
 
