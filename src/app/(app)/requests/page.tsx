@@ -64,6 +64,25 @@ export default async function RequestsPage({
   const { incoming, outgoing } = await listRequests(user.id);
   const rows = activeTab === "incoming" ? incoming : outgoing;
 
+  const renderRows = (requestRows: RequestListItem[], emptyMessage: string, emptyDescription: string) =>
+    requestRows.length === 0 ? (
+      <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
+        <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 text-black font-bold">
+          ⚡
+        </div>
+        <h3 className="font-mono text-base font-bold text-black dark:text-white uppercase">{emptyMessage}</h3>
+        <p className="font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-md mx-auto">
+          {emptyDescription}
+        </p>
+      </div>
+    ) : (
+      <div className="flex flex-col gap-3">
+        {requestRows.map((request) => (
+          <RequestRow key={request.id} request={request} viewerId={user.id} />
+        ))}
+      </div>
+    );
+
   return (
     <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
       {/* Top Section Header */}
@@ -104,30 +123,13 @@ export default async function RequestsPage({
         }
       >
         {/* Tab Controls */}
-        <RequestsTabs incomingCount={incoming.length} outgoingCount={outgoing.length} activeTab={activeTab} />
-
-        {/* Requests List */}
-        {rows.length === 0 ? (
-          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
-            <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 text-black font-bold">
-              ⚡
-            </div>
-            <h3 className="font-mono text-base font-bold text-black dark:text-white uppercase">
-              {activeTab === "incoming" ? "No incoming requests" : "No sent requests"}
-            </h3>
-            <p className="font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-md mx-auto">
-              {activeTab === "incoming"
-                ? "You don't have any pending requests from friends. You can create a new request with the button above."
-                : "You haven't sent any loan or borrow requests yet."}
-            </p>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-3">
-            {rows.map((r) => (
-              <RequestRow key={r.id} request={r} viewerId={user.id} />
-            ))}
-          </div>
-        )}
+        <RequestsTabs
+          incomingCount={incoming.length}
+          outgoingCount={outgoing.length}
+          activeTab={activeTab}
+          incomingContent={renderRows(incoming, "No incoming requests", "You don't have any pending requests from friends. You can create a new request with the button above.")}
+          outgoingContent={renderRows(outgoing, "No sent requests", "You haven't sent any loan or borrow requests yet.")}
+        />
       </RetroWindow>
     </div>
   );

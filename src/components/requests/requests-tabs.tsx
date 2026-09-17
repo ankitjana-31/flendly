@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import { Inbox, LoaderCircle, Send } from "lucide-react";
 
-export function RequestsTabs({ incomingCount, outgoingCount, activeTab }: {
+export function RequestsTabs({ incomingCount, outgoingCount, activeTab: initialTab, incomingContent, outgoingContent }: {
   incomingCount: number;
   outgoingCount: number;
   activeTab: "incoming" | "outgoing";
+  incomingContent: React.ReactNode;
+  outgoingContent: React.ReactNode;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
+  const [activeTab, setActiveTab] = useState(initialTab);
 
   useEffect(() => {
     router.prefetch(`${pathname}?tab=incoming`);
@@ -20,12 +24,14 @@ export function RequestsTabs({ incomingCount, outgoingCount, activeTab }: {
 
   const selectTab = (tab: "incoming" | "outgoing") => {
     if (tab === activeTab) return;
+    setActiveTab(tab);
     startTransition(() => router.push(`${pathname}?tab=${tab}`));
   };
 
   return (
-    <div className="flex items-center gap-2 mb-4 sm:mb-6 border-b-[2px] border-black/10 dark:border-white/10 pb-3 sm:pb-4">
-      <button
+    <>
+      <div className="flex items-center gap-2 mb-4 sm:mb-6 border-b-[2px] border-black/10 dark:border-white/10 pb-3 sm:pb-4">
+        <button
         type="button"
         onClick={() => selectTab("incoming")}
         disabled={isPending}
@@ -38,9 +44,9 @@ export function RequestsTabs({ incomingCount, outgoingCount, activeTab }: {
       >
         <Inbox className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         <span>INCOMING ({incomingCount})</span>
-      </button>
+        </button>
 
-      <button
+        <button
         type="button"
         onClick={() => selectTab("outgoing")}
         disabled={isPending}
@@ -53,9 +59,21 @@ export function RequestsTabs({ incomingCount, outgoingCount, activeTab }: {
       >
         <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         <span>SENT ({outgoingCount})</span>
-      </button>
+        </button>
 
-      {isPending && <LoaderCircle className="ml-auto h-4 w-4 animate-spin text-[#2563EB]" aria-label="Loading requests" />}
-    </div>
+        {isPending && <LoaderCircle className="ml-auto h-4 w-4 animate-spin text-[#2563EB]" aria-label="Syncing requests" />}
+      </div>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, x: activeTab === "incoming" ? -8 : 8 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: activeTab === "incoming" ? 8 : -8 }}
+          transition={{ duration: 0.16, ease: "easeOut" }}
+        >
+          {activeTab === "incoming" ? incomingContent : outgoingContent}
+        </motion.div>
+      </AnimatePresence>
+    </>
   );
 }
