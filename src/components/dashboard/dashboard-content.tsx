@@ -108,7 +108,7 @@ export function DashboardContent({
             colorBar="green"
             glow={aggregates.totalLent > 0}
             className="bg-white max-sm:bg-[#2DD4BF] dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#059669]"
-            contentClassName="p-4 sm:p-5"
+            contentClassName="p-4 sm:p-5 max-sm:text-black"
             headerRight={
               <span className="px-2 sm:px-2.5 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-[11px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
                 +INCOMING
@@ -116,18 +116,18 @@ export function DashboardContent({
             }
           >
             <div>
-              <p className="font-mono text-xs sm:text-sm text-gray-700 dark:text-gray-300 font-black uppercase tracking-wider">
+              <p className="font-mono text-xs sm:text-sm text-gray-700 dark:text-gray-300 max-sm:text-black font-black uppercase tracking-wider">
                 You&apos;re owed
               </p>
               <motion.p
-                className="mt-1 font-mono text-3xl sm:text-4xl lg:text-5xl font-black text-[#059669] dark:text-[#2DD4BF] tracking-tight"
+                className="mt-1 font-mono text-3xl sm:text-4xl lg:text-5xl font-black text-[#059669] dark:text-[#2DD4BF] max-sm:text-black tracking-tight"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
               >
                 {formatMoney(aggregates.totalLent)}
               </motion.p>
-              <p className="mt-1 font-mono text-xs text-gray-600 dark:text-gray-400 font-bold">
+              <p className="mt-1 font-mono text-xs text-gray-600 dark:text-gray-400 max-sm:text-black/80 font-bold">
                 <span className="hidden sm:inline">across </span>{aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
               </p>
             </div>
@@ -140,7 +140,7 @@ export function DashboardContent({
             subtitle="you owe"
             colorBar="pink"
             className="bg-white max-sm:bg-[#F43F5E] dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#F43F5E]"
-            contentClassName="p-4 sm:p-5"
+            contentClassName="p-4 sm:p-5 max-sm:text-white"
             headerRight={
               <span className="px-2 sm:px-2.5 py-0.5 border border-black bg-[#F43F5E] text-white font-mono text-[11px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
                 -OUTGOING
@@ -148,18 +148,18 @@ export function DashboardContent({
             }
           >
             <div>
-              <p className="font-mono text-xs sm:text-sm text-gray-700 dark:text-gray-300 font-black uppercase tracking-wider">
+              <p className="font-mono text-xs sm:text-sm text-gray-700 dark:text-gray-300 max-sm:text-white font-black uppercase tracking-wider">
                 You owe
               </p>
               <motion.p
-                className="mt-1 font-mono text-3xl sm:text-4xl lg:text-5xl font-black text-[#F43F5E] tracking-tight"
+                className="mt-1 font-mono text-3xl sm:text-4xl lg:text-5xl font-black text-[#F43F5E] max-sm:text-white tracking-tight"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.25, type: "spring", stiffness: 120 }}
               >
                 {formatMoney(aggregates.totalBorrowed)}
               </motion.p>
-              <p className="mt-1 font-mono text-xs text-gray-600 dark:text-gray-400 font-bold">
+              <p className="mt-1 font-mono text-xs text-gray-600 dark:text-gray-400 max-sm:text-white/90 font-bold">
                 <span className="hidden sm:inline">across </span>{aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
               </p>
             </div>

@@ -264,8 +264,8 @@ export function AppShell({
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0 overflow-x-hidden">
         {/* Mobile Header in Retro Style */}
-        <header className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-4 py-2.5 md:hidden sticky top-0 z-40">
-          <Link href="/dashboard" className="flex items-center gap-2">
+        <header className="relative flex h-14 items-center justify-center border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-4 md:hidden sticky top-0 z-40">
+          <Link href="/dashboard" className="flex items-center gap-2" prefetch={true}>
             <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black shadow-[1px_1px_0_0_#000]">
               ⚡
             </div>
