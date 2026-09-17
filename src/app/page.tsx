@@ -6,6 +6,7 @@ import { LandingHero } from "@/components/landing/landing-hero";
 import { LandingAuditSection } from "@/components/landing/landing-audit-section";
 import { LandingPreviewSection } from "@/components/landing/landing-preview-section";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LegalFooterLinks } from "@/components/legal/legal-footer-links";
 
 export default async function Home() {
   const { user, profile } = await getCurrentUserProfile();
@@ -97,9 +98,12 @@ export default async function Home() {
             </div>
             <span className="font-bold tracking-wider text-black dark:text-white uppercase">FLENDLY</span>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 text-center sm:text-right font-semibold">
-            FLENDLY, all rights reserved under NEXCHARIS, 2026.
-          </p>
+          <div className="flex flex-col items-center gap-2 sm:items-end">
+            <LegalFooterLinks />
+            <p className="text-gray-600 dark:text-gray-400 text-center sm:text-right font-semibold">
+              FLENDLY, all rights reserved under NEXCHARIS, 2026.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
