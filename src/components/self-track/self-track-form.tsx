@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Plus, X, ArrowUpRight, ArrowDownLeft, FileText, Calendar, User, IndianRupee, Sparkles } from "lucide-react";
@@ -13,6 +14,7 @@ export interface SelfTrackFormProps {
 }
 
 export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFormProps) {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [type, setType] = useState<"lent" | "borrowed">("lent");
   const [personName, setPersonName] = useState("");
@@ -58,6 +60,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
       setRecordDate(new Date().toISOString().split("T")[0]);
       setNote("");
       setSuccess(true);
+      router.refresh();
 
       setTimeout(() => {
         setSuccess(false);

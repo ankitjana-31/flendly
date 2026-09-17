@@ -19,7 +19,7 @@ export default async function SelfTrackPage() {
   const netOutstanding = stats.activeLent - stats.activeBorrowed;
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16">
+    <div className="flex flex-col gap-4 sm:gap-6 w-full max-w-[1440px] mx-auto px-3 sm:px-6 md:px-8 py-3 sm:py-6 pb-16">
       {/* Retro OS Header Banner */}
       <RetroWindow
         title="PRIVATE LEDGER // OFFLINE TRACKER"
@@ -27,7 +27,7 @@ export default async function SelfTrackPage() {
         colorBar="blue"
         glow={true}
         className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB]"
-        contentClassName="p-5 sm:p-6"
+        contentClassName="p-3 sm:p-6"
         headerRight={
           <div className="flex items-center gap-1.5 px-2 py-0.5 border border-black bg-[#FFE600] text-black font-mono text-[10px] font-black uppercase">
             <ShieldCheck className="w-3.5 h-3.5" />
@@ -41,7 +41,7 @@ export default async function SelfTrackPage() {
               <span>🔒</span>
               <span>STANDALONE VAULT</span>
             </div>
-            <h1 className="font-mono text-2xl sm:text-3xl font-black tracking-tight text-black dark:text-white uppercase">
+            <h1 className="font-mono text-xl sm:text-3xl font-black tracking-tight text-black dark:text-white uppercase">
               Personal Cash & Offline Ledger
             </h1>
             <p className="font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
@@ -59,7 +59,7 @@ export default async function SelfTrackPage() {
       </RetroWindow>
 
       {/* 4 Neo-Brutalist Summary Stat Windows */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5">
         {/* Stat 1: Money Lent */}
         <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#10B981] flex flex-col justify-between">
           <div className="flex items-center justify-between">
@@ -140,14 +140,14 @@ export default async function SelfTrackPage() {
       </div>
 
       {/* Main Grid: Form on Left + Records List on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
         {/* Left Column: Form (only sticky on large desktop screens to prevent mobile overlap) */}
         <div className="lg:col-span-5 lg:sticky lg:top-20 relative z-10">
           <SelfTrackForm />
         </div>
 
         {/* Right Column: Records */}
-        <div className="lg:col-span-7 space-y-4 relative z-0">
+        <div className="lg:col-span-7 space-y-3 sm:space-y-4 relative z-0">
           <div className="flex items-center justify-between border-b-[2px] border-black dark:border-white/30 pb-2">
             <div className="flex items-center gap-2">
               <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">[ENTRIES]</span>

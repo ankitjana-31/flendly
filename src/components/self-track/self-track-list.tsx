@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Trash2, 
@@ -57,6 +57,10 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
 
   // Toast state
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+
+  useEffect(() => {
+    setRecords(initialRecords);
+  }, [initialRecords]);
 
   const showToast = (message: string, type: "success" | "error") => {
     setToast({ message, type });

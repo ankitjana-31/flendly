@@ -7,8 +7,8 @@ export function FinalCTAFooter() {
   return (
     <section className="w-full max-w-6xl mx-auto z-10 font-mono">
       <RetroWindow
-        title="COMMENCE OPERATION // STOP THE OVERTHINKING"
-        subtitle="FINAL DISPATCH"
+        title="START WITH FLENDLY"
+        subtitle="FINAL STEP"
         colorBar="pink"
         glow={true}
         className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FF2E93]"

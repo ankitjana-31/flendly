@@ -54,6 +54,12 @@ export default function LearnMorePage() {
             >
               SELF TRACK
             </Link>
+            <Link
+              href="/learn-more/lending"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+            >
+              LEND MONEY
+            </Link>
           </nav>
 
           <div className="flex items-center gap-2.5">

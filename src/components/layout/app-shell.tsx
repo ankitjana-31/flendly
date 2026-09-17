@@ -96,7 +96,7 @@ export function AppShell({
             {/* Retro Window Title / Logo */}
             <div className="px-1 shrink-0">
               <div className="flex items-center justify-between mb-2.5 border-b-[2px] border-black dark:border-white/20 pb-1.5">
-                <span className="font-mono text-xs font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY OS</span>
+                <span className="font-mono text-xs font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY ENVIRONMENT</span>
                 <div className="flex items-center gap-1.5">
                   <button
                     type="button"
@@ -184,7 +184,7 @@ export function AppShell({
                 <WalletIcon className="h-4 w-4 shrink-0" />
                 <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
                 <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
-                  PRIV
+                  PRIVATE
                 </span>
               </Link>
             </nav>

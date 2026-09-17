@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { signOut } from "@/lib/auth/actions";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
-import { RetroWindow } from "@/components/ui/retro-window";
+import { DraggableProfileWindow } from "@/components/profile/draggable-profile-window";
 import { User, Settings, LogOut, ShieldCheck, Mail, Phone, Calendar } from "lucide-react";
 
 export default async function ProfilePage() {
@@ -12,7 +12,7 @@ export default async function ProfilePage() {
   return (
     <div className="relative flex min-h-[80vh] items-center justify-center px-4 py-8 md:py-12">
       <div className="w-full max-w-lg">
-        <RetroWindow
+        <DraggableProfileWindow
           title="USER PROFILE // IDENTITY"
           subtitle="AUTHENTICATED SESSION"
           colorBar="yellow"
@@ -98,7 +98,7 @@ export default async function ProfilePage() {
               </button>
             </form>
           </div>
-        </RetroWindow>
+        </DraggableProfileWindow>
       </div>
     </div>
   );

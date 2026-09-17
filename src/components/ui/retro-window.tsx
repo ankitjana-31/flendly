@@ -34,8 +34,16 @@ export function RetroWindow({
   controlsStyle = "win95",
   onClose,
   onMaximize,
+  defaultMinimized = false,
 }: RetroWindowProps) {
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(defaultMinimized);
+  const handleMaximize = () => {
+    if (isMinimized) {
+      setIsMinimized(false);
+      return;
+    }
+    onMaximize?.();
+  };
 
   // Title bar colors based on Stitch project styling
   const titleBarStyles = {
@@ -70,6 +78,7 @@ export function RetroWindow({
 
       {/* Retro Window Title Bar */}
       <div
+        data-window-titlebar
         className={cn(
           "flex h-10 sm:h-11 items-center justify-between px-2.5 sm:px-3.5 select-none min-w-0 max-w-full overflow-hidden",
           titleBarStyles,
@@ -87,12 +96,12 @@ export function RetroWindow({
               />
               <button
                 type="button"
-                onClick={() => setIsMinimized(!isMinimized)}
+                onClick={() => setIsMinimized((value) => !value)}
                 className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block cursor-pointer hover:opacity-80"
               />
               <button
                 type="button"
-                onClick={onMaximize}
+                onClick={handleMaximize}
                 className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block cursor-pointer hover:opacity-80"
               />
             </div>
@@ -126,7 +135,7 @@ export function RetroWindow({
             <div className="hidden sm:flex items-center gap-1 ml-1.5 select-none">
               <button
                 type="button"
-                onClick={() => setIsMinimized(!isMinimized)}
+                onClick={() => setIsMinimized((value) => !value)}
                 className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-xs font-mono font-black text-black shadow-[1px_1px_0_0_#000] hover:bg-gray-200 cursor-pointer active:translate-y-0.5"
                 title={isMinimized ? "Restore" : "Minimize"}
               >
@@ -134,7 +143,7 @@ export function RetroWindow({
               </button>
               <button
                 type="button"
-                onClick={onMaximize}
+                onClick={handleMaximize}
                 className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-[11px] font-mono font-black text-black shadow-[1px_1px_0_0_#000] hover:bg-gray-200 cursor-pointer active:translate-y-0.5"
                 title="Maximize / Open Page"
               >
