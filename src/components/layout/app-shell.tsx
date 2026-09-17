@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ChevronRight, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -32,6 +32,8 @@ export function AppShell({
   const router = useRouter();
   const [unreadCount, setUnreadCount] = useState(initialUnreadCount);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [launcherPosition, setLauncherPosition] = useState({ x: 12, y: 12 });
+  const launcherDrag = useRef<{ pointerId: number; offsetX: number; offsetY: number; moved: boolean } | null>(null);
 
   useEffect(() => {
     setUnreadCount(initialUnreadCount);
@@ -53,7 +55,22 @@ export function AppShell({
       .on(
         "postgres_changes",
         { event: "UPDATE", schema: "public", table: "notifications" },
-        () => {
+        (payload) => {
+          const wasUnread = !payload.old.read_at;
+          const isUnread = !payload.new.read_at;
+          if (wasUnread !== isUnread) {
+            setUnreadCount((count) => Math.max(0, count + (isUnread ? 1 : -1)));
+          }
+          router.refresh();
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "notifications" },
+        (payload) => {
+          if (!payload.old.read_at) {
+            setUnreadCount((count) => Math.max(0, count - 1));
+          }
           router.refresh();
         }
       )
@@ -208,8 +225,32 @@ export function AppShell({
         /* Collapsed Floating Re-Open Button for PC */
         <button
           type="button"
-          onClick={() => setIsSidebarCollapsed(false)}
-          className="fixed left-3 top-3 z-50 hidden md:flex items-center gap-1.5 px-3 py-2 border-[2.5px] border-black bg-[#FFE600] text-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 cursor-pointer uppercase transition-all"
+          onPointerDown={(event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            launcherDrag.current = {
+              pointerId: event.pointerId,
+              offsetX: event.clientX - rect.left,
+              offsetY: event.clientY - rect.top,
+              moved: false,
+            };
+            event.currentTarget.setPointerCapture(event.pointerId);
+          }}
+          onPointerMove={(event) => {
+            const drag = launcherDrag.current;
+            if (!drag || drag.pointerId !== event.pointerId) return;
+            const nextX = Math.max(8, Math.min(window.innerWidth - event.currentTarget.offsetWidth - 8, event.clientX - drag.offsetX));
+            const nextY = Math.max(8, Math.min(window.innerHeight - event.currentTarget.offsetHeight - 8, event.clientY - drag.offsetY));
+            if (Math.abs(nextX - launcherPosition.x) > 2 || Math.abs(nextY - launcherPosition.y) > 2) drag.moved = true;
+            setLauncherPosition({ x: nextX, y: nextY });
+          }}
+          onPointerUp={(event) => {
+            const drag = launcherDrag.current;
+            launcherDrag.current = null;
+            event.currentTarget.releasePointerCapture(event.pointerId);
+            if (!drag?.moved) setIsSidebarCollapsed(false);
+          }}
+          style={{ left: launcherPosition.x, top: launcherPosition.y, touchAction: "none" }}
+          className="fixed z-50 hidden md:flex items-center gap-1.5 px-3 py-2 border-[2.5px] border-black bg-[#FFE600] text-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 cursor-grab active:cursor-grabbing uppercase transition-shadow"
           title="Expand Sidebar"
         >
           <span>⚡ FLENDLY</span>
