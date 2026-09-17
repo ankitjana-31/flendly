@@ -34,7 +34,7 @@ export function LandingAuditSection() {
               <div className="text-black dark:text-white italic">&quot;Hey bro, did you get a chance to send the Airbnb share?&quot;</div>
             </div>
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
-              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Kunal (4 days later)</div>
+              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Rahul (4 days later)</div>
               <div className="text-black dark:text-white italic">&quot;Totally missed this! How much was it again?&quot;</div>
             </div>
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
@@ -47,7 +47,7 @@ export function LandingAuditSection() {
           </div>
         </div>
 
-        {/* Right Column: The Flendly Ledger */}
+        {/* Right Column: The Flendly Ledger (Matching Left Side Airbnb Split) */}
         <div className="p-6 md:p-10 bg-white dark:bg-[#161821] flex flex-col gap-6">
           <div className="flex items-center justify-between">
             <span className="bg-[#2DD4BF] text-black px-3 py-1 border-[2px] border-black dark:border-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
@@ -55,14 +55,15 @@ export function LandingAuditSection() {
             </span>
           </div>
           <p className="font-sans text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-            Every split dinner or borrowed cash is structured with mutual approval and clear closure dates.
+            Every split expense, trip booking, or borrowed cash is structured with mutual approval and clear closure dates.
           </p>
           <div className="flex flex-col gap-3">
+            {/* Matching Airbnb Split for Rahul */}
             <div className="bg-[#FAF8F5] dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-[#2563EB] text-white border border-black dark:border-white flex items-center justify-center font-bold text-xs font-mono">AK</div>
+                <div className="w-8 h-8 bg-[#2563EB] text-white border border-black dark:border-white flex items-center justify-center font-bold text-xs font-mono">RH</div>
                 <div className="flex flex-col">
-                  <span className="font-mono text-xs font-bold text-black dark:text-white uppercase">Airbnb Split (Ankit)</span>
+                  <span className="font-mono text-xs font-bold text-black dark:text-white uppercase">Airbnb Split (Rahul)</span>
                   <span className="font-mono text-[11px] text-gray-500 dark:text-gray-400">Dual-Signed • Auto-UPI</span>
                 </div>
               </div>
@@ -71,6 +72,8 @@ export function LandingAuditSection() {
                 <span className="font-mono text-[10px] bg-[#2DD4BF] text-black px-1.5 py-0.5 border border-black font-bold uppercase">SETTLED</span>
               </div>
             </div>
+
+            {/* Concert Advance for Kunal */}
             <div className="bg-[#FAF8F5] dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-[#F43F5E] text-white border border-black dark:border-white flex items-center justify-center font-bold text-xs font-mono">KN</div>

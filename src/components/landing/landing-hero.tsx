@@ -97,11 +97,12 @@ export function LandingHero() {
                 <span>⚡</span>
                 <span>LAUNCH FLENDLY</span>
               </Link>
+              {/* Pink liquid fill for How It Works button */}
               <Link
                 href="/learn-more"
-                className="px-5 py-3 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white/60 font-mono text-sm font-bold shadow-[4px_4px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2"
+                className="px-5 py-3 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white/60 font-mono text-sm font-bold shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2 group"
               >
-                <span className="text-[#2563EB] dark:text-[#60A5FA]">ℹ</span>
+                <span className="text-[#2563EB] dark:text-[#60A5FA] group-hover:text-white transition-colors">ℹ</span>
                 <span>HOW IT WORKS</span>
               </Link>
             </motion.div>
@@ -124,13 +125,13 @@ export function LandingHero() {
                 <span className="text-[10px] text-gray-500 font-bold">STATUS // ACTIVE</span>
               </div>
 
-              {/* Chat Simulation */}
+              {/* Chat Simulation - Rahul and cab share of 250 */}
               <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000]">
                 <div className="text-[10px] text-gray-500 dark:text-gray-400 font-bold mb-1">
-                  Kunal (3 months ago via WhatsApp):
+                  Rahul (3 months ago via WhatsApp):
                 </div>
                 <p className="text-xs text-black dark:text-white italic">
-                  &quot;Bro, will pay my ₹500 for the Goa trip dinner booking tomorrow morning!&quot;
+                  &quot;Bro, will pay my ₹250 for the cab share tomorrow morning!&quot;
                 </p>
               </div>
 
@@ -147,7 +148,7 @@ export function LandingHero() {
               <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 flex items-center justify-between">
                 <span className="text-[11px] font-bold text-gray-600 dark:text-gray-300 uppercase">UNPAID BALANCE:</span>
                 <span className="text-base font-black text-[#F43F5E] bg-[#FF2E93]/15 px-2 py-0.5 border border-[#F43F5E]">
-                  ₹500.00
+                  ₹250.00
                 </span>
               </div>
 

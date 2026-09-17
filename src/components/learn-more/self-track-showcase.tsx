@@ -1,43 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Coins, FileText, Shield, Zap, Lock } from "lucide-react";
 import { RetroWindow } from "@/components/ui/retro-window";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 300, damping: 24 },
-  },
-};
 
 const features = [
   {
-    icon: "💰",
+    icon: Coins,
     title: "Partial Repayment Logs",
     description: "Track repayments bit-by-bit. Balance auto-calculates. No mental math required.",
   },
   {
-    icon: "📝",
+    icon: FileText,
     title: "Personal Context Notes",
     description: "Add private context for each record. Why did you lend it? When do you expect it back?",
   },
   {
-    icon: "🔒",
+    icon: Shield,
     title: "100% Private Offline",
     description: "Completely isolated to your device session. Your mate has zero idea this ledger exists.",
   },
   {
-    icon: "⚡",
+    icon: Zap,
     title: "Instant One-Click Settlement",
     description: "Mark debts as settled with one tap whenever you are paid back. Clean slate.",
   },
@@ -45,7 +29,7 @@ const features = [
 
 export function SelfTrackShowcase() {
   return (
-    <section className="w-full max-w-6xl mx-auto z-10">
+    <section className="w-full max-w-6xl mx-auto z-10 font-mono">
       <RetroWindow
         title="SELF TRACK VAULT // OFFLINE PRIVATE LEDGER"
         subtitle="OFFLINE VAULT"
@@ -68,22 +52,27 @@ export function SelfTrackShowcase() {
               <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white uppercase tracking-tight">
                 Self Track: Private Offline Ledger
               </h2>
-              <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg mt-2 leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base mt-2 leading-relaxed font-sans">
                 Lent ₹500 for chai? Paid ₹3,000 for concert tickets? Covered your roommate&apos;s Wi-Fi? Self Track is your personal offline record. Zero notifications to anyone. 100% peace of mind.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3">
-              {features.map((feature, idx) => (
-                <div
-                  key={idx}
-                  className="p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000000]"
-                >
-                  <span className="text-xl mb-1 block">{feature.icon}</span>
-                  <h3 className="font-mono text-xs sm:text-sm font-bold text-black dark:text-white uppercase">{feature.title}</h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5 leading-relaxed">{feature.description}</p>
-                </div>
-              ))}
+              {features.map((feature, idx) => {
+                const IconComponent = feature.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000000]"
+                  >
+                    <div className="w-7 h-7 border border-black bg-[#FFE600] flex items-center justify-center text-black mb-2 shadow-[1px_1px_0_0_#000]">
+                      <IconComponent className="w-4 h-4 stroke-[2.5]" />
+                    </div>
+                    <h3 className="font-mono text-xs font-bold text-black dark:text-white uppercase">{feature.title}</h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-relaxed font-sans">{feature.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -137,7 +126,7 @@ export function SelfTrackShowcase() {
               </div>
 
               <div className="p-3 bg-[#FFE600]/20 border border-black font-mono text-xs font-bold text-black dark:text-white flex items-center gap-2">
-                <span>🔒</span>
+                <Lock className="w-3.5 h-3.5 text-black dark:text-white" />
                 <span>ZERO CLOUD NOTIFICATIONS · ENCRYPTED LOCAL DATA</span>
               </div>
             </div>

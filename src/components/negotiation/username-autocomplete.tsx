@@ -81,7 +81,7 @@ export function UsernameAutocomplete({ defaultValue = "" }: { defaultValue?: str
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          placeholder="e.g. ankit, kunal, supriya"
+          placeholder="e.g. ankit"
           className="h-11 w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#161821] px-3 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black"
         />
         <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">

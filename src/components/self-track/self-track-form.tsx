@@ -158,7 +158,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
-              placeholder="e.g. Supriya, Junaid, Rahul"
+              placeholder="e.g. Anushka, Rishi, Shanaya"
               className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>

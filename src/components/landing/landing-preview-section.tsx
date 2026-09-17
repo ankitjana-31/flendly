@@ -32,7 +32,7 @@ export function LandingPreviewSection() {
         </p>
       </div>
 
-      {/* Interactive Tabs Selector with Stitch Retro OS Styling */}
+      {/* Interactive Tabs Selector with Pink Hover Fill */}
       <div className="flex items-center justify-center gap-2 sm:gap-2.5 flex-wrap mb-5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -44,7 +44,7 @@ export function LandingPreviewSection() {
               className={`flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
                 isActive
                   ? "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5"
-                  : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[2px_2px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                  : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
               }`}
             >
               <Icon className="w-4 h-4 text-current" />
@@ -84,7 +84,7 @@ export function LandingPreviewSection() {
             transition={{ duration: 0.25 }}
             className="space-y-6"
           >
-            {/* Top Stats Grid with Stitch Style */}
+            {/* Top Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-5 border-[2px] border-black bg-[#2DD4BF]/15 dark:bg-[#0B3D30] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#005236] dark:text-[#6EE7B7]">Net Position</span>
@@ -103,7 +103,7 @@ export function LandingPreviewSection() {
               </div>
             </div>
 
-            {/* Quick Actions & Recent Activity preview */}
+            {/* Quick Actions & Recent Activity */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="p-5 border-[2px] border-black bg-white dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] space-y-3">
                 <h4 className="font-mono text-sm font-bold text-black dark:text-white uppercase flex items-center justify-between">
@@ -125,7 +125,7 @@ export function LandingPreviewSection() {
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 border border-black bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">OUT</div>
                       <div>
-                        <p className="text-sm font-bold text-black dark:text-white">Loan disbursed to Supriya</p>
+                        <p className="text-sm font-bold text-black dark:text-white">Loan disbursed to Anushka</p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">Fixed terms · Yesterday</p>
                       </div>
                     </div>
@@ -153,7 +153,7 @@ export function LandingPreviewSection() {
           </motion.div>
         )}
 
-        {/* Tab 2: Lent View */}
+        {/* Tab 2: Lent View (Using Shanaya & Anushka examples) */}
         {activeTab === "lent" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -166,8 +166,8 @@ export function LandingPreviewSection() {
               <span className="font-mono text-xs font-bold text-[#059669] dark:text-[#2DD4BF] bg-emerald-500/10 px-2 py-0.5 border border-emerald-500/30">3 active borrowers</span>
             </div>
             {[
-              { name: "Ankit", amount: "₹12,000", repaid: "₹8,000", remaining: "₹4,000", progress: 66, status: "On Track" },
-              { name: "Supriya", amount: "₹15,000", repaid: "₹5,000", remaining: "₹10,000", progress: 33, status: "Due 15 Oct" },
+              { name: "Shanaya", amount: "₹12,000", repaid: "₹8,000", remaining: "₹4,000", progress: 66, status: "On Track" },
+              { name: "Anushka", amount: "₹15,000", repaid: "₹5,000", remaining: "₹10,000", progress: 33, status: "Due 15 Oct" },
               { name: "Kunal", amount: "₹5,000", repaid: "₹5,000", remaining: "₹0", progress: 100, status: "Settled" },
             ].map((deal) => (
               <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
@@ -196,7 +196,7 @@ export function LandingPreviewSection() {
           </motion.div>
         )}
 
-        {/* Tab 3: Borrowed View */}
+        {/* Tab 3: Borrowed View (Using Rishi and Anushka) */}
         {activeTab === "borrowed" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -209,8 +209,8 @@ export function LandingPreviewSection() {
               <span className="font-mono text-xs font-bold text-[#F43F5E] bg-rose-500/10 px-2 py-0.5 border border-rose-500/30">Clear repayment paths</span>
             </div>
             {[
-              { name: "Kunal", amount: "₹10,000", repaid: "₹6,000", remaining: "₹4,000", progress: 60, nextDue: "Due in 8 days" },
-              { name: "Supriya", amount: "₹4,000", repaid: "₹2,000", remaining: "₹2,000", progress: 50, nextDue: "Due in 20 days" },
+              { name: "Rishi", amount: "₹10,000", repaid: "₹6,000", remaining: "₹4,000", progress: 60, nextDue: "Due in 8 days" },
+              { name: "Anushka", amount: "₹4,000", repaid: "₹2,000", remaining: "₹2,000", progress: 50, nextDue: "Due in 20 days" },
             ].map((deal) => (
               <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
                 <div>
@@ -250,8 +250,8 @@ export function LandingPreviewSection() {
             </div>
             {[
               { title: "Payment Recorded", desc: "Ankit recorded ₹2,000 repayment. Please review and confirm.", time: "10 mins ago", unread: true },
-              { title: "Counter-Offer Received", desc: "Supriya modified repayment schedule to monthly ₹3,000.", time: "2 hours ago", unread: false },
-              { title: "Friendly Reminder", desc: "Repayment of ₹4,000 to Kunal scheduled for Friday.", time: "Yesterday", unread: false },
+              { title: "Counter-Offer Received", desc: "Anushka modified repayment schedule to monthly ₹3,000.", time: "2 hours ago", unread: false },
+              { title: "Friendly Reminder", desc: "Repayment of ₹4,000 to Rishi scheduled for Friday.", time: "Yesterday", unread: false },
             ].map((notif, idx) => (
               <div key={idx} className={`p-4 border-[2px] border-black shadow-[3px_3px_0_0_#000000] flex items-start justify-between gap-4 font-mono ${
                 notif.unread ? "bg-[#FFE600]/20 dark:bg-[#2E2800]" : "bg-[#FAF8F5] dark:bg-[#1E212D]"
@@ -290,8 +290,8 @@ export function LandingPreviewSection() {
                   <span className="text-xs font-bold text-[#059669] dark:text-[#2DD4BF] uppercase">Lent Offline</span>
                   <span className="text-xs font-bold text-black dark:text-white">₹3,500</span>
                 </div>
-                <h5 className="font-bold text-sm text-black dark:text-white">Ankit (Concert Tickets)</h5>
-                <p className="text-xs text-gray-600 dark:text-gray-400">Note: Told me he will pay via GPay next weekend</p>
+                <h5 className="font-bold text-sm text-black dark:text-white">Shanaya (Concert Tickets)</h5>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Note: Told me she will pay via UPI next weekend</p>
                 <div className="pt-2 flex justify-between items-center text-xs border-t border-black/10 dark:border-white/10">
                   <span className="text-[#059669] dark:text-[#2DD4BF] font-bold">₹1,500 repaid</span>
                   <span className="text-gray-500 dark:text-gray-400">₹2,000 remaining</span>
@@ -303,7 +303,7 @@ export function LandingPreviewSection() {
                   <span className="text-xs font-bold text-[#F43F5E] uppercase">Borrowed Offline</span>
                   <span className="text-xs font-bold text-black dark:text-white">₹1,200</span>
                 </div>
-                <h5 className="font-bold text-sm text-black dark:text-white">Roommate (Wifi bill)</h5>
+                <h5 className="font-bold text-sm text-black dark:text-white">Rishi (Wifi bill)</h5>
                 <p className="text-xs text-gray-600 dark:text-gray-400">Note: Pay cash before 1st of month</p>
                 <div className="pt-2 flex justify-between items-center text-xs border-t border-black/10 dark:border-white/10">
                   <span className="text-[#F43F5E] font-bold">Active</span>
