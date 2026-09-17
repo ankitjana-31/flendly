@@ -107,7 +107,7 @@ export function DashboardContent({
             subtitle="owed to you"
             colorBar="green"
             glow={aggregates.totalLent > 0}
-            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#059669]"
+            className="bg-white max-sm:bg-[#2DD4BF] dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#059669]"
             contentClassName="p-4 sm:p-5"
             headerRight={
               <span className="px-2 sm:px-2.5 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-[11px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
@@ -139,7 +139,7 @@ export function DashboardContent({
             title={<><span>PAYABLES</span><span className="hidden sm:inline"> // OUTGOING</span></>}
             subtitle="you owe"
             colorBar="pink"
-            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#F43F5E]"
+            className="bg-white max-sm:bg-[#F43F5E] dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#F43F5E]"
             contentClassName="p-4 sm:p-5"
             headerRight={
               <span className="px-2 sm:px-2.5 py-0.5 border border-black bg-[#F43F5E] text-white font-mono text-[11px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">

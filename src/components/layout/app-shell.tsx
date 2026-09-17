@@ -207,7 +207,7 @@ export function AppShell({
               </div>
               <div className="overflow-hidden min-w-0">
                 <span className="block truncate font-bold text-xs sm:text-[13px]">{fullName ?? ("@" + username)}</span>
-                <span className="block text-[9px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none mt-0.5">ONLINE // AUTH</span>
+                <span className="block text-[9px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none mt-0.5">ONLINE<span className="hidden sm:inline"> // AUTH</span></span>
               </div>
             </Link>
             <form action={signOut}>

@@ -82,7 +82,7 @@ export function SelfTrackShowcase() {
               <div className="flex items-center justify-between pb-3 border-b-[2px] border-black dark:border-white/30 mb-4 font-mono text-xs">
                 <span className="font-bold text-black dark:text-white uppercase flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 bg-[#10B981] border border-black inline-block" />
-                  SELF TRACK // REGISTER
+                  <span>SELF TRACK<span className="hidden sm:inline"> // REGISTER</span></span>
                 </span>
                 <span className="px-2 py-0.5 border border-black bg-[#FFE600] text-black font-bold">3 ACTIVE</span>
               </div>

@@ -44,6 +44,17 @@ export function RetroWindow({
     }
     onMaximize?.();
   };
+  const windowTitle = typeof title === "string" && title.includes(" // ")
+    ? (() => {
+        const [primary, secondary] = title.split(" // ");
+        return (
+          <>
+            <span>{primary}</span>
+            <span className="hidden sm:inline"> // {secondary}</span>
+          </>
+        );
+      })()
+    : title;
 
   // Title bar colors based on Stitch project styling
   const titleBarStyles = {
@@ -116,7 +127,7 @@ export function RetroWindow({
           {title && (
             <div className="flex items-center gap-2 min-w-0 truncate">
               <span className="font-mono text-xs sm:text-sm font-black tracking-wider uppercase truncate block">
-                {title}
+                {windowTitle}
               </span>
               {subtitle && (
                 <span className="hidden font-mono text-xs opacity-85 md:inline truncate">

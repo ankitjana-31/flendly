@@ -122,7 +122,7 @@ export function LandingHero() {
                     LEAK DIAGNOSTIC
                   </span>
                 </div>
-                <span className="text-[10px] text-gray-500 font-bold">STATUS // ACTIVE</span>
+                  <span className="text-[10px] text-gray-500 font-bold">STATUS<span className="hidden sm:inline"> // ACTIVE</span></span>
               </div>
 
               {/* Chat Simulation - Rahul and cab share of 250 */}
