@@ -70,7 +70,6 @@ export function LandingPreviewSection() {
         contentClassName="p-6 sm:p-10"
         headerRight={
           <div className="flex items-center gap-2 text-xs font-mono text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
-            <span className="flex h-2 w-2 rounded-full bg-[#2DD4BF] animate-pulse" />
             <span className="hidden sm:inline">LIVE SYNC READY</span>
           </div>
         }
