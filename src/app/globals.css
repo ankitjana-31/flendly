@@ -245,6 +245,66 @@ html.tropical .text-gray-500 {
   color: var(--muted-foreground) !important;
 }
 
+html.ocean .public-header,
+html.ocean .public-footer,
+html.sunset .public-header,
+html.sunset .public-footer,
+html.tropical .public-header,
+html.tropical .public-footer {
+  background-color: var(--muted) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+html.ocean .public-header [class*="bg-white"],
+html.sunset .public-header [class*="bg-white"],
+html.tropical .public-header [class*="bg-white"] {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+}
+
+html.sunset .public-header [class*="text-black"],
+html.sunset .public-footer [class*="text-black"],
+html.ocean .public-header [class*="text-black"],
+html.ocean .public-footer [class*="text-black"],
+html.tropical .public-header [class*="text-black"],
+html.tropical .public-footer [class*="text-black"] {
+  color: var(--foreground) !important;
+}
+
+html.sunset .public-header [class*="bg-[#2563EB]"],
+html.ocean .public-header [class*="bg-[#2563EB]"],
+html.tropical .public-header [class*="bg-[#2563EB]"] {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+
+html.sunset .public-header [class*="bg-[#FFE600]"],
+html.ocean .public-header [class*="bg-[#FFE600]"],
+html.tropical .public-header [class*="bg-[#FFE600]"] {
+  background-color: var(--accent) !important;
+  color: var(--primary-foreground) !important;
+}
+
+html.sunset .font-heading,
+html.sunset .font-sans,
+html.sunset .font-mono,
+html.sunset h1,
+html.sunset h2,
+html.sunset h3,
+html.sunset h4,
+html.sunset p,
+html.sunset span,
+html.sunset li {
+  --sunset-readable: var(--foreground);
+}
+
+html.sunset [class*="text-black"],
+html.sunset [class*="text-gray-700"],
+html.sunset [class*="text-gray-600"] {
+  color: var(--foreground) !important;
+}
+
 html.ocean .theme-receivable-card .text-black,
 html.tropical .theme-receivable-card .text-black {
   color: #061522 !important;

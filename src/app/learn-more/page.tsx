@@ -17,7 +17,7 @@ export default function LearnMorePage() {
       />
 
       {/* Stitch Flendly OS v2.4 Fixed Top Navigation Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#F5F2EB] dark:bg-[#161821] border-b-[2.5px] border-black dark:border-white/80 shadow-[0_3px_0_0_#000000] dark:shadow-[0_3px_0_0_rgba(255,255,255,0.3)] transition-colors">
+      <header className="public-header fixed top-0 left-0 right-0 z-50 bg-[var(--muted)] border-b-[2.5px] border-[var(--border)] shadow-[0_3px_0_0_#000000] transition-colors">
         <div className="h-14 max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Image
@@ -89,7 +89,7 @@ export default function LearnMorePage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-20 w-full border-t-[2.5px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] py-8">
+      <footer className="public-footer relative z-20 w-full border-t-[2.5px] border-[var(--border)] bg-[var(--muted)] py-8">
         <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
           <div className="flex items-center gap-2.5">
             <Image

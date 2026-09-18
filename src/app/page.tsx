@@ -29,8 +29,8 @@ export default async function Home() {
       />
 
       {/* Stitch Flendly OS v2.4 Fixed Top Navigation Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--muted)] border-b-[2.5px] border-[var(--border)] shadow-[0_3px_0_0_#000000] transition-colors">
-        <div className="h-14 w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between gap-4">
+      <header className="public-header fixed top-0 left-0 right-0 z-50 bg-[var(--muted)] border-b-[2.5px] border-[var(--border)] shadow-[0_3px_0_0_#000000] transition-colors">
+        <div className="h-14 w-full max-w-[1400px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
           <div className="flex items-center gap-3">
             <Image
               src="/brand/flendly-symbol.svg"
@@ -78,7 +78,7 @@ export default async function Home() {
             </Link>
             <Link
               href="/auth/login"
-              className="px-5 py-2 bg-[#FFE600] text-black border-[2px] border-black font-mono text-sm font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="whitespace-nowrap px-3 sm:px-5 py-2 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs sm:text-sm font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               LAUNCH FLENDLY
             </Link>
@@ -94,7 +94,7 @@ export default async function Home() {
       </main>
 
       {/* Landing Footer */}
-      <footer className="relative z-20 w-full border-t-[2.5px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] py-8">
+      <footer className="public-footer relative z-20 w-full border-t-[2.5px] border-[var(--border)] bg-[var(--muted)] py-8">
         <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
           <div className="flex items-center gap-2.5">
             <Image
