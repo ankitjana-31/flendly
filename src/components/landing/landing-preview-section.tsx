@@ -87,9 +87,9 @@ export function LandingPreviewSection() {
             {/* Top Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-5 border-[2px] border-black bg-[#2DD4BF]/15 dark:bg-[#0B3D30] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
-                <span className="font-mono text-xs uppercase font-bold text-[#005236] dark:text-[#6EE7B7]">Net Position</span>
-                <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">+₹14,500</p>
-                <span className="font-mono text-[11px] text-[#005236] dark:text-[#6EE7B7] mt-1 block font-semibold">You are owed more than you owe</span>
+                <span className="font-mono text-xs uppercase font-bold text-[var(--success)]">Net Position</span>
+                <p className="text-2xl sm:text-3xl font-black font-mono text-[var(--foreground)] mt-1">+₹14,500</p>
+                <span className="font-mono text-[11px] text-[var(--success)] mt-1 block font-semibold">You are owed more than you owe</span>
               </div>
               <div className="p-5 border-[2px] border-black bg-blue-500/10 dark:bg-[#1E2540] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#2563EB] dark:text-[#93C5FD]">Total Lent Out</span>
