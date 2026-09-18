@@ -17,7 +17,7 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
   return (
     <Link
       href={`/requests/${request.id}`}
-      className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
+      className="group/req flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--card)] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
     >
       <div className="flex items-center gap-3.5">
         <div className={`w-10 h-10 border-[2px] border-black flex items-center justify-center font-mono font-black text-sm shrink-0 shadow-[2px_2px_0_0_#000] ${
@@ -26,10 +26,10 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
           {request.direction === "lend" ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
         </div>
         <div>
-          <p className="text-base sm:text-lg font-black tracking-tight group-hover:text-black dark:group-hover:text-black transition-colors">
+          <p className="text-base sm:text-lg font-black tracking-tight text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
             {other.full_name ?? `@${other.username}`}
           </p>
-          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-200 group-hover:text-black dark:group-hover:text-black font-bold mt-0.5 transition-colors">
+          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 group-hover/req:text-black dark:group-hover/req:text-black font-bold mt-0.5 transition-colors">
             {isSender ? "You initiated" : "Requested from you"} ·{" "}
             {request.direction === "lend" ? "You lend" : "You borrow"}
             {request.active_offer ? ` · ${interestSummary(request.active_offer)}` : ""}
@@ -39,8 +39,8 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
 
       <div className="flex items-center justify-between sm:justify-end gap-4 border-t sm:border-t-0 pt-2 sm:pt-0 border-black/10 dark:border-white/10">
         <div className="text-left sm:text-right">
-          <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 group-hover:text-black dark:group-hover:text-black block font-bold transition-colors">Offer Amount</span>
-          <p className="font-mono text-lg sm:text-xl font-black group-hover:text-black dark:group-hover:text-black transition-colors">
+          <span className="text-[10px] uppercase text-gray-600 dark:text-gray-400 group-hover/req:text-black dark:group-hover/req:text-black block font-bold transition-colors">Offer Amount</span>
+          <p className="font-mono text-lg sm:text-xl font-black text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
             {request.active_offer ? formatMoney(request.active_offer.amount) : "—"}
           </p>
         </div>
