@@ -17,7 +17,7 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
   return (
     <Link
       href={`/requests/${request.id}`}
-      className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
+      className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
     >
       <div className="flex items-center gap-3.5">
         <div className={`w-10 h-10 border-[2px] border-black flex items-center justify-center font-mono font-black text-sm shrink-0 shadow-[2px_2px_0_0_#000] ${
@@ -66,7 +66,7 @@ export default async function RequestsPage({
 
   const renderRows = (requestRows: RequestListItem[], emptyMessage: string, emptyDescription: string) =>
     requestRows.length === 0 ? (
-      <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
+      <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
         <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 text-black font-bold">
           ⚡
         </div>
@@ -114,7 +114,7 @@ export default async function RequestsPage({
         }
         subtitle={`${rows.length} total entries`}
         colorBar={activeTab === "incoming" ? "blue" : "yellow"}
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
           <span className="px-2.5 py-0.5 border border-black bg-white text-black font-mono text-[11px] font-black uppercase">

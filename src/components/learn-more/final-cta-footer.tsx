@@ -11,7 +11,7 @@ export function FinalCTAFooter() {
         subtitle="FINAL STEP"
         colorBar="pink"
         glow={true}
-        className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FF2E93]"
+        className="bg-white dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FF2E93]"
         contentClassName="p-6 sm:p-10 text-center"
       >
         <div className="max-w-3xl mx-auto flex flex-col items-center gap-4">
@@ -37,7 +37,7 @@ export function FinalCTAFooter() {
             </Link>
             <Link
               href="/"
-              className="px-6 py-4 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-sm font-bold uppercase shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+              className="px-6 py-4 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-sm font-bold uppercase shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
             >
               <span>◄</span>
               <span>BACK TO HOME</span>

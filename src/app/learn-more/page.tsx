@@ -37,7 +37,7 @@ export default function LearnMorePage() {
           <nav className="hidden md:flex items-center gap-1.5 font-mono text-xs">
             <Link
               href="/"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--muted)] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
             >
               HOME
             </Link>
@@ -49,19 +49,19 @@ export default function LearnMorePage() {
             </Link>
             <Link
               href="/dashboard"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--muted)] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
             >
               DASHBOARD
             </Link>
             <Link
               href="/self-track"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--muted)] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
             >
               SELF TRACK
             </Link>
             <Link
               href="/learn-more/lending"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--muted)] text-gray-800 dark:text-gray-200 hover:bg-[#FEF08A] hover:text-black transition-all"
             >
               LEND MONEY
             </Link>

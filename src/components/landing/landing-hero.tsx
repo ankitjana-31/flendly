@@ -70,7 +70,7 @@ export function LandingHero() {
       className="relative w-full max-w-[1400px] z-20 py-2 sm:py-4"
     >
       {/* Stitch HERO_PROMISE.exe Main Window */}
-      <div className={`w-full bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden ${windowAnimation ? `retro-window-${windowAnimation}` : ""}`}>
+      <div className={`w-full bg-[#FDFBF7] dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden ${windowAnimation ? `retro-window-${windowAnimation}` : ""}`}>
         {/* Title bar */}
         <div className="h-10 bg-[#2563EB] text-white px-4 border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
           <div className="flex items-center gap-2 font-mono text-xs uppercase font-bold tracking-wider">
@@ -134,7 +134,7 @@ export function LandingHero() {
               {/* Pink liquid fill for How It Works button */}
               <Link
                 href="/learn-more"
-                className="px-5 py-3 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white/60 font-mono text-sm font-bold shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2 group"
+                className="px-5 py-3 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2.5px] border-black dark:border-white/60 font-mono text-sm font-bold shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2 group"
               >
                 <span className="text-[#2563EB] dark:text-[#60A5FA] group-hover:text-white transition-colors">ℹ</span>
                 <span>HOW IT WORKS</span>
@@ -147,7 +147,7 @@ export function LandingHero() {
             variants={itemVariants}
             className="lg:col-span-5 flex flex-col gap-3 font-mono"
           >
-            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[#1A1D27] shadow-[4px_4px_0_0_#000000] p-4 flex flex-col gap-3">
+            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] p-4 flex flex-col gap-3">
               {/* Card Header */}
               <div className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 pb-2">
                 <div className="flex items-center gap-1.5">

@@ -174,7 +174,7 @@ export function DashboardContent({
             title={<><span>OVERDUE ALERTS</span><span className="hidden sm:inline"> // ACTION REQUIRED</span></>}
             subtitle="past due date"
             colorBar="pink"
-            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
+            className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
             contentClassName="p-3.5 sm:p-4"
             headerRight={
               <span className="px-2 py-0.5 border border-black bg-[#F43F5E] text-white font-mono text-[10px] sm:text-xs font-bold uppercase shadow-[1px_1px_0_0_#000]">
@@ -187,7 +187,7 @@ export function DashboardContent({
                 <li key={loan.id} className="w-full min-w-0">
                   <a
                     href={`/loans/${loan.id}`}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white hover:bg-[#FFE600] hover:text-black transition-all shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 w-full"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white hover:bg-[#FFE600] hover:text-black transition-all shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 w-full"
                   >
                     <div className="min-w-0">
                       <span className="font-bold text-sm sm:text-base block truncate">
@@ -214,7 +214,7 @@ export function DashboardContent({
             title={<><span>UPCOMING DUE</span><span className="hidden sm:inline"> // TIMELINE</span></>}
             subtitle="due soon"
             colorBar="yellow"
-            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
+            className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
             contentClassName="p-3.5 sm:p-4"
             headerRight={
               <span className="px-2 py-0.5 border border-black bg-[#FFE600] text-black font-mono text-[10px] sm:text-xs font-bold uppercase shadow-[1px_1px_0_0_#000]">
@@ -227,7 +227,7 @@ export function DashboardContent({
                 <li key={loan.id} className="w-full min-w-0">
                   <a
                     href={`/loans/${loan.id}`}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white hover:bg-[#FFE600] hover:text-black transition-all shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 w-full"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white hover:bg-[#FFE600] hover:text-black transition-all shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 w-full"
                   >
                     <span className="font-bold text-sm sm:text-base truncate">
                       {loan.counterparty.full_name ?? ("@" + loan.counterparty.username)} ·{" "}
@@ -251,17 +251,17 @@ export function DashboardContent({
             title={<><span>LEDGER TOTALS</span><span className="hidden sm:inline"> // LIFETIME SUMMARY</span></>}
             subtitle="aggregate view"
             colorBar="blue"
-            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
+            className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
             contentClassName="p-3.5 sm:p-4"
           >
             <div className="grid gap-3 sm:grid-cols-2 font-mono w-full">
-              <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+              <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
                 <p className="text-xs sm:text-sm font-bold uppercase text-gray-700 dark:text-gray-200">Total Lifetime Lent</p>
                 <p className="mt-0.5 text-2xl sm:text-3xl font-black text-[#059669] dark:text-[#2DD4BF]">
                   {formatMoney(aggregates.totalLent)}
                 </p>
               </div>
-              <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+              <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
                 <p className="text-xs sm:text-sm font-bold uppercase text-gray-700 dark:text-gray-200">Total Lifetime Borrowed</p>
                 <p className="mt-0.5 text-2xl sm:text-3xl font-black text-[#F43F5E]">
                   {formatMoney(aggregates.totalBorrowed)}
@@ -293,7 +293,7 @@ export function DashboardContent({
         </div>
 
         {openRequests.length === 0 ? (
-          <div className="border-[2px] border-black dark:border-white/40 bg-white dark:bg-[#161821] p-3.5 sm:p-4 text-center shadow-[2.5px_2.5px_0_0_#000] w-full">
+          <div className="border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] p-3.5 sm:p-4 text-center shadow-[2.5px_2.5px_0_0_#000] w-full">
             <p className="font-mono text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300">
               No open requests. Start a new peer deal with the button above.
             </p>
@@ -312,7 +312,7 @@ export function DashboardContent({
                 >
                   <a
                     href={`/requests/${r.id}`}
-                    className="flex items-center justify-between gap-2 p-3 sm:p-4 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[#161821] shadow-[2.5px_2.5px_0_0_#000] hover:bg-[#FEF08A] hover:text-black dark:hover:bg-[#1E212D] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
+                    className="flex items-center justify-between gap-2 p-3 sm:p-4 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] shadow-[2.5px_2.5px_0_0_#000] hover:bg-[#FEF08A] hover:text-black dark:hover:bg-[#1E212D] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
                   >
                     <div className="min-w-0">
                       <p className="font-mono text-sm sm:text-base font-black truncate">
@@ -348,7 +348,7 @@ export function DashboardContent({
               onMaximize={() => router.push("/self-track")}
             subtitle="self track summary"
             colorBar="yellow"
-            className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
+            className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
             contentClassName="p-3 sm:p-4"
             headerRight={
               <a
@@ -378,7 +378,7 @@ export function DashboardContent({
               {/* Borrowed vs Lent Breakdown Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full min-w-0">
                 {/* Personal Lent */}
-                <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000] min-w-0">
+                <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <span className="font-mono text-[11px] sm:text-xs font-black text-[#059669] dark:text-[#2DD4BF] uppercase truncate">
                       Money You Lent (Offline)
@@ -396,7 +396,7 @@ export function DashboardContent({
                 </div>
 
                 {/* Personal Borrowed */}
-                <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000] min-w-0">
+                <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <span className="font-mono text-[11px] sm:text-xs font-black text-[#F43F5E] uppercase truncate">
                       Money You Borrowed (Offline)
@@ -432,7 +432,7 @@ export function DashboardContent({
                       return (
                         <div
                           key={r.id}
-                          className="flex items-center justify-between gap-2 p-2.5 sm:p-3 border-[1.5px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] text-xs sm:text-sm font-mono shadow-[1.5px_1.5px_0_0_#000] w-full min-w-0"
+                          className="flex items-center justify-between gap-2 p-2.5 sm:p-3 border-[1.5px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-xs sm:text-sm font-mono shadow-[1.5px_1.5px_0_0_#000] w-full min-w-0"
                         >
                           <div className="flex items-center gap-2 min-w-0 truncate">
                             <span
@@ -469,7 +469,7 @@ export function DashboardContent({
               )}
 
               {selfTracks.length === 0 && (
-                <div className="p-2.5 border border-dashed border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] text-center font-mono text-xs font-bold text-gray-600 dark:text-gray-300 w-full">
+                <div className="p-2.5 border border-dashed border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-center font-mono text-xs font-bold text-gray-600 dark:text-gray-300 w-full">
                   No offline cash tracks recorded yet. Keep private notes on informal debts anytime.
                 </div>
               )}

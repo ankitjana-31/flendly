@@ -26,7 +26,7 @@ export default async function SelfTrackPage() {
         subtitle="standalone cash records"
         colorBar="blue"
         glow={true}
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB]"
         contentClassName="p-3 sm:p-6"
         headerRight={
           <div className="flex items-center gap-1.5 px-2 py-0.5 border border-black bg-[#FFE600] text-black font-mono text-[10px] font-black uppercase">
@@ -48,7 +48,7 @@ export default async function SelfTrackPage() {
               Log split bills, informal cash loans, or IOUs. Zero notifications are sent to counterparties.
             </p>
           </div>
-          <div className="p-3 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] font-mono text-xs text-black dark:text-white shadow-[2px_2px_0_0_#000] shrink-0">
+          <div className="p-3 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] font-mono text-xs text-black dark:text-white shadow-[2px_2px_0_0_#000] shrink-0">
             <span className="text-gray-500 block text-[10px] font-bold uppercase">LEDGER INTEGRITY</span>
             <span className="text-[#059669] dark:text-[#2DD4BF] font-black flex items-center gap-1 mt-0.5">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
@@ -61,7 +61,7 @@ export default async function SelfTrackPage() {
       {/* 4 Neo-Brutalist Summary Stat Windows */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5">
         {/* Stat 1: Money Lent */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#10B981] flex flex-col justify-between">
+        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#10B981] flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#059669] dark:text-[#2DD4BF]">
               Money Lent
@@ -80,7 +80,7 @@ export default async function SelfTrackPage() {
         </div>
 
         {/* Stat 2: Money Borrowed */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#F43F5E] flex flex-col justify-between">
+        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#F43F5E] flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#F43F5E]">
               Money Borrowed
@@ -99,7 +99,7 @@ export default async function SelfTrackPage() {
         </div>
 
         {/* Stat 3: Net Balance */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#2563EB] flex flex-col justify-between">
+        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#2563EB] flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#2563EB] dark:text-[#60A5FA]">
               Net Standing
@@ -119,7 +119,7 @@ export default async function SelfTrackPage() {
         </div>
 
         {/* Stat 4: Settled Count */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#FFE600] flex flex-col justify-between">
+        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#FFE600] flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-black dark:text-gray-300">
               Settled Logs

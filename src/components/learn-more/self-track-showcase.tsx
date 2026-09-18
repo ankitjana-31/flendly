@@ -34,7 +34,7 @@ export function SelfTrackShowcase() {
         title="SELF TRACK VAULT"
         subtitle="PRIVATE LEDGER"
         colorBar="yellow"
-        className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
+        className="bg-white dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
         contentClassName="p-6 sm:p-8 text-left"
         headerRight={
           <span className="px-2 py-0.5 border border-black bg-black text-white font-mono text-[10px] font-bold uppercase">
@@ -63,7 +63,7 @@ export function SelfTrackShowcase() {
                 return (
                   <div
                     key={idx}
-                    className="p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000000]"
+                    className="p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000000]"
                   >
                     <div className="w-7 h-7 border border-black bg-[#FFE600] flex items-center justify-center text-black mb-2 shadow-[1px_1px_0_0_#000]">
                       <IconComponent className="w-4 h-4 stroke-[2.5]" />
@@ -78,7 +78,7 @@ export function SelfTrackShowcase() {
 
           {/* Right Column: Live Mockup Card */}
           <div className="lg:col-span-6">
-            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB] p-6">
+            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB] p-6">
               <div className="flex items-center justify-between pb-3 border-b-[2px] border-black dark:border-white/30 mb-4 font-mono text-xs">
                 <span className="font-bold text-black dark:text-white uppercase flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 bg-[#10B981] border border-black inline-block" />

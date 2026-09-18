@@ -31,7 +31,7 @@ export default async function ProfileSettingsPage() {
       <div className="flex items-center justify-between">
         <Link
           href="/profile"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold shadow-[2px_2px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs font-bold shadow-[2px_2px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>BACK TO PROFILE</span>
@@ -43,11 +43,11 @@ export default async function ProfileSettingsPage() {
         title="SETTINGS // PREFERENCES"
         subtitle="USER CONFIGURATION"
         colorBar="blue"
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
         contentClassName="p-5 sm:p-6 space-y-6"
       >
         {/* Appearance / Theme Settings */}
-        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
+        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
           <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">
             <Moon className="w-4 h-4 text-[#2563EB]" />
             <h2 className="font-mono text-sm font-bold text-black dark:text-white uppercase">Appearance Mode</h2>
@@ -59,7 +59,7 @@ export default async function ProfileSettingsPage() {
         </div>
 
         {/* Username Settings */}
-        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
+        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
           <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">
             <User className="w-4 h-4 text-[#059669]" />
             <h2 className="font-mono text-sm font-bold text-black dark:text-white uppercase">Handle / Username</h2>
@@ -71,7 +71,7 @@ export default async function ProfileSettingsPage() {
         </div>
 
         {/* Profile Details */}
-        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
+        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
           <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">
             <Sliders className="w-4 h-4 text-[#F43F5E]" />
             <h2 className="font-mono text-sm font-bold text-black dark:text-white uppercase">Your Details</h2>
@@ -80,7 +80,7 @@ export default async function ProfileSettingsPage() {
         </div>
 
         {/* Privacy Settings */}
-        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
+        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
           <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">
             <Shield className="w-4 h-4 text-purple-600" />
             <h2 className="font-mono text-sm font-bold text-black dark:text-white uppercase">Privacy & Visibility</h2>

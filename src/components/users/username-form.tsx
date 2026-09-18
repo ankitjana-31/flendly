@@ -27,7 +27,7 @@ export function UsernameForm() {
         <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-black dark:text-white">
           Full Name
         </label>
-        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
           <div className="flex h-11 w-10 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
             <User className="h-4 w-4" />
           </div>
@@ -57,7 +57,7 @@ export function UsernameForm() {
             {cleanUsername.length}/20 chars
           </span>
         </div>
-        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
           <div className="flex h-11 w-10 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
             <AtSign className="h-4 w-4" />
           </div>

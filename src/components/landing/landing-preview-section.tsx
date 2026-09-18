@@ -44,7 +44,7 @@ export function LandingPreviewSection() {
               className={`landing-preview-tab flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
                 isActive
                   ? "landing-preview-tab-active bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
-                  : "landing-preview-tab-inactive bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
+                  : "landing-preview-tab-inactive bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
               }`}
             >
               <Icon className="w-4 h-4 text-current shrink-0" />
@@ -65,7 +65,7 @@ export function LandingPreviewSection() {
         subtitle="LIVE PREVIEW"
         colorBar="blue"
         glow={true}
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
         headerClassName="bg-[#2563EB] text-white"
         contentClassName="p-6 sm:p-10"
         headerRight={
@@ -85,17 +85,17 @@ export function LandingPreviewSection() {
           >
             {/* Top Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
+              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#059669] dark:text-[#2DD4BF]">Net Position</span>
                 <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">+₹14,500</p>
                 <span className="font-mono text-[11px] text-[#059669] dark:text-[#2DD4BF] mt-1 block font-semibold">You are owed more than you owe</span>
               </div>
-              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
+              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#2563EB] dark:text-[#93C5FD]">Total Lent Out</span>
                 <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">₹22,000</p>
                 <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Across 3 active peer deals</span>
               </div>
-              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
+              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#F43F5E] dark:text-[#FDA4AF]">Total Borrowed</span>
                 <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">₹7,500</p>
                 <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Next payment due in 12 days</span>
@@ -104,7 +104,7 @@ export function LandingPreviewSection() {
 
             {/* Quick Actions & Recent Activity */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className="p-5 border-[2px] border-black bg-white dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] space-y-3">
+              <div className="p-5 border-[2px] border-black bg-white dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] space-y-3">
                 <h4 className="font-mono text-sm font-bold text-black dark:text-white uppercase flex items-center justify-between">
                   <span>Recent Transactions</span>
                   <span className="font-mono text-xs text-[#059669] dark:text-[#2DD4BF] font-bold">Auto-verified</span>
@@ -133,7 +133,7 @@ export function LandingPreviewSection() {
                 </div>
               </div>
 
-              <div className="p-5 border-[2px] border-black bg-white dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col justify-between">
+              <div className="p-5 border-[2px] border-black bg-white dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] flex flex-col justify-between">
                 <div>
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-black bg-[#FFE600] text-black font-mono text-xs font-black uppercase mb-3 shadow-[2px_2px_0_0_#000000]">
                     <Zap className="w-3.5 h-3.5" /> Instant Counter-Offer
@@ -169,7 +169,7 @@ export function LandingPreviewSection() {
               { name: "Anushka", amount: "₹15,000", repaid: "₹5,000", remaining: "₹10,000", progress: 33, status: "Due 15 Oct" },
               { name: "Kunal", amount: "₹5,000", repaid: "₹5,000", remaining: "₹0", progress: 100, status: "Settled" },
             ].map((deal) => (
-              <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
+              <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-bold text-black dark:text-white">{deal.name}</span>
@@ -211,7 +211,7 @@ export function LandingPreviewSection() {
               { name: "Rishi", amount: "₹10,000", repaid: "₹6,000", remaining: "₹4,000", progress: 60, nextDue: "Due in 8 days" },
               { name: "Anushka", amount: "₹4,000", repaid: "₹2,000", remaining: "₹2,000", progress: 50, nextDue: "Due in 20 days" },
             ].map((deal) => (
-              <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
+              <div key={deal.name} className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono">
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-bold text-black dark:text-white">{deal.name}</span>
@@ -253,7 +253,7 @@ export function LandingPreviewSection() {
               { title: "Friendly Reminder", desc: "Repayment of ₹4,000 to Rishi scheduled for Friday.", time: "Yesterday", unread: false },
             ].map((notif, idx) => (
               <div key={idx} className={`p-4 border-[2px] border-black shadow-[3px_3px_0_0_#000000] flex items-start justify-between gap-4 font-mono ${
-                notif.unread ? "bg-[#FFE600]/20 dark:bg-[#2E2800]" : "bg-[#FAF8F5] dark:bg-[#1E212D]"
+                notif.unread ? "bg-[#FFE600]/20 dark:bg-[#2E2800]" : "bg-[#FAF8F5] dark:bg-[var(--muted)]"
               }`}>
                 <div className="flex items-start gap-3">
                   <div className={`w-2.5 h-2.5 mt-1.5 shrink-0 border border-black ${notif.unread ? "bg-[#2563EB]" : "bg-gray-400"}`} />
@@ -284,7 +284,7 @@ export function LandingPreviewSection() {
               <span className="font-mono text-xs px-2.5 py-1 border border-black bg-[#FFE600] text-black font-bold uppercase shadow-[2px_2px_0_0_#000000]">Standalone</span>
             </div>
             <div className="grid sm:grid-cols-2 gap-4 font-mono">
-              <div className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] space-y-2">
+              <div className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-bold text-[#059669] dark:text-[#2DD4BF] uppercase">Lent Offline</span>
                   <span className="text-xs font-bold text-black dark:text-white">₹3,500</span>
@@ -297,7 +297,7 @@ export function LandingPreviewSection() {
                 </div>
               </div>
 
-              <div className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] space-y-2">
+              <div className="p-4 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-bold text-[#F43F5E] uppercase">Borrowed Offline</span>
                   <span className="text-xs font-bold text-black dark:text-white">₹1,200</span>

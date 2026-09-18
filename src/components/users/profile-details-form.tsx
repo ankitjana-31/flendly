@@ -5,7 +5,7 @@ import { updateProfileDetailsAction, type ProfileDetailsState } from "@/lib/priv
 
 const initialState: ProfileDetailsState = {};
 const inputClass =
-  "h-10 w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#161821] px-3 text-xs sm:text-sm font-bold text-black dark:text-white outline-none shadow-[2px_2px_0_0_#000] focus:bg-[#FEF08A] focus:text-black dark:focus:bg-[#2A2E3D]";
+  "h-10 w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 text-xs sm:text-sm font-bold text-black dark:text-white outline-none shadow-[2px_2px_0_0_#000] focus:bg-[#FEF08A] focus:text-black dark:focus:bg-[#2A2E3D]";
 
 export function ProfileDetailsForm({
   fullName,

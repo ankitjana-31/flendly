@@ -59,7 +59,7 @@ export function LoanAnatomySection() {
         title="THE FLENDLY USP // DUAL CONSENT ARCHITECTURE"
         subtitle="WHY FLENDLY IS UNIQUE"
         colorBar="yellow"
-        className="bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
+        className="bg-white dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
         contentClassName="p-6 sm:p-8"
       >
         <div className="mb-6 text-left">
@@ -87,7 +87,7 @@ export function LoanAnatomySection() {
               <motion.div
                 key={idx}
                 variants={cardVariants}
-                className="border-[2.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[#1E212D] p-5 sm:p-6 shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_rgba(255,255,255,0.2)] flex flex-col justify-between text-left transition-all hover:-translate-y-0.5"
+                className="border-[2.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] p-5 sm:p-6 shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_rgba(255,255,255,0.2)] flex flex-col justify-between text-left transition-all hover:-translate-y-0.5"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">

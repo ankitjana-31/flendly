@@ -11,7 +11,7 @@ export function LoanListCard({ loan, role = "lender" }: { loan: LoanListItem; ro
   return (
     <Link
       href={`/loans/${loan.id}`}
-      className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono ${
+      className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono ${
         isLender ? "hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-black" : "hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black"
       }`}
     >

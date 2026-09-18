@@ -7,7 +7,7 @@ type InterestType = "none" | "simple" | "compound";
 type Frequency = "daily" | "monthly" | "yearly";
 
 const inputClass =
-  "h-11 w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#161821] px-3 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black";
+  "h-11 w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black";
 const labelClass = "text-xs font-bold uppercase text-black dark:text-white flex items-center gap-1.5";
 
 export function OfferTermsFields({
@@ -61,7 +61,7 @@ export function OfferTermsFields({
                 className={`flex h-11 cursor-pointer items-center justify-center gap-1.5 border-[2.5px] border-black font-mono text-xs sm:text-sm font-black uppercase transition-all select-none ${
                   isSelected
                     ? "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
-                    : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1.5px_1.5px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                    : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1.5px_1.5px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800"
                 }`}
               >
                 <input
@@ -82,7 +82,7 @@ export function OfferTermsFields({
 
       {/* Rate and Frequency Fields */}
       {interestType !== "none" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
           <div className="flex flex-col gap-1.5">
             <label className={labelClass} htmlFor="interestRate">
               <span>Interest Rate (%)</span>
@@ -120,7 +120,7 @@ export function OfferTermsFields({
 
       {/* Compounding Frequency */}
       {interestType === "compound" && (
-        <div className="flex flex-col gap-1.5 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[2px_2px_0_0_#000]">
+        <div className="flex flex-col gap-1.5 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
           <label className={labelClass} htmlFor="compounding">
             <span>Compounding Frequency</span>
           </label>
@@ -166,7 +166,7 @@ export function OfferTermsFields({
           rows={2}
           maxLength={500}
           defaultValue={defaults?.message}
-          className="w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#161821] px-3 py-2 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black"
+          className="w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 py-2 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black"
           placeholder="e.g. For concert tickets / travel booking"
         />
       </div>

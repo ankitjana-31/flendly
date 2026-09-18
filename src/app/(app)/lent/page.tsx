@@ -51,7 +51,7 @@ export default async function LentPage() {
         subtitle={`${active.length} active peer loans`}
         colorBar="pink"
         glow={true}
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
           <span className="px-2.5 py-0.5 border border-black bg-[#FB7185] text-white font-mono text-[11px] font-black uppercase">
@@ -60,7 +60,7 @@ export default async function LentPage() {
         }
       >
         {loans.length === 0 ? (
-          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
+          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
             <div className="w-10 h-10 border-[2px] border-black bg-[#FB7185] text-white flex items-center justify-center mx-auto mb-3 font-bold">
               <ArrowUpRight className="w-6 h-6" />
             </div>

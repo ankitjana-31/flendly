@@ -60,7 +60,7 @@ export function PaymentForm({
   }
 
   return (
-    <form action={formAction} className="flex flex-col gap-4 font-mono p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000]">
+    <form action={formAction} className="flex flex-col gap-4 font-mono p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000]">
       <input type="hidden" name="loanId" value={loanId} />
 
       {pendingAmount > 0 && (
@@ -88,7 +88,7 @@ export function PaymentForm({
             required
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="h-10 w-full border-[2px] border-black bg-white dark:bg-[#161821] px-3 text-sm font-bold text-black dark:text-white outline-none focus:bg-[#FEF08A] focus:text-black"
+            className="h-10 w-full border-[2px] border-black bg-white dark:bg-[var(--card)] px-3 text-sm font-bold text-black dark:text-white outline-none focus:bg-[#FEF08A] focus:text-black"
             placeholder="1000"
           />
         </div>
@@ -107,7 +107,7 @@ export function PaymentForm({
             max={terms.dueDate > todayIso() ? terms.dueDate : todayIso()}
             value={paymentDate}
             onChange={(e) => setPaymentDate(e.target.value)}
-            className="h-10 w-full border-[2px] border-black bg-white dark:bg-[#161821] px-3 text-sm font-bold text-black dark:text-white outline-none"
+            className="h-10 w-full border-[2px] border-black bg-white dark:bg-[var(--card)] px-3 text-sm font-bold text-black dark:text-white outline-none"
           />
         </div>
       </div>
@@ -123,12 +123,12 @@ export function PaymentForm({
           type="text"
           maxLength={500}
           placeholder="e.g. Paid via Google Pay UPI"
-          className="h-10 w-full border-[2px] border-black bg-white dark:bg-[#161821] px-3 text-sm font-bold text-black dark:text-white outline-none"
+          className="h-10 w-full border-[2px] border-black bg-white dark:bg-[var(--card)] px-3 text-sm font-bold text-black dark:text-white outline-none"
         />
       </div>
 
       {preview && (
-        <div className="border-[2px] border-black/20 dark:border-white/20 bg-white dark:bg-[#161821] p-3 text-xs space-y-1">
+        <div className="border-[2px] border-black/20 dark:border-white/20 bg-white dark:bg-[var(--card)] p-3 text-xs space-y-1">
           <p className="font-bold text-gray-500 uppercase text-[10px]">Estimated Split Breakdown:</p>
           <div className="flex justify-between">
             <span className="text-gray-600 dark:text-gray-300">Towards Interest:</span>
@@ -156,7 +156,7 @@ export function PaymentForm({
           <button
             type="button"
             onClick={onDone}
-            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white text-xs font-bold uppercase hover:bg-gray-100 cursor-pointer"
+            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white text-xs font-bold uppercase hover:bg-gray-100 cursor-pointer"
           >
             CANCEL
           </button>

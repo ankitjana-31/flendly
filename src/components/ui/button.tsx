@@ -7,7 +7,7 @@ const base =
 const variants = {
   primary: "bg-[#FFE600] text-black hover:bg-yellow-300",
   secondary: "bg-[#2563EB] text-white hover:bg-blue-600",
-  outline: "bg-white dark:bg-[#1E212D] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
+  outline: "bg-white dark:bg-[var(--muted)] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800",
   ghost: "border-transparent shadow-none bg-transparent text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 hover:shadow-none hover:translate-y-0",
   danger: "bg-[#F43F5E] text-white hover:bg-rose-600",
 };

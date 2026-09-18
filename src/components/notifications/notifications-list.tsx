@@ -150,7 +150,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
           <button
             disabled={isPending}
             onClick={handleMarkAllRead}
-            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-2 transition-all"
+            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-2 transition-all"
           >
             <CheckCheck className="w-4 h-4 text-[#059669]" />
             <span>MARK ALL AS READ</span>
@@ -164,7 +164,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
         subtitle={`${unreadCount} unread items · live socket sync`}
         colorBar="yellow"
         glow={true}
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
           <span className={`px-2.5 py-0.5 border border-black font-mono text-[11px] font-black uppercase ${
@@ -175,7 +175,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
         }
       >
         {notifications.length === 0 ? (
-          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
+          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
             <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 font-bold text-black">
               <Bell className="w-5 h-5" />
             </div>
@@ -224,7 +224,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
                         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-[2px] border-black dark:border-white/40 transition-all font-mono shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 ${
                           isUnread
                             ? "bg-[#FFE600]/20 dark:bg-[#2E2800] border-l-[6px] border-l-[#2563EB]"
-                            : "bg-[#FAF8F5] dark:bg-[#1E212D]"
+                            : "bg-[#FAF8F5] dark:bg-[var(--muted)]"
                         }`}
                       >
                         <div className="flex items-start sm:items-center gap-3.5">

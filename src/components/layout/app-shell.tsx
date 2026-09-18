@@ -155,7 +155,7 @@ export function AppShell({
                     className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
                       isActive
                         ? "bg-[#FFE600] text-black"
-                        : "bg-[var(--muted)] text-black dark:text-white"
+                        : "bg-[var(--muted)] text-[var(--foreground)]"
                     }`}
                   >
                     <Icon className="h-4 w-4 shrink-0" />
@@ -169,7 +169,7 @@ export function AppShell({
                 className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/notifications"
                     ? "bg-[#FFE600] text-black"
-                    : "bg-[var(--muted)] text-black dark:text-white"
+                    : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
                 <BellIcon className="h-4 w-4 shrink-0" />
@@ -186,7 +186,7 @@ export function AppShell({
                 className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/self-track"
                     ? "bg-[#FFE600] text-black"
-                    : "bg-[var(--muted)] text-black dark:text-white"
+                    : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
                 <WalletIcon className="h-4 w-4 shrink-0" />
@@ -219,7 +219,7 @@ export function AppShell({
             <form action={signOut}>
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
+                className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[var(--muted)] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
               >
                 <LogOutIcon className="h-3.5 w-3.5" />
                 <span className="uppercase text-xs font-bold">Sign Out</span>

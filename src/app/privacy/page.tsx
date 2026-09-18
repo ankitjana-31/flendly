@@ -32,7 +32,7 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-[#FAF8F5] px-4 py-8 text-black dark:bg-[#0F1117] dark:text-white sm:px-6 md:py-12">
+    <main className="min-h-screen bg-[#FAF8F5] px-4 py-8 text-black dark:bg-[var(--background)] dark:text-white sm:px-6 md:py-12">
       <div className="mx-auto max-w-4xl">
         <Link href="/" className="font-mono text-xs font-bold uppercase underline decoration-2 underline-offset-4 hover:bg-[#FFE600] hover:text-black">
           &lt;- Back to Flendly
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
             Flendly helps people keep clear records of money shared with people they know. This policy explains what we collect and how we handle it.
           </p>
           {sections.map((section) => (
-            <section key={section.title} className="border-[2px] border-black bg-white p-5 shadow-[3px_3px_0_0_#000] dark:border-white dark:bg-[#161821] sm:p-6">
+            <section key={section.title} className="border-[2px] border-black bg-white p-5 shadow-[3px_3px_0_0_#000] dark:border-white dark:bg-[var(--card)] sm:p-6">
               <h2 className="font-mono text-lg font-black uppercase">{section.title}</h2>
               <p className="mt-2 font-sans text-sm leading-7 text-gray-700 dark:text-gray-300">{section.body}</p>
             </section>

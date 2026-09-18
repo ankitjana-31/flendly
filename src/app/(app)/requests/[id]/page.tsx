@@ -84,27 +84,27 @@ export default async function RequestDetailPage({
           subtitle={`Proposed by ${activeOffer.created_by === user.id ? "You" : (other.full_name ?? `@${other.username}`)}`}
           colorBar={isLend ? "pink" : "yellow"}
           glow={true}
-          className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+          className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
           contentClassName="p-5 sm:p-6"
         >
           <div className="space-y-5">
             {/* Offer Metrics */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D]">
+              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
                 <span className="text-[10px] uppercase text-gray-500 font-bold block">Proposed Amount</span>
                 <p className="text-2xl font-black text-black dark:text-white mt-0.5">
                   {formatMoney(activeOffer.amount)}
                 </p>
               </div>
 
-              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D]">
+              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
                 <span className="text-[10px] uppercase text-gray-500 font-bold block">Interest Structure</span>
                 <p className="text-sm font-bold text-black dark:text-white mt-1">
                   {interestSummary(activeOffer)}
                 </p>
               </div>
 
-              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D]">
+              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
                 <span className="text-[10px] uppercase text-gray-500 font-bold block">Closure Deadline</span>
                 <p className="text-sm font-bold text-black dark:text-white mt-1 flex items-center gap-1.5">
                   <Calendar className="w-4 h-4 text-gray-500" />
@@ -114,7 +114,7 @@ export default async function RequestDetailPage({
             </div>
 
             {activeOffer.message && (
-              <div className="p-3.5 border-[2px] border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[#1E212D]">
+              <div className="p-3.5 border-[2px] border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)]">
                 <span className="text-[10px] uppercase text-gray-500 font-bold block mb-1">Attached Note:</span>
                 <p className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 italic flex items-center gap-1.5">
                   <FileText className="w-4 h-4 text-amber-500 shrink-0" />
@@ -147,7 +147,7 @@ export default async function RequestDetailPage({
                 className={`p-4 border-[2px] border-black dark:border-white/40 shadow-[2px_2px_0_0_#000] flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
                   offer.status === "ACTIVE"
                     ? "bg-[#FFE600]/20 dark:bg-[#2E2800] border-l-[6px] border-l-[#FFE600]"
-                    : "bg-[#FAF8F5] dark:bg-[#1E212D]"
+                    : "bg-[#FAF8F5] dark:bg-[var(--muted)]"
                 }`}
               >
                 <div className="space-y-1">

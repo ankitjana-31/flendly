@@ -1062,3 +1062,148 @@ html.sunset .interest-btn-unselected,
 html.tropical .interest-btn-unselected {
   color: #ffffff !important;
 }
+
+/* ==========================================================================
+   SIDEBAR NAV: Guaranteed foreground text in all themes (high specificity)
+   ========================================================================== */
+
+html.dark .app-sidebar-nav-item,
+html.ocean .app-sidebar-nav-item,
+html.sunset .app-sidebar-nav-item,
+html.tropical .app-sidebar-nav-item {
+  background-color: var(--muted) !important;
+  color: var(--foreground) !important;
+}
+
+html.dark .app-sidebar-nav-item span,
+html.ocean .app-sidebar-nav-item span,
+html.sunset .app-sidebar-nav-item span,
+html.tropical .app-sidebar-nav-item span {
+  color: var(--foreground) !important;
+}
+
+html.dark .app-sidebar-nav-item svg,
+html.ocean .app-sidebar-nav-item svg,
+html.sunset .app-sidebar-nav-item svg,
+html.tropical .app-sidebar-nav-item svg {
+  color: #FFE600 !important;
+}
+
+/* Active item: always yellow bg, black text */
+html.dark .app-sidebar-nav-item.active-nav,
+html.ocean .app-sidebar-nav-item.active-nav,
+html.sunset .app-sidebar-nav-item.active-nav,
+html.tropical .app-sidebar-nav-item.active-nav,
+html.dark [href].app-sidebar-nav-item[class*="bg-"],
+html.ocean [href].app-sidebar-nav-item[class*="bg-"],
+html.sunset [href].app-sidebar-nav-item[class*="bg-"],
+html.tropical [href].app-sidebar-nav-item[class*="bg-"] {
+  /* Let the inline Tailwind class control active bg */
+}
+
+/* Sidebar hover: yellow bg → black text */
+html.dark .app-sidebar-nav-item:hover,
+html.ocean .app-sidebar-nav-item:hover,
+html.sunset .app-sidebar-nav-item:hover,
+html.tropical .app-sidebar-nav-item:hover {
+  color: #000000 !important;
+  background-color: #FFE600 !important;
+}
+
+html.dark .app-sidebar-nav-item:hover span,
+html.ocean .app-sidebar-nav-item:hover span,
+html.sunset .app-sidebar-nav-item:hover span,
+html.tropical .app-sidebar-nav-item:hover span {
+  color: #000000 !important;
+}
+
+html.dark .app-sidebar-nav-item:hover svg,
+html.ocean .app-sidebar-nav-item:hover svg,
+html.sunset .app-sidebar-nav-item:hover svg,
+html.tropical .app-sidebar-nav-item:hover svg {
+  color: #000000 !important;
+}
+
+/* ==========================================================================
+   SIGN OUT BUTTON: Theme-aware background
+   ========================================================================== */
+html.dark .sign-out-btn,
+html.ocean .sign-out-btn,
+html.sunset .sign-out-btn,
+html.tropical .sign-out-btn {
+  background-color: var(--muted) !important;
+  color: var(--foreground) !important;
+}
+
+/* ==========================================================================
+   GENERAL: Any hardcoded dark bg that missed TSX replacement
+   ========================================================================== */
+html.ocean .dark\:bg-\[\#161821\],
+html.sunset .dark\:bg-\[\#161821\],
+html.tropical .dark\:bg-\[\#161821\] {
+  background-color: var(--card) !important;
+}
+
+html.ocean .dark\:bg-\[\#1E212D\],
+html.sunset .dark\:bg-\[\#1E212D\],
+html.tropical .dark\:bg-\[\#1E212D\] {
+  background-color: var(--muted) !important;
+}
+
+/* ==========================================================================
+   RETRO WINDOW OUTER: Theme-aware window background
+   ========================================================================== */
+html.dark .group.relative,
+html.ocean .group.relative,
+html.sunset .group.relative,
+html.tropical .group.relative {
+  /* Don't override all .group.relative - too broad */
+}
+
+/* ==========================================================================
+   TEXT: Any dark:text-white that doesn't work due to :where() issue
+   ========================================================================== */
+html.dark [class~="dark:text-white"],
+html.ocean [class~="dark:text-white"],
+html.sunset [class~="dark:text-white"],
+html.tropical [class~="dark:text-white"] {
+  color: var(--foreground) !important;
+}
+
+html.dark [class~="dark:text-gray-100"],
+html.ocean [class~="dark:text-gray-100"],
+html.sunset [class~="dark:text-gray-100"],
+html.tropical [class~="dark:text-gray-100"] {
+  color: var(--foreground) !important;
+}
+
+html.dark [class~="dark:text-gray-300"],
+html.ocean [class~="dark:text-gray-300"],
+html.sunset [class~="dark:text-gray-300"],
+html.tropical [class~="dark:text-gray-300"] {
+  color: var(--muted-foreground) !important;
+}
+
+html.dark [class~="dark:text-gray-400"],
+html.ocean [class~="dark:text-gray-400"],
+html.sunset [class~="dark:text-gray-400"],
+html.tropical [class~="dark:text-gray-400"] {
+  color: var(--muted-foreground) !important;
+}
+
+/* ==========================================================================
+   BACKGROUNDS: dark:bg-* → var(--card) or var(--muted) for all dark themes
+   ========================================================================== */
+html.dark [class~="dark:bg-[var(--card)]"],
+html.ocean [class~="dark:bg-[var(--card)]"],
+html.sunset [class~="dark:bg-[var(--card)]"],
+html.tropical [class~="dark:bg-[var(--card)]"] {
+  background-color: var(--card) !important;
+}
+
+html.dark [class~="dark:bg-[var(--muted)]"],
+html.ocean [class~="dark:bg-[var(--muted)]"],
+html.sunset [class~="dark:bg-[var(--muted)]"],
+html.tropical [class~="dark:bg-[var(--muted)]"] {
+  background-color: var(--muted) !important;
+}

@@ -31,7 +31,7 @@ export function CounterOfferForm({
   }, [state.success, onCancel, router]);
 
   return (
-    <form action={formAction} className="flex flex-col gap-5 p-4 sm:p-6 border-[2.5px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[4px_4px_0_0_#000] font-mono">
+    <form action={formAction} className="flex flex-col gap-5 p-4 sm:p-6 border-[2.5px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000] font-mono">
       <div className="flex items-center justify-between border-b-[2px] border-black dark:border-white/20 pb-2.5">
         <span className="text-xs font-black uppercase text-black dark:text-white flex items-center gap-1.5">
           <span>⚡</span>
@@ -70,7 +70,7 @@ export function CounterOfferForm({
           type="button"
           onClick={onCancel}
           disabled={isPending}
-          className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 cursor-pointer"
+          className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 cursor-pointer"
         >
           CANCEL
         </button>

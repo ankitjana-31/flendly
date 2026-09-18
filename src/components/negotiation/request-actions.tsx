@@ -84,7 +84,7 @@ export function RequestActions({
                   if (res?.error) setError(res.error);
                 })
               }
-              className="px-3.5 py-2 border-[2px] border-black bg-white dark:bg-[#1E212D] text-[#F43F5E] text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
+              className="px-3.5 py-2 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-[#F43F5E] text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
             >
               <X className="w-4 h-4 stroke-[2.5]" />
               <span>DECLINE</span>

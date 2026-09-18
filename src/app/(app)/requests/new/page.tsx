@@ -40,7 +40,7 @@ export default async function NewRequestPage() {
           subtitle="Configure amount, interest structure, and closure deadline"
           colorBar="yellow"
           glow={true}
-          className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+          className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
           contentClassName="p-5 sm:p-7"
         >
           <NewRequestForm />

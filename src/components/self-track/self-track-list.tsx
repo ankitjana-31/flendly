@@ -242,7 +242,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
             className={`px-3 py-1 text-xs font-bold uppercase transition-all border-[2px] border-black cursor-pointer ${
               filter === tab.id
                 ? "bg-[#FFE600] text-black shadow-[2px_2px_0_0_#000000] -translate-y-0.5"
-                : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
             }`}
           >
             {tab.label}
@@ -251,7 +251,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
       </div>
 
       {filteredRecords.length === 0 ? (
-        <div className="border-[2px] border-dashed border-black/40 dark:border-white/40 p-8 text-center bg-white dark:bg-[#161821] shadow-[3px_3px_0_0_#000]">
+        <div className="border-[2px] border-dashed border-black/40 dark:border-white/40 p-8 text-center bg-white dark:bg-[var(--card)] shadow-[3px_3px_0_0_#000]">
           <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 text-black font-bold">
             ⚡
           </div>
@@ -280,7 +280,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.18 }}
-                className={`border-[2.5px] border-black dark:border-white/60 bg-white dark:bg-[#161821] transition-all shadow-[4px_4px_0_0_#000000] ${
+                className={`border-[2.5px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] transition-all shadow-[4px_4px_0_0_#000000] ${
                   isSettled ? "opacity-85" : ""
                 }`}
               >
@@ -334,7 +334,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[#1E212D] space-y-1.5">
+                  <div className="p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] space-y-1.5">
                     <div className="flex justify-between text-xs font-bold">
                       <span className="text-gray-600 dark:text-gray-400">Repayment: {progress}%</span>
                       <span className={remaining === 0 ? "text-[#059669] dark:text-[#2DD4BF]" : "text-black dark:text-white"}>
@@ -376,7 +376,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                       {record.payments.length > 0 && (
                         <button
                           onClick={() => setExpandedId(isExpanded ? null : record.id)}
-                          className="px-2.5 py-1 border-[2px] border-black bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 cursor-pointer flex items-center gap-1"
+                          className="px-2.5 py-1 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 cursor-pointer flex items-center gap-1"
                         >
                           <History className="w-3.5 h-3.5 text-gray-500" />
                           <span>Log ({record.payments.length})</span>
@@ -391,7 +391,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         className={`px-3 py-1 border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] cursor-pointer flex items-center gap-1 transition-all ${
                           isSettled
                             ? "bg-[#2DD4BF] text-black hover:bg-teal-300"
-                            : "bg-white dark:bg-[#1E212D] text-black dark:text-white hover:bg-gray-100"
+                            : "bg-white dark:bg-[var(--muted)] text-black dark:text-white hover:bg-gray-100"
                         }`}
                       >
                         {isSettled ? (
@@ -425,7 +425,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.18 }}
-                        className="mt-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000]"
+                        className="mt-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000]"
                       >
                         <div className="flex justify-between items-center mb-2.5 pb-1 border-b border-black/20 dark:border-white/20">
                           <span className="text-xs font-black uppercase text-black dark:text-white flex items-center gap-1.5">
@@ -459,7 +459,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               value={paymentAmount}
                               onChange={(e) => setPaymentAmount(e.target.value)}
                               placeholder={`Max ₹${remaining}`}
-                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[#161821] text-xs font-bold focus:bg-[#FEF08A] focus:text-black outline-none"
+                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold focus:bg-[#FEF08A] focus:text-black outline-none"
                             />
                           </div>
 
@@ -472,7 +472,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               required
                               value={paymentDate}
                               onChange={(e) => setPaymentDate(e.target.value)}
-                              className="w-full h-8 px-2 border-[1.5px] border-black bg-white dark:bg-[#161821] text-xs font-bold outline-none"
+                              className="w-full h-8 px-2 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold outline-none"
                             />
                           </div>
 
@@ -485,7 +485,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               value={paymentNote}
                               onChange={(e) => setPaymentNote(e.target.value)}
                               placeholder="e.g. UPI transfer"
-                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[#161821] text-xs font-bold outline-none"
+                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold outline-none"
                             />
                           </div>
 
@@ -518,7 +518,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.18 }}
-                        className="mt-3 p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[#1E212D] space-y-2"
+                        className="mt-3 p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] space-y-2"
                       >
                         <p className="text-[10px] font-black text-gray-500 uppercase tracking-wider">
                           PAYMENT AUDIT TRAIL ({record.payments.length})
@@ -527,7 +527,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                           {record.payments.map((p) => (
                             <div
                               key={p.id}
-                              className="flex items-center justify-between p-2 border border-black/20 dark:border-white/20 bg-white dark:bg-[#161821] text-xs"
+                              className="flex items-center justify-between p-2 border border-black/20 dark:border-white/20 bg-white dark:bg-[var(--card)] text-xs"
                             >
                               <div className="flex items-center gap-2">
                                 <span className="font-bold text-[#059669] dark:text-[#2DD4BF]">{formatMoney(p.amount)}</span>

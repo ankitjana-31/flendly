@@ -4,7 +4,7 @@ import React from "react";
 
 export function LandingAuditSection() {
   return (
-    <section className="w-full max-w-[1400px] z-20 flex flex-col bg-white dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#10B981] transition-colors rounded-sm overflow-hidden">
+    <section className="w-full max-w-[1400px] z-20 flex flex-col bg-white dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#10B981] transition-colors rounded-sm overflow-hidden">
       {/* Titlebar */}
       <div className="h-10 bg-[#10B981] text-black px-4 sm:px-6 border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
         <div className="flex items-center gap-2 font-mono text-xs sm:text-sm uppercase font-black tracking-wider">
@@ -19,7 +19,7 @@ export function LandingAuditSection() {
       {/* Spacious 2-Column Comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 divide-y-[3px] md:divide-y-0 md:divide-x-[3px] divide-black dark:divide-white">
         {/* Left Column: The WhatsApp Mess */}
-        <div className="p-6 md:p-10 bg-[#FAF8F5] dark:bg-[#1A1D27] flex flex-col gap-6">
+        <div className="p-6 md:p-10 bg-[#FAF8F5] dark:bg-[var(--muted)] flex flex-col gap-6">
           <div className="flex items-center justify-between">
             <span className="bg-[#FF2E93]/15 text-[#F43F5E] px-3 py-1 border-[2px] border-black dark:border-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
               OLD METHOD: WHATSAPP MESS
@@ -48,7 +48,7 @@ export function LandingAuditSection() {
         </div>
 
         {/* Right Column: The Flendly Ledger (Matching Left Side Airbnb Split) */}
-        <div className="p-6 md:p-10 bg-white dark:bg-[#161821] flex flex-col gap-6">
+        <div className="p-6 md:p-10 bg-white dark:bg-[var(--card)] flex flex-col gap-6">
           <div className="flex items-center justify-between">
             <span className="bg-[#2DD4BF] text-black px-3 py-1 border-[2px] border-black dark:border-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
               FLENDLY DEAL: 100% CRYSTAL

@@ -26,8 +26,8 @@ export function ChangeUsernameForm({
 
   return (
     <form action={action} className="flex flex-col gap-3 font-mono">
-      <div className="flex border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#161821] shadow-[2px_2px_0_0_#000]">
-        <span className="flex items-center border-r-[2px] border-black dark:border-white/60 px-3 text-black dark:text-white font-bold bg-[#FAF8F5] dark:bg-[#1E212D]">
+      <div className="flex border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] shadow-[2px_2px_0_0_#000]">
+        <span className="flex items-center border-r-[2px] border-black dark:border-white/60 px-3 text-black dark:text-white font-bold bg-[#FAF8F5] dark:bg-[var(--muted)]">
           @
         </span>
         <input

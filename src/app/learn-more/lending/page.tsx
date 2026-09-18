@@ -17,7 +17,7 @@ const steps = [
 
 export default function LendingPage() {
   return (
-    <main className="min-h-screen bg-[#FAF8F5] px-4 py-8 text-black dark:bg-[#0F1117] dark:text-white sm:px-6 md:py-12">
+    <main className="min-h-screen bg-[#FAF8F5] px-4 py-8 text-black dark:bg-[var(--background)] dark:text-white sm:px-6 md:py-12">
       <div className="mx-auto max-w-5xl">
         <Link href="/learn-more" className="font-mono text-xs font-bold uppercase underline decoration-2 underline-offset-4 hover:bg-[#FFE600] hover:text-black">
           &lt;- Back to Learn More
@@ -51,7 +51,7 @@ export default function LendingPage() {
           </div>
         </section>
 
-        <section className="mt-8 border-[2px] border-black bg-white p-6 shadow-[4px_4px_0_0_#000] dark:border-white dark:bg-[#161821] sm:p-8">
+        <section className="mt-8 border-[2px] border-black bg-white p-6 shadow-[4px_4px_0_0_#000] dark:border-white dark:bg-[var(--card)] sm:p-8">
           <h2 className="font-mono text-xl font-black uppercase">How lending works</h2>
           <ol className="mt-5 space-y-4">
             {steps.map((step, index) => (

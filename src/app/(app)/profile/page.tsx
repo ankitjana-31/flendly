@@ -18,7 +18,7 @@ export default async function ProfilePage() {
           subtitle="AUTHENTICATED SESSION"
           colorBar="yellow"
           glow={true}
-          className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
+          className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
           contentClassName="p-6 sm:p-8"
           headerRight={
             <div className="flex items-center gap-1.5 px-2 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-[10px] font-bold uppercase">
@@ -41,14 +41,14 @@ export default async function ProfilePage() {
               </div>
             </div>
 
-            <span className="px-2.5 py-1 border border-black bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold shadow-[1px_1px_0_0_#000]">
+            <span className="px-2.5 py-1 border border-black bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs font-bold shadow-[1px_1px_0_0_#000]">
               VERIFIED USER
             </span>
           </div>
 
           {/* Profile Information Block */}
           <div className="space-y-4">
-            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000]">
+            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000]">
               <span className="font-mono text-[10px] font-bold uppercase text-gray-500 block mb-1">
                 PUBLIC IDENTITY
               </span>
@@ -62,14 +62,14 @@ export default async function ProfilePage() {
 
             {/* Profile Meta Info */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-              <div className="p-3 border border-black/20 dark:border-white/20 bg-white dark:bg-[#161821]">
+              <div className="p-3 border border-black/20 dark:border-white/20 bg-white dark:bg-[var(--card)]">
                 <span className="text-gray-500 text-[10px] block font-bold uppercase">Account Status</span>
                 <span className="font-bold text-[#059669] dark:text-[#2DD4BF] flex items-center gap-1 mt-0.5">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   Active & Verified
                 </span>
               </div>
-              <div className="p-3 border border-black/20 dark:border-white/20 bg-white dark:bg-[#161821]">
+              <div className="p-3 border border-black/20 dark:border-white/20 bg-white dark:bg-[var(--card)]">
                 <span className="text-gray-500 text-[10px] block font-bold uppercase">Platform Role</span>
                 <span className="font-bold text-black dark:text-white mt-0.5 block">
                   Peer Borrower & Lender

@@ -34,7 +34,7 @@ export function LearnMoreHero() {
         subtitle="OVERVIEW"
         colorBar="blue"
         glow={true}
-        className="bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
+        className="bg-[#FDFBF7] dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
         contentClassName="p-6 sm:p-8 md:p-10 text-left"
         headerRight={
           <div className="flex items-center gap-2 font-mono text-xs text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
@@ -80,7 +80,7 @@ export function LearnMoreHero() {
           </Link>
           <Link
             href="/"
-            className="px-6 py-3.5 bg-white dark:bg-[#1E212D] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+            className="px-6 py-3.5 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
           >
             <span>◄</span>
             <span>BACK TO HOME</span>

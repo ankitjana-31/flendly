@@ -89,7 +89,7 @@ export default async function LoanDetailPage({
         subtitle={`${interestSummary(loan)} · Due ${formatDate(loan.due_date)}`}
         colorBar={isLender ? "pink" : "yellow"}
         glow={true}
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
           <span className={`px-2.5 py-0.5 border border-black font-mono text-[11px] font-black uppercase ${
@@ -102,21 +102,21 @@ export default async function LoanDetailPage({
         <div className="space-y-6">
           {/* Financial Metrics Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D]">
+            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
               <span className="text-[10px] uppercase text-gray-500 font-bold block">Remaining Principal</span>
               <p className="text-2xl font-black text-black dark:text-white mt-0.5">
                 {formatMoney(loan.ledger?.principal_remaining ?? loan.principal_amount)}
               </p>
             </div>
 
-            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D]">
+            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
               <span className="text-[10px] uppercase text-gray-500 font-bold block">Accrued Unpaid Interest</span>
               <p className="text-2xl font-black text-black dark:text-white mt-0.5">
                 {formatMoney(loan.ledger?.unpaid_interest ?? "0")}
               </p>
             </div>
 
-            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[#1E212D]">
+            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
               <span className="text-[10px] uppercase text-gray-500 font-bold block">Total Outstanding</span>
               <p className={`text-2xl font-black mt-0.5 ${
                 isLender ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"
@@ -127,7 +127,7 @@ export default async function LoanDetailPage({
           </div>
 
           {/* Dates & Terms Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[#1E212D] text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] text-xs">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-gray-500" />
               <span>Started: <strong className="text-black dark:text-white">{formatDate(loan.start_date)}</strong></span>
@@ -161,11 +161,11 @@ export default async function LoanDetailPage({
         title="PAYMENT AUDIT LOG // CONFIRMED & PENDING"
         subtitle={`${loan.payments.length} transactions logged`}
         colorBar="blue"
-        className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
       >
         {loan.payments.length === 0 ? (
-          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-8 text-center bg-[#FAF8F5] dark:bg-[#1E212D]">
+          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-8 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
             <p className="text-xs text-gray-500 uppercase font-bold">No payments recorded yet.</p>
           </div>
         ) : (
@@ -183,7 +183,7 @@ export default async function LoanDetailPage({
                       ? "bg-[#FFE600]/20 dark:bg-[#2E2800] border-l-[6px] border-l-[#FFE600]"
                       : isRejected
                       ? "bg-[#F43F5E]/10 dark:bg-[#3D0C1D] opacity-75"
-                      : "bg-[#FAF8F5] dark:bg-[#1E212D]"
+                      : "bg-[#FAF8F5] dark:bg-[var(--muted)]"
                   }`}
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">

@@ -79,7 +79,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
       title="NEW RECORD // LOG OFFLINE"
       subtitle="private entry"
       colorBar="yellow"
-      className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
+      className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
       contentClassName="p-5 sm:p-6"
       headerRight={
         onClose ? (
@@ -125,7 +125,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               className={`flex items-center justify-center gap-2 py-2.5 px-3 border-[2px] border-black font-bold uppercase transition-all ${
                 type === "lent"
                   ? "bg-[#2DD4BF] text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5"
-                  : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                  : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
               <ArrowUpRight className="w-4 h-4" />
@@ -138,7 +138,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               className={`flex items-center justify-center gap-2 py-2.5 px-3 border-[2px] border-black font-bold uppercase transition-all ${
                 type === "borrowed"
                   ? "bg-[#F43F5E] text-white shadow-[3px_3px_0_0_#000000] -translate-y-0.5"
-                  : "bg-white dark:bg-[#1E212D] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                  : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
               <ArrowDownLeft className="w-4 h-4" />
@@ -162,7 +162,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
               placeholder="e.g. Ankit"
-              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
 
@@ -181,7 +181,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="e.g. 2500"
-              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-black shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-black shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
         </div>
@@ -200,7 +200,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={recordDate}
               onChange={(e) => setRecordDate(e.target.value)}
-              className="w-full h-10 px-2.5 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-10 px-2.5 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
 
@@ -216,7 +216,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="e.g. Dinner bill, promised to pay via UPI"
-              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
         </div>
