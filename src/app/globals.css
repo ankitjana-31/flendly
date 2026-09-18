@@ -186,6 +186,20 @@ html.tropical .landing-preview [class*="text-[#10B981]"] {
   color: var(--success) !important;
 }
 
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="text-[#005236]"],
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="text-[#059669]"],
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="text-[#10B981]"] {
+  color: var(--success) !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="text-black"] {
+  color: var(--foreground) !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="dark:text-white"] {
+  color: var(--foreground) !important;
+}
+
 html.ocean .landing-preview [class*="text-[#F43F5E]"],
 html.sunset .landing-preview [class*="text-[#F43F5E]"],
 html.tropical .landing-preview [class*="text-[#F43F5E]"] {
