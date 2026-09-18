@@ -150,10 +150,7 @@ html.tropical .app-shell-grid {
 }
 
 /* Custom palettes keep legacy utility classes readable without changing the light theme. */
-html.ocean .text-black,
-html.sunset .text-black {
-  color: var(--foreground) !important;
-}
+
 
 html.ocean .text-gray-700,
 html.ocean .text-gray-600,
@@ -283,10 +280,7 @@ html.tropical .app-mobile-nav .app-mobile-nav-active {
   color: var(--primary-foreground);
 }
 
-html.ocean .text-black,
-html.tropical .text-black {
-  color: var(--foreground) !important;
-}
+
 
 html.ocean .text-gray-700,
 html.ocean .text-gray-600,
@@ -351,11 +345,7 @@ html.sunset li {
   --sunset-readable: var(--foreground);
 }
 
-html.sunset [class*="text-black"],
-html.sunset [class*="text-gray-700"],
-html.sunset [class*="text-gray-600"] {
-  color: var(--foreground) !important;
-}
+
 
 html.ocean .theme-receivable-card .text-black,
 html.sunset .theme-receivable-card .text-black,
@@ -857,4 +847,41 @@ html.sunset [class*="text-rose-"] {
 :where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive:hover > span:not(.landing-preview-tab-tag),
 :where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive:hover > svg {
   color: #ffffff !important;
+}
+
+
+/* ==========================================================================
+   PITCH-BLACK TEXT ON ALL YELLOW, CYAN, TEAL, MINT FILLED ELEMENTS
+   ========================================================================== */
+
+/* 1. Yellow Backgrounds (Scheduled badges, buttons, active tabs, headers) */
+[class*="bg-[#FFE600]"],
+[class*="bg-yellow-"],
+[class*="bg-[#FDE047]"],
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#FFE600]"],
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-yellow-"],
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#FDE047]"] {
+  color: #000000 !important;
+}
+
+[class*="bg-[#FFE600]"] > *:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]),
+[class*="bg-[#FFE600]"] span:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]),
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#FFE600]"] > *:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]),
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#FFE600]"] span:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]) {
+  color: #000000 !important;
+}
+
+/* 2. Cyan / Teal Backgrounds (Settled badges, Deal header, Awkward conversations banner) */
+[class*="bg-[#2DD4BF]"],
+[class*="bg-teal-"],
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#2DD4BF]"],
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-teal-"] {
+  color: #000000 !important;
+}
+
+[class*="bg-[#2DD4BF]"] > *:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]),
+[class*="bg-[#2DD4BF]"] span:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]),
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#2DD4BF]"] > *:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]),
+:where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#2DD4BF]"] span:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]) {
+  color: #000000 !important;
 }
