@@ -192,9 +192,7 @@ html.tropical .landing-preview [class*="text-[#10B981]"] {
   color: var(--success) !important;
 }
 
-:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="text-black"] {
-  color: var(--foreground) !important;
-}
+
 
 :where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="dark:text-white"] {
   color: var(--foreground) !important;
@@ -253,31 +251,17 @@ html.tropical .landing-preview [class*="text-[#93C5FD]"] {
   color: var(--primary) !important;
 }
 
-html.ocean .landing-preview [class*="text-black"],
-html.sunset .landing-preview [class*="text-black"],
-html.tropical .landing-preview [class*="text-black"] {
-  color: var(--foreground) !important;
-}
 
 
 
-html.ocean [class*="bg-white"],
-html.sunset [class*="bg-white"] {
-  background-color: var(--card) !important;
-}
 
-html.ocean [class*="bg-[#FAF8F5]"],
-html.sunset [class*="bg-[#FAF8F5]"] {
-  background-color: var(--muted) !important;
-}
 
-html.tropical [class*="bg-white"] {
-  background-color: var(--card) !important;
-}
 
-html.tropical [class*="bg-[#FAF8F5]"] {
-  background-color: var(--muted) !important;
-}
+
+
+
+
+
 
 
 
@@ -814,4 +798,63 @@ html.sunset [class*="text-rose-"] {
   background-color: #ffffff !important;
   color: #000000 !important;
   border-color: #000000 !important;
+}
+
+
+/* ==========================================================================
+   LANDING PREVIEW TABS: IDENTICAL PERFECT CONTRAST IN ALL DARK MODES
+   ========================================================================== */
+
+/* Active Tab (Yellow) */
+.landing-preview-tab-active,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active {
+  background-color: #FFE600 !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.landing-preview-tab-active > span:not(.landing-preview-tab-tag),
+.landing-preview-tab-active > svg,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active > span:not(.landing-preview-tab-tag),
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active > svg {
+  color: #000000 !important;
+}
+
+/* Tag inside Active Tab (Solid Black with White Text) */
+.landing-preview-tab-active .landing-preview-tab-tag,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active .landing-preview-tab-tag {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+/* Unselected Tabs (Dark Card Background with White Text) */
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive {
+  background-color: var(--card) !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive > span:not(.landing-preview-tab-tag),
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive > svg {
+  color: #ffffff !important;
+}
+
+/* Tag inside Unselected Tabs (Solid White Background with Pitch Black Text) */
+.landing-preview-tab-inactive .landing-preview-tab-tag,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive .landing-preview-tab-tag {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+/* Hover on Unselected Tabs (Pink background, White text) */
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive:hover {
+  background-color: #FB7185 !important;
+  color: #ffffff !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive:hover > span:not(.landing-preview-tab-tag),
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive:hover > svg {
+  color: #ffffff !important;
 }
