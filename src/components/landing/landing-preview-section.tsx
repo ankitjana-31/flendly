@@ -43,14 +43,14 @@ export function LandingPreviewSection() {
               onClick={() => setActiveTab(tab.id)}
               className={`landing-preview-tab flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
                 isActive
-                  ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
+                  ? "landing-preview-tab-active bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                   : "landing-preview-tab-inactive bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
               }`}
             >
-              <Icon className="w-4 h-4 text-current" />
-              <span>{tab.label}</span>
-              <span className={`hidden md:inline-block text-[10px] px-1.5 py-0.5 border border-black ${
-                isActive ? "bg-black text-white" : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+              <Icon className="w-4 h-4 text-current shrink-0" />
+              <span className="font-black">{tab.label}</span>
+              <span className={`landing-preview-tab-tag hidden md:inline-block text-[10px] px-1.5 py-0.5 border border-black ${
+                isActive ? "bg-black !text-white font-bold" : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium"
               }`}>
                 {tab.tag}
               </span>

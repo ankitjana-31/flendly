@@ -259,47 +259,7 @@ html.tropical .landing-preview [class*="text-black"] {
   color: var(--foreground) !important;
 }
 
-html.ocean .landing-preview [class*="bg-[#2DD4BF]"] [class*="text-black"],
-html.sunset .landing-preview [class*="bg-[#2DD4BF]"] [class*="text-black"],
-html.tropical .landing-preview [class*="bg-[#2DD4BF]"] [class*="text-black"] {
-  color: var(--primary-foreground) !important;
-}
 
-html.ocean .landing-preview [class*="bg-[#2DD4BF]"][class*="text-black"],
-html.sunset .landing-preview [class*="bg-[#2DD4BF]"][class*="text-black"],
-html.tropical .landing-preview [class*="bg-[#2DD4BF]"][class*="text-black"],
-html.ocean .landing-preview [class*="bg-[#FFE600]"][class*="text-black"],
-html.sunset .landing-preview [class*="bg-[#FFE600]"][class*="text-black"],
-html.tropical .landing-preview [class*="bg-[#FFE600]"][class*="text-black"] {
-  color: var(--primary-foreground) !important;
-}
-
-html.ocean .landing-preview [class*="bg-[#FFE600]"] [class*="text-black"],
-html.sunset .landing-preview [class*="bg-[#FFE600]"] [class*="text-black"],
-html.tropical .landing-preview [class*="bg-[#FFE600]"] [class*="text-black"] {
-  color: var(--primary-foreground) !important;
-}
-
-html.tropical [class*="text-[#2563EB]"],
-html.tropical [class*="text-[#60A5FA]"] {
-  color: #A3E635 !important;
-}
-
-html.ocean [class*="bg-[#FFE600]"] .text-black,
-html.ocean [class*="bg-[#2DD4BF]"] .text-black,
-html.sunset [class*="bg-[#FFE600]"] .text-black,
-html.sunset [class*="bg-[#2DD4BF]"] .text-black {
-  color: #071827 !important;
-}
-
-html.ocean [class*="bg-[#FFE600]"][class*="text-black"],
-html.ocean [class*="bg-[#2DD4BF]"][class*="text-black"],
-html.sunset [class*="bg-[#FFE600]"][class*="text-black"],
-html.sunset [class*="bg-[#2DD4BF]"][class*="text-black"],
-html.tropical [class*="bg-[#FFE600]"][class*="text-black"],
-html.tropical [class*="bg-[#2DD4BF]"][class*="text-black"] {
-  color: var(--primary-foreground) !important;
-}
 
 html.ocean [class*="bg-white"],
 html.sunset [class*="bg-white"] {
@@ -319,14 +279,7 @@ html.tropical [class*="bg-[#FAF8F5]"] {
   background-color: var(--muted) !important;
 }
 
-html.ocean .landing-preview .landing-preview-tab-inactive,
-html.sunset .landing-preview .landing-preview-tab-inactive,
-html.tropical .landing-preview .landing-preview-tab-inactive,
-html.ocean .landing-preview .landing-preview-tab-inactive *,
-html.sunset .landing-preview .landing-preview-tab-inactive *,
-html.tropical .landing-preview .landing-preview-tab-inactive * {
-  color: #000000 !important;
-}
+
 
 html.sunset .app-mobile-nav .app-mobile-nav-inactive {
   color: #FFF4E6;
@@ -727,20 +680,41 @@ html.sunset .theme-payable-card * {
   color: #ffffff !important;
 }
 
-/* Active yellow elements ALWAYS have pitch-black text */
-.landing-preview-tab[class*="bg-[#FFE600]"],
-.landing-preview-tab[class*="bg-[#FFE600]"] *,
-:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab[class*="bg-[#FFE600]"],
-:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab[class*="bg-[#FFE600]"] * {
+/* Active yellow landing preview tab styling with crisp white text in black tag badge */
+.landing-preview-tab-active,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active {
+  background-color: #FFE600 !important;
   color: #000000 !important;
 }
 
-/* Selected Theme Option Cards ALWAYS pitch black */
-.theme-settings-option[class*="bg-[#FFE600]"],
-.theme-settings-option[class*="bg-[#FFE600]"] *,
-:where(.dark, .ocean, .sunset, .tropical) .theme-settings-option[class*="bg-[#FFE600]"],
-:where(.dark, .ocean, .sunset, .tropical) .theme-settings-option[class*="bg-[#FFE600]"] * {
+.landing-preview-tab-active > span:not(.landing-preview-tab-tag),
+.landing-preview-tab-active > svg,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active > span:not(.landing-preview-tab-tag),
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active > svg {
   color: #000000 !important;
+}
+
+.landing-preview-tab-active .landing-preview-tab-tag,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-active .landing-preview-tab-tag {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Selected Theme Option Cards ALWAYS pitch black with white checkmark */
+.theme-settings-option[class*="bg-[#FFE600]"],
+.theme-settings-option[class*="bg-[#FFE600]"] p,
+.theme-settings-option[class*="bg-[#FFE600]"] svg:not([class*="stroke-[3]"]),
+:where(.dark, .ocean, .sunset, .tropical) .theme-settings-option[class*="bg-[#FFE600]"],
+:where(.dark, .ocean, .sunset, .tropical) .theme-settings-option[class*="bg-[#FFE600]"] p,
+:where(.dark, .ocean, .sunset, .tropical) .theme-settings-option[class*="bg-[#FFE600]"] svg:not([class*="stroke-[3]"]) {
+  color: #000000 !important;
+}
+
+.theme-settings-option[class*="bg-[#FFE600]"] [class*="bg-black"],
+.theme-settings-option[class*="bg-[#FFE600]"] [class*="bg-black"] *,
+:where(.dark, .ocean, .sunset, .tropical) .theme-settings-option[class*="bg-[#FFE600]"] [class*="bg-black"],
+:where(.dark, .ocean, .sunset, .tropical) .theme-settings-option[class*="bg-[#FFE600]"] [class*="bg-black"] * {
+  color: #ffffff !important;
 }
 
 /* Unselected Theme Option Cards ALWAYS crisp white in dark themes */
