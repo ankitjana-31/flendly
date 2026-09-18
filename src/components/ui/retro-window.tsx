@@ -189,7 +189,7 @@ export function RetroWindow({
               <button
                 type="button"
                 onClick={handleMinimize}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white !text-black font-mono text-xs font-black shadow-[1px_1px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black cursor-pointer active:translate-y-0.5"
+                className="retro-win-btn"
                 title={isMinimized ? "Restore" : "Minimize"}
               >
                 _
@@ -197,7 +197,7 @@ export function RetroWindow({
               <button
                 type="button"
                 onClick={handleMaximize}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white !text-black font-mono text-[11px] font-black shadow-[1px_1px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black cursor-pointer active:translate-y-0.5"
+                className="retro-win-btn"
                 title="Maximize / Open Page"
               >
                 □
@@ -205,7 +205,7 @@ export function RetroWindow({
               <button
                 type="button"
                 onClick={handleClose}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-[#F43F5E] !text-white font-mono text-[11px] font-black shadow-[1px_1px_0_0_#000000] hover:bg-red-600 cursor-pointer active:translate-y-0.5"
+                className="retro-win-btn retro-win-btn-close"
                 title="Close Window"
               >
                 ✕

@@ -80,13 +80,13 @@ export function LandingHero() {
             <span>THE PROMISE</span>
           </div>
           <div className="hidden sm:flex items-center gap-1">
-            <button type="button" onClick={handleMinimize} aria-label={isMinimized ? "Restore landing window" : "Minimize landing window"} className="w-5 h-5 border border-black bg-white !text-black font-mono text-[10px] font-black flex items-center justify-center hover:bg-[#FFE600] shadow-[1px_1px_0_0_#000]">
+            <button type="button" onClick={handleMinimize} aria-label={isMinimized ? "Restore landing window" : "Minimize landing window"} className="retro-win-btn">
               _
             </button>
-            <button type="button" onClick={() => runWindowAnimation("maximize")} aria-label="Zoom landing window" className="w-5 h-5 border border-black bg-white !text-black font-mono text-[10px] font-black flex items-center justify-center hover:bg-[#FFE600] shadow-[1px_1px_0_0_#000]">
+            <button type="button" onClick={() => runWindowAnimation("maximize")} aria-label="Zoom landing window" className="retro-win-btn">
               □
             </button>
-            <button type="button" onClick={handleClose} aria-label="Replay landing window" className="w-5 h-5 border border-black bg-[#F43F5E] !text-white font-mono text-[10px] font-black flex items-center justify-center hover:bg-red-600 shadow-[1px_1px_0_0_#000]">
+            <button type="button" onClick={handleClose} aria-label="Replay landing window" className="retro-win-btn retro-win-btn-close">
               ✕
             </button>
           </div>

@@ -50,7 +50,7 @@ export function LandingPreviewSection() {
               <Icon className="w-4 h-4 text-current shrink-0" />
               <span className="font-black">{tab.label}</span>
               <span className={`landing-preview-tab-tag hidden md:inline-block text-[10px] px-1.5 py-0.5 border border-black ${
-                isActive ? "bg-black !text-white font-bold" : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium"
+                isActive ? "bg-black !text-white font-bold" : "bg-white !text-black font-bold"
               }`}>
                 {tab.tag}
               </span>

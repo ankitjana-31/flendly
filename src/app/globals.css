@@ -754,3 +754,64 @@ html.sunset [class*="text-rose-"] {
 :where(.dark, .ocean, .sunset, .tropical) aside a[href="/profile"]:hover * {
   color: #000000 !important;
 }
+
+
+/* ==========================================================================
+   RETRO WINDOW CONTROLS & UNSELECTED TAB TAG CONTRAST
+   ========================================================================== */
+
+/* Retro Window Control Buttons: Crisp white symbols & borders across all dark/colored titlebars */
+.retro-win-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  font-family: monospace !important;
+  font-weight: 900 !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  border: 1.5px solid #ffffff !important;
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  color: #ffffff !important;
+  box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.8) !important;
+}
+
+.retro-win-btn:hover {
+  background-color: #FFE600 !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.retro-win-btn-close {
+  background-color: #F43F5E !important;
+  color: #ffffff !important;
+  border: 1.5px solid #ffffff !important;
+}
+
+.retro-win-btn-close:hover {
+  background-color: #DC2626 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .retro-win-btn,
+:where(.dark, .ocean, .sunset, .tropical) .retro-win-btn-close {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .retro-win-btn:hover {
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+/* Unselected landing tab tag badge: ALWAYS solid white background with pitch-black text across ALL themes */
+.landing-preview-tab-inactive .landing-preview-tab-tag,
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive .landing-preview-tab-tag {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
