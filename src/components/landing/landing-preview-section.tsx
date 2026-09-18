@@ -17,7 +17,7 @@ export function LandingPreviewSection() {
   ] as const;
 
   return (
-    <section className="relative z-20 w-full max-w-[1400px] mx-auto mt-2 px-4 sm:px-6 pb-6">
+    <section className="landing-preview relative z-20 w-full max-w-[1400px] mx-auto mt-2 px-4 sm:px-6 pb-6">
       {/* Section Header */}
       <div className="text-center mb-6">
         <div className="inline-flex items-center gap-2 px-3 py-0.5 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[2px_2px_0_0_#000000] font-mono text-xs font-bold uppercase mb-2">
