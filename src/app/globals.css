@@ -923,3 +923,142 @@ html.tropical .audit-guarantee-block {
 html.tropical .audit-guarantee-text {
   color: #E6FFFA !important;
 }
+
+/* ==========================================================================
+   COMPREHENSIVE DARK THEME FIXES v2 — HIGH SPECIFICITY (html.theme selectors)
+   ========================================================================== */
+
+/* ── 1. WINDOW CONTROL BUTTONS: Force white/visible in ALL dark themes ── */
+html.dark .retro-win-btn,
+html.ocean .retro-win-btn,
+html.sunset .retro-win-btn,
+html.tropical .retro-win-btn {
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.8) !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .retro-win-btn-close,
+html.ocean .retro-win-btn-close,
+html.sunset .retro-win-btn-close,
+html.tropical .retro-win-btn-close {
+  color: #ffffff !important;
+  background-color: #F43F5E !important;
+  border-color: rgba(255,255,255,0.8) !important;
+}
+
+html.dark .retro-win-btn:hover,
+html.ocean .retro-win-btn:hover,
+html.sunset .retro-win-btn:hover,
+html.tropical .retro-win-btn:hover {
+  background-color: #FFE600 !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+/* ── 2. SIDEBAR UNSELECTED ITEMS: White text on dark muted bg ── */
+html.dark .app-sidebar-nav-item:not(.bg-\[\#FFE600\]),
+html.ocean .app-sidebar-nav-item:not(.bg-\[\#FFE600\]),
+html.sunset .app-sidebar-nav-item:not(.bg-\[\#FFE600\]),
+html.tropical .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) {
+  color: #ffffff !important;
+  background-color: var(--muted) !important;
+}
+
+html.dark .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) span,
+html.ocean .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) span,
+html.sunset .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) span,
+html.tropical .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) span {
+  color: #ffffff !important;
+}
+
+html.dark .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) svg,
+html.ocean .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) svg,
+html.sunset .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) svg,
+html.tropical .app-sidebar-nav-item:not(.bg-\[\#FFE600\]) svg {
+  color: #FFE600 !important;
+}
+
+/* Sidebar hover: yellow bg => black text */
+html.dark .app-sidebar-nav-item:hover,
+html.ocean .app-sidebar-nav-item:hover,
+html.sunset .app-sidebar-nav-item:hover,
+html.tropical .app-sidebar-nav-item:hover {
+  color: #000000 !important;
+}
+
+html.dark .app-sidebar-nav-item:hover span,
+html.ocean .app-sidebar-nav-item:hover span,
+html.sunset .app-sidebar-nav-item:hover span,
+html.tropical .app-sidebar-nav-item:hover span {
+  color: #000000 !important;
+}
+
+html.dark .app-sidebar-nav-item:hover svg,
+html.ocean .app-sidebar-nav-item:hover svg,
+html.sunset .app-sidebar-nav-item:hover svg,
+html.tropical .app-sidebar-nav-item:hover svg {
+  color: #000000 !important;
+}
+
+/* ── 3. REQUESTS PAGE ROW: Ensure visible text in dark themes ── */
+html.dark .request-row-text,
+html.ocean .request-row-text,
+html.sunset .request-row-text,
+html.tropical .request-row-text {
+  color: #ffffff !important;
+}
+
+/* Generic: any element with dark:text-white class in dark themes */
+html.dark [class*="dark:text-white"],
+html.ocean [class*="dark:text-white"],
+html.sunset [class*="dark:text-white"],
+html.tropical [class*="dark:text-white"] {
+  color: #ffffff !important;
+}
+
+html.dark [class*="dark:text-gray-300"],
+html.ocean [class*="dark:text-gray-300"],
+html.sunset [class*="dark:text-gray-300"],
+html.tropical [class*="dark:text-gray-300"] {
+  color: #d1d5db !important;
+}
+
+html.dark [class*="dark:bg-\[\#1E212D\]"],
+html.ocean [class*="dark:bg-\[\#1E212D\]"],
+html.sunset [class*="dark:bg-\[\#1E212D\]"],
+html.tropical [class*="dark:bg-\[\#1E212D\]"] {
+  background-color: var(--card) !important;
+}
+
+/* ── 4. SELECTED/HIGHLIGHTED BUTTON TEXT in tropical/sunset/ocean ── */
+/* When a button/tab has yellow bg, ensure black text */
+html.dark [class*="bg-[#FFE600]"],
+html.ocean [class*="bg-[#FFE600]"],
+html.sunset [class*="bg-[#FFE600]"],
+html.tropical [class*="bg-[#FFE600]"] {
+  color: #000000 !important;
+}
+
+html.dark [class*="bg-[#FFE600]"] span,
+html.ocean [class*="bg-[#FFE600]"] span,
+html.sunset [class*="bg-[#FFE600]"] span,
+html.tropical [class*="bg-[#FFE600]"] span {
+  color: #000000 !important;
+}
+
+html.dark [class*="bg-[#FFE600]"] svg,
+html.ocean [class*="bg-[#FFE600]"] svg,
+html.sunset [class*="bg-[#FFE600]"] svg,
+html.tropical [class*="bg-[#FFE600]"] svg {
+  color: #000000 !important;
+}
+
+/* ── 5. INTEREST MODEL BUTTONS (SIMPLE / COMPOUND unselected) ── */
+/* These buttons in dark themes show dark bg with dark text — make text white */
+html.dark .interest-btn-unselected,
+html.ocean .interest-btn-unselected,
+html.sunset .interest-btn-unselected,
+html.tropical .interest-btn-unselected {
+  color: #ffffff !important;
+}

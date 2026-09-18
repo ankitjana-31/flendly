@@ -29,7 +29,7 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
           <p className="text-base sm:text-lg font-black tracking-tight">
             {other.full_name ?? `@${other.username}`}
           </p>
-          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-bold mt-0.5">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-bold mt-0.5 request-row-text">
             {isSender ? "You initiated" : "Requested from you"} ·{" "}
             {request.direction === "lend" ? "You lend" : "You borrow"}
             {request.active_offer ? ` · ${interestSummary(request.active_offer)}` : ""}
