@@ -34,10 +34,8 @@ export function RetroWindow({
   controlsStyle = "win95",
   onClose,
   onMaximize,
-  defaultMinimized = false,
 }: RetroWindowProps) {
-  const [isMinimized, setIsMinimized] = useState(defaultMinimized);
-  const [windowAnimation, setWindowAnimation] = useState<"maximize" | "minimize" | "restore" | "close" | "reopen" | null>(null);
+  const [windowAnimation, setWindowAnimation] = useState<"maximize" | "minimize" | "close" | null>(null);
   const animationTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -47,9 +45,9 @@ export function RetroWindow({
   }, []);
 
   const runAnimation = (
-    animation: "maximize" | "minimize" | "restore" | "close" | "reopen",
+    animation: "maximize" | "minimize" | "close",
     callback?: () => void,
-    duration = animation === "close" ? 3600 : animation === "restore" || animation === "reopen" ? 700 : 3600,
+    duration = 450,
   ) => {
     if (animationTimeout.current) clearTimeout(animationTimeout.current);
     setWindowAnimation(animation);
@@ -61,20 +59,10 @@ export function RetroWindow({
   };
 
   const handleMinimize = () => {
-    if (isMinimized) {
-      setIsMinimized(false);
-      runAnimation("restore");
-      return;
-    }
-    runAnimation("minimize", () => setIsMinimized(true));
+    runAnimation("minimize");
   };
 
   const handleMaximize = () => {
-    if (isMinimized) {
-      setIsMinimized(false);
-      runAnimation("restore");
-      return;
-    }
     runAnimation("maximize", onMaximize);
   };
 
@@ -83,8 +71,9 @@ export function RetroWindow({
       runAnimation("close", onClose);
       return;
     }
-    runAnimation("close", () => runAnimation("reopen"));
+    runAnimation("close");
   };
+
   const windowTitle = typeof title === "string" && title.includes(" // ")
     ? (() => {
         const [primary, secondary] = title.split(" // ");
@@ -190,7 +179,8 @@ export function RetroWindow({
                 type="button"
                 onClick={handleMinimize}
                 className="retro-win-btn"
-                title={isMinimized ? "Restore" : "Minimize"}
+                title="Minimize Animation"
+                aria-label="Minimize"
               >
                 _
               </button>
@@ -198,7 +188,8 @@ export function RetroWindow({
                 type="button"
                 onClick={handleMaximize}
                 className="retro-win-btn"
-                title="Maximize / Open Page"
+                title="Maximize Animation"
+                aria-label="Maximize"
               >
                 □
               </button>
@@ -207,6 +198,7 @@ export function RetroWindow({
                 onClick={handleClose}
                 className="retro-win-btn retro-win-btn-close"
                 title="Close Window"
+                aria-label="Close"
               >
                 ✕
               </button>
@@ -215,12 +207,10 @@ export function RetroWindow({
         </div>
       </div>
 
-      {/* Content Area */}
-      {!isMinimized && (
-        <div className={cn("p-4 sm:p-5 text-gray-900 dark:text-gray-100", contentClassName)}>
-          {children}
-        </div>
-      )}
+      {/* Content Area - Always visible */}
+      <div className={cn("p-4 sm:p-5 text-gray-900 dark:text-gray-100", contentClassName)}>
+        {children}
+      </div>
     </div>
   );
 }

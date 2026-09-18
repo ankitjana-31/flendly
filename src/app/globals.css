@@ -99,44 +99,32 @@ body {
    RETRO WINDOW ANIMATIONS & UTILITIES
    ========================================================================== */
 
-@keyframes retro-window-maximize {
-  0%, 100% { transform: scale(1); filter: saturate(1); }
-  18% { transform: scale(1.08); filter: saturate(1.25) drop-shadow(0 0 16px color-mix(in srgb, var(--primary) 55%, transparent)); }
-  48% { transform: scale(1.14); }
-  72% { transform: scale(1.06); }
-}
-
 @keyframes retro-window-minimize {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  22% { transform: translateY(3px); }
-  55% { transform: translateY(10px); opacity: 0.48; filter: blur(1px); }
-  78% { transform: translateY(3px); opacity: 1; filter: blur(0); }
+  0% { transform: scale(1); filter: brightness(1); }
+  25% { transform: scale(0.96, 0.93) translateY(6px); filter: brightness(1.25); }
+  55% { transform: scale(1.02, 1.04) translateY(-3px); filter: brightness(0.95); }
+  80% { transform: scale(0.99, 0.99) translateY(1px); }
+  100% { transform: scale(1) translateY(0); filter: brightness(1); }
 }
 
-@keyframes retro-window-restore {
-  0% { transform: scale(0.86); opacity: 0.7; }
-  70% { transform: scale(1.025); }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes retro-window-maximize {
+  0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  30% { transform: scale(1.03); filter: drop-shadow(0 0 16px rgba(255, 230, 0, 0.6)); }
+  65% { transform: scale(0.99); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
 }
 
 @keyframes retro-window-close {
-  0% { transform: scale(1); opacity: 1; }
-  25% { transform: translateX(10px) skewX(-3deg) scale(1.02); opacity: 0.95; }
-  58% { transform: translateX(-8px) skewX(4deg) scale(0.96, 0.9); opacity: 0.68; filter: blur(2px); }
-  100% { transform: translateX(-24px) scale(0.88, 0.12); opacity: 0; filter: blur(9px); }
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  20% { transform: scale(1.02) rotate(-1.5deg); }
+  45% { transform: scale(0.97) rotate(2deg); opacity: 0.85; }
+  70% { transform: scale(1.01) rotate(-0.5deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-@keyframes retro-window-reopen {
-  0% { transform: scale(0.16); opacity: 0; filter: blur(8px); }
-  55% { transform: scale(1.04); opacity: 1; filter: blur(0); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.retro-window-maximize { animation: retro-window-maximize 3.6s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: center; }
-.retro-window-minimize { animation: retro-window-minimize 3.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; transform-origin: center; }
-.retro-window-restore { animation: retro-window-restore 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-.retro-window-close { animation: retro-window-close 3.6s cubic-bezier(0.7, 0, 0.84, 0) both; transform-origin: center; }
-.retro-window-reopen { animation: retro-window-reopen 650ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.retro-window-minimize { animation: retro-window-minimize 450ms cubic-bezier(0.34, 1.56, 0.64, 1) both; transform-origin: center; }
+.retro-window-maximize { animation: retro-window-maximize 450ms cubic-bezier(0.34, 1.56, 0.64, 1) both; transform-origin: center; }
+.retro-window-close { animation: retro-window-close 450ms cubic-bezier(0.34, 1.56, 0.64, 1) both; transform-origin: center; }
 
 @media (prefers-reduced-motion: reduce) {
   .retro-window-maximize,
@@ -187,14 +175,14 @@ body {
   height: 20px !important;
   font-family: monospace !important;
   font-weight: 900 !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   line-height: 1 !important;
   cursor: pointer !important;
   transition: all 0.15s ease !important;
-  border: 1.5px solid #ffffff !important;
-  background-color: rgba(0, 0, 0, 0.55) !important;
-  color: #ffffff !important;
-  box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.8) !important;
+  border: 1.5px solid #000000 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: 1.5px 1.5px 0 0 #000000 !important;
 }
 
 .retro-win-btn:hover {
@@ -206,31 +194,31 @@ body {
 .retro-win-btn-close {
   background-color: #F43F5E !important;
   color: #ffffff !important;
-  border: 1.5px solid #ffffff !important;
+  border: 1.5px solid #000000 !important;
 }
 
 .retro-win-btn-close:hover {
   background-color: #DC2626 !important;
   color: #ffffff !important;
-  border-color: #ffffff !important;
+  border-color: #000000 !important;
 }
 
 html.dark .retro-win-btn,
 html.ocean .retro-win-btn,
 html.sunset .retro-win-btn,
 html.tropical .retro-win-btn {
-  color: #ffffff !important;
-  border-color: #ffffff !important;
-  background-color: rgba(0, 0, 0, 0.6) !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
 }
 
 html.dark .retro-win-btn-close,
 html.ocean .retro-win-btn-close,
 html.sunset .retro-win-btn-close,
 html.tropical .retro-win-btn-close {
-  color: #ffffff !important;
   background-color: #F43F5E !important;
-  border-color: #ffffff !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
 }
 
 html.dark .retro-win-btn:hover,
