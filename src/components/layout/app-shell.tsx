@@ -8,6 +8,7 @@ import { ChevronRight } from "lucide-react";
 
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LanguageToggle } from "@/components/ui/language-toggle";
 import { UserAvatar } from "@/components/users/user-avatar";
 import { createClient } from "@/lib/supabase/client";
 
@@ -200,8 +201,8 @@ export function AppShell({
 
           {/* User Account & Theme Toggle Footer */}
           <div className="flex flex-col gap-1.5 border-t-[2px] border-black dark:border-white/20 pt-2.5 font-mono shrink-0">
-            <div className="flex items-center justify-between px-1">
-              <span className="text-[10px] uppercase font-bold text-gray-500">THEME</span>
+            <div className="flex items-center justify-between gap-1 px-1">
+              <LanguageToggle className="text-[10px] px-1.5 py-0.5" />
               <ThemeToggle />
             </div>
 
@@ -277,19 +278,20 @@ export function AppShell({
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0 overflow-x-hidden">
         {/* Mobile Header in Retro Style */}
-        <header className="relative flex h-14 items-center justify-between border-b-[2px] border-[var(--border)] bg-[var(--background)] px-4 md:hidden sticky top-0 z-40">
-          <Link href="/dashboard" className="flex items-center gap-2" prefetch={true}>
+        <header className="relative flex h-14 items-center justify-between border-b-[2px] border-[var(--border)] bg-[var(--background)] px-3 sm:px-4 md:hidden sticky top-0 z-40">
+          <Link href="/dashboard" className="flex items-center gap-1.5" prefetch={true}>
             <Image
               src="/brand/flendly-symbol.svg"
               alt="Flendly"
-              width={36}
-              height={36}
+              width={32}
+              height={32}
               priority
-              className="h-9 w-9 shrink-0"
+              className="h-8 w-8 shrink-0"
             />
             <span className="font-mono text-sm font-black tracking-wider text-black dark:text-white">FLENDLY</span>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <LanguageToggle className="text-[10px] px-1.5 py-0.5" />
             <ThemeToggle />
           </div>
         </header>

@@ -7,6 +7,7 @@ import { LandingHero } from "@/components/landing/landing-hero";
 import { LandingAuditSection } from "@/components/landing/landing-audit-section";
 import { LandingPreviewSection } from "@/components/landing/landing-preview-section";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LanguageToggle } from "@/components/ui/language-toggle";
 import { LegalFooterLinks } from "@/components/legal/legal-footer-links";
 
 export default async function Home() {
@@ -63,7 +64,8 @@ export default async function Home() {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <LanguageToggle />
             <ThemeToggle />
 
             <Link

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Plus_Jakarta_Sans, Syne } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/lib/i18n/language-context";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -76,8 +77,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             enableSystem={false}
             disableTransitionOnChange
           >
-          {children}
-        </ThemeProvider>
+            <LanguageProvider>
+              {children}
+            </LanguageProvider>
+          </ThemeProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
