@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *, .ocean, .ocean *, .sunset, .sunset *, .tropical, .tropical *));
 
 :root {
   --background: #FAF8F5;
