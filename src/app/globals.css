@@ -875,3 +875,51 @@ html.sunset [class*="text-rose-"] {
 :where(.dark, .ocean, .sunset, .tropical) [class*="bg-[#2DD4BF]"] span:not([class*="bg-black"]):not([class*="bg-[#2563EB]"]):not([class*="bg-[#F43F5E]"]) {
   color: #000000 !important;
 }
+
+/* ==========================================================================
+   AUDIT GUARANTEE BLOCK: Theme-synced backgrounds
+   ========================================================================== */
+
+/* Light theme: subtle yellow wash */
+.audit-guarantee-block {
+  background-color: rgba(255, 230, 0, 0.12);
+}
+.audit-guarantee-text {
+  color: #000000;
+}
+
+/* Dark: deep slate with yellow left border feel */
+html.dark .audit-guarantee-block {
+  background-color: #1E2A20 !important;
+  border-color: #FFE600 !important;
+}
+html.dark .audit-guarantee-text {
+  color: #F1F5F9 !important;
+}
+
+/* Ocean: deep navy blue tint */
+html.ocean .audit-guarantee-block {
+  background-color: #0D2A40 !important;
+  border-color: #7DD3FC !important;
+}
+html.ocean .audit-guarantee-text {
+  color: #E6F7FF !important;
+}
+
+/* Sunset: deep maroon/rose tint */
+html.sunset .audit-guarantee-block {
+  background-color: #3A1520 !important;
+  border-color: #FDE68A !important;
+}
+html.sunset .audit-guarantee-text {
+  color: #FFF4E6 !important;
+}
+
+/* Tropical: deep teal tint */
+html.tropical .audit-guarantee-block {
+  background-color: #0B3A35 !important;
+  border-color: #2DD4BF !important;
+}
+html.tropical .audit-guarantee-text {
+  color: #E6FFFA !important;
+}

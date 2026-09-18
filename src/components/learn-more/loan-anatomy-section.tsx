@@ -116,9 +116,9 @@ export function LoanAnatomySection() {
           })}
         </motion.div>
 
-        <div className="mt-5 p-4 border-[2px] border-black bg-[#FFE600]/20 dark:bg-[#FFF9C4] shadow-[3px_3px_0_0_#000000] flex items-center gap-3 text-left">
+        <div className="audit-guarantee-block mt-5 p-4 border-[2px] border-black bg-[#FFE600]/20 shadow-[3px_3px_0_0_#000000] flex items-center gap-3 text-left">
           <span className="text-xl">⚡</span>
-          <p className="font-mono text-xs sm:text-sm font-bold text-black dark:text-black">
+          <p className="font-mono text-xs sm:text-sm font-bold text-black audit-guarantee-text">
             <strong>OFFICIAL AUDIT GUARANTEE:</strong> Both parties hold identical, cryptographically signed ledger copies that cannot be altered unilaterally.
           </p>
         </div>
