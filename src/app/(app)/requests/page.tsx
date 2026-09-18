@@ -29,7 +29,7 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
           <p className="text-base sm:text-lg font-black tracking-tight">
             {other.full_name ?? `@${other.username}`}
           </p>
-          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-bold mt-0.5 request-row-text">
+          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-200 font-bold mt-0.5">
             {isSender ? "You initiated" : "Requested from you"} ·{" "}
             {request.direction === "lend" ? "You lend" : "You borrow"}
             {request.active_offer ? ` · ${interestSummary(request.active_offer)}` : ""}
@@ -39,7 +39,7 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
 
       <div className="flex items-center justify-between sm:justify-end gap-4 border-t sm:border-t-0 pt-2 sm:pt-0 border-black/10 dark:border-white/10">
         <div className="text-left sm:text-right">
-          <span className="text-[10px] uppercase text-gray-500 dark:text-gray-400 block font-bold">Offer Amount</span>
+          <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 block font-bold">Offer Amount</span>
           <p className="font-mono text-lg sm:text-xl font-black">
             {request.active_offer ? formatMoney(request.active_offer.amount) : "—"}
           </p>

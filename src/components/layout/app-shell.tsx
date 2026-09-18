@@ -154,12 +154,12 @@ export function AppShell({
                     prefetch={true}
                     className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
                       isActive
-                        ? "bg-[#FFE600] text-black"
-                        : "bg-[var(--muted)] text-[var(--foreground)]"
+                        ? "active-nav bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000]"
+                        : "bg-[var(--muted)] text-black dark:text-white"
                     }`}
                   >
-                    <Icon className="h-4 w-4 shrink-0" />
-                    <span className="uppercase text-xs sm:text-[13px] font-bold">{item.label}</span>
+                    <Icon className={`h-4 w-4 shrink-0 ${isActive ? "text-black" : "text-black dark:text-[#FFE600]"}`} />
+                    <span className={`uppercase text-xs sm:text-[13px] font-bold ${isActive ? "text-black" : "text-black dark:text-white"}`}>{item.label}</span>
                   </Link>
                 );
               })}
@@ -168,12 +168,12 @@ export function AppShell({
                 prefetch={true}
                 className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/notifications"
-                    ? "bg-[#FFE600] text-black"
-                    : "bg-[var(--muted)] text-[var(--foreground)]"
+                    ? "active-nav bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000]"
+                    : "bg-[var(--muted)] text-black dark:text-white"
                 }`}
               >
-                <BellIcon className="h-4 w-4 shrink-0" />
-                <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
+                <BellIcon className={`h-4 w-4 shrink-0 ${pathname === "/notifications" ? "text-black" : "text-black dark:text-[#FFE600]"}`} />
+                <span className={`uppercase text-xs sm:text-[13px] font-bold ${pathname === "/notifications" ? "text-black" : "text-black dark:text-white"}`}>Notifications</span>
                 {unreadCount > 0 && (
                   <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
                     {unreadCount > 9 ? "9+" : unreadCount}
@@ -185,12 +185,12 @@ export function AppShell({
                 prefetch={true}
                 className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/self-track"
-                    ? "bg-[#FFE600] text-black"
-                    : "bg-[var(--muted)] text-[var(--foreground)]"
+                    ? "active-nav bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000]"
+                    : "bg-[var(--muted)] text-black dark:text-white"
                 }`}
               >
-                <WalletIcon className="h-4 w-4 shrink-0" />
-                <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
+                <WalletIcon className={`h-4 w-4 shrink-0 ${pathname === "/self-track" ? "text-black" : "text-black dark:text-[#FFE600]"}`} />
+                <span className={`uppercase text-xs sm:text-[13px] font-bold ${pathname === "/self-track" ? "text-black" : "text-black dark:text-white"}`}>Self Track</span>
                 <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
                   PRIVATE
                 </span>

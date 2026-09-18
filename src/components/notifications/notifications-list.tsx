@@ -150,7 +150,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
           <button
             disabled={isPending}
             onClick={handleMarkAllRead}
-            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-2 transition-all"
+            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-white text-black dark:text-black font-mono text-xs sm:text-sm font-black uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-2 transition-all"
           >
             <CheckCheck className="w-4 h-4 text-[#059669]" />
             <span>MARK ALL AS READ</span>
@@ -168,7 +168,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
         contentClassName="p-5 sm:p-6"
         headerRight={
           <span className={`px-2.5 py-0.5 border border-black font-mono text-[11px] font-black uppercase ${
-            unreadCount > 0 ? "bg-[#FFE600] text-black" : "bg-black text-white"
+            unreadCount > 0 ? "bg-[#FFE600] text-black" : "bg-white text-black dark:bg-white dark:text-black shadow-sm"
           }`}>
             {unreadCount > 0 ? `${unreadCount} NEW` : "ALL READ"}
           </span>
@@ -223,8 +223,8 @@ export function NotificationsList({ notifications: initialNotifications }: { not
                       <div
                         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-[2px] border-black dark:border-white/40 transition-all font-mono shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 ${
                           isUnread
-                            ? "bg-[#FFE600]/20 dark:bg-[#2E2800] border-l-[6px] border-l-[#2563EB]"
-                            : "bg-[#FAF8F5] dark:bg-[var(--muted)]"
+                            ? "bg-[#FFE600]/20 dark:bg-[var(--card)] border-l-[6px] border-l-[#2563EB]"
+                            : "bg-[#FAF8F5] dark:bg-[var(--card)]"
                         }`}
                       >
                         <div className="flex items-start sm:items-center gap-3.5">
@@ -253,7 +253,7 @@ export function NotificationsList({ notifications: initialNotifications }: { not
                               )}
                             </div>
 
-                            <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mt-0.5">
+                            <p className="text-xs text-gray-600 dark:text-gray-300 font-medium flex items-center gap-1 mt-0.5">
                               <Clock className="w-3 h-3" />
                               {formatDateTime(n.created_at)}
                               {payload.sender_username && (

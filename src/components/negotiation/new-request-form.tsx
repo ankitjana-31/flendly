@@ -32,7 +32,7 @@ export function NewRequestForm() {
                     ? isLend
                       ? "bg-[#FB7185] text-white shadow-[3px_3px_0_0_#000] -translate-y-0.5"
                       : "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
-                    : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 hover:bg-gray-100"
+                    : "bg-white dark:bg-[var(--muted)] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-white/10"
                 }`}
               >
                 <input

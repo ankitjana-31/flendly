@@ -61,7 +61,7 @@ export function OfferTermsFields({
                 className={`flex h-11 cursor-pointer items-center justify-center gap-1.5 border-[2.5px] border-black font-mono text-xs sm:text-sm font-black uppercase transition-all select-none ${
                   isSelected
                     ? "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
-                    : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1.5px_1.5px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                    : "bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[1.5px_1.5px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black"
                 }`}
               >
                 <input
