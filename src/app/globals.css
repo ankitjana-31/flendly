@@ -354,8 +354,18 @@ html.tropical .landing-preview-tab-active .landing-preview-tab-tag {
   color: #ffffff !important;
 }
 
-/* Inactive Tab */
-.landing-preview-tab-inactive,
+/* Inactive Tab: Black text in Light Mode */
+.landing-preview-tab-inactive {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.landing-preview-tab-inactive span:not(.landing-preview-tab-tag),
+.landing-preview-tab-inactive svg {
+  color: #000000 !important;
+}
+
+/* Inactive Tab: White text in Dark Themes */
 html.dark .landing-preview-tab-inactive,
 html.ocean .landing-preview-tab-inactive,
 html.sunset .landing-preview-tab-inactive,
@@ -364,6 +374,18 @@ html.tropical .landing-preview-tab-inactive {
   color: #ffffff !important;
 }
 
+html.dark .landing-preview-tab-inactive span:not(.landing-preview-tab-tag),
+html.dark .landing-preview-tab-inactive svg,
+html.ocean .landing-preview-tab-inactive span:not(.landing-preview-tab-tag),
+html.ocean .landing-preview-tab-inactive svg,
+html.sunset .landing-preview-tab-inactive span:not(.landing-preview-tab-tag),
+html.sunset .landing-preview-tab-inactive svg,
+html.tropical .landing-preview-tab-inactive span:not(.landing-preview-tab-tag),
+html.tropical .landing-preview-tab-inactive svg {
+  color: #ffffff !important;
+}
+
+/* Inactive Tab Tag Badge */
 .landing-preview-tab-inactive .landing-preview-tab-tag,
 html.dark .landing-preview-tab-inactive .landing-preview-tab-tag,
 html.ocean .landing-preview-tab-inactive .landing-preview-tab-tag,
@@ -372,6 +394,29 @@ html.tropical .landing-preview-tab-inactive .landing-preview-tab-tag {
   background-color: #ffffff !important;
   color: #000000 !important;
   border-color: #000000 !important;
+}
+
+/* Inactive Tab Hover (Pink) */
+.landing-preview-tab-inactive:hover,
+html.dark .landing-preview-tab-inactive:hover,
+html.ocean .landing-preview-tab-inactive:hover,
+html.sunset .landing-preview-tab-inactive:hover,
+html.tropical .landing-preview-tab-inactive:hover {
+  background-color: #FB7185 !important;
+  color: #ffffff !important;
+}
+
+.landing-preview-tab-inactive:hover span,
+.landing-preview-tab-inactive:hover svg,
+html.dark .landing-preview-tab-inactive:hover span,
+html.dark .landing-preview-tab-inactive:hover svg,
+html.ocean .landing-preview-tab-inactive:hover span,
+html.ocean .landing-preview-tab-inactive:hover svg,
+html.sunset .landing-preview-tab-inactive:hover span,
+html.sunset .landing-preview-tab-inactive:hover svg,
+html.tropical .landing-preview-tab-inactive:hover span,
+html.tropical .landing-preview-tab-inactive:hover svg {
+  color: #ffffff !important;
 }
 
 /* ==========================================================================

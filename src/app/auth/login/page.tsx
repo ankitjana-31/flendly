@@ -26,11 +26,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     console.error("Error fetching user profile:", e);
   }
 
-  if (user && isPlaceholderUsername(profile?.username)) {
-    redirect("/complete-profile");
-  }
-
-  if (user) {
+  if (user && !isPlaceholderUsername(profile?.username)) {
     redirect("/dashboard");
   }
 
