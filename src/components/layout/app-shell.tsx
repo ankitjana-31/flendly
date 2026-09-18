@@ -100,7 +100,7 @@ export function AppShell({
             {/* Retro Window Title / Logo */}
             <div className="px-1 shrink-0">
               <div className="flex items-center justify-between mb-2.5 border-b-[2px] border-black dark:border-white/20 pb-1.5">
-                <span className="font-mono text-xs font-bold text-black dark:text-white uppercase tracking-wider">FLENDLY ENVIRONMENT</span>
+                <span className="font-mono text-xs font-bold text-[var(--foreground)] uppercase tracking-wider">FLENDLY ENVIRONMENT</span>
                 <div className="flex items-center gap-1.5">
                   <button
                     type="button"
@@ -129,7 +129,7 @@ export function AppShell({
                   className="h-10 w-10 shrink-0"
                 />
                 <div>
-                  <span className="font-mono text-base lg:text-lg font-black tracking-tight text-black dark:text-white block leading-none">
+                  <span className="font-mono text-base lg:text-lg font-black tracking-tight text-[var(--foreground)] block leading-none">
                     FLENDLY
                   </span>
                   <span className="font-mono text-[9px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block mt-0.5 tracking-wider">
@@ -155,7 +155,7 @@ export function AppShell({
                     className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
                       isActive
                         ? "bg-[#FFE600] text-black"
-                        : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+                        : "bg-[var(--muted)] text-[var(--foreground)]"
                     }`}
                   >
                     <Icon className="h-4 w-4 shrink-0" />
@@ -169,7 +169,7 @@ export function AppShell({
                 className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/notifications"
                     ? "bg-[#FFE600] text-black"
-                    : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+                    : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
                 <BellIcon className="h-4 w-4 shrink-0" />
@@ -186,7 +186,7 @@ export function AppShell({
                 className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/self-track"
                     ? "bg-[#FFE600] text-black"
-                    : "bg-[#FAF8F5] dark:bg-[#1E212D] text-black dark:text-white"
+                    : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
                 <WalletIcon className="h-4 w-4 shrink-0" />
@@ -208,7 +208,7 @@ export function AppShell({
             <Link
               href="/profile"
               prefetch={true}
-              className="flex items-center gap-2.5 border-[2px] border-black bg-white dark:bg-[#1E212D] p-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+              className="flex items-center gap-2.5 border-[2px] border-black bg-[var(--card)] p-1.5 text-[var(--foreground)] shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
             >
               <UserAvatar name={fullName} username={username} src={avatarUrl} size="sm" />
               <div className="overflow-hidden min-w-0">

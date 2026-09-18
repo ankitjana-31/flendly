@@ -80,10 +80,10 @@ export function LandingHero() {
             <span>THE PROMISE</span>
           </div>
           <div className="hidden sm:flex items-center gap-1">
-            <button type="button" onClick={handleMinimize} aria-label={isMinimized ? "Restore landing window" : "Minimize landing window"} className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600]">
+            <button type="button" onClick={handleMinimize} aria-label={isMinimized ? "Restore landing window" : "Minimize landing window"} className="w-5 h-5 border border-black dark:border-white bg-[var(--card)] !text-[var(--foreground)] font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600] hover:!text-black">
               _
             </button>
-            <button type="button" onClick={() => runWindowAnimation("maximize")} aria-label="Zoom landing window" className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600]">
+            <button type="button" onClick={() => runWindowAnimation("maximize")} aria-label="Zoom landing window" className="w-5 h-5 border border-black dark:border-white bg-[var(--card)] !text-[var(--foreground)] font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600] hover:!text-black">
               □
             </button>
             <button type="button" onClick={handleClose} aria-label="Replay landing window" className="w-5 h-5 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-[10px] font-bold flex items-center justify-center hover:brightness-110">

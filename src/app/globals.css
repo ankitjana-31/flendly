@@ -319,6 +319,15 @@ html.tropical [class*="bg-[#FAF8F5]"] {
   background-color: var(--muted) !important;
 }
 
+html.ocean .landing-preview .landing-preview-tab-inactive,
+html.sunset .landing-preview .landing-preview-tab-inactive,
+html.tropical .landing-preview .landing-preview-tab-inactive,
+html.ocean .landing-preview .landing-preview-tab-inactive *,
+html.sunset .landing-preview .landing-preview-tab-inactive *,
+html.tropical .landing-preview .landing-preview-tab-inactive * {
+  color: #000000 !important;
+}
+
 html.sunset .app-mobile-nav .app-mobile-nav-inactive {
   color: #FFF4E6;
 }

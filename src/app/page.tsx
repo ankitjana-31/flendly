@@ -78,7 +78,7 @@ export default async function Home() {
             </Link>
             <Link
               href="/auth/login"
-              className="whitespace-nowrap px-3 sm:px-5 py-2 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs sm:text-sm font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="whitespace-nowrap px-2 py-1.5 sm:px-5 sm:py-2 bg-[#FFE600] !text-black border-[2px] border-black font-mono text-[10px] sm:text-sm font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               LAUNCH FLENDLY
             </Link>
