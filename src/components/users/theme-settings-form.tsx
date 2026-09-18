@@ -59,10 +59,10 @@ export function ThemeSettingsForm() {
               <Icon className="h-4 w-4" />
             </div>
             <div className="w-full">
-              <p className={`text-xs uppercase leading-tight ${isSelected ? "font-black text-black" : "font-bold text-black dark:text-white"}`}>
+              <p className={`text-xs uppercase leading-tight ${isSelected ? "font-black !text-black" : "font-bold text-black dark:text-white"}`}>
                 {item.name}
               </p>
-              <p className={`text-[10px] mt-1 leading-tight ${isSelected ? "text-black/80 font-bold" : "text-gray-600 dark:text-gray-300"}`}>
+              <p className={`text-[10px] mt-1 leading-tight ${isSelected ? "font-bold !text-black" : "text-gray-600 dark:text-gray-300"}`}>
                 {item.desc}
               </p>
             </div>

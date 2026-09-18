@@ -208,7 +208,7 @@ export function AppShell({
             <Link
               href="/profile"
               prefetch={true}
-              className="flex items-center gap-2.5 border-[2px] border-black bg-[var(--card)] p-1.5 text-[var(--foreground)] shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
+              className="flex items-center gap-2.5 border-[2px] border-black bg-[var(--card)] p-1.5 text-[var(--foreground)] shadow-[2px_2px_0_0_#000000] transition-all hover:bg-[var(--accent)] hover:text-black dark:hover:bg-[var(--accent)] dark:hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none group"
             >
               <UserAvatar name={fullName} username={username} src={avatarUrl} size="sm" />
               <div className="overflow-hidden min-w-0">

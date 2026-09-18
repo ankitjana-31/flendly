@@ -189,7 +189,7 @@ export function RetroWindow({
               <button
                 type="button"
                 onClick={handleMinimize}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-[var(--border)] bg-[var(--card)] text-xs font-mono font-black text-[var(--foreground)] shadow-[1px_1px_0_0_#000] hover:bg-[var(--accent)] hover:text-black cursor-pointer active:translate-y-0.5"
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white !text-black font-mono text-xs font-black shadow-[1px_1px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black cursor-pointer active:translate-y-0.5"
                 title={isMinimized ? "Restore" : "Minimize"}
               >
                 _
@@ -197,7 +197,7 @@ export function RetroWindow({
               <button
                 type="button"
                 onClick={handleMaximize}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-[var(--border)] bg-[var(--card)] text-[11px] font-mono font-black text-[var(--foreground)] shadow-[1px_1px_0_0_#000] hover:bg-[var(--accent)] hover:text-black cursor-pointer active:translate-y-0.5"
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white !text-black font-mono text-[11px] font-black shadow-[1px_1px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black cursor-pointer active:translate-y-0.5"
                 title="Maximize / Open Page"
               >
                 □
@@ -205,7 +205,7 @@ export function RetroWindow({
               <button
                 type="button"
                 onClick={handleClose}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-[var(--border)] bg-[var(--danger)] text-[11px] font-mono font-black text-white shadow-[1px_1px_0_0_#000] hover:brightness-110 cursor-pointer active:translate-y-0.5"
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-[#F43F5E] !text-white font-mono text-[11px] font-black shadow-[1px_1px_0_0_#000000] hover:bg-red-600 cursor-pointer active:translate-y-0.5"
                 title="Close Window"
               >
                 ✕

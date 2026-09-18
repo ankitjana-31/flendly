@@ -28,17 +28,17 @@ export function LandingAuditSection() {
           <p className="font-sans text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
             Lost receipts, forgotten cab rides, awkward follow-up texts, and unnecessary tension between friends.
           </p>
-          <div className="flex flex-col gap-3 font-mono text-xs">
-            <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
-              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Ankit • 14 Feb</div>
-              <div className="text-black dark:text-white italic">&quot;Hey bro, did you get a chance to send the Airbnb share?&quot;</div>
+          <div className="flex flex-col gap-3 font-mono">
+            <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000]">
+              <div className="text-gray-500 dark:text-gray-400 text-xs mb-1 font-bold">Ankit • 14 Feb</div>
+              <div className="text-sm font-semibold text-black dark:text-white italic">&quot;Hey bro, did you get a chance to send the Airbnb share?&quot;</div>
             </div>
-            <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
-              <div className="text-gray-500 dark:text-gray-400 text-[10px] mb-1 font-bold">Rahul (4 days later)</div>
-              <div className="text-black dark:text-white italic">&quot;Totally missed this! How much was it again?&quot;</div>
+            <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000]">
+              <div className="text-gray-500 dark:text-gray-400 text-xs mb-1 font-bold">Rahul (4 days later)</div>
+              <div className="text-sm font-semibold text-black dark:text-white italic">&quot;Totally missed this! How much was it again?&quot;</div>
             </div>
-            <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000000]">
-              <div className="text-[#F43F5E] font-bold">&quot;₹1,450... whenever you get a second 🙏&quot;</div>
+            <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000]">
+              <div className="text-sm font-black text-[#F43F5E]">&quot;₹1,450... whenever you get a second 🙏&quot;</div>
             </div>
           </div>
           <div className="mt-auto p-3 bg-[#FF2E93]/15 border-[2px] border-black dark:border-white font-mono text-xs flex items-center justify-between shadow-[2px_2px_0_0_#000]">

@@ -80,13 +80,13 @@ export function LandingHero() {
             <span>THE PROMISE</span>
           </div>
           <div className="hidden sm:flex items-center gap-1">
-            <button type="button" onClick={handleMinimize} aria-label={isMinimized ? "Restore landing window" : "Minimize landing window"} className="w-5 h-5 border border-black dark:border-white bg-[var(--card)] !text-[var(--foreground)] font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600] hover:!text-black">
+            <button type="button" onClick={handleMinimize} aria-label={isMinimized ? "Restore landing window" : "Minimize landing window"} className="w-5 h-5 border border-black bg-white !text-black font-mono text-[10px] font-black flex items-center justify-center hover:bg-[#FFE600] shadow-[1px_1px_0_0_#000]">
               _
             </button>
-            <button type="button" onClick={() => runWindowAnimation("maximize")} aria-label="Zoom landing window" className="w-5 h-5 border border-black dark:border-white bg-[var(--card)] !text-[var(--foreground)] font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600] hover:!text-black">
+            <button type="button" onClick={() => runWindowAnimation("maximize")} aria-label="Zoom landing window" className="w-5 h-5 border border-black bg-white !text-black font-mono text-[10px] font-black flex items-center justify-center hover:bg-[#FFE600] shadow-[1px_1px_0_0_#000]">
               □
             </button>
-            <button type="button" onClick={handleClose} aria-label="Replay landing window" className="w-5 h-5 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-[10px] font-bold flex items-center justify-center hover:brightness-110">
+            <button type="button" onClick={handleClose} aria-label="Replay landing window" className="w-5 h-5 border border-black bg-[#F43F5E] !text-white font-mono text-[10px] font-black flex items-center justify-center hover:bg-red-600 shadow-[1px_1px_0_0_#000]">
               ✕
             </button>
           </div>
@@ -160,11 +160,12 @@ export function LandingHero() {
               </div>
 
               {/* Chat Simulation - Rahul and cab share of 250 */}
-              <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 shadow-[2px_2px_0_0_#000]">
-                <div className="text-[10px] text-gray-500 dark:text-gray-400 font-bold mb-1">
-                  Rahul (3 months ago via WhatsApp):
+              <div className="bg-white dark:bg-[#242938] border-[2.5px] border-black dark:border-white/40 p-3.5 shadow-[3px_3px_0_0_#000]">
+                <div className="text-xs text-gray-600 dark:text-gray-300 font-bold mb-1 flex items-center justify-between">
+                  <span>Rahul (3 months ago via WhatsApp):</span>
+                  <span className="text-[9.5px] bg-[#FFE600] text-black px-1.5 py-0.5 border border-black font-black uppercase">UNPAID</span>
                 </div>
-                <p className="text-xs text-black dark:text-white italic">
+                <p className="text-sm font-semibold text-black dark:text-white italic leading-snug">
                   &quot;Bro, will pay my ₹250 for the cab share tomorrow morning!&quot;
                 </p>
               </div>

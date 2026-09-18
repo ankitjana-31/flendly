@@ -43,8 +43,8 @@ export function LandingPreviewSection() {
               onClick={() => setActiveTab(tab.id)}
               className={`landing-preview-tab flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
                 isActive
-                  ? "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5"
-                  : "landing-preview-tab-inactive bg-white dark:bg-[#1E212D] text-black shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
+                  ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
+                  : "landing-preview-tab-inactive bg-white dark:bg-[#1E212D] text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
               }`}
             >
               <Icon className="w-4 h-4 text-current" />
