@@ -152,7 +152,7 @@ export function AppShell({
                     key={item.href}
                     href={item.href}
                     prefetch={true}
-                    className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
+                    className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
                       isActive
                         ? "bg-[#FFE600] text-black"
                         : "bg-[var(--muted)] text-[var(--foreground)]"
@@ -166,7 +166,7 @@ export function AppShell({
               <Link
                 href="/notifications"
                 prefetch={true}
-                className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/notifications"
                     ? "bg-[#FFE600] text-black"
                     : "bg-[var(--muted)] text-[var(--foreground)]"
@@ -183,7 +183,7 @@ export function AppShell({
               <Link
                 href="/self-track"
                 prefetch={true}
-                className={`flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/self-track"
                     ? "bg-[#FFE600] text-black"
                     : "bg-[var(--muted)] text-[var(--foreground)]"

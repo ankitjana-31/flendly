@@ -53,12 +53,12 @@
   --muted: #54283A;
   --foreground: #FFF4E6;
   --muted-foreground: #F4C6B5;
-  --primary: #FB7185;
-  --primary-foreground: #2A101B;
+  --primary: #FDE047;
+  --primary-foreground: #24121D;
   --accent: #FDE047;
   --success: #5EEAD4;
   --warning: #FACC15;
-  --danger: #FDA4AF;
+  --danger: #FDE047;
   --border: #985066;
 }
 
@@ -421,8 +421,36 @@ html.sunset [class*="text-gray-600"] {
 }
 
 html.ocean .theme-receivable-card .text-black,
+html.sunset .theme-receivable-card .text-black,
 html.tropical .theme-receivable-card .text-black {
   color: #061522 !important;
+}
+
+html.ocean .theme-receivable-content *,
+html.sunset .theme-receivable-content *,
+html.tropical .theme-receivable-content *,
+html.dark .theme-receivable-content * {
+  color: #000000 !important;
+}
+
+html.ocean .theme-settings-option,
+html.sunset .theme-settings-option,
+html.tropical .theme-settings-option,
+html.ocean .theme-settings-option *,
+html.sunset .theme-settings-option *,
+html.tropical .theme-settings-option * {
+  color: #ffffff !important;
+}
+
+html.ocean .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]),
+html.sunset .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]),
+html.tropical .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) {
+  color: #ffffff !important;
+}
+
+html.sunset .app-sidebar-nav-item:hover {
+  background-color: var(--accent) !important;
+  color: var(--primary-foreground) !important;
 }
 
 html.sunset .theme-payable-card .text-white,
@@ -598,3 +626,74 @@ html.tropical [class*="bg-[#242938]"] {
   background: #4A5568;
 }
 
+
+
+/* ==========================================================================
+   THEME PALETTE FIXES & ACCESSIBILITY CONTRAST
+   ========================================================================== */
+
+/* 1. Dashboard Receivables Card (Cyan Background) must ALWAYS be solid black text */
+.theme-receivable-card,
+.theme-receivable-card *,
+.theme-receivable-content,
+.theme-receivable-content *,
+html.dark .theme-receivable-card *,
+html.ocean .theme-receivable-card *,
+html.sunset .theme-receivable-card *,
+html.tropical .theme-receivable-card * {
+  color: #000000 !important;
+}
+
+/* 2. Theme Settings Option Text in dark themes (Sunset, Tropical, Ocean, Dark) */
+html.ocean .theme-settings-option:not([class*="bg-[#FFE600]"]),
+html.sunset .theme-settings-option:not([class*="bg-[#FFE600]"]),
+html.tropical .theme-settings-option:not([class*="bg-[#FFE600]"]),
+html.dark .theme-settings-option:not([class*="bg-[#FFE600]"]) {
+  background-color: var(--card) !important;
+  color: #ffffff !important;
+}
+
+html.ocean .theme-settings-option:not([class*="bg-[#FFE600]"]) *,
+html.sunset .theme-settings-option:not([class*="bg-[#FFE600]"]) *,
+html.tropical .theme-settings-option:not([class*="bg-[#FFE600]"]) *,
+html.dark .theme-settings-option:not([class*="bg-[#FFE600]"]) * {
+  color: #ffffff !important;
+}
+
+/* 3. Sidebar Unselected Nav Items: High Contrast White/Yellow */
+html.ocean .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]),
+html.sunset .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]),
+html.tropical .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]),
+html.dark .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) {
+  color: #ffffff !important;
+  background-color: var(--muted) !important;
+}
+
+html.ocean .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) span,
+html.sunset .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) span,
+html.tropical .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) span,
+html.dark .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) span {
+  color: #ffffff !important;
+}
+
+html.ocean .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) svg,
+html.sunset .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) svg,
+html.tropical .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) svg,
+html.dark .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) svg {
+  color: #FFE600 !important;
+}
+
+/* 4. Sunset / Maroon Theme: Replace dark red with high-contrast Yellow & Light Coral */
+html.sunset [class*="text-[#F43F5E]"],
+html.sunset [class*="text-red-"],
+html.sunset [class*="text-rose-"] {
+  color: #FDE047 !important;
+}
+
+html.sunset .theme-payable-card {
+  background-color: #54283A !important;
+}
+
+html.sunset .theme-payable-card * {
+  color: #FDE047 !important;
+}

@@ -108,7 +108,7 @@ export function DashboardContent({
             colorBar="green"
             glow={aggregates.totalLent > 0}
             className="theme-colored-card theme-receivable-card bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2.5px] border-black dark:border-black shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#134E4A]"
-            contentClassName="p-4 sm:p-5 text-black"
+            contentClassName="theme-receivable-content p-4 sm:p-5 text-black"
             headerRight={
               <span className="px-2 sm:px-2.5 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-[11px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
                 +INCOMING
@@ -116,7 +116,7 @@ export function DashboardContent({
             }
           >
             <div>
-              <p className="font-mono text-xs sm:text-sm text-gray-700 dark:text-gray-300 max-sm:text-black font-black uppercase tracking-wider">
+              <p className="font-mono text-xs sm:text-sm text-black font-black uppercase tracking-wider">
                 You&apos;re owed
               </p>
               <motion.p
@@ -127,7 +127,7 @@ export function DashboardContent({
               >
                 {formatMoney(aggregates.totalLent)}
               </motion.p>
-              <p className="mt-1 font-mono text-xs text-black/75 font-bold">
+              <p className="mt-1 font-mono text-xs text-black font-bold">
                 <span className="hidden sm:inline">across </span>{aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
               </p>
             </div>
