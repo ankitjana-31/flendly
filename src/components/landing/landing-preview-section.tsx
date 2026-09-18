@@ -85,17 +85,17 @@ export function LandingPreviewSection() {
           >
             {/* Top Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-5 border-[2px] border-black bg-[#2DD4BF]/15 dark:bg-[#0B3D30] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
-                <span className="font-mono text-xs uppercase font-bold text-[var(--success)]">Net Position</span>
-                <p className="text-2xl sm:text-3xl font-black font-mono text-[var(--foreground)] mt-1">+₹14,500</p>
-                <span className="font-mono text-[11px] text-[var(--success)] mt-1 block font-semibold">You are owed more than you owe</span>
+              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
+                <span className="font-mono text-xs uppercase font-bold text-[#059669] dark:text-[#2DD4BF]">Net Position</span>
+                <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">+₹14,500</p>
+                <span className="font-mono text-[11px] text-[#059669] dark:text-[#2DD4BF] mt-1 block font-semibold">You are owed more than you owe</span>
               </div>
-              <div className="p-5 border-[2px] border-black bg-blue-500/10 dark:bg-[#1E2540] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
+              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#2563EB] dark:text-[#93C5FD]">Total Lent Out</span>
                 <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">₹22,000</p>
                 <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Across 3 active peer deals</span>
               </div>
-              <div className="p-5 border-[2px] border-black bg-[#F43F5E]/10 dark:bg-[#3D0C1D] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
+              <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#F43F5E] dark:text-[#FDA4AF]">Total Borrowed</span>
                 <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">₹7,500</p>
                 <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Next payment due in 12 days</span>
@@ -133,18 +133,18 @@ export function LandingPreviewSection() {
                 </div>
               </div>
 
-              <div className="p-5 border-[2px] border-black bg-[#FFE600]/20 dark:bg-[#2E2800] shadow-[3px_3px_0_0_#000000] flex flex-col justify-between">
+              <div className="p-5 border-[2px] border-black bg-white dark:bg-[#1E212D] shadow-[3px_3px_0_0_#000000] flex flex-col justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-black bg-[#FFE600] text-black font-mono text-xs font-bold uppercase mb-3 shadow-[2px_2px_0_0_#000000]">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-black bg-[#FFE600] text-black font-mono text-xs font-black uppercase mb-3 shadow-[2px_2px_0_0_#000000]">
                     <Zap className="w-3.5 h-3.5" /> Instant Counter-Offer
                   </div>
-                  <h4 className="font-mono text-base font-bold text-[var(--foreground)] uppercase">Smart Loan Negotiations</h4>
-                  <p className="text-xs text-[var(--foreground)] mt-2 leading-relaxed">
+                  <h4 className="font-mono text-base font-bold text-black dark:text-white uppercase">Smart Loan Negotiations</h4>
+                  <p className="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-relaxed font-sans">
                     Review terms, propose split deadlines, or suggest custom interest with single-click proposals.
                   </p>
                 </div>
-                <div className="mt-4 pt-4 border-t border-black/20 dark:border-white/20 flex items-center justify-between font-mono text-xs text-[var(--foreground)] font-bold">
-                  <span>Negotiation engine active</span>
+                <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-xs font-bold">
+                  <span className="text-gray-600 dark:text-gray-400">Negotiation engine active</span>
                   <span className="text-[#059669] dark:text-[#2DD4BF]">0% friction</span>
                 </div>
               </div>

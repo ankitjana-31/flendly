@@ -408,17 +408,7 @@ html.tropical [class*="bg-[#2563EB]"] {
   color: var(--primary-foreground) !important;
 }
 
-html.ocean [class*="bg-[#FDFBF7]"],
-html.ocean [class*="bg-[#1A1D27]"],
-html.ocean [class*="bg-[#242938]"],
-html.sunset [class*="bg-[#FDFBF7]"],
-html.sunset [class*="bg-[#1A1D27]"],
-html.sunset [class*="bg-[#242938]"],
-html.tropical [class*="bg-[#FDFBF7]"],
-html.tropical [class*="bg-[#1A1D27]"],
-html.tropical [class*="bg-[#242938]"] {
-  background-color: var(--card) !important;
-}
+
 
 @keyframes retro-window-maximize {
   0%, 100% { transform: scale(1); filter: saturate(1); }
