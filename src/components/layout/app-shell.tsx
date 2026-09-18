@@ -277,18 +277,21 @@ export function AppShell({
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0 overflow-x-hidden">
         {/* Mobile Header in Retro Style */}
-        <header className="relative flex h-14 items-center justify-center border-b-[2px] border-[var(--border)] bg-[var(--background)] px-4 md:hidden sticky top-0 z-40">
+        <header className="relative flex h-14 items-center justify-between border-b-[2px] border-[var(--border)] bg-[var(--background)] px-4 md:hidden sticky top-0 z-40">
           <Link href="/dashboard" className="flex items-center gap-2" prefetch={true}>
             <Image
               src="/brand/flendly-symbol.svg"
               alt="Flendly"
-              width={40}
-              height={40}
+              width={36}
+              height={36}
               priority
-              className="h-10 w-10 shrink-0"
+              className="h-9 w-9 shrink-0"
             />
             <span className="font-mono text-sm font-black tracking-wider text-black dark:text-white">FLENDLY</span>
           </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+          </div>
         </header>
 
         <main className="flex-1 pb-20 md:pb-6 min-w-0">{children}</main>
