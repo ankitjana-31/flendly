@@ -312,14 +312,14 @@ export function DashboardContent({
                 >
                   <a
                     href={`/requests/${r.id}`}
-                    className="flex items-center justify-between gap-2 p-3 sm:p-4 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] shadow-[2.5px_2.5px_0_0_#000] hover:bg-[#FEF08A] hover:text-black dark:hover:bg-[#1E212D] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
+                    className="group/req flex items-center justify-between gap-2 p-3 sm:p-4 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] text-black dark:text-white shadow-[2.5px_2.5px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
                   >
                     <div className="min-w-0">
-                      <p className="font-mono text-sm sm:text-base font-black truncate">
+                      <p className="font-mono text-sm sm:text-base font-black truncate text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
                         {other.full_name ?? ("@" + other.username)} ·{" "}
                         {r.active_offer ? formatMoney(r.active_offer.amount) : "—"}
                       </p>
-                      <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 font-bold mt-0.5 truncate">
+                      <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 group-hover/req:text-black dark:group-hover/req:text-black font-bold mt-0.5 truncate transition-colors">
                         {r.sender.id === userId ? "You sent" : "Sent to you"} ·{" "}
                         {r.direction === "lend" ? "you lend" : "you borrow"}
                       </p>
