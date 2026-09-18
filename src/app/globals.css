@@ -200,6 +200,32 @@ html.tropical .landing-preview [class*="text-[#10B981]"] {
   color: var(--foreground) !important;
 }
 
+:where(.dark, .ocean, .sunset, .tropical) .theme-toggle,
+:where(.dark, .ocean, .sunset, .tropical) .public-header .theme-toggle {
+  color: #000000 !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page h1,
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page h2,
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page h3,
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page h4 {
+  color: var(--accent) !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page p,
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page li {
+  color: var(--foreground) !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page [class*="text-black"] {
+  color: var(--foreground) !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page [class*="bg-white"],
+:where(.dark, .ocean, .sunset, .tropical) .learn-more-page [class*="bg-[#FAF8F5]"] {
+  background-color: var(--card) !important;
+}
+
 html.ocean .landing-preview [class*="text-[#F43F5E]"],
 html.sunset .landing-preview [class*="text-[#F43F5E]"],
 html.tropical .landing-preview [class*="text-[#F43F5E]"] {

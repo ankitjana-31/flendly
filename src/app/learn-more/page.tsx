@@ -9,7 +9,7 @@ import { LegalFooterLinks } from "@/components/legal/legal-footer-links";
 
 export default function LearnMorePage() {
   return (
-    <div className="relative min-h-screen w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-[#F1F5F9] font-sans selection:bg-[#FFE600] selection:text-black transition-colors duration-200">
+    <div className="learn-more-page relative min-h-screen w-full bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-[var(--accent)] selection:text-[var(--primary-foreground)] transition-colors duration-200">
       {/* Ambient Retro Geometric Grid Layer */}
       <div 
         aria-hidden="true" 
