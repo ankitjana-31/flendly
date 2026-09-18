@@ -27,7 +27,7 @@ export function LandingPreviewSection() {
         <h2 className="font-mono text-2xl sm:text-4xl font-black text-black dark:text-white tracking-tight uppercase">
           Everything in one retro command center
         </h2>
-        <p className="mt-1.5 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-sans text-sm sm:text-base">
+        <p className="mt-1.5 text-[var(--muted-foreground)] max-w-2xl mx-auto font-sans text-sm sm:text-base">
           Explore how Flendly organizes every loan, request, live reminder, and private cash ledger.
         </p>
       </div>

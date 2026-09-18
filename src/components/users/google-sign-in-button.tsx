@@ -10,7 +10,7 @@ export function GoogleSignInButton() {
       <button
         type="submit"
         disabled={pending}
-        className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden border-[2.5px] border-black bg-white dark:bg-[#1E212D] px-6 font-mono text-sm font-bold text-black dark:text-white shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#FFE600] transition-all hover:bg-[#FFE600] dark:hover:bg-[#FFE600] hover:text-black dark:hover:text-black active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer"
+        className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden border-[2.5px] border-[var(--border)] bg-[var(--card)] px-6 font-mono text-sm font-bold text-[var(--foreground)] shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#FFE600] transition-all hover:bg-[var(--accent)] hover:!text-black active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer"
       >
         {/* Subtle sleek glass sheen reflection on hover */}
         <div 
