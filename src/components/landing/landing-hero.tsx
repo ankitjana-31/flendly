@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -26,6 +26,41 @@ const itemVariants: Variants = {
 
 export function LandingHero() {
   const shouldReduceMotion = useReducedMotion();
+  const [windowAnimation, setWindowAnimation] = useState<"maximize" | "minimize" | "restore" | "close" | "reopen" | null>(null);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const animationTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => {
+    if (animationTimeout.current) clearTimeout(animationTimeout.current);
+  }, []);
+
+  const runWindowAnimation = (animation: "maximize" | "minimize" | "restore" | "close" | "reopen") => {
+    if (shouldReduceMotion) return;
+    if (animationTimeout.current) clearTimeout(animationTimeout.current);
+    setWindowAnimation(animation);
+    animationTimeout.current = setTimeout(() => {
+      animationTimeout.current = null;
+      setWindowAnimation(null);
+      if (animation === "minimize") setIsMinimized(true);
+      if (animation === "reopen") setIsMinimized(false);
+    }, animation === "restore" || animation === "reopen" ? 700 : 3600);
+  };
+
+  const handleMinimize = () => {
+    if (isMinimized) {
+      setIsMinimized(false);
+      runWindowAnimation("restore");
+      return;
+    }
+    runWindowAnimation("minimize");
+  };
+
+  const handleClose = () => {
+    runWindowAnimation("close");
+    if (!shouldReduceMotion) {
+      animationTimeout.current = setTimeout(() => runWindowAnimation("reopen"), 3600);
+    }
+  };
 
   return (
     <motion.section
@@ -35,7 +70,7 @@ export function LandingHero() {
       className="relative w-full max-w-[1400px] z-20 py-2 sm:py-4"
     >
       {/* Stitch HERO_PROMISE.exe Main Window */}
-      <div className="w-full bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden">
+      <div className={`w-full bg-[#FDFBF7] dark:bg-[#161821] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden ${windowAnimation ? `retro-window-${windowAnimation}` : ""}`}>
         {/* Title bar */}
         <div className="h-10 bg-[#2563EB] text-white px-4 border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
           <div className="flex items-center gap-2 font-mono text-xs uppercase font-bold tracking-wider">
@@ -44,21 +79,21 @@ export function LandingHero() {
             </span>
             <span>THE PROMISE</span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center">
+          <div className="hidden sm:flex items-center gap-1">
+            <button type="button" onClick={handleMinimize} aria-label={isMinimized ? "Restore landing window" : "Minimize landing window"} className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600]">
               _
-            </span>
-            <span className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center">
+            </button>
+            <button type="button" onClick={() => runWindowAnimation("maximize")} aria-label="Zoom landing window" className="w-5 h-5 border border-black dark:border-white bg-white text-black font-mono text-[10px] font-bold flex items-center justify-center hover:bg-[#FFE600]">
               □
-            </span>
-            <span className="w-5 h-5 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-[10px] font-bold flex items-center justify-center">
+            </button>
+            <button type="button" onClick={handleClose} aria-label="Replay landing window" className="w-5 h-5 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-[10px] font-bold flex items-center justify-center hover:brightness-110">
               ✕
-            </span>
+            </button>
           </div>
         </div>
 
         {/* Window Content */}
-        <div className="p-6 md:p-8 lg:p-10 grid lg:grid-cols-12 gap-6 lg:gap-8 items-center text-left">
+        {!isMinimized && <div className="p-6 md:p-8 lg:p-10 grid lg:grid-cols-12 gap-6 lg:gap-8 items-center text-left">
           {/* Left Column (Headline + Actions) */}
           <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-5">
             <motion.div variants={itemVariants}>
@@ -156,7 +191,7 @@ export function LandingHero() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </div>}
       </div>
     </motion.section>
   );

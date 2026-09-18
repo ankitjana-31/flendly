@@ -205,6 +205,21 @@ html.tropical .landing-preview [class*="text-[#10B981]"] {
   color: #000000 !important;
 }
 
+:where(.ocean, .sunset, .tropical) .public-header [class*="bg-[#2563EB]"],
+:where(.ocean, .sunset, .tropical) .public-header [class*="bg-[#2563EB]"] span {
+  color: #000000 !important;
+}
+
+:where(.ocean, .sunset, .tropical) .theme-toggle,
+:where(.ocean, .sunset, .tropical) .public-header .theme-toggle,
+:where(.ocean, .sunset, .tropical) .public-header .theme-toggle * {
+  color: #000000 !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="bg-[#FFE600]/20"] {
+  background-color: var(--muted) !important;
+}
+
 :where(.dark, .ocean, .sunset, .tropical) .learn-more-page h1,
 :where(.dark, .ocean, .sunset, .tropical) .learn-more-page h2,
 :where(.dark, .ocean, .sunset, .tropical) .learn-more-page h3,

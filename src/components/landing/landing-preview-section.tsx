@@ -139,12 +139,12 @@ export function LandingPreviewSection() {
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-black bg-[#FFE600] text-black font-mono text-xs font-bold uppercase mb-3 shadow-[2px_2px_0_0_#000000]">
                     <Zap className="w-3.5 h-3.5" /> Instant Counter-Offer
                   </div>
-                  <h4 className="font-mono text-base font-bold text-black dark:text-white uppercase">Smart Loan Negotiations</h4>
-                  <p className="text-xs text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
+                  <h4 className="font-mono text-base font-bold text-[var(--foreground)] uppercase">Smart Loan Negotiations</h4>
+                  <p className="text-xs text-[var(--foreground)] mt-2 leading-relaxed">
                     Review terms, propose split deadlines, or suggest custom interest with single-click proposals.
                   </p>
                 </div>
-                <div className="mt-4 pt-4 border-t border-black/20 dark:border-white/20 flex items-center justify-between font-mono text-xs text-black dark:text-white font-bold">
+                <div className="mt-4 pt-4 border-t border-black/20 dark:border-white/20 flex items-center justify-between font-mono text-xs text-[var(--foreground)] font-bold">
                   <span>Negotiation engine active</span>
                   <span className="text-[#059669] dark:text-[#2DD4BF]">0% friction</span>
                 </div>
