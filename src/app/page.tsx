@@ -12,11 +12,7 @@ import { LegalFooterLinks } from "@/components/legal/legal-footer-links";
 export default async function Home() {
   const { user, profile } = await getCurrentUserProfile();
 
-  if (user && isPlaceholderUsername(profile?.username)) {
-    redirect("/complete-profile");
-  }
-
-  if (user) {
+  if (user && !isPlaceholderUsername(profile?.username)) {
     redirect("/dashboard");
   }
 

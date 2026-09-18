@@ -74,7 +74,7 @@ export async function updateSession(request: NextRequest) {
 
     const needsProfile = isPlaceholderUsername(profile?.username);
 
-    if (needsProfile && pathname !== "/complete-profile") {
+    if (needsProfile && pathname !== "/complete-profile" && isProtectedRoute(pathname)) {
       const url = request.nextUrl.clone();
       url.pathname = "/complete-profile";
       url.search = "";
