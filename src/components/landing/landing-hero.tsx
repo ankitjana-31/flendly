@@ -94,7 +94,6 @@ export function LandingHero() {
                 href="/auth/login"
                 className="px-6 py-3 bg-[#FFE600] text-black border-[2.5px] border-black font-mono text-sm font-black shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2"
               >
-                <span>⚡</span>
                 <span>LAUNCH FLENDLY</span>
               </Link>
               {/* Pink liquid fill for How It Works button */}

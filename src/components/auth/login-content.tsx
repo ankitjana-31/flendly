@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import Image from "next/image";
 import { signInWithGoogle } from "@/lib/auth/actions";
 import { GoogleSignInButton } from "@/components/users/google-sign-in-button";
 import { RetroWindow } from "@/components/ui/retro-window";
@@ -55,9 +56,13 @@ export function LoginContent({ error }: LoginContentProps) {
         }
       >
         <motion.div variants={itemVariants} className="mb-6 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[3px_3px_0_0_#000000]">
-            ⚡
-          </div>
+          <Image
+            src="/brand/flendly-symbol.svg"
+            alt="Flendly"
+            width={48}
+            height={48}
+            className="h-12 w-12 shrink-0"
+          />
           <div>
             <span className="font-mono text-xl font-bold tracking-tight text-black dark:text-white block">
               FLENDLY

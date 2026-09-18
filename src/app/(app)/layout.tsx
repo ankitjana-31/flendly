@@ -21,6 +21,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     <AppShell
       fullName={profile?.full_name ?? null}
       username={profile?.username ?? ""}
+      avatarUrl={profile?.avatar_url ?? null}
       unreadCount={unread}
     >
       {children}

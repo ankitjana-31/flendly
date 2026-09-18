@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-import { Sparkles, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 import { UsernameForm } from "@/components/users/username-form";
 import { getCurrentUserProfile, isPlaceholderUsername } from "@/lib/auth/queries";
@@ -19,7 +20,7 @@ export default async function CompleteProfilePage() {
   }
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-x-hidden bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-white px-4 py-8 transition-colors duration-200">
+    <main className="relative flex min-h-screen items-center justify-center overflow-x-hidden bg-[var(--background)] text-[var(--foreground)] px-4 py-8 transition-colors duration-200">
       {/* Ambient Retro Geometric Grid Layer */}
       <div 
         aria-hidden="true" 
@@ -38,7 +39,7 @@ export default async function CompleteProfilePage() {
           subtitle="PROFILE INITIALIZATION"
           colorBar="blue"
           glow={true}
-          className="bg-white dark:bg-[#161821] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
+          className="bg-[var(--card)] border-[2.5px] border-[var(--border)] shadow-[6px_6px_0_0_#000000]"
           headerClassName="bg-[#2563EB] text-white"
           contentClassName="p-6 sm:p-8"
           headerRight={
@@ -51,9 +52,7 @@ export default async function CompleteProfilePage() {
           {/* Brand Header */}
           <div className="mb-6 flex items-center justify-between border-b-[2px] border-black/10 dark:border-white/10 pb-4 font-mono">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000]">
-                ⚡
-              </div>
+              <Image src="/brand/flendly-symbol.svg" alt="Flendly" width={40} height={40} className="h-10 w-10 shrink-0" />
               <div>
                 <span className="font-mono text-lg font-bold tracking-tight text-black dark:text-white block">
                   FLENDLY

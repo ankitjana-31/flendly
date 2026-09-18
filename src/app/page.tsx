@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 
 import { getCurrentUserProfile, isPlaceholderUsername } from "@/lib/auth/queries";
@@ -20,7 +21,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-[#F1F5F9] font-sans selection:bg-[#FFE600] selection:text-black transition-colors duration-200">
+    <div className="relative min-h-screen w-full bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-[var(--accent)] selection:text-[var(--primary-foreground)] transition-colors duration-200">
       {/* Ambient Retro Geometric Grid Layer */}
       <div 
         aria-hidden="true" 
@@ -28,12 +29,16 @@ export default async function Home() {
       />
 
       {/* Stitch Flendly OS v2.4 Fixed Top Navigation Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#F5F2EB] dark:bg-[#161821] border-b-[2.5px] border-black dark:border-white/80 shadow-[0_3px_0_0_#000000] dark:shadow-[0_3px_0_0_rgba(255,255,255,0.3)] transition-colors">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--muted)] border-b-[2.5px] border-[var(--border)] shadow-[0_3px_0_0_#000000] transition-colors">
         <div className="h-14 w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-sm font-black text-black shadow-[2px_2px_0_0_#000]">
-              ⚡
-            </div>
+            <Image
+              src="/brand/flendly-symbol.svg"
+              alt="Flendly"
+              width={40}
+              height={40}
+              className="h-10 w-10 shrink-0"
+            />
             <div className="flex flex-col">
               <span className="font-mono text-sm font-bold text-black dark:text-white uppercase tracking-wider">
                 FLENDLY
@@ -73,10 +78,9 @@ export default async function Home() {
             </Link>
             <Link
               href="/auth/login"
-              className="px-4 py-1.5 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all flex items-center gap-1.5"
+              className="px-5 py-2 bg-[#FFE600] text-black border-[2px] border-black font-mono text-sm font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
-              <span>⚡</span>
-              <span>GET STARTED</span>
+              LAUNCH FLENDLY
             </Link>
           </div>
         </div>
@@ -93,9 +97,13 @@ export default async function Home() {
       <footer className="relative z-20 w-full border-t-[2.5px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] py-8">
         <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black shadow-[2px_2px_0_0_#000]">
-              ⚡
-            </div>
+            <Image
+              src="/brand/flendly-symbol.svg"
+              alt="Flendly"
+              width={32}
+              height={32}
+              className="h-8 w-8 shrink-0"
+            />
             <span className="font-bold tracking-wider text-black dark:text-white uppercase">FLENDLY</span>
           </div>
           <div className="flex flex-col items-center gap-2 sm:items-end">

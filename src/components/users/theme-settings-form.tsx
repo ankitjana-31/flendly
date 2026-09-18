@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Sun, Moon, Laptop, Check } from "lucide-react";
+import { Sun, Moon, Waves, Sunset, Leaf, Check } from "lucide-react";
 
 export function ThemeSettingsForm() {
   const { theme, setTheme } = useTheme();
@@ -29,16 +29,13 @@ export function ThemeSettingsForm() {
       icon: Moon,
       desc: "Deep & easy on eyes",
     },
-    {
-      id: "system",
-      name: "System",
-      icon: Laptop,
-      desc: "Match OS preference",
-    },
+    { id: "ocean", name: "Ocean", icon: Waves, desc: "Cool blue workspace" },
+    { id: "sunset", name: "Sunset", icon: Sunset, desc: "Warm coral workspace" },
+    { id: "tropical", name: "Tropical", icon: Leaf, desc: "Deep teal workspace" },
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {options.map((item) => {
         const Icon = item.icon;
         const isSelected = theme === item.id;

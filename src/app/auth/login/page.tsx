@@ -35,7 +35,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden flex items-center justify-center bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-white p-4 transition-colors duration-200">
+    <div className="relative min-h-screen w-full overflow-x-hidden flex items-center justify-center bg-[var(--background)] text-[var(--foreground)] p-4 transition-colors duration-200">
       {/* Ambient Retro Geometric Grid Layer */}
       <div 
         aria-hidden="true" 
@@ -48,7 +48,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       <div className="absolute top-5 left-5 z-30 flex items-center gap-3">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 font-mono text-xs font-bold text-black dark:text-white transition-all duration-200 hover:bg-[#FFE600] hover:text-black bg-white dark:bg-[#161821] px-3.5 py-1.5 border-[2px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_#2563EB] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+          className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[var(--foreground)] transition-all duration-200 hover:bg-[var(--accent)] hover:text-[var(--primary-foreground)] bg-[var(--card)] px-3.5 py-1.5 border-[2px] border-[var(--border)] shadow-[3px_3px_0_0_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
         >
           <span aria-hidden className="text-[#2563EB] dark:text-[#60A5FA]">◄</span> [ESC] BACK TO HOME
         </Link>

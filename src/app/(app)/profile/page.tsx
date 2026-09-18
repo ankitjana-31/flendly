@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { signOut } from "@/lib/auth/actions";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { DraggableProfileWindow } from "@/components/profile/draggable-profile-window";
+import { UserAvatar } from "@/components/users/user-avatar";
 import { User, Settings, LogOut, ShieldCheck, Mail, Phone, Calendar } from "lucide-react";
 
 export default async function ProfilePage() {
@@ -29,9 +30,7 @@ export default async function ProfilePage() {
           {/* Brand Header */}
           <div className="mb-6 flex items-center justify-between border-b-[2px] border-black/10 dark:border-white/10 pb-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000]">
-                ⚡
-              </div>
+              <UserAvatar name={profile?.full_name} username={profile?.username} src={profile?.avatar_url} />
               <div>
                 <span className="font-mono text-base font-bold tracking-tight text-black dark:text-white block">
                   FLENDLY

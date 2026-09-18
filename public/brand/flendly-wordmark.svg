@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 180" width="650" height="180" fill="none">
+  <g transform="translate(15, 20)">
+    <g fill="#111827">
+      <path d="M24 30 C24 16 34 7 49 7 C58 7 65 9 68 13 L62 25 C58 23 55 22 49 22 C43 22 38 26 38 33 L38 39 L63 39 L63 52 L38 52 L38 102 L24 102 L24 52 L11 52 L11 39 L24 39 Z"/>
+      <path d="M78 7 L93 7 L93 102 L78 102 Z"/>
+      <path d="M148 71 L113 71 C114 83 124 90 136 90 C143 90 149 87 153 82 L164 91 C157 100 147 104 135 104 C114 104 99 89 99 71 C99 51 114 37 134 37 C152 37 164 51 164 69 C164 70 164 71 163 72 Z M149 59 C148 49 140 47 134 47 C127 47 117 50 115 60 L149 59 Z"/>
+      <path d="M180 39 L194 39 L194 50 C198 42 208 37 220 37 C236 37 245 48 245 65 L245 102 L230 102 L230 67 C230 55 225 50 215 50 C204 50 195 58 195 71 L195 102 L180 102 Z"/>
+      <path d="M305 7 L320 7 L320 102 L306 102 L306 91 C300 100 291 104 279 104 C259 104 244 89 244 71 C244 51 259 37 279 37 C291 37 301 42 305 50 Z M306 71 C306 60 297 51 286 51 C275 51 266 60 266 71 C266 82 275 91 286 91 C297 91 306 82 306 71 Z"/>
+      <path d="M333 7 L348 7 L348 102 L333 102 Z"/>
+      <path d="M360 39 L376 39 L390 80 L404 39 L420 39 L397 100 C390 120 377 128 361 127 L357 114 C367 115 374 111 380 98 L383 88 Z"/>
+    </g>
+    <circle cx="425" cy="33" r="8.5" fill="#FF2E93" stroke="#000000" stroke-width="2.8"/>
+    <g transform="translate(24, 114)">
+      <rect x="2" y="2" width="175" height="26" rx="6" fill="#000000"/>
+      <rect x="0" y="0" width="175" height="26" rx="6" fill="#2563EB" stroke="#000000" stroke-width="2"/>
+      <text x="87" y="17" font-family="'Space Grotesk', monospace" font-size="11" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">WHO LENDS WHO?</text>
+    </g>
+  </g>
+</svg>

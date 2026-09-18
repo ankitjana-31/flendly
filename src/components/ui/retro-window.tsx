@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export interface RetroWindowProps {
@@ -37,12 +37,53 @@ export function RetroWindow({
   defaultMinimized = false,
 }: RetroWindowProps) {
   const [isMinimized, setIsMinimized] = useState(defaultMinimized);
+  const [windowAnimation, setWindowAnimation] = useState<"maximize" | "minimize" | "restore" | "close" | "reopen" | null>(null);
+  const animationTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (animationTimeout.current) clearTimeout(animationTimeout.current);
+    };
+  }, []);
+
+  const runAnimation = (
+    animation: "maximize" | "minimize" | "restore" | "close" | "reopen",
+    callback?: () => void,
+    duration = animation === "close" ? 3600 : animation === "restore" || animation === "reopen" ? 700 : 3600,
+  ) => {
+    if (animationTimeout.current) clearTimeout(animationTimeout.current);
+    setWindowAnimation(animation);
+    animationTimeout.current = setTimeout(() => {
+      animationTimeout.current = null;
+      setWindowAnimation(null);
+      callback?.();
+    }, duration);
+  };
+
+  const handleMinimize = () => {
+    if (isMinimized) {
+      setIsMinimized(false);
+      runAnimation("restore");
+      return;
+    }
+    runAnimation("minimize", () => setIsMinimized(true));
+  };
+
   const handleMaximize = () => {
     if (isMinimized) {
       setIsMinimized(false);
+      runAnimation("restore");
       return;
     }
-    onMaximize?.();
+    runAnimation("maximize", onMaximize);
+  };
+
+  const handleClose = () => {
+    if (onClose) {
+      runAnimation("close", onClose);
+      return;
+    }
+    runAnimation("close", () => runAnimation("reopen"));
   };
   const windowTitle = typeof title === "string" && title.includes(" // ")
     ? (() => {
@@ -72,6 +113,7 @@ export function RetroWindow({
         "group relative rounded-sm border-[2.5px] border-black bg-white dark:border-[#3A3F55] dark:bg-[#161821] transition-all duration-200 w-full max-w-full",
         "shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_rgba(0,0,0,0.8)]",
         glow && "shadow-[0_0_25px_-4px_rgba(45,212,191,0.35),4px_4px_0_0_#000000]",
+        windowAnimation && `retro-window-${windowAnimation}`,
         className
       )}
     >
@@ -91,23 +133,23 @@ export function RetroWindow({
       <div
         data-window-titlebar
         className={cn(
-          "flex h-10 sm:h-11 items-center justify-between px-2.5 sm:px-3.5 select-none min-w-0 max-w-full overflow-hidden",
+          "flex min-h-10 sm:min-h-11 items-center justify-between gap-2 px-2.5 sm:px-3.5 select-none min-w-0 max-w-full",
           titleBarStyles,
           headerClassName
         )}
       >
         {/* Left: Window Icon or Title */}
-        <div className="flex items-center gap-1.5 sm:gap-2 overflow-hidden min-w-0 flex-1 mr-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1 mr-2">
           {controlsStyle === "traffic" ? (
             <div className="flex items-center gap-1.5 mr-2 shrink-0">
               <button
                 type="button"
-                onClick={onClose}
+                onClick={handleClose}
                 className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 inline-block cursor-pointer hover:opacity-80"
               />
               <button
                 type="button"
-                onClick={() => setIsMinimized((value) => !value)}
+                onClick={handleMinimize}
                 className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block cursor-pointer hover:opacity-80"
               />
               <button
@@ -125,12 +167,12 @@ export function RetroWindow({
           {icon && <span className="text-current opacity-80 shrink-0">{icon}</span>}
 
           {title && (
-            <div className="flex items-center gap-2 min-w-0 truncate">
-              <span className="font-mono text-xs sm:text-sm font-black tracking-wider uppercase truncate block">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-wrap">
+              <span className="font-mono text-[10px] sm:text-sm font-black tracking-wider uppercase whitespace-nowrap">
                 {windowTitle}
               </span>
               {subtitle && (
-                <span className="hidden font-mono text-xs opacity-85 md:inline truncate">
+                <span className="hidden sm:inline font-mono text-[9px] sm:text-xs opacity-85 whitespace-nowrap">
                   — {subtitle}
                 </span>
               )}
@@ -146,8 +188,8 @@ export function RetroWindow({
             <div className="hidden sm:flex items-center gap-1 ml-1.5 select-none">
               <button
                 type="button"
-                onClick={() => setIsMinimized((value) => !value)}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-xs font-mono font-black text-black shadow-[1px_1px_0_0_#000] hover:bg-gray-200 cursor-pointer active:translate-y-0.5"
+                onClick={handleMinimize}
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-[var(--border)] bg-[var(--card)] text-xs font-mono font-black text-[var(--foreground)] shadow-[1px_1px_0_0_#000] hover:bg-[var(--accent)] hover:text-black cursor-pointer active:translate-y-0.5"
                 title={isMinimized ? "Restore" : "Minimize"}
               >
                 _
@@ -155,15 +197,15 @@ export function RetroWindow({
               <button
                 type="button"
                 onClick={handleMaximize}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-white text-[11px] font-mono font-black text-black shadow-[1px_1px_0_0_#000] hover:bg-gray-200 cursor-pointer active:translate-y-0.5"
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-[var(--border)] bg-[var(--card)] text-[11px] font-mono font-black text-[var(--foreground)] shadow-[1px_1px_0_0_#000] hover:bg-[var(--accent)] hover:text-black cursor-pointer active:translate-y-0.5"
                 title="Maximize / Open Page"
               >
                 □
               </button>
               <button
                 type="button"
-                onClick={onClose}
-                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-black bg-[#F43F5E] text-[11px] font-mono font-black text-white shadow-[1px_1px_0_0_#000] hover:bg-red-600 cursor-pointer active:translate-y-0.5"
+                onClick={handleClose}
+                className="flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center border border-[var(--border)] bg-[var(--danger)] text-[11px] font-mono font-black text-white shadow-[1px_1px_0_0_#000] hover:brightness-110 cursor-pointer active:translate-y-0.5"
                 title="Close Window"
               >
                 ✕

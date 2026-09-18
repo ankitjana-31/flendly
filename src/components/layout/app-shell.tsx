@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { UserAvatar } from "@/components/users/user-avatar";
 import { createClient } from "@/lib/supabase/client";
 
 // hoverClass: yellow for main nav, pink for lent/requests/self-track
@@ -21,11 +23,13 @@ export function AppShell({
   children,
   fullName,
   username,
+  avatarUrl,
   unreadCount: initialUnreadCount = 0,
 }: {
   children: React.ReactNode;
   fullName: string | null;
   username: string;
+  avatarUrl?: string | null;
   unreadCount?: number;
 }) {
   const pathname = usePathname();
@@ -49,7 +53,7 @@ export function AppShell({
         { event: "INSERT", schema: "public", table: "notifications" },
         () => {
           setUnreadCount((c) => c + 1);
-          router.refresh();
+          startTransition(() => router.refresh());
         }
       )
       .on(
@@ -61,7 +65,7 @@ export function AppShell({
           if (wasUnread !== isUnread) {
             setUnreadCount((count) => Math.max(0, count + (isUnread ? 1 : -1)));
           }
-          router.refresh();
+          startTransition(() => router.refresh());
         }
       )
       .on(
@@ -71,7 +75,7 @@ export function AppShell({
           if (!payload.old.read_at) {
             setUnreadCount((count) => Math.max(0, count - 1));
           }
-          router.refresh();
+          startTransition(() => router.refresh());
         }
       )
       .subscribe();
@@ -82,16 +86,16 @@ export function AppShell({
   }, [router]);
 
   return (
-    <div className="relative flex w-full bg-[#FAF8F5] dark:bg-[#0F1117] text-black dark:text-slate-100 transition-colors">
+    <div className="relative flex w-full bg-[var(--background)] text-[var(--foreground)] transition-colors">
       {/* Ambient Retro Geometric Grid Layer */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 opacity-[0.06] dark:opacity-[0.14] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]"
+        className="app-shell-grid pointer-events-none fixed inset-0 opacity-[0.06] dark:opacity-[0.05] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]"
       />
 
       {/* FIXED Sidebar — Collapsible on ✕ click */}
       {!isSidebarCollapsed ? (
-        <aside className="fixed left-0 top-0 z-30 hidden h-screen w-64 lg:w-72 flex-col justify-between border-r-[2.5px] border-black dark:border-[#3A3F55] bg-white dark:bg-[#161821] px-4 py-4 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] select-none overflow-hidden transition-all duration-200">
+        <aside className="fixed left-0 top-0 z-30 hidden h-screen w-64 lg:w-72 flex-col justify-between border-r-[2.5px] border-[var(--border)] bg-[var(--card)] px-4 py-4 md:flex shadow-[4px_0_0_0_#000000] dark:shadow-[4px_0_0_0_rgba(0,0,0,0.5)] select-none overflow-hidden transition-all duration-200">
           <div className="flex flex-col gap-3 min-h-0 flex-1">
             {/* Retro Window Title / Logo */}
             <div className="px-1 shrink-0">
@@ -117,15 +121,19 @@ export function AppShell({
                 </div>
               </div>
               <Link href="/dashboard" className="flex items-center gap-2.5" prefetch={true}>
-                <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-base font-black text-black shadow-[2px_2px_0_0_#000000] shrink-0">
-                  ⚡
-                </div>
+                <Image
+                  src="/brand/flendly-symbol.svg"
+                  alt="Flendly"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 shrink-0"
+                />
                 <div>
                   <span className="font-mono text-base lg:text-lg font-black tracking-tight text-black dark:text-white block leading-none">
                     FLENDLY
                   </span>
                   <span className="font-mono text-[9px] uppercase font-bold text-[#2563EB] dark:text-[#60A5FA] block mt-0.5 tracking-wider">
-                    PEER LEDGER REALTIME
+                    PAYMENT TRACKER LIVE
                   </span>
                 </div>
               </Link>
@@ -202,9 +210,7 @@ export function AppShell({
               prefetch={true}
               className="flex items-center gap-2.5 border-[2px] border-black bg-white dark:bg-[#1E212D] p-1.5 text-black dark:text-white shadow-[2px_2px_0_0_#000000] transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none"
             >
-              <div className="h-6 w-6 border border-black bg-[#2563EB] flex items-center justify-center text-white shrink-0">
-                <UserIcon className="h-3.5 w-3.5" />
-              </div>
+              <UserAvatar name={fullName} username={username} src={avatarUrl} size="sm" />
               <div className="overflow-hidden min-w-0">
                 <span className="block truncate font-bold text-xs sm:text-[13px]">{fullName ?? ("@" + username)}</span>
                 <span className="block text-[9px] text-[#059669] dark:text-[#2DD4BF] font-bold leading-none mt-0.5">ONLINE<span className="hidden sm:inline"> // AUTH</span></span>
@@ -253,7 +259,14 @@ export function AppShell({
           className="fixed z-50 hidden md:flex items-center gap-1.5 px-3 py-2 border-[2.5px] border-black bg-[#FFE600] text-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 cursor-grab active:cursor-grabbing uppercase transition-shadow"
           title="Expand Sidebar"
         >
-          <span>⚡ FLENDLY</span>
+          <Image
+            src="/brand/flendly-symbol.svg"
+            alt="Flendly"
+            width={24}
+            height={24}
+            className="h-6 w-6 shrink-0"
+          />
+          <span>FLENDLY</span>
           <ChevronRight className="w-3.5 h-3.5 stroke-[3]" />
         </button>
       )}
@@ -264,19 +277,24 @@ export function AppShell({
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0 overflow-x-hidden">
         {/* Mobile Header in Retro Style */}
-        <header className="relative flex h-14 items-center justify-center border-b-[2px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] px-4 md:hidden sticky top-0 z-40">
+        <header className="relative flex h-14 items-center justify-center border-b-[2px] border-[var(--border)] bg-[var(--background)] px-4 md:hidden sticky top-0 z-40">
           <Link href="/dashboard" className="flex items-center gap-2" prefetch={true}>
-            <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black shadow-[1px_1px_0_0_#000]">
-              ⚡
-            </div>
-            <span className="font-mono text-sm font-bold tracking-wider text-black dark:text-white">FLENDLY</span>
+            <Image
+              src="/brand/flendly-symbol.svg"
+              alt="Flendly"
+              width={40}
+              height={40}
+              priority
+              className="h-10 w-10 shrink-0"
+            />
+            <span className="font-mono text-sm font-black tracking-wider text-black dark:text-white">FLENDLY</span>
           </Link>
         </header>
 
         <main className="flex-1 pb-20 md:pb-6 min-w-0">{children}</main>
 
         {/* Mobile Bottom Navigation Bar */}
-        <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t-[2px] border-black bg-white dark:bg-[#161821] md:hidden font-mono text-xs">
+        <nav className="app-mobile-nav fixed inset-x-0 bottom-0 z-30 flex h-16 gap-1 border-t-[2px] border-[var(--border)] bg-[var(--background)] px-1 py-1 shadow-[0_-3px_0_0_#000] md:hidden font-mono text-xs">
           {[
             ...NAV_ITEMS,
             { href: "/notifications", label: "Alerts", icon: "BellIcon", hoverClass: "" },
@@ -290,14 +308,14 @@ export function AppShell({
                 key={item.href}
                 href={item.href}
                 prefetch={true}
-                className={`flex flex-1 flex-col items-center gap-1 py-2 font-bold border-r last:border-r-0 border-black/10 dark:border-white/10 transition-colors ${
+                className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 border-[1.5px] border-[var(--border)] px-0.5 transition-all ${
                   isActive
-                    ? "bg-[#FFE600] text-black"
-                    : "text-black dark:text-gray-300 hover:bg-[#FFE600] hover:text-black"
+                    ? "app-mobile-nav-active bg-[var(--accent)] text-[var(--primary-foreground)] shadow-[2px_2px_0_0_#000] -translate-y-0.5"
+                    : "app-mobile-nav-inactive bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--primary-foreground)]"
                 }`}
               >
                 <Icon className="h-4 w-4" />
-                <span className="text-[10px]">{item.label}</span>
+                <span className="truncate text-[9px] font-black uppercase tracking-tight">{item.label}</span>
               </Link>
             );
           })}

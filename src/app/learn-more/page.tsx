@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LearnMoreHero } from "@/components/learn-more/hero-section";
 import { LoanAnatomySection } from "@/components/learn-more/loan-anatomy-section";
@@ -19,9 +20,13 @@ export default function LearnMorePage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#F5F2EB] dark:bg-[#161821] border-b-[2.5px] border-black dark:border-white/80 shadow-[0_3px_0_0_#000000] dark:shadow-[0_3px_0_0_rgba(255,255,255,0.3)] transition-colors">
         <div className="h-14 max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-sm font-black text-black shadow-[2px_2px_0_0_#000]">
-              ⚡
-            </div>
+            <Image
+              src="/brand/flendly-symbol.svg"
+              alt="Flendly"
+              width={40}
+              height={40}
+              className="h-10 w-10 shrink-0"
+            />
             <div className="flex flex-col">
               <span className="font-mono text-sm font-bold text-black dark:text-white uppercase tracking-wider">
                 FLENDLY
@@ -69,7 +74,6 @@ export default function LearnMorePage() {
               href="/auth/login"
               className="px-3.5 py-1.5 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all flex items-center gap-1"
             >
-              <span>⚡</span>
               <span>LAUNCH APP</span>
             </Link>
           </div>
@@ -88,9 +92,13 @@ export default function LearnMorePage() {
       <footer className="relative z-20 w-full border-t-[2.5px] border-black dark:border-white/40 bg-[#F5F2EB] dark:bg-[#161821] py-8">
         <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center border-[2px] border-black bg-[#FFE600] font-mono text-xs font-black text-black shadow-[2px_2px_0_0_#000]">
-              ⚡
-            </div>
+            <Image
+              src="/brand/flendly-symbol.svg"
+              alt="Flendly"
+              width={32}
+              height={32}
+              className="h-8 w-8 shrink-0"
+            />
             <span className="font-bold tracking-wider text-black dark:text-white uppercase">FLENDLY</span>
           </div>
           <div className="flex flex-col items-center gap-2 sm:items-end">

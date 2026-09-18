@@ -1,16 +1,16 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { useSyncExternalStore } from "react";
+import { Palette } from "lucide-react";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   if (!mounted) {
     return (
@@ -18,26 +18,21 @@ export function ThemeToggle({ className }: { className?: string }) {
     );
   }
 
-  const isDark = (theme === "system" ? resolvedTheme : theme) === "dark";
+  const activeTheme = theme === "system" ? resolvedTheme : theme;
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label="Toggle retro theme mode"
-      className={`flex items-center gap-1.5 px-2.5 py-1 border-[2px] border-black dark:border-white bg-[#FFE600] dark:bg-[#1E212D] text-black dark:text-[#FFE600] shadow-[2px_2px_0_0_#000000] dark:shadow-[2px_2px_0_0_#FFE600] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none font-mono text-[11px] font-bold cursor-pointer transition-all ${className ?? ""}`}
+      onClick={() => {
+        const themes = ["light", "dark", "ocean", "sunset", "tropical"];
+        const nextTheme = themes[(themes.indexOf(activeTheme ?? "light") + 1) % themes.length];
+        setTheme(nextTheme);
+      }}
+      aria-label={`Change theme (current: ${activeTheme ?? "light"})`}
+      className={`flex items-center gap-1.5 px-2.5 py-1 border-[2px] border-[var(--border)] bg-[var(--accent)] text-[var(--primary-foreground)] shadow-[2px_2px_0_0_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none font-mono text-[11px] font-bold cursor-pointer transition-all ${className ?? ""}`}
     >
-      {isDark ? (
-        <>
-          <Sun className="h-3.5 w-3.5 text-amber-400" />
-          <span className="hidden sm:inline">LIGHT.SYS</span>
-        </>
-      ) : (
-        <>
-          <Moon className="h-3.5 w-3.5 text-black" />
-          <span className="hidden sm:inline">DARK.SYS</span>
-        </>
-      )}
+      <Palette className="h-3.5 w-3.5" />
+      <span>THEME.SYS</span>
     </button>
   );
 }

@@ -17,6 +17,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://flendly.in"),
   title: "Flendly | Who Lends Who?",
+  icons: {
+    icon: "/brand/flendly-symbol.svg",
+    apple: "/brand/flendly-symbol.svg",
+  },
   description:
     "Flendly is a Gen Z-friendly money tracker for friends: track money between friends, lendings, borrowed money, repayments, loans, and personal money owed. Go beyond split-bill apps with peer-to-peer lending and debt tracking.",
   keywords: [
@@ -65,7 +69,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`h-full antialiased ${inter.variable} ${jakarta.variable} ${jetbrainsMono.variable} ${syne.variable}`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            themes={["light", "dark", "ocean", "sunset", "tropical"]}
+            enableSystem={false}
+            disableTransitionOnChange
+          >
           {children}
         </ThemeProvider>
         <script
