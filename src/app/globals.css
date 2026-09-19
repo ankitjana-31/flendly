@@ -150,11 +150,6 @@ html.tropical .app-shell-grid {
 }
 
 /* Custom palettes keep legacy utility classes readable without changing the light theme. */
-html.ocean .text-black,
-html.sunset .text-black {
-  color: var(--foreground) !important;
-}
-
 html.ocean .text-gray-700,
 html.ocean .text-gray-600,
 html.ocean .text-gray-500,
@@ -192,14 +187,6 @@ html.tropical .landing-preview [class*="text-[#10B981]"] {
   color: var(--success) !important;
 }
 
-:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="text-black"] {
-  color: var(--foreground) !important;
-}
-
-:where(.dark, .ocean, .sunset, .tropical) .landing-preview [class*="dark:text-white"] {
-  color: var(--foreground) !important;
-}
-
 :where(.dark, .ocean, .sunset, .tropical) .theme-toggle,
 :where(.dark, .ocean, .sunset, .tropical) .public-header .theme-toggle {
   color: #000000 !important;
@@ -232,10 +219,6 @@ html.tropical .landing-preview [class*="text-[#10B981]"] {
   color: var(--foreground) !important;
 }
 
-:where(.dark, .ocean, .sunset, .tropical) .learn-more-page [class*="text-black"] {
-  color: var(--foreground) !important;
-}
-
 :where(.dark, .ocean, .sunset, .tropical) .learn-more-page [class*="bg-white"],
 :where(.dark, .ocean, .sunset, .tropical) .learn-more-page [class*="bg-[#FAF8F5]"] {
   background-color: var(--card) !important;
@@ -252,14 +235,6 @@ html.sunset .landing-preview [class*="text-[#93C5FD]"],
 html.tropical .landing-preview [class*="text-[#93C5FD]"] {
   color: var(--primary) !important;
 }
-
-html.ocean .landing-preview [class*="text-black"],
-html.sunset .landing-preview [class*="text-black"],
-html.tropical .landing-preview [class*="text-black"] {
-  color: var(--foreground) !important;
-}
-
-
 
 html.ocean [class*="bg-white"],
 html.sunset [class*="bg-white"] {
@@ -279,14 +254,48 @@ html.tropical [class*="bg-[#FAF8F5]"] {
   background-color: var(--muted) !important;
 }
 
-
-
-.app-mobile-nav-active,
-.app-mobile-nav-active *,
-.app-mobile-nav .app-mobile-nav-active,
-.app-mobile-nav .app-mobile-nav-active * {
+/* ==========================================================================
+   UNIVERSAL YELLOW / ACCENT HIGH CONTRAST (PITCH BLACK TEXT ON ALL THEMES)
+   ========================================================================== */
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-[#FFE600]"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-yellow-"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-sidebar-nav-item[class*="bg-[#FFE600]"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-mobile-nav-active,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .requests-tab-active,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .landing-preview-tab-active {
+  background-color: #FFE600 !important;
   color: #000000 !important;
-  fill: #000000 !important;
+}
+
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-[#FFE600]"] *,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-yellow-"] *,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-sidebar-nav-item[class*="bg-[#FFE600]"] *,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-mobile-nav-active *,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .requests-tab-active *,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .landing-preview-tab-active * {
+  color: #000000 !important;
+}
+
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-[#FFE600]"] svg,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-yellow-"] svg,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-sidebar-nav-item[class*="bg-[#FFE600]"] svg,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-mobile-nav-active svg,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .requests-tab-active svg,
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .landing-preview-tab-active svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* Explicitly preserve outline SVGs on yellow backgrounds so paths NEVER turn into solid black blobs */
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-[#FFE600]"] svg path[fill="none"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) [class*="bg-[#FFE600]"] svg circle[fill="none"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-sidebar-nav-item[class*="bg-[#FFE600]"] svg path[fill="none"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-sidebar-nav-item[class*="bg-[#FFE600]"] svg circle[fill="none"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-mobile-nav-active svg path[fill="none"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .app-mobile-nav-active svg circle[fill="none"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .requests-tab-active svg path[fill="none"],
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .requests-tab-active svg circle[fill="none"] {
+  fill: none !important;
 }
 
 html.sunset .app-mobile-nav .app-mobile-nav-inactive {
@@ -296,11 +305,6 @@ html.sunset .app-mobile-nav .app-mobile-nav-inactive {
 html.ocean .app-mobile-nav .app-mobile-nav-inactive,
 html.tropical .app-mobile-nav .app-mobile-nav-inactive {
   color: var(--foreground);
-}
-
-html.ocean .text-black,
-html.tropical .text-black {
-  color: var(--foreground) !important;
 }
 
 html.ocean .text-gray-700,
@@ -330,15 +334,6 @@ html.tropical .public-header [class*="bg-white"] {
   color: var(--foreground) !important;
 }
 
-html.sunset .public-header [class*="text-black"],
-html.sunset .public-footer [class*="text-black"],
-html.ocean .public-header [class*="text-black"],
-html.ocean .public-footer [class*="text-black"],
-html.tropical .public-header [class*="text-black"],
-html.tropical .public-footer [class*="text-black"] {
-  color: var(--foreground) !important;
-}
-
 html.sunset .public-header [class*="bg-[#2563EB]"],
 html.ocean .public-header [class*="bg-[#2563EB]"],
 html.tropical .public-header [class*="bg-[#2563EB]"] {
@@ -349,27 +344,8 @@ html.tropical .public-header [class*="bg-[#2563EB]"] {
 html.sunset .public-header [class*="bg-[#FFE600]"],
 html.ocean .public-header [class*="bg-[#FFE600]"],
 html.tropical .public-header [class*="bg-[#FFE600]"] {
-  background-color: var(--accent) !important;
-  color: var(--primary-foreground) !important;
-}
-
-html.sunset .font-heading,
-html.sunset .font-sans,
-html.sunset .font-mono,
-html.sunset h1,
-html.sunset h2,
-html.sunset h3,
-html.sunset h4,
-html.sunset p,
-html.sunset span,
-html.sunset li {
-  --sunset-readable: var(--foreground);
-}
-
-html.sunset [class*="text-black"],
-html.sunset [class*="text-gray-700"],
-html.sunset [class*="text-gray-600"] {
-  color: var(--foreground) !important;
+  background-color: #FFE600 !important;
+  color: #000000 !important;
 }
 
 html.ocean .theme-receivable-card .text-black,
@@ -400,9 +376,8 @@ html.tropical .app-sidebar-nav-item:not([class*="bg-[#FFE600]"]) {
   color: #ffffff !important;
 }
 
-html.sunset .app-sidebar-nav-item:hover {
-  background-color: var(--accent) !important;
-  color: var(--primary-foreground) !important;
+html.sunset .app-sidebar-nav-item:hover:not([class*="bg-[#FFE600]"]) {
+  background-color: var(--muted) !important;
 }
 
 html.sunset .theme-payable-card .text-white,
