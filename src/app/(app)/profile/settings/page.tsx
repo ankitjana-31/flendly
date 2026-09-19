@@ -26,7 +26,7 @@ export default async function ProfileSettingsPage() {
   const own = Array.isArray(details) ? details[0] : details;
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-5 px-4 py-4 md:py-6 md:px-6 pb-16">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 px-4 py-4 md:py-6 md:px-6 pb-16">
       {/* Header Bar */}
       <div className="flex items-center justify-between">
         <Link
@@ -44,10 +44,10 @@ export default async function ProfileSettingsPage() {
         subtitle="USER CONFIGURATION"
         colorBar="blue"
         className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
-        contentClassName="p-5 sm:p-6 space-y-6"
+        contentClassName="p-5 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-5"
       >
         {/* Appearance / Theme Settings */}
-        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
+        <div className="md:col-span-2 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
           <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">
             <Moon className="w-4 h-4 text-[#2563EB]" />
             <h2 className="font-mono text-sm font-bold text-black dark:text-white uppercase">Appearance Mode</h2>
@@ -80,7 +80,7 @@ export default async function ProfileSettingsPage() {
         </div>
 
         {/* Privacy Settings */}
-        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
+        <div className="md:col-span-2 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
           <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">
             <Shield className="w-4 h-4 text-purple-600" />
             <h2 className="font-mono text-sm font-bold text-black dark:text-white uppercase">Privacy & Visibility</h2>

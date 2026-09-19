@@ -91,12 +91,12 @@ export function UsernameAutocomplete({ defaultValue = "" }: { defaultValue?: str
 
       {/* Retro Styled Yellow Glow Popup Suggestions */}
       {open && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-1.5 overflow-hidden border-[2.5px] border-black bg-[#FEF08A] dark:bg-[#2D2812] shadow-[4px_4px_0_0_#000000] backdrop-blur-md">
+        <div className="absolute top-full left-0 right-0 z-50 mt-1.5 overflow-hidden border-[2.5px] border-black bg-white dark:bg-[var(--card)] shadow-[4px_4px_0_0_#000000]">
           <div className="px-3 py-1.5 bg-black text-white text-[10px] font-black uppercase flex items-center justify-between">
             <span>⚡ MATCHING REGISTERED PEERS</span>
             <span>CLICK TO SELECT</span>
           </div>
-          <ul className="max-h-48 overflow-y-auto divide-y border-t border-black">
+          <ul className="max-h-48 overflow-y-auto divide-y border-t border-black dark:divide-white/20">
             {results.map((r) => (
               <li key={r.id}>
                 <button
@@ -105,22 +105,22 @@ export function UsernameAutocomplete({ defaultValue = "" }: { defaultValue?: str
                     setQuery(r.username);
                     setOpen(false);
                   }}
-                  className="flex w-full items-center justify-between px-3 py-2.5 text-left text-xs font-bold text-black dark:text-yellow-100 hover:bg-[#FFE600] dark:hover:bg-[#453D1A] transition-colors cursor-pointer"
+                  className="group flex w-full items-center justify-between px-3 py-2.5 text-left text-xs font-bold text-black dark:text-white hover:bg-[#FFE600] dark:hover:bg-[#FFE600] transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 border border-black bg-white flex items-center justify-center text-[10px] font-black text-black">
+                    <div className="w-6 h-6 border border-black bg-[#2DD4BF] text-black flex items-center justify-center text-[10px] font-black shadow-[1px_1px_0_0_#000]">
                       @
                     </div>
                     <div>
-                      <span className="font-black text-black dark:text-yellow-200">@{r.username}</span>
+                      <span className="font-black text-black dark:text-white group-hover:!text-black">@{r.username}</span>
                       {r.full_name && (
-                        <span className="block text-[10px] text-gray-700 dark:text-yellow-300/80 font-normal">
+                        <span className="block text-[10px] text-gray-600 dark:text-gray-300 group-hover:!text-black font-medium">
                           {r.full_name}
                         </span>
                       )}
                     </div>
                   </div>
-                  <UserCheck className="w-4 h-4 text-black dark:text-yellow-200" />
+                  <UserCheck className="w-4 h-4 text-black dark:text-white group-hover:!text-black" />
                 </button>
               </li>
             ))}

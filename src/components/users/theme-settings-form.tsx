@@ -51,7 +51,7 @@ export function ThemeSettingsForm() {
             }`}
           >
             {isSelected && (
-              <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center border border-black bg-black text-white">
+              <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center border border-black bg-[#2DD4BF] text-black shadow-[1px_1px_0_0_#000]">
                 <Check className="h-2.5 w-2.5 stroke-[3]" />
               </span>
             )}

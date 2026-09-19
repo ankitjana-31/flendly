@@ -11,16 +11,16 @@ type Status =
   | "PARTIALLY_PAID";
 
 const STYLES: Record<Status, string> = {
-  PENDING: "bg-warning/10 text-warning border-warning/30",
-  COUNTERED: "bg-accent/10 text-accent border-accent/30",
-  ACCEPTED: "bg-success/10 text-success border-success/30",
-  ACTIVE: "bg-accent/10 text-accent border-accent/30",
-  DECLINED: "bg-danger/10 text-danger border-danger/30",
-  CANCELLED: "bg-muted-foreground/10 text-muted-foreground border-muted-foreground/20",
-  SUPERSEDED: "bg-muted-foreground/10 text-muted-foreground border-muted-foreground/20",
-  PAID: "bg-success/10 text-success border-success/30",
-  OVERDUE: "bg-danger/10 text-danger border-danger/30",
-  PARTIALLY_PAID: "bg-warning/10 text-warning border-warning/30",
+  PENDING: "bg-[#FFE600] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  COUNTERED: "bg-[#C4B5FD] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  ACCEPTED: "bg-[#86EFAC] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  ACTIVE: "bg-[#2DD4BF] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  DECLINED: "bg-[#FDA4AF] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  CANCELLED: "bg-gray-200 dark:bg-gray-700 text-black dark:text-white border-black dark:border-white/30 font-bold",
+  SUPERSEDED: "bg-gray-200 dark:bg-gray-700 text-black dark:text-white border-black dark:border-white/30 font-bold",
+  PAID: "bg-[#86EFAC] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  OVERDUE: "bg-[#FDA4AF] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  PARTIALLY_PAID: "bg-[#FDE047] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
 };
 
 const LABELS: Record<Status, string> = {
@@ -39,7 +39,7 @@ const LABELS: Record<Status, string> = {
 export function StatusBadge({ status, className = "" }: { status: Status; className?: string }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium ${STYLES[status]} ${className}`}
+      className={`inline-flex items-center gap-1 rounded-[3px] border-[1.5px] px-2 py-0.5 font-mono text-[11px] leading-tight uppercase ${STYLES[status]} ${className}`}
     >
       {LABELS[status]}
     </span>

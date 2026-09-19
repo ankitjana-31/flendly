@@ -141,29 +141,30 @@ export default async function RequestDetailPage({
         <div className="space-y-3">
           {request.offers.map((offer, idx) => {
             const isCreator = offer.created_by === user.id;
+            const isActive = offer.status === "ACTIVE";
             return (
               <div
                 key={offer.id}
                 className={`p-4 border-[2px] border-black dark:border-white/40 shadow-[2px_2px_0_0_#000] flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
-                  offer.status === "ACTIVE"
-                    ? "bg-[#FFE600]/20 dark:bg-[#2E2800] border-l-[6px] border-l-[#FFE600]"
-                    : "bg-[#FAF8F5] dark:bg-[var(--muted)]"
+                  isActive
+                    ? "bg-[#FFE600] text-black border-l-[6px] border-l-black shadow-[3px_3px_0_0_#000]"
+                    : "bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white"
                 }`}
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-base font-black text-black dark:text-white">
+                    <span className={`text-base font-black ${isActive ? "!text-black" : "text-black dark:text-white"}`}>
                       {formatMoney(offer.amount)}
                     </span>
-                    <span className="text-xs text-gray-600 dark:text-gray-400 font-bold">
+                    <span className={`text-xs font-bold ${isActive ? "!text-black/80" : "text-gray-600 dark:text-gray-400"}`}>
                       · {interestSummary(offer)}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    Proposed by <span className="font-bold text-black dark:text-white">{isCreator ? "You" : (other.full_name ?? `@${other.username}`)}</span> · Due {formatDate(offer.deadline)}
+                  <p className={`text-xs ${isActive ? "!text-black/80" : "text-gray-600 dark:text-gray-300"}`}>
+                    Proposed by <span className={`font-bold ${isActive ? "!text-black" : "text-black dark:text-white"}`}>{isCreator ? "You" : (other.full_name ?? `@${other.username}`)}</span> · Due {formatDate(offer.deadline)}
                   </p>
                   {offer.message && (
-                    <p className="text-xs text-gray-700 dark:text-gray-300 italic">
+                    <p className={`text-xs italic ${isActive ? "!text-black/90 font-medium" : "text-gray-700 dark:text-gray-300"}`}>
                       &quot;{offer.message}&quot;
                     </p>
                   )}
@@ -171,7 +172,7 @@ export default async function RequestDetailPage({
 
                 <div className="flex sm:flex-col items-center sm:items-end justify-between gap-1.5 shrink-0">
                   <StatusBadge status={offer.status} />
-                  <span className="text-[10px] text-gray-500">
+                  <span className={`text-[10px] ${isActive ? "!text-black/70 font-bold" : "text-gray-500 dark:text-gray-400"}`}>
                     {formatDateTime(offer.created_at)}
                   </span>
                 </div>
