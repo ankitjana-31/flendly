@@ -85,7 +85,7 @@ export function DashboardContent({
         className="flex flex-col gap-1 pb-2.5 sm:pb-3.5"
       >
         <div className="hidden items-center gap-2 sm:flex">
-          <span className="font-mono text-xs text-teal-600 dark:text-teal-400 font-bold">[SESSION ACTIVE]</span>
+          <span className="font-mono text-xs text-teal-600 dark:text-teal-400 font-bold">Session Active</span>
           <span className="hidden sm:inline text-gray-400 font-mono text-xs">//</span>
           <span className="hidden sm:inline font-mono text-xs text-gray-600 dark:text-gray-300 font-bold uppercase tracking-wider">FLENDLY MASTER DASHBOARD</span>
         </div>
@@ -107,27 +107,27 @@ export function DashboardContent({
             subtitle="owed to you"
             colorBar="green"
             glow={aggregates.totalLent > 0}
-            className="theme-colored-card theme-receivable-card bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2.5px] border-black dark:border-black shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#134E4A]"
-            contentClassName="theme-receivable-content p-4 sm:p-5 text-black"
+            className="theme-colored-card theme-receivable-card bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#134E4A]"
+            contentClassName="theme-receivable-content p-3.5 sm:p-5 text-black"
             headerRight={
-              <span className="px-2 sm:px-2.5 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-[11px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+              <span className="px-2 sm:px-2.5 py-0.5 rounded-[2px] border border-black bg-[#2DD4BF] text-black font-mono text-[10px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
                 +INCOMING
               </span>
             }
           >
-            <div>
+            <div className="min-w-0">
               <p className="font-mono text-xs sm:text-sm text-black font-black uppercase tracking-wider">
                 You&apos;re owed
               </p>
               <motion.p
-                className="mt-1 font-mono text-3xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight"
+                className="mt-0.5 sm:mt-1 font-mono text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight truncate"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
               >
                 {formatMoney(aggregates.totalLent)}
               </motion.p>
-              <p className="mt-1 font-mono text-xs text-black font-bold">
+              <p className="mt-0.5 sm:mt-1 font-mono text-xs text-black font-bold truncate">
                 <span className="hidden sm:inline">across </span>{aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
               </p>
             </div>
@@ -139,27 +139,27 @@ export function DashboardContent({
             title="PAYABLES"
             subtitle="you owe"
             colorBar="pink"
-            className="theme-colored-card theme-payable-card bg-[#F43F5E] dark:bg-[#F43F5E] border-[2.5px] border-black dark:border-black shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#881337]"
-            contentClassName="p-4 sm:p-5 text-white"
+            className="theme-colored-card theme-payable-card bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#881337]"
+            contentClassName="p-3.5 sm:p-5 text-white"
             headerRight={
-              <span className="px-2 sm:px-2.5 py-0.5 border border-black bg-[#F43F5E] text-white font-mono text-[11px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+              <span className="px-2 sm:px-2.5 py-0.5 rounded-[2px] border border-black bg-[#F43F5E] text-white font-mono text-[10px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
                 -OUTGOING
               </span>
             }
           >
-            <div>
+            <div className="min-w-0">
               <p className="font-mono text-xs sm:text-sm text-white font-black uppercase tracking-wider">
                 You owe
               </p>
               <motion.p
-                className="mt-1 font-mono text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight"
+                className="mt-0.5 sm:mt-1 font-mono text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight truncate"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.25, type: "spring", stiffness: 120 }}
               >
                 {formatMoney(aggregates.totalBorrowed)}
               </motion.p>
-              <p className="mt-1 font-mono text-xs text-white/90 font-bold">
+              <p className="mt-0.5 sm:mt-1 font-mono text-xs text-white/90 font-bold truncate">
                 <span className="hidden sm:inline">across </span>{aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
               </p>
             </div>
@@ -343,17 +343,17 @@ export function DashboardContent({
       >
         <div className="w-full min-w-0">
           <RetroWindow
-            title="PERSONAL TRACKER // OFFLINE LEDGER"
-              onClose={() => setHideSelfTrack(true)}
-              onMaximize={() => router.push("/self-track")}
-            subtitle="self track summary"
+            title="PERSONAL CASH TRACKER // OFFLINE ENTRIES"
+            onClose={() => setHideSelfTrack(true)}
+            onMaximize={() => router.push("/self-track")}
+            subtitle="PERSONAL CASH LOG"
             colorBar="yellow"
-            className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] w-full"
+            className="bg-white dark:bg-[var(--card)] border-[2px] sm:border-[2.5px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] w-full"
             contentClassName="p-3 sm:p-4"
             headerRight={
               <a
                 href="/self-track"
-                className="px-2.5 py-1 border border-black bg-[#FFE600] text-black font-mono text-[11px] sm:text-xs font-black shadow-[1.5px_1.5px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-1 cursor-pointer shrink-0"
+                className="px-2.5 py-1 rounded-[2px] border border-black bg-[#FFE600] text-black font-mono text-[11px] sm:text-xs font-black shadow-[1.5px_1.5px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-1 cursor-pointer shrink-0"
               >
                 <span>MANAGE</span>
                 <span>→</span>

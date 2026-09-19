@@ -4,7 +4,6 @@ import { ChangeUsernameForm } from "@/components/users/change-username-form";
 import { ProfileDetailsForm } from "@/components/users/profile-details-form";
 import { PrivacySettingsForm } from "@/components/users/privacy-settings-form";
 import { ThemeSettingsForm } from "@/components/users/theme-settings-form";
-import { LanguageSettingsForm } from "@/components/users/language-settings-form";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 import { createClient } from "@/lib/supabase/server";
 import { RetroWindow } from "@/components/ui/retro-window";
@@ -47,18 +46,6 @@ export default async function ProfileSettingsPage() {
         className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
         contentClassName="p-5 sm:p-6 space-y-6"
       >
-        {/* Language Selection */}
-        <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
-          <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">
-            <Globe className="w-4 h-4 text-[#2563EB]" />
-            <h2 className="font-mono text-sm font-bold text-black dark:text-white uppercase">Language / ভাষা / भाषा</h2>
-          </div>
-          <p className="font-mono text-xs text-gray-600 dark:text-gray-300">
-            Choose your preferred language for navigation and workspace.
-          </p>
-          <LanguageSettingsForm />
-        </div>
-
         {/* Appearance / Theme Settings */}
         <div className="border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] p-4 sm:p-5 shadow-[3px_3px_0_0_#000] space-y-3">
           <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-2">

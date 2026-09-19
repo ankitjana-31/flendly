@@ -70,11 +70,11 @@ export function LandingHero() {
       className="relative w-full max-w-[1400px] z-20 py-2 sm:py-4"
     >
       {/* Stitch HERO_PROMISE.exe Main Window */}
-      <div className={`w-full bg-[#FDFBF7] dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-sm overflow-hidden ${windowAnimation ? `retro-window-${windowAnimation}` : ""}`}>
+      <div className={`w-full bg-[#FDFBF7] dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB] flex flex-col transition-colors rounded-[4px] overflow-hidden ${windowAnimation ? `retro-window-${windowAnimation}` : ""}`}>
         {/* Title bar */}
         <div className="h-10 bg-[#2563EB] text-white px-4 border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
           <div className="flex items-center gap-2 font-mono text-xs uppercase font-bold tracking-wider">
-            <span className="w-4 h-4 bg-[#FFE600] border border-black inline-flex items-center justify-center text-[10px] text-black font-bold">
+            <span className="w-4 h-4 bg-[#FFE600] border border-black inline-flex items-center justify-center text-[10px] text-black font-bold rounded-[2px]">
               ▲
             </span>
             <span>THE PROMISE</span>
@@ -97,7 +97,7 @@ export function LandingHero() {
           {/* Left Column (Headline + Actions) */}
           <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-5">
             <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-black shadow-[2px_2px_0_0_#000] uppercase tracking-wider">
+              <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-black shadow-[2px_2px_0_0_#000] uppercase tracking-wider rounded-[2px]">
                 <span>⚡</span>
                 <span>NO MORE AWKWARD CHAT TEXTS</span>
               </span>
@@ -108,7 +108,7 @@ export function LandingHero() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-black dark:text-white leading-[1.1]"
             >
               Money between friends shouldn&apos;t become a{" "}
-              <span className="bg-[#FF2E93] text-white px-2.5 py-0.5 border-[2.5px] border-black shadow-[3px_3px_0_0_#000] inline-block -rotate-1">
+              <span className="bg-[#FF2E93] text-white px-2.5 py-0.5 border-[2.5px] border-black shadow-[3px_3px_0_0_#000] inline-block -rotate-1 rounded-[2px]">
                 friendship
               </span>{" "}
               problem.
@@ -127,14 +127,14 @@ export function LandingHero() {
             >
               <Link
                 href="/auth/login"
-                className="px-6 py-3 bg-[#FFE600] text-black border-[2.5px] border-black font-mono text-sm font-black shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2"
+                className="px-6 py-3 bg-[#FFE600] text-black border-[2.5px] border-black font-mono text-sm font-black shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2 rounded-[4px]"
               >
                 <span>LAUNCH FLENDLY</span>
               </Link>
               {/* Pink liquid fill for How It Works button */}
               <Link
                 href="/learn-more"
-                className="px-5 py-3 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2.5px] border-black dark:border-white/60 font-mono text-sm font-bold shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2 group"
+                className="px-5 py-3 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2.5px] border-black dark:border-white/60 font-mono text-sm font-bold shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#000] transition-all flex items-center gap-2 group rounded-[4px]"
               >
                 <span className="text-[#2563EB] dark:text-[#60A5FA] group-hover:text-white transition-colors">ℹ</span>
                 <span>HOW IT WORKS</span>
@@ -147,23 +147,23 @@ export function LandingHero() {
             variants={itemVariants}
             className="lg:col-span-5 flex flex-col gap-3 font-mono"
           >
-            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] p-4 flex flex-col gap-3">
+            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] p-4 flex flex-col gap-3 rounded-[4px]">
               {/* Card Header */}
               <div className="flex items-center justify-between border-b-[2px] border-black dark:border-white/40 pb-2">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 bg-[#F43F5E] inline-block border border-black" />
+                  <span className="w-2.5 h-2.5 bg-[#F43F5E] inline-block border border-black rounded-[1px]" />
                   <span className="text-xs font-black text-black dark:text-white uppercase tracking-wider">
                     LEAK DIAGNOSTIC
                   </span>
                 </div>
-                  <span className="text-[10px] text-gray-500 font-bold">STATUS<span className="hidden sm:inline"> // ACTIVE</span></span>
+                  <span className="text-[10px] text-gray-500 font-bold">STATUS // ACTIVE</span>
               </div>
 
               {/* Chat Simulation - Rahul and cab share of 250 */}
-              <div className="bg-white dark:bg-[#242938] border-[2.5px] border-black dark:border-white/40 p-3.5 shadow-[3px_3px_0_0_#000]">
+              <div className="bg-white dark:bg-[#242938] border-[2.5px] border-black dark:border-white/40 p-3.5 shadow-[3px_3px_0_0_#000] rounded-[3px]">
                 <div className="text-xs text-gray-600 dark:text-gray-300 font-bold mb-1 flex items-center justify-between">
                   <span>Rahul (3 months ago via WhatsApp):</span>
-                  <span className="text-[9.5px] bg-[#FFE600] text-black px-1.5 py-0.5 border border-black font-black uppercase">UNPAID</span>
+                  <span className="text-[9.5px] bg-[#FFE600] text-black px-1.5 py-0.5 border border-black font-black uppercase rounded-[2px]">UNPAID</span>
                 </div>
                 <p className="text-sm font-semibold text-black dark:text-white italic leading-snug">
                   &quot;Bro, will pay my ₹250 for the cab share tomorrow morning!&quot;
@@ -171,7 +171,7 @@ export function LandingHero() {
               </div>
 
               {/* Consequence Alert */}
-              <div className="p-3 bg-[#FF2E93]/15 border-[2px] border-[#F43F5E] text-xs font-bold text-black dark:text-white flex items-center gap-2.5">
+              <div className="p-3 bg-[#FF2E93]/15 border-[2px] border-[#F43F5E] text-xs font-bold text-black dark:text-white flex items-center gap-2.5 rounded-[3px]">
                 <span className="text-[#F43F5E] text-base">⚠️</span>
                 <div>
                   <div className="text-[#F43F5E] font-black uppercase text-[11px]">TOMORROW WAS 90 DAYS AGO</div>
@@ -180,14 +180,14 @@ export function LandingHero() {
               </div>
 
               {/* Live Metric */}
-              <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 flex items-center justify-between">
+              <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 flex items-center justify-between rounded-[3px]">
                 <span className="text-[11px] font-bold text-gray-600 dark:text-gray-300 uppercase">UNPAID BALANCE:</span>
-                <span className="text-base font-black text-[#F43F5E] bg-[#FF2E93]/15 px-2 py-0.5 border border-[#F43F5E]">
+                <span className="text-base font-black text-[#F43F5E] bg-[#FF2E93]/15 px-2 py-0.5 border border-[#F43F5E] rounded-[2px]">
                   ₹250.00
                 </span>
               </div>
 
-              <div className="bg-[#2DD4BF] border-[2px] border-black p-2 text-center text-xs font-black text-black shadow-[2px_2px_0_0_#000]">
+              <div className="bg-[#2DD4BF] border-[2px] border-black p-2 text-center text-xs font-black text-black shadow-[2px_2px_0_0_#000] rounded-[3px]">
                 ⚡ AUTO-REMIND WITHOUT AWKWARDNESS
               </div>
             </div>

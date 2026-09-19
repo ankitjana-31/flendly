@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-bold border-[2px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_#2563EB] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] dark:hover:shadow-[5px_5px_0_0_#2563EB] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000000] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer";
+  "inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-bold rounded-[4px] border-[2px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_#2563EB] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] dark:hover:shadow-[4px_4px_0_0_#2563EB] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000000] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer select-none";
 
 const variants = {
   primary: "bg-[#FFE600] text-black hover:bg-yellow-300",

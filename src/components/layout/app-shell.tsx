@@ -8,7 +8,6 @@ import { ChevronRight } from "lucide-react";
 
 import { signOut } from "@/lib/auth/actions";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LanguageToggle } from "@/components/ui/language-toggle";
 import { UserAvatar } from "@/components/users/user-avatar";
 import { createClient } from "@/lib/supabase/client";
 
@@ -155,12 +154,12 @@ export function AppShell({
                     prefetch={true}
                     className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
                       isActive
-                        ? "active-nav bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000]"
-                        : "bg-[var(--muted)] text-black dark:text-white"
+                        ? "bg-[#FFE600] text-black"
+                        : "bg-[var(--muted)] text-[var(--foreground)]"
                     }`}
                   >
-                    <Icon className={`h-4 w-4 shrink-0 ${isActive ? "text-black" : "text-black dark:text-[#FFE600]"}`} />
-                    <span className={`uppercase text-xs sm:text-[13px] font-bold ${isActive ? "text-black" : "text-black dark:text-white"}`}>{item.label}</span>
+                    <Icon className="h-4 w-4 shrink-0" />
+                    <span className="uppercase text-xs sm:text-[13px] font-bold">{item.label}</span>
                   </Link>
                 );
               })}
@@ -169,12 +168,12 @@ export function AppShell({
                 prefetch={true}
                 className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/notifications"
-                    ? "active-nav bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000]"
-                    : "bg-[var(--muted)] text-black dark:text-white"
+                    ? "bg-[#FFE600] text-black"
+                    : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
-                <BellIcon className={`h-4 w-4 shrink-0 ${pathname === "/notifications" ? "text-black" : "text-black dark:text-[#FFE600]"}`} />
-                <span className={`uppercase text-xs sm:text-[13px] font-bold ${pathname === "/notifications" ? "text-black" : "text-black dark:text-white"}`}>Notifications</span>
+                <BellIcon className="h-4 w-4 shrink-0" />
+                <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
                 {unreadCount > 0 && (
                   <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
                     {unreadCount > 9 ? "9+" : unreadCount}
@@ -186,12 +185,12 @@ export function AppShell({
                 prefetch={true}
                 className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/self-track"
-                    ? "active-nav bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000]"
-                    : "bg-[var(--muted)] text-black dark:text-white"
+                    ? "bg-[#FFE600] text-black"
+                    : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
-                <WalletIcon className={`h-4 w-4 shrink-0 ${pathname === "/self-track" ? "text-black" : "text-black dark:text-[#FFE600]"}`} />
-                <span className={`uppercase text-xs sm:text-[13px] font-bold ${pathname === "/self-track" ? "text-black" : "text-black dark:text-white"}`}>Self Track</span>
+                <WalletIcon className="h-4 w-4 shrink-0" />
+                <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
                 <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
                   PRIVATE
                 </span>
@@ -201,8 +200,8 @@ export function AppShell({
 
           {/* User Account & Theme Toggle Footer */}
           <div className="flex flex-col gap-1.5 border-t-[2px] border-black dark:border-white/20 pt-2.5 font-mono shrink-0">
-            <div className="flex items-center justify-between gap-1 px-1">
-              <LanguageToggle className="text-[10px] px-1.5 py-0.5" />
+            <div className="flex items-center justify-between px-1">
+              <span className="text-[10px] uppercase font-bold text-gray-500">THEME</span>
               <ThemeToggle />
             </div>
 
@@ -220,7 +219,7 @@ export function AppShell({
             <form action={signOut}>
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[var(--muted)] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
+                className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
               >
                 <LogOutIcon className="h-3.5 w-3.5" />
                 <span className="uppercase text-xs font-bold">Sign Out</span>
@@ -278,22 +277,18 @@ export function AppShell({
       {/* Main Content Area */}
       <div className="relative z-10 flex min-h-screen flex-1 flex-col min-w-0 overflow-x-hidden">
         {/* Mobile Header in Retro Style */}
-        <header className="relative flex h-14 items-center justify-between border-b-[2px] border-[var(--border)] bg-[var(--background)] px-3 sm:px-4 md:hidden sticky top-0 z-40">
-          <Link href="/dashboard" className="flex items-center gap-1.5" prefetch={true}>
+        <header className="relative flex h-14 items-center justify-center border-b-[2px] border-[var(--border)] bg-[var(--background)] px-4 md:hidden sticky top-0 z-40">
+          <Link href="/dashboard" className="flex items-center gap-2" prefetch={true}>
             <Image
               src="/brand/flendly-symbol.svg"
               alt="Flendly"
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               priority
-              className="h-8 w-8 shrink-0"
+              className="h-10 w-10 shrink-0"
             />
             <span className="font-mono text-sm font-black tracking-wider text-black dark:text-white">FLENDLY</span>
           </Link>
-          <div className="flex items-center gap-1.5">
-            <LanguageToggle className="text-[10px] px-1.5 py-0.5" />
-            <ThemeToggle />
-          </div>
         </header>
 
         <main className="flex-1 pb-20 md:pb-6 min-w-0">{children}</main>
@@ -313,14 +308,16 @@ export function AppShell({
                 key={item.href}
                 href={item.href}
                 prefetch={true}
-                className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 border-[1.5px] border-[var(--border)] px-0.5 transition-all ${
+                className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-[4px] border-[1.5px] border-[var(--border)] px-0.5 transition-all active:scale-95 ${
                   isActive
-                    ? "app-mobile-nav-active bg-[var(--accent)] text-[var(--primary-foreground)] shadow-[2px_2px_0_0_#000] -translate-y-0.5"
-                    : "app-mobile-nav-inactive bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--primary-foreground)]"
+                    ? "app-mobile-nav-active bg-[#FFE600] !text-black shadow-[2px_2px_0_0_#000] -translate-y-0.5 font-black"
+                    : "app-mobile-nav-inactive bg-[var(--card)] text-[var(--foreground)] hover:bg-[#FFE600] hover:!text-black"
                 }`}
               >
-                <Icon className="h-4 w-4" />
-                <span className="truncate text-[9px] font-black uppercase tracking-tight">{item.label}</span>
+                <Icon className={`h-4 w-4 shrink-0 ${isActive ? "!text-black" : "text-current"}`} />
+                <span className={`truncate text-[9.5px] font-black uppercase tracking-tight ${isActive ? "!text-black" : "text-current"}`}>
+                  {item.label}
+                </span>
               </Link>
             );
           })}

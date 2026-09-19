@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { LayoutDashboard, ArrowUpRight, ArrowDownLeft, Bell, Wallet, Zap, Sparkles } from "lucide-react";
 import { RetroWindow } from "@/components/ui/retro-window";
@@ -9,12 +9,12 @@ export function LandingPreviewSection() {
   const [activeTab, setActiveTab] = useState<"dashboard" | "lent" | "borrowed" | "notifications" | "selftrack">("dashboard");
 
   const tabs = [
-    { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, tag: "Command Center" },
-    { id: "lent", label: "Lent", icon: ArrowUpRight, tag: "Money Given" },
-    { id: "borrowed", label: "Borrowed", icon: ArrowDownLeft, tag: "Money Taken" },
-    { id: "notifications", label: "Notifications", icon: Bell, tag: "Live Approvals" },
-    { id: "selftrack", label: "Self Track", icon: Wallet, tag: "Private Ledger" },
-  ] as const;
+    { id: "dashboard" as const, label: "Dashboard", icon: LayoutDashboard, tag: "Command Center" },
+    { id: "lent" as const, label: "Lent", icon: ArrowUpRight, tag: "Money Given" },
+    { id: "borrowed" as const, label: "Borrowed", icon: ArrowDownLeft, tag: "Money Taken" },
+    { id: "notifications" as const, label: "Notifications", icon: Bell, tag: "Live Approvals" },
+    { id: "selftrack" as const, label: "Self Track", icon: Wallet, tag: "Private Ledger" },
+  ];
 
   return (
     <section className="landing-preview relative z-20 w-full max-w-[1400px] mx-auto mt-2 px-4 sm:px-6 pb-6">
@@ -41,7 +41,7 @@ export function LandingPreviewSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`landing-preview-tab flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
+              className={`landing-preview-tab flex items-center gap-2 px-4 py-2 rounded-[4px] font-mono text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
                 isActive
                   ? "landing-preview-tab-active bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                   : "landing-preview-tab-inactive bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
@@ -49,7 +49,7 @@ export function LandingPreviewSection() {
             >
               <Icon className="w-4 h-4 text-current shrink-0" />
               <span className="font-black">{tab.label}</span>
-              <span className={`landing-preview-tab-tag hidden md:inline-block text-[10px] px-1.5 py-0.5 border border-black ${
+              <span className={`landing-preview-tab-tag hidden md:inline-block text-[10px] px-1.5 py-0.5 border border-black rounded-[2px] ${
                 isActive ? "bg-black !text-white font-bold" : "bg-white !text-black font-bold"
               }`}>
                 {tab.tag}
@@ -98,7 +98,7 @@ export function LandingPreviewSection() {
               <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#F43F5E] dark:text-[#FDA4AF]">Total Borrowed</span>
                 <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">₹7,500</p>
-                <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Next payment due in 12 days</span>
+                <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Due in 12 days</span>
               </div>
             </div>
 

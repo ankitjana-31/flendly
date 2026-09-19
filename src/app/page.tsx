@@ -7,13 +7,16 @@ import { LandingHero } from "@/components/landing/landing-hero";
 import { LandingAuditSection } from "@/components/landing/landing-audit-section";
 import { LandingPreviewSection } from "@/components/landing/landing-preview-section";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LanguageToggle } from "@/components/ui/language-toggle";
 import { LegalFooterLinks } from "@/components/legal/legal-footer-links";
 
 export default async function Home() {
   const { user, profile } = await getCurrentUserProfile();
 
-  if (user && !isPlaceholderUsername(profile?.username)) {
+  if (user && isPlaceholderUsername(profile?.username)) {
+    redirect("/complete-profile");
+  }
+
+  if (user) {
     redirect("/dashboard");
   }
 
@@ -52,25 +55,24 @@ export default async function Home() {
             </Link>
             <Link
               href="/dashboard"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--muted)] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               DASHBOARD
             </Link>
             <Link
               href="/self-track"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--muted)] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               LEDGER
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <LanguageToggle />
+          <div className="flex items-center gap-2.5">
             <ThemeToggle />
 
             <Link
               href="/auth/login"
-              className="hidden sm:inline-flex px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs font-bold hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all shadow-[2px_2px_0_0_#000000]"
+              className="hidden sm:inline-flex px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all shadow-[2px_2px_0_0_#000000]"
             >
               LOGIN
             </Link>

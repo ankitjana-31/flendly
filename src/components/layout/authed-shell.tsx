@@ -76,7 +76,7 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
                   href={item.href}
                   className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                     isActive
-                      ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-white"
+                      ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white"
                       : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
                   }`}
                 >
@@ -220,7 +220,7 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
               href={item.href}
               className={`flex flex-col items-center justify-center flex-1 h-full text-center transition-colors ${
                 isActive
-                  ? "text-zinc-950 dark:text-white font-semibold"
+                  ? "text-[var(--foreground)] font-semibold"
                   : "text-zinc-500 dark:text-zinc-400"
               }`}
             >
@@ -233,7 +233,7 @@ export function AuthedShell({ children, profile, unreadCount = 0 }: AuthedShellP
           href="/profile/settings"
           className={`flex flex-col items-center justify-center flex-1 h-full text-center transition-colors ${
             pathname.startsWith("/profile")
-              ? "text-zinc-950 dark:text-white font-semibold"
+              ? "text-[var(--foreground)] font-semibold"
               : "text-zinc-500 dark:text-zinc-400"
           }`}
         >

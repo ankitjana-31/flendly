@@ -99,9 +99,9 @@ export function RetroWindow({
   return (
     <div
       className={cn(
-        "group/window relative rounded-sm border-[2.5px] border-black bg-white dark:border-white/20 dark:bg-[var(--card)] transition-all duration-200 w-full max-w-full",
-        "shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_rgba(0,0,0,0.6)]",
-        glow && "shadow-[0_0_25px_-4px_rgba(45,212,191,0.35),4px_4px_0_0_#000000]",
+        "group/window relative rounded-[4px] border-[2px] sm:border-[2.5px] border-black bg-white dark:border-white/20 dark:bg-[var(--card)] transition-all duration-200 w-full max-w-full min-w-0 overflow-hidden",
+        "shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_rgba(0,0,0,0.6)] sm:dark:shadow-[4px_4px_0_0_rgba(0,0,0,0.6)]",
+        glow && "shadow-[0_0_25px_-4px_rgba(45,212,191,0.35),3px_3px_0_0_#000000]",
         windowAnimation && `retro-window-${windowAnimation}`,
         className
       )}
@@ -122,15 +122,15 @@ export function RetroWindow({
       <div
         data-window-titlebar
         className={cn(
-          "flex min-h-10 sm:min-h-11 items-center justify-between gap-2 px-2.5 sm:px-3.5 select-none min-w-0 max-w-full",
+          "flex min-h-9 sm:min-h-11 items-center justify-between gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 select-none min-w-0 max-w-full",
           titleBarStyles,
           headerClassName
         )}
       >
         {/* Left: Window Icon or Title */}
-        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1 mr-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1 mr-1 sm:mr-2 overflow-hidden">
           {controlsStyle === "traffic" ? (
-            <div className="flex items-center gap-1.5 mr-2 shrink-0">
+            <div className="flex items-center gap-1.5 mr-1.5 shrink-0">
               <button
                 type="button"
                 onClick={handleClose}
@@ -148,7 +148,7 @@ export function RetroWindow({
               />
             </div>
           ) : (
-            <span className="inline-flex h-4 w-4 sm:h-4.5 sm:w-4.5 items-center justify-center border border-black bg-[#FFE600] text-[9px] sm:text-[10px] font-mono font-bold text-black shadow-sm select-none shrink-0">
+            <span className="inline-flex h-3.5 w-3.5 sm:h-4.5 sm:w-4.5 items-center justify-center rounded-[2px] border border-black bg-[#FFE600] text-[8.5px] sm:text-[10px] font-mono font-bold text-black shadow-xs select-none shrink-0">
               ▲
             </span>
           )}
@@ -156,12 +156,12 @@ export function RetroWindow({
           {icon && <span className="text-current opacity-80 shrink-0">{icon}</span>}
 
           {title && (
-            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-wrap">
-              <span className="font-mono text-[10px] sm:text-sm font-black tracking-wider uppercase whitespace-nowrap">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1 overflow-hidden">
+              <span className="font-mono text-[10.5px] sm:text-sm font-black tracking-wider uppercase truncate">
                 {windowTitle}
               </span>
               {subtitle && (
-                <span className="hidden sm:inline font-mono text-[9px] sm:text-xs opacity-85 whitespace-nowrap">
+                <span className="hidden sm:inline font-mono text-[9px] sm:text-xs opacity-85 truncate">
                   — {subtitle}
                 </span>
               )}

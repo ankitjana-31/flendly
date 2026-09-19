@@ -3,6 +3,7 @@
 import React from "react";
 
 export function LandingAuditSection() {
+
   return (
     <section className="w-full max-w-[1400px] z-20 flex flex-col bg-white dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#10B981] transition-colors rounded-sm overflow-hidden">
       {/* Titlebar */}
@@ -31,14 +32,14 @@ export function LandingAuditSection() {
           <div className="flex flex-col gap-3 font-mono">
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000]">
               <div className="text-gray-500 dark:text-gray-400 text-xs mb-1 font-bold">Ankit • 14 Feb</div>
-              <div className="text-sm font-semibold text-black dark:text-white italic">&quot;Hey bro, did you get a chance to send the Airbnb share?&quot;</div>
+              <div className="text-sm font-semibold text-black dark:text-white italic">"Hey bro, did you get a chance to send the Airbnb share?"</div>
             </div>
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000]">
               <div className="text-gray-500 dark:text-gray-400 text-xs mb-1 font-bold">Rahul (4 days later)</div>
-              <div className="text-sm font-semibold text-black dark:text-white italic">&quot;Totally missed this! How much was it again?&quot;</div>
+              <div className="text-sm font-semibold text-black dark:text-white italic">"Totally missed this! How much was it again?"</div>
             </div>
             <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 shadow-[2px_2px_0_0_#000000]">
-              <div className="text-sm font-black text-[#F43F5E]">&quot;₹1,450... whenever you get a second 🙏&quot;</div>
+              <div className="text-sm font-black text-[#F43F5E]">"₹1,450... whenever you get a second 🙏"</div>
             </div>
           </div>
           <div className="mt-auto p-3 bg-[#FF2E93]/15 border-[2px] border-black dark:border-white font-mono text-xs flex items-center justify-between shadow-[2px_2px_0_0_#000]">
@@ -47,7 +48,7 @@ export function LandingAuditSection() {
           </div>
         </div>
 
-        {/* Right Column: The Flendly Ledger (Matching Left Side Airbnb Split) */}
+        {/* Right Column: The Flendly Ledger */}
         <div className="p-6 md:p-10 bg-white dark:bg-[var(--card)] flex flex-col gap-6">
           <div className="flex items-center justify-between">
             <span className="bg-[#2DD4BF] text-black px-3 py-1 border-[2px] border-black dark:border-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">

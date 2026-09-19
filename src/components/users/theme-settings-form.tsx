@@ -47,7 +47,7 @@ export function ThemeSettingsForm() {
             className={`theme-settings-option relative flex flex-col items-center justify-between min-h-[110px] p-3.5 border-[2px] border-black dark:border-white/40 rounded-sm text-center transition-all cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 ${
               isSelected
                 ? "bg-[#FFE600] text-black shadow-[4px_4px_0_0_#000] -translate-y-0.5 font-black ring-2 ring-black"
-                : "bg-white dark:bg-[var(--card)] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-white/10"
+                : "bg-white dark:bg-[#161821] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-[#1E212D]"
             }`}
           >
             {isSelected && (
