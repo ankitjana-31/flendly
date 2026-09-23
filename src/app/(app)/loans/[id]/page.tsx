@@ -103,21 +103,21 @@ export default async function LoanDetailPage({
           {/* Financial Metrics Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
             <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-              <span className="text-[10px] uppercase text-gray-500 font-bold block">Remaining Principal</span>
+              <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Remaining Principal</span>
               <p className="text-2xl font-black text-black dark:text-white mt-0.5">
                 {formatMoney(loan.ledger?.principal_remaining ?? loan.principal_amount)}
               </p>
             </div>
 
             <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-              <span className="text-[10px] uppercase text-gray-500 font-bold block">Accrued Unpaid Interest</span>
+              <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Accrued Unpaid Interest</span>
               <p className="text-2xl font-black text-black dark:text-white mt-0.5">
                 {formatMoney(loan.ledger?.unpaid_interest ?? "0")}
               </p>
             </div>
 
             <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-              <span className="text-[10px] uppercase text-gray-500 font-bold block">Total Outstanding</span>
+              <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Total Outstanding</span>
               <p className={`text-2xl font-black mt-0.5 ${
                 isLender ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"
               }`}>
@@ -127,17 +127,17 @@ export default async function LoanDetailPage({
           </div>
 
           {/* Dates & Terms Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] text-xs text-gray-700 dark:text-gray-200">
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-gray-500" />
-              <span>Started: <strong className="text-black dark:text-white">{formatDate(loan.start_date)}</strong></span>
+              <Calendar className="w-4 h-4 text-[#2563EB] dark:text-[#60A5FA] shrink-0" />
+              <span>Started: <strong className="text-black dark:text-white font-bold">{formatDate(loan.start_date)}</strong></span>
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-gray-500" />
-              <span>Due Date: <strong className="text-black dark:text-white">{formatDate(loan.due_date)}</strong></span>
+              <Clock className="w-4 h-4 text-[#059669] dark:text-[#2DD4BF] shrink-0" />
+              <span>Due Date: <strong className="text-black dark:text-white font-bold">{formatDate(loan.due_date)}</strong></span>
             </div>
             <div>
-              <span>Terms: <strong className="text-black dark:text-white">{interestSummary(loan)}</strong></span>
+              <span>Terms: <strong className="text-black dark:text-white font-bold">{interestSummary(loan)}</strong></span>
             </div>
           </div>
 

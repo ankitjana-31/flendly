@@ -117,7 +117,7 @@ export default async function RequestsPage({
         className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-5 sm:p-6"
         headerRight={
-          <span className="px-2.5 py-0.5 border border-black bg-white text-black font-mono text-[11px] font-black uppercase">
+          <span className="px-2.5 py-0.5 border border-black bg-[#2DD4BF] !text-black font-mono text-[11px] font-black uppercase shadow-[1px_1px_0_0_#000]">
             {rows.length} {activeTab.toUpperCase()}
           </span>
         }

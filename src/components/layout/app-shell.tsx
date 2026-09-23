@@ -191,7 +191,7 @@ export function AppShell({
               >
                 <WalletIcon className={`h-4 w-4 shrink-0 ${pathname === "/self-track" ? "!text-black" : "text-current"}`} />
                 <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
-                <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
+                <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-[#A78BFA] !text-black font-black shadow-[1px_1px_0_0_#000]">
                   PRIVATE
                 </span>
               </Link>
