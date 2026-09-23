@@ -18,8 +18,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://flendly.in"),
   title: "Flendly | Who Lends Who?",
   icons: {
-    icon: "/brand/flendly-symbol.svg",
-    apple: "/brand/flendly-symbol.svg",
+    icon: [
+      { url: "/brand/flendly-symbol.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/brand/flendly-symbol.svg",
+    apple: [
+      { url: "/brand/flendly-symbol.svg", sizes: "180x180", type: "image/svg+xml" },
+      { url: "/apple-icon.svg", sizes: "180x180", type: "image/svg+xml" },
+    ],
   },
   description:
     "Flendly is a Gen Z-friendly money tracker for friends: track money between friends, lendings, borrowed money, repayments, loans, and personal money owed. Go beyond split-bill apps with peer-to-peer lending and debt tracking.",

@@ -174,10 +174,10 @@ export function NotificationsList({
           <button
             disabled={isPending}
             onClick={handleMarkAllRead}
-            className="px-4 py-2 border-[2px] border-black bg-white dark:bg-white text-black dark:text-black font-mono text-xs sm:text-sm font-black uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-2 transition-all"
+            className="px-3.5 py-1.5 border-[2px] border-black bg-[#FFE600] !text-black font-mono text-xs sm:text-sm font-black uppercase shadow-[2px_2px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-2 transition-all"
           >
-            <CheckCheck className="w-4 h-4 text-[#059669]" />
-            <span>MARK ALL AS READ</span>
+            <CheckCheck className="w-4 h-4 text-black stroke-[2.5]" />
+            <span className="!text-black font-black">MARK ALL AS READ</span>
           </button>
         )}
       </div>
