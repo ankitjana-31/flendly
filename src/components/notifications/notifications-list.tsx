@@ -185,7 +185,7 @@ export function NotificationsList({
       {/* Main Window */}
       <RetroWindow
         title="NOTIFICATIONS // AUDIT STREAM"
-        subtitle={`${unreadCount} unread items · live socket sync`}
+        subtitle={`${unreadCount} unread items`}
         colorBar="yellow"
         glow={true}
         className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
