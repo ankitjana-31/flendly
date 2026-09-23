@@ -15,11 +15,11 @@ const STYLES: Record<Status, string> = {
   COUNTERED: "bg-[#C4B5FD] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
   ACCEPTED: "bg-[#86EFAC] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
   ACTIVE: "bg-[#2DD4BF] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
-  DECLINED: "bg-[#FDA4AF] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
-  CANCELLED: "bg-gray-200 dark:bg-gray-700 text-black dark:text-white border-black dark:border-white/30 font-bold",
-  SUPERSEDED: "bg-gray-200 dark:bg-gray-700 text-black dark:text-white border-black dark:border-white/30 font-bold",
+  DECLINED: "bg-[#F43F5E] text-white border-black shadow-[1px_1px_0_0_#000] font-black",
+  CANCELLED: "bg-[#F43F5E] text-white border-black shadow-[1px_1px_0_0_#000] font-black",
+  SUPERSEDED: "bg-gray-400 text-black border-black shadow-[1px_1px_0_0_#000] font-bold",
   PAID: "bg-[#86EFAC] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
-  OVERDUE: "bg-[#FDA4AF] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
+  OVERDUE: "bg-[#F43F5E] text-white border-black shadow-[1px_1px_0_0_#000] font-black",
   PARTIALLY_PAID: "bg-[#FDE047] text-black border-black shadow-[1px_1px_0_0_#000] font-black",
 };
 

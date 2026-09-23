@@ -91,23 +91,23 @@ export default async function RequestDetailPage({
             {/* Offer Metrics */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase text-gray-500 font-bold block">Proposed Amount</span>
-                <p className="text-2xl font-black text-black dark:text-white mt-0.5">
+                <span className="text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Proposed Amount</span>
+                <p className="text-2xl font-black mt-0.5" style={{color: 'var(--foreground)'}}>
                   {formatMoney(activeOffer.amount)}
                 </p>
               </div>
 
               <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase text-gray-500 font-bold block">Interest Structure</span>
-                <p className="text-sm font-bold text-black dark:text-white mt-1">
+                <span className="text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Interest Structure</span>
+                <p className="text-sm font-bold mt-1" style={{color: 'var(--foreground)'}}>
                   {interestSummary(activeOffer)}
                 </p>
               </div>
 
               <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase text-gray-500 font-bold block">Closure Deadline</span>
-                <p className="text-sm font-bold text-black dark:text-white mt-1 flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-gray-500" />
+                <span className="text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Closure Deadline</span>
+                <p className="text-sm font-bold mt-1 flex items-center gap-1.5" style={{color: 'var(--foreground)'}}>
+                  <Calendar className="w-4 h-4 shrink-0" style={{color: 'var(--muted-foreground)'}} />
                   {formatDate(activeOffer.deadline)}
                 </p>
               </div>
@@ -115,9 +115,9 @@ export default async function RequestDetailPage({
 
             {activeOffer.message && (
               <div className="p-3.5 border-[2px] border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase text-gray-500 font-bold block mb-1">Attached Note:</span>
-                <p className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 italic flex items-center gap-1.5">
-                  <FileText className="w-4 h-4 text-amber-500 shrink-0" />
+                <span className="text-[10px] uppercase font-bold block mb-1" style={{color: 'var(--muted-foreground)'}}>Attached Note:</span>
+                <p className="text-xs sm:text-sm italic flex items-center gap-1.5" style={{color: 'var(--foreground)'}}>
+                  <FileText className="w-4 h-4 shrink-0 text-amber-500" />
                   &quot;{activeOffer.message}&quot;
                 </p>
               </div>

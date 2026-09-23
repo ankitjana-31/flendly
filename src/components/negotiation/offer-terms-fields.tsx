@@ -60,8 +60,8 @@ export function OfferTermsFields({
                 key={type}
                 className={`flex h-11 cursor-pointer items-center justify-center gap-1.5 border-[2.5px] border-black font-mono text-xs sm:text-sm font-black uppercase transition-all select-none ${
                   isSelected
-                    ? "bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
-                    : "bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[1.5px_1.5px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black"
+                    ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
+                    : "bg-[var(--card)] text-[var(--foreground)] shadow-[1.5px_1.5px_0_0_#000] hover:bg-[#FFE600] hover:!text-black"
                 }`}
               >
                 <input
@@ -72,8 +72,10 @@ export function OfferTermsFields({
                   onChange={() => setInterestType(type)}
                   className="sr-only"
                 />
-                {isSelected && <Check className="w-3.5 h-3.5 stroke-[3] text-black" />}
-                <span>{type === "none" ? "No Interest" : type}</span>
+                {isSelected && <Check className="w-3.5 h-3.5 stroke-[3] !text-black" />}
+                <span className={isSelected ? "!text-black" : "text-[var(--foreground)]"}>
+                  {type === "none" ? "No Interest" : type}
+                </span>
               </label>
             );
           })}

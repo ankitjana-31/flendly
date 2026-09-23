@@ -11,12 +11,12 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { UserAvatar } from "@/components/users/user-avatar";
 import { createClient } from "@/lib/supabase/client";
 
-// hoverClass: yellow for main nav, pink for lent/requests/self-track
+// Standardized nav items with consistent styling
 const NAV_ITEMS = [
-  { href: "/dashboard", label: "Dashboard", icon: "HomeIcon", hoverClass: "hover:bg-[#FFE600] hover:text-black" },
-  { href: "/lent", label: "Lent", icon: "ArrowUpIcon", hoverClass: "hover:bg-[#FB7185] hover:text-white" },
-  { href: "/borrowed", label: "Borrowed", icon: "ArrowDownIcon", hoverClass: "hover:bg-[#FFE600] hover:text-black" },
-  { href: "/requests", label: "Requests", icon: "InboxIcon", hoverClass: "hover:bg-[#FB7185] hover:text-white" },
+  { href: "/dashboard", label: "Dashboard", icon: "HomeIcon" },
+  { href: "/lent", label: "Lent", icon: "ArrowUpIcon" },
+  { href: "/borrowed", label: "Borrowed", icon: "ArrowDownIcon" },
+  { href: "/requests", label: "Requests", icon: "InboxIcon" },
 ];
 
 export function AppShell({
@@ -152,13 +152,13 @@ export function AppShell({
                     key={item.href}
                     href={item.href}
                     prefetch={true}
-                    className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${item.hoverClass} ${
+                    className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                       isActive
-                        ? "bg-[#FFE600] text-black"
+                        ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                         : "bg-[var(--muted)] text-[var(--foreground)]"
                     }`}
                   >
-                    <Icon className="h-4 w-4 shrink-0" />
+                    <Icon className={`h-4 w-4 shrink-0 ${isActive ? "!text-black" : "text-current"}`} />
                     <span className="uppercase text-xs sm:text-[13px] font-bold">{item.label}</span>
                   </Link>
                 );
@@ -166,13 +166,13 @@ export function AppShell({
               <Link
                 href="/notifications"
                 prefetch={true}
-                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/notifications"
-                    ? "bg-[#FFE600] text-black"
+                    ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                     : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
-                <BellIcon className="h-4 w-4 shrink-0" />
+                <BellIcon className={`h-4 w-4 shrink-0 ${pathname === "/notifications" ? "!text-black" : "text-current"}`} />
                 <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
                 {unreadCount > 0 && (
                   <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
@@ -183,13 +183,13 @@ export function AppShell({
               <Link
                 href="/self-track"
                 prefetch={true}
-                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/self-track"
-                    ? "bg-[#FFE600] text-black"
+                    ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                     : "bg-[var(--muted)] text-[var(--foreground)]"
                 }`}
               >
-                <WalletIcon className="h-4 w-4 shrink-0" />
+                <WalletIcon className={`h-4 w-4 shrink-0 ${pathname === "/self-track" ? "!text-black" : "text-current"}`} />
                 <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
                 <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-purple-200 dark:bg-purple-900 text-purple-900 dark:text-purple-200 font-bold">
                   PRIVATE
@@ -294,12 +294,15 @@ export function AppShell({
         <main className="flex-1 pb-20 md:pb-6 min-w-0">{children}</main>
 
         {/* Mobile Bottom Navigation Bar */}
-        <nav className="app-mobile-nav fixed inset-x-0 bottom-0 z-30 flex h-16 gap-1 border-t-[2px] border-[var(--border)] bg-[var(--background)] px-1 py-1 shadow-[0_-3px_0_0_#000] md:hidden font-mono text-xs">
+        <nav className="app-mobile-nav fixed inset-x-0 bottom-0 z-30 flex h-16 gap-0.5 sm:gap-1 border-t-[2px] border-[var(--border)] bg-[var(--background)] px-1 py-1 shadow-[0_-3px_0_0_#000] md:hidden font-mono text-xs">
           {[
-            ...NAV_ITEMS,
-            { href: "/notifications", label: "Alerts", icon: "BellIcon", hoverClass: "" },
-            { href: "/self-track", label: "Ledger", icon: "WalletIcon", hoverClass: "" },
-            { href: "/profile", label: "Profile", icon: "UserIcon", hoverClass: "" },
+            { href: "/dashboard", label: "Dashboard", mobileLabel: "Dash", icon: "HomeIcon" },
+            { href: "/lent", label: "Lent", mobileLabel: "Lent", icon: "ArrowUpIcon" },
+            { href: "/borrowed", label: "Borrowed", mobileLabel: "Borrow", icon: "ArrowDownIcon" },
+            { href: "/requests", label: "Requests", mobileLabel: "Reqs", icon: "InboxIcon" },
+            { href: "/notifications", label: "Alerts", mobileLabel: "Alerts", icon: "BellIcon" },
+            { href: "/self-track", label: "Ledger", mobileLabel: "Self", icon: "WalletIcon" },
+            { href: "/profile", label: "Profile", mobileLabel: "Profile", icon: "UserIcon" },
           ].map((item) => {
             const Icon = iconMap[item.icon];
             const isActive = pathname === item.href;
@@ -308,15 +311,15 @@ export function AppShell({
                 key={item.href}
                 href={item.href}
                 prefetch={true}
-                className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-[4px] border-[1.5px] border-[var(--border)] px-0.5 transition-all active:scale-95 ${
+                className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-[4px] border-[1.5px] border-[var(--border)] px-0.5 py-1 transition-all active:scale-95 ${
                   isActive
                     ? "app-mobile-nav-active bg-[#FFE600] !text-black shadow-[2px_2px_0_0_#000] -translate-y-0.5 font-black"
                     : "app-mobile-nav-inactive bg-[var(--card)] text-[var(--foreground)] hover:bg-[#FFE600] hover:!text-black"
                 }`}
               >
-                <Icon className={`h-4 w-4 shrink-0 ${isActive ? "!text-black" : "text-current"}`} />
-                <span className={`truncate text-[9.5px] font-black uppercase tracking-tight ${isActive ? "!text-black" : "text-current"}`}>
-                  {item.label}
+                <Icon className={`h-3.5 w-3.5 shrink-0 ${isActive ? "!text-black" : "text-current"}`} />
+                <span className={`w-full text-center truncate text-[8px] min-[380px]:text-[8.5px] font-black uppercase tracking-tighter leading-none ${isActive ? "!text-black" : "text-current"}`}>
+                  {item.mobileLabel}
                 </span>
               </Link>
             );
