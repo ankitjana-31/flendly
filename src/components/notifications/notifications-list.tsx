@@ -42,7 +42,13 @@ const itemVariants: Variants = {
   },
 };
 
-export function NotificationsList({ notifications: initialNotifications }: { notifications: NotificationItem[] }) {
+export function NotificationsList({
+  notifications: initialNotifications,
+  userId,
+}: {
+  notifications: NotificationItem[];
+  userId?: string;
+}) {
   const router = useRouter();
   const [notifications, setNotifications] = useState<NotificationItem[]>(initialNotifications);
   const [isPending, startTransition] = useTransition();
@@ -57,12 +63,19 @@ export function NotificationsList({ notifications: initialNotifications }: { not
 
   // Realtime Supabase Channel Subscription for Live Notifications
   useEffect(() => {
+    if (!userId) return;
     const supabase = createClient();
+    const channelName = `live_notifications_feed:${userId}`;
     const channel = supabase
-      .channel("live_notifications_feed")
+      .channel(channelName)
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "notifications" },
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "notifications",
+          filter: `user_id=eq.${userId}`,
+        },
         (payload) => {
           const newNotif = payload.new as NotificationItem;
           setNotifications((prev) => [newNotif, ...prev.filter((n) => n.id !== newNotif.id)]);
@@ -70,7 +83,12 @@ export function NotificationsList({ notifications: initialNotifications }: { not
       )
       .on(
         "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "notifications" },
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "notifications",
+          filter: `user_id=eq.${userId}`,
+        },
         (payload) => {
           const updated = payload.new as NotificationItem;
           setNotifications((prev) => prev.map((n) => (n.id === updated.id ? updated : n)));
@@ -78,17 +96,29 @@ export function NotificationsList({ notifications: initialNotifications }: { not
       )
       .on(
         "postgres_changes",
-        { event: "DELETE", schema: "public", table: "notifications" },
+        {
+          event: "DELETE",
+          schema: "public",
+          table: "notifications",
+          filter: `user_id=eq.${userId}`,
+        },
         (payload) => {
-          setNotifications((prev) => prev.filter((n) => n.id !== payload.old.id));
+          const deletedId = (payload.old as { id?: string })?.id;
+          if (deletedId) {
+            setNotifications((prev) => prev.filter((n) => n.id !== deletedId));
+          }
         }
       )
-      .subscribe();
+      .subscribe((status, err) => {
+        if (status === "CHANNEL_ERROR") {
+          console.warn("[Realtime] Notifications list channel error", err);
+        }
+      });
 
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [router]);
+  }, [userId]);
 
   const unreadCount = notifications.filter((n) => !n.read_at).length;
 

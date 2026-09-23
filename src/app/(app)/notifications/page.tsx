@@ -9,5 +9,5 @@ export default async function NotificationsPage() {
   if (!user) redirect("/auth/login");
 
   const notifications = await listNotifications();
-  return <NotificationsList notifications={notifications} />;
+  return <NotificationsList notifications={notifications} userId={user.id} />;
 }

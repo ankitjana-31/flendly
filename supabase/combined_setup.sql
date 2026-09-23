@@ -1315,3 +1315,22 @@ $$;
 -- only by the cron scheduler (running as the function owner) or manually
 -- by a service-role/admin context. Client code must never call this.
 revoke all on function public.send_deadline_reminders() from public, authenticated;
+
+-- ============================================================================
+-- SUPABASE REALTIME CONFIGURATION
+-- ============================================================================
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_publication_tables
+    where pubname = 'supabase_realtime'
+      and schemaname = 'public'
+      and tablename = 'notifications'
+  ) then
+    alter publication supabase_realtime add table public.notifications;
+  end if;
+end $$;
+
+alter table public.notifications replica identity full;
+

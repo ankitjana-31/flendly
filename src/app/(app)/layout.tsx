@@ -19,6 +19,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <AppShell
+      userId={user.id}
       fullName={profile?.full_name ?? null}
       username={profile?.username ?? ""}
       avatarUrl={profile?.avatar_url ?? null}

@@ -21,12 +21,14 @@ const NAV_ITEMS = [
 
 export function AppShell({
   children,
+  userId,
   fullName,
   username,
   avatarUrl,
   unreadCount: initialUnreadCount = 0,
 }: {
   children: React.ReactNode;
+  userId?: string;
   fullName: string | null;
   username: string;
   avatarUrl?: string | null;
@@ -45,45 +47,71 @@ export function AppShell({
 
   // Realtime Supabase listener for notifications counter
   useEffect(() => {
+    if (!userId) return;
     const supabase = createClient();
+    const channelName = `notifications_counter:${userId}`;
     const channel = supabase
-      .channel("app_shell_notifications_counter")
+      .channel(channelName)
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "notifications" },
-        () => {
-          setUnreadCount((c) => c + 1);
-          startTransition(() => router.refresh());
-        }
-      )
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "notifications" },
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "notifications",
+          filter: `user_id=eq.${userId}`,
+        },
         (payload) => {
-          const wasUnread = !payload.old.read_at;
-          const isUnread = !payload.new.read_at;
-          if (wasUnread !== isUnread) {
-            setUnreadCount((count) => Math.max(0, count + (isUnread ? 1 : -1)));
+          const newRow = payload.new as { read_at?: string | null };
+          if (!newRow?.read_at) {
+            setUnreadCount((c) => c + 1);
           }
-          startTransition(() => router.refresh());
         }
       )
       .on(
         "postgres_changes",
-        { event: "DELETE", schema: "public", table: "notifications" },
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "notifications",
+          filter: `user_id=eq.${userId}`,
+        },
         (payload) => {
-          if (!payload.old.read_at) {
+          const oldRow = payload.old as { read_at?: string | null } | undefined;
+          const newRow = payload.new as { read_at?: string | null } | undefined;
+          const wasUnread = !oldRow?.read_at;
+          const isUnread = !newRow?.read_at;
+          if (wasUnread && !isUnread) {
+            setUnreadCount((count) => Math.max(0, count - 1));
+          } else if (!wasUnread && isUnread) {
+            setUnreadCount((count) => count + 1);
+          }
+        }
+      )
+      .on(
+        "postgres_changes",
+        {
+          event: "DELETE",
+          schema: "public",
+          table: "notifications",
+          filter: `user_id=eq.${userId}`,
+        },
+        (payload) => {
+          const oldRow = payload.old as { read_at?: string | null } | undefined;
+          if (!oldRow?.read_at) {
             setUnreadCount((count) => Math.max(0, count - 1));
           }
-          startTransition(() => router.refresh());
         }
       )
-      .subscribe();
+      .subscribe((status, err) => {
+        if (status === "CHANNEL_ERROR") {
+          console.warn("[Realtime] Notification counter channel error", err);
+        }
+      });
 
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [router]);
+  }, [userId]);
 
   return (
     <div className="relative flex w-full bg-[var(--background)] text-[var(--foreground)] transition-colors">
