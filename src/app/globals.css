@@ -665,9 +665,9 @@ html.sunset .theme-payable-card * {
 
 /* COMPARISON badge: high-contrast in dark themes */
 :where(.dark, .ocean, .sunset, .tropical) .landing-comparison-badge {
-  background-color: #2DD4BF !important;
-  color: #000000 !important;
-  border-color: #000000 !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
 /* Selected Theme Option Cards ALWAYS pitch black with white checkmark */
