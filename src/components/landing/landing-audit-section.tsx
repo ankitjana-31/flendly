@@ -12,7 +12,7 @@ export function LandingAuditSection() {
           <span>⇄</span>
           <span>OLD HABITS vs FLENDLY</span>
         </div>
-        <span className="px-2 py-0.5 bg-white text-black border border-black font-mono text-[9px] sm:text-[10px] font-black hidden sm:inline shadow-[1px_1px_0_0_#000] rounded-[2px]">
+        <span className="landing-comparison-badge px-2 py-0.5 bg-white text-black border border-black font-mono text-[9px] sm:text-[10px] font-black hidden sm:inline shadow-[1px_1px_0_0_#000] rounded-[2px]">
           COMPARISON
         </span>
       </div>
