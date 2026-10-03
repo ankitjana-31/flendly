@@ -34,11 +34,12 @@ export function LandingAuditSection() {
               <div className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-xs mb-0.5 font-bold">Ankit • 14 Feb</div>
               <div className="text-xs sm:text-sm font-semibold text-black dark:text-white italic">&quot;Hey bro, did you get a chance to send the Airbnb share?&quot;</div>
             </div>
-            <div className="hidden sm:block bg-white dark:bg-[#242938] border-[1.5px] sm:border-[2px] border-black dark:border-white/40 p-2.5 sm:p-3.5 shadow-[2px_2px_0_0_#000000] rounded-[6px]">
-              <div className="text-gray-500 dark:text-gray-400 text-xs mb-0.5 font-bold">Rahul (4 days later)</div>
-              <div className="text-sm font-semibold text-black dark:text-white italic">&quot;Totally missed this! How much was it again?&quot;</div>
+            <div className="bg-white dark:bg-[#242938] border-[1.5px] sm:border-[2px] border-black dark:border-white/40 p-2 sm:p-3 shadow-[2px_2px_0_0_#000000] rounded-[6px]">
+              <div className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-xs mb-0.5 font-bold">Rahul (4 days later)</div>
+              <div className="text-xs sm:text-sm font-semibold text-black dark:text-white italic">&quot;Totally missed this! How much was it again?&quot;</div>
             </div>
-            <div className="bg-white dark:bg-[#242938] border-[1.5px] sm:border-[2px] border-black dark:border-white/40 p-2.5 sm:p-3.5 shadow-[2px_2px_0_0_#000000] rounded-[6px]">
+            <div className="bg-white dark:bg-[#242938] border-[1.5px] sm:border-[2px] border-black dark:border-white/40 p-2 sm:p-3 shadow-[2px_2px_0_0_#000000] rounded-[6px]">
+              <div className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-xs mb-0.5 font-bold">Ankit • 18 Feb</div>
               <div className="text-xs sm:text-sm font-black text-[#F43F5E]">&quot;₹1,450... whenever you get a second 🙏&quot;</div>
             </div>
           </div>

@@ -31,15 +31,19 @@ export function OfferTermsFields({
     <div className="flex flex-col gap-4 font-mono">
       {/* Amount Input */}
       <div className="flex flex-col gap-1.5">
-        <label className={labelClass} htmlFor="amount">
-          <IndianRupee className="w-3.5 h-3.5" />
-          <span>Principal Amount (₹)</span>
-        </label>
+        <div className="flex items-center justify-between">
+          <label className={labelClass} htmlFor="amount">
+            <IndianRupee className="w-3.5 h-3.5" />
+            <span>Principal Amount (₹)</span>
+          </label>
+          <span className="text-[10px] text-gray-500 dark:text-gray-400 font-sans font-bold">Max ₹1,00,000</span>
+        </div>
         <input
           id="amount"
           name="amount"
           type="number"
           min="1"
+          max="100000"
           step="0.01"
           required
           defaultValue={defaults?.amount}

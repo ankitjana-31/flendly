@@ -171,12 +171,12 @@ export function LandingHero() {
                 </p>
               </div>
 
-              {/* Consequence Alert - Hidden on small mobile to reduce clutter */}
-              <div className="hidden sm:flex p-3 bg-[#FF2E93]/15 border-[2px] border-[#F43F5E] text-xs font-bold text-black dark:text-white items-center gap-2.5 rounded-[6px]">
-                <span className="text-[#F43F5E] text-base shrink-0">⚠️</span>
+              {/* Consequence Alert */}
+              <div className="flex p-2 sm:p-3 bg-[#FF2E93]/15 border-[1.5px] sm:border-[2px] border-[#F43F5E] text-xs font-bold text-black dark:text-white items-center gap-2 rounded-[6px]">
+                <span className="text-[#F43F5E] text-sm sm:text-base shrink-0">⚠️</span>
                 <div>
-                  <div className="text-[#F43F5E] font-black uppercase text-[11px]">TOMORROW WAS 90 DAYS AGO</div>
-                  <div className="text-gray-600 dark:text-gray-300 text-[10px]">Unrecovered informal loan · Friendship strained</div>
+                  <div className="text-[#F43F5E] font-black uppercase text-[10px] sm:text-[11px]">TOMORROW WAS 90 DAYS AGO</div>
+                  <div className="text-gray-600 dark:text-gray-300 text-[9px] sm:text-[10px]">Unrecovered loan · No reply since</div>
                 </div>
               </div>
 

@@ -56,14 +56,16 @@ type RawRequestRow = {
   }>;
 };
 
+import { calculateApprovalWindow } from "@/lib/requests/approval-window";
+
 function normalizeRequest(row: RawRequestRow): RequestListItem {
   const offers = row.loan_offers ?? [];
   const active = offers.find((o) => o.status === "ACTIVE") ?? null;
-  const today = new Date().toISOString().slice(0, 10);
-  const isExpired =
-    Boolean(active?.deadline &&
-    active.deadline < today &&
-    ["PENDING", "COUNTERED"].includes(row.status));
+  const isExpired = Boolean(
+    active &&
+      ["PENDING", "COUNTERED"].includes(row.status) &&
+      calculateApprovalWindow({ created_at: active.created_at, deadline: active.deadline }).isExpired
+  );
 
   return {
     id: row.id,
@@ -164,11 +166,10 @@ export async function getRequestDetail(requestId: string): Promise<RequestDetail
   );
 
   const activeOffer = offers.find((o) => o.status === "ACTIVE");
-  const today = new Date().toISOString().slice(0, 10);
   const isExpired = Boolean(
-    activeOffer?.deadline &&
-    activeOffer.deadline < today &&
-    ["PENDING", "COUNTERED"].includes(data.status),
+    activeOffer &&
+      ["PENDING", "COUNTERED"].includes(data.status) &&
+      calculateApprovalWindow({ created_at: activeOffer.created_at, deadline: activeOffer.deadline }).isExpired,
   );
 
   return {

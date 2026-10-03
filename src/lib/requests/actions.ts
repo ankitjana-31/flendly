@@ -5,12 +5,16 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { createClient } from "@/lib/supabase/server";
+import { calculateApprovalWindow } from "@/lib/requests/approval-window";
 
 const interestFrequencySchema = z.enum(["daily", "monthly", "yearly"]);
 
 const offerTermsSchema = z
   .object({
-    amount: z.coerce.number().positive("Amount must be greater than zero."),
+    amount: z.coerce
+      .number()
+      .positive("Amount must be greater than zero.")
+      .max(100000, "Maximum proposal amount is ₹1,00,000 for safety."),
     interestType: z.enum(["none", "simple", "compound"]),
     interestRate: z.coerce.number().min(0).optional(),
     interestFrequency: interestFrequencySchema.optional(),
@@ -54,6 +58,39 @@ export async function createRequestAction(
 
   const terms = parsed.data;
   const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { error: "Authentication required." };
+
+  // Anti-Spam / Rate-Limiting: Max 5 proposals per 10 minutes
+  const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+  const { count: recentCount, error: countErr } = await supabase
+    .from("loan_requests")
+    .select("id", { count: "exact", head: true })
+    .eq("sender_id", user.id)
+    .gte("created_at", tenMinutesAgo);
+
+  if (!countErr && (recentCount ?? 0) >= 5) {
+    return {
+      error: "Rate limit reached: You have created multiple proposals recently. Please wait a few minutes before submitting another proposal.",
+    };
+  }
+
+  // Self-request check
+  const { data: receiverProfile } = await supabase
+    .from("profiles")
+    .select("id")
+    .or(`username_normalized.eq.${receiverUsername},username.ilike.${receiverUsername}`)
+    .maybeSingle();
+
+  if (!receiverProfile) {
+    return { error: "No user found with that username." };
+  }
+  if (receiverProfile.id === user.id) {
+    return { error: "You cannot send a loan proposal to yourself." };
+  }
 
   let requestId: string | null = null;
   const { data: rpcResult, error: rpcError } = await supabase.rpc("create_request", {
@@ -192,21 +229,29 @@ export async function counterOfferAction(
 export async function acceptOfferAction(offerId: string, requestId: string) {
   const supabase = await createClient();
 
-  // Validate deadline: unaccepted requests past deadline must auto-cancel
+  // Validate approval window and deadline: unaccepted requests past approval deadline must auto-cancel
   const { data: offer } = await supabase
     .from("loan_offers")
-    .select("deadline")
+    .select("created_at, deadline")
     .eq("id", offerId)
     .maybeSingle();
 
-  const today = new Date().toISOString().slice(0, 10);
-  if (offer?.deadline && offer.deadline < today) {
-    await supabase.from("loan_requests").update({ status: "CANCELLED" }).eq("id", requestId);
-    await supabase.from("loan_offers").update({ status: "DECLINED" }).eq("id", offerId);
-    revalidatePath(`/requests/${requestId}`);
-    revalidatePath("/requests");
-    revalidatePath("/dashboard");
-    return { error: "This proposal deadline has passed. The request has been auto-cancelled." };
+  if (offer) {
+    const approvalInfo = calculateApprovalWindow({
+      created_at: offer.created_at,
+      deadline: offer.deadline,
+    });
+
+    if (approvalInfo.isExpired) {
+      await supabase.from("loan_requests").update({ status: "CANCELLED" }).eq("id", requestId);
+      await supabase.from("loan_offers").update({ status: "DECLINED" }).eq("id", offerId);
+      revalidatePath(`/requests/${requestId}`);
+      revalidatePath("/requests");
+      revalidatePath("/dashboard");
+      return {
+        error: `This proposal expired because it was not accepted within the ${approvalInfo.approvalHours}h approval deadline.`,
+      };
+    }
   }
 
   const { data: loanId, error } = await supabase.rpc("accept_offer", { p_offer_id: offerId });

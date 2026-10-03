@@ -32,8 +32,8 @@ export function LandingPreviewSection() {
         </p>
       </div>
 
-      {/* Interactive Tabs Selector with Smooth Corners & Scroll on Mobile */}
-      <div className="flex items-center gap-1.5 sm:gap-2.5 overflow-x-auto no-scrollbar pt-3.5 pb-3 mb-4 sm:mb-5 max-w-full justify-start sm:justify-center px-2">
+      {/* Interactive Tabs Selector - Two Rows on Mobile, Centered on Desktop */}
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-2 pb-2 mb-4 sm:mb-5 max-w-full px-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -41,7 +41,7 @@ export function LandingPreviewSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`landing-preview-tab flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-[10px] font-mono text-[11px] sm:text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer shrink-0 ${
+              className={`landing-preview-tab flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-[10px] font-mono text-[11px] sm:text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
                 isActive
                   ? "landing-preview-tab-active bg-[#FFE600] text-black shadow-[2.5px_2.5px_0_0_#000000] sm:shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                   : "landing-preview-tab-inactive bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
@@ -50,7 +50,7 @@ export function LandingPreviewSection() {
               <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-current shrink-0" />
               <span className="font-black">{tab.label}</span>
               <span className={`landing-preview-tab-tag hidden md:inline-block text-[10px] px-1.5 py-0.5 border border-black rounded-[4px] ${
-                isActive ? "bg-black !text-white font-bold" : "bg-white !text-black font-bold"
+                isActive ? "bg-black !text-white font-bold" : "bg-[#2DD4BF] !text-black font-bold"
               }`}>
                 {tab.tag}
               </span>

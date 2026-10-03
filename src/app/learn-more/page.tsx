@@ -67,14 +67,15 @@ export default function LearnMorePage() {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <ThemeToggle />
 
             <Link
               href="/auth/login"
-              className="px-3.5 py-1.5 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all flex items-center gap-1"
+              className="px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-[10px] bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all flex items-center gap-1"
             >
-              <span>LAUNCH APP</span>
+              <span>LAUNCH</span>
+              <span className="hidden sm:inline">APP</span>
             </Link>
           </div>
         </div>

@@ -797,10 +797,23 @@ html.sunset [class*="text-rose-"] {
   border-color: #000000 !important;
 }
 
-/* Unselected landing tab tag badge: ALWAYS solid white background with pitch-black text across ALL themes */
-.landing-preview-tab-inactive .landing-preview-tab-tag,
-:where(.dark, .ocean, .sunset, .tropical) .landing-preview-tab-inactive .landing-preview-tab-tag {
-  background-color: #ffffff !important;
+/* Unselected landing tab tag badge: ALWAYS solid vibrant cyan (#2DD4BF) with pitch-black text across ALL themes */
+html.ocean .landing-preview-tab-inactive .landing-preview-tab-tag,
+html.sunset .landing-preview-tab-inactive .landing-preview-tab-tag,
+html.tropical .landing-preview-tab-inactive .landing-preview-tab-tag,
+html.dark .landing-preview-tab-inactive .landing-preview-tab-tag,
+.landing-preview-tab-inactive .landing-preview-tab-tag {
+  background-color: #2DD4BF !important;
   color: #000000 !important;
-  border-color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+
+html.ocean .landing-preview-tab-active .landing-preview-tab-tag,
+html.sunset .landing-preview-tab-active .landing-preview-tab-tag,
+html.tropical .landing-preview-tab-active .landing-preview-tab-tag,
+html.dark .landing-preview-tab-active .landing-preview-tab-tag,
+.landing-preview-tab-active .landing-preview-tab-tag {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
 }
