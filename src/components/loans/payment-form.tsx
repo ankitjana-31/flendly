@@ -122,8 +122,8 @@ export function PaymentForm({
           name="note"
           type="text"
           maxLength={500}
-          placeholder="e.g. Paid via Google Pay UPI"
-          className="h-10 w-full border-[2px] border-black bg-white dark:bg-[var(--card)] px-3 text-sm font-bold text-black dark:text-white outline-none"
+          placeholder="Payment reference"
+          className="h-10 w-full rounded-[8px] border-[2px] border-black bg-white dark:bg-[var(--card)] px-3 text-sm font-bold text-black dark:text-white outline-none"
         />
       </div>
 

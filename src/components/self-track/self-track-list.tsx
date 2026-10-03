@@ -484,8 +484,8 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               type="text"
                               value={paymentNote}
                               onChange={(e) => setPaymentNote(e.target.value)}
-                              placeholder="e.g. UPI transfer"
-                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold outline-none"
+                              placeholder="Note (optional)"
+                              className="w-full h-8 px-2.5 rounded-[6px] border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold outline-none"
                             />
                           </div>
 
@@ -493,16 +493,16 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                             <button
                               type="button"
                               onClick={() => setActivePaymentRecordId(null)}
-                              className="px-3 py-1 border border-black bg-white text-black text-xs font-bold cursor-pointer hover:bg-gray-100"
+                              className="px-3 py-1 rounded-[6px] border border-black bg-white text-black text-xs font-bold cursor-pointer hover:bg-gray-100"
                             >
                               CANCEL
                             </button>
                             <button
                               type="submit"
                               disabled={isRecordingPayment}
-                              className="px-4 py-1 border-[2px] border-black bg-[#2DD4BF] text-black text-xs font-black shadow-[2px_2px_0_0_#000] hover:bg-teal-300 cursor-pointer disabled:opacity-60"
+                              className="px-4 py-1 rounded-[6px] border-[2px] border-black bg-[#2DD4BF] text-black text-xs font-black shadow-[2px_2px_0_0_#000] hover:bg-teal-300 cursor-pointer disabled:opacity-60"
                             >
-                              {isRecordingPayment ? "SAVING..." : "COMMIT PAYMENT"}
+                              {isRecordingPayment ? "SAVING..." : "SAVE PAYMENT"}
                             </button>
                           </div>
                         </form>

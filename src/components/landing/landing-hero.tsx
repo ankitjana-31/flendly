@@ -128,14 +128,14 @@ export function LandingHero() {
             >
               <Link
                 href="/auth/login"
-                className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-[#FFE600] text-black border-[2px] sm:border-[2.5px] border-black font-mono text-xs sm:text-sm font-black shadow-[3px_3px_0_0_#000] sm:shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center justify-center gap-2 rounded-[8px]"
+                className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-[#FFE600] text-black border-[2px] sm:border-[2.5px] border-black font-mono text-xs sm:text-sm font-black shadow-[3px_3px_0_0_#000] sm:shadow-[4px_4px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center justify-center gap-2 rounded-[12px]"
               >
                 <span>LAUNCH FLENDLY</span>
               </Link>
               {/* How It Works button */}
               <Link
                 href="/learn-more"
-                className="w-full sm:w-auto px-4 sm:px-5 py-2.5 sm:py-3 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2px] sm:border-[2.5px] border-black dark:border-white/60 font-mono text-xs sm:text-sm font-bold shadow-[2px_2px_0_0_#000] sm:shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center justify-center gap-2 group rounded-[8px]"
+                className="w-full sm:w-auto px-4 sm:px-5 py-2.5 sm:py-3 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2px] sm:border-[2.5px] border-black dark:border-white/60 font-mono text-xs sm:text-sm font-bold shadow-[2px_2px_0_0_#000] sm:shadow-[4px_4px_0_0_#000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center justify-center gap-2 group rounded-[12px]"
               >
                 <span className="text-[#2563EB] dark:text-[#60A5FA] group-hover:text-white transition-colors">ℹ</span>
                 <span>HOW IT WORKS</span>
@@ -148,7 +148,7 @@ export function LandingHero() {
             variants={itemVariants}
             className="lg:col-span-5 flex flex-col gap-3 font-mono"
           >
-            <div className="border-[2px] sm:border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] p-3 sm:p-4 flex flex-col gap-2.5 sm:gap-3 rounded-[8px]">
+            <div className="border-[2px] sm:border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] p-3 sm:p-4 flex flex-col gap-2.5 sm:gap-3 rounded-[12px]">
               {/* Card Header */}
               <div className="flex items-center justify-between border-b-[1.5px] sm:border-b-[2px] border-black dark:border-white/40 pb-1.5 sm:pb-2">
                 <div className="flex items-center gap-1.5">

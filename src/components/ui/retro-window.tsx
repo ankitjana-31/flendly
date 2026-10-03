@@ -99,7 +99,7 @@ export function RetroWindow({
   return (
     <div
       className={cn(
-        "group/window relative rounded-[4px] border-[2px] sm:border-[2.5px] border-black bg-white dark:border-white/20 dark:bg-[var(--card)] transition-all duration-200 w-full max-w-full min-w-0 overflow-hidden",
+        "group/window relative rounded-[12px] border-[2px] sm:border-[2.5px] border-black bg-white dark:border-white/20 dark:bg-[var(--card)] transition-all duration-200 w-full max-w-full min-w-0 overflow-hidden",
         "shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_rgba(0,0,0,0.6)] sm:dark:shadow-[4px_4px_0_0_rgba(0,0,0,0.6)]",
         glow && "shadow-[0_0_25px_-4px_rgba(45,212,191,0.35),3px_3px_0_0_#000000]",
         windowAnimation && `retro-window-${windowAnimation}`,

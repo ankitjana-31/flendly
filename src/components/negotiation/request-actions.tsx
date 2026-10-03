@@ -47,7 +47,7 @@ export function RequestActions({
 
   if (isExpired || request.status === "CANCELLED") {
     return (
-      <div className="p-3 sm:p-3.5 border-[2px] border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] font-mono text-xs font-bold rounded-[8px] flex items-center gap-2 shadow-[2px_2px_0_0_#000]">
+      <div className="p-3 sm:p-3.5 border-[2px] border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] font-mono text-xs font-bold rounded-[12px] flex items-center gap-2 shadow-[2px_2px_0_0_#000]">
         <span className="text-base shrink-0">⚠️</span>
         <span>This proposal passed its deadline without confirmation and has been auto-cancelled.</span>
       </div>
@@ -57,7 +57,7 @@ export function RequestActions({
   return (
     <div className="flex flex-col gap-3 font-mono">
       {error && (
-        <div className="p-2.5 border-[2px] border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] text-xs font-bold rounded-[8px]">
+        <div className="p-2.5 border-[2px] border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] text-xs font-bold rounded-[12px]">
           ⚠️ {error}
         </div>
       )}
@@ -74,7 +74,7 @@ export function RequestActions({
                   if (res?.error) setError(res.error);
                 })
               }
-              className="px-4 py-2 rounded-[8px] border-[2px] border-black bg-[#2DD4BF] text-black text-xs sm:text-sm font-black uppercase shadow-[2px_2px_0_0_#000] hover:bg-teal-300 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
+              className="px-4 py-2 rounded-[12px] border-[2px] border-black bg-[#2DD4BF] text-black text-xs sm:text-sm font-black uppercase shadow-[2px_2px_0_0_#000] hover:bg-teal-300 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
             >
               <Check className="w-4 h-4 stroke-[3]" />
               <span>{isPending ? "PROCESSING..." : "ACCEPT OFFER"}</span>
@@ -83,7 +83,7 @@ export function RequestActions({
             <button
               disabled={isPending}
               onClick={() => setShowCounter(true)}
-              className="px-4 py-2 rounded-[8px] border-[2px] border-black bg-[#FFE600] text-black text-xs sm:text-sm font-black uppercase shadow-[2px_2px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
+              className="px-4 py-2 rounded-[12px] border-[2px] border-black bg-[#FFE600] text-black text-xs sm:text-sm font-black uppercase shadow-[2px_2px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
             >
               <ArrowLeftRight className="w-4 h-4 stroke-[2.5]" />
               <span>COUNTER-OFFER</span>
@@ -98,7 +98,7 @@ export function RequestActions({
                   if (res?.error) setError(res.error);
                 })
               }
-              className="px-3.5 py-2 rounded-[8px] border-[2px] border-black bg-white dark:bg-[var(--muted)] text-[#F43F5E] text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
+              className="px-3.5 py-2 rounded-[12px] border-[2px] border-black bg-white dark:bg-[var(--muted)] text-[#F43F5E] text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
             >
               <X className="w-4 h-4 stroke-[2.5]" />
               <span>DECLINE</span>
@@ -117,7 +117,7 @@ export function RequestActions({
                 if (res?.error) setError(res.error);
               })
             }
-            className="px-3.5 py-2 rounded-[8px] border-[2px] border-black bg-[#F43F5E] text-white text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
+            className="px-3.5 py-2 rounded-[12px] border-[2px] border-black bg-[#F43F5E] text-white text-xs sm:text-sm font-bold uppercase shadow-[2px_2px_0_0_#000] hover:opacity-90 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000] active:translate-y-0.5 active:shadow-none cursor-pointer flex items-center gap-1.5 transition-all disabled:opacity-50"
           >
             <Undo2 className="w-4 h-4" />
             <span>CANCEL REQUEST</span>

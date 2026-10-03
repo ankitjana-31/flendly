@@ -38,7 +38,7 @@ export default async function LentPage() {
 
         <Link
           href="/requests/new"
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-[8px] border-[2px] border-black bg-[#FB7185] text-white font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-[#F43F5E] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-[12px] border-[2px] border-black bg-[#FB7185] text-white font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-[#F43F5E] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
         >
           <Plus className="w-4 h-4 stroke-[3]" />
           <span>NEW LOAN PROPOSAL</span>
@@ -51,7 +51,7 @@ export default async function LentPage() {
         subtitle={`${active.length} active peer loans`}
         colorBar="pink"
         glow={true}
-        className="rounded-[8px] bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] sm:shadow-[6px_6px_0_0_#000000]"
+        className="rounded-[12px] bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] sm:shadow-[6px_6px_0_0_#000000]"
         contentClassName="p-4 sm:p-6"
         headerRight={
           <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#FB7185] text-white font-mono text-[10px] sm:text-[11px] font-black uppercase">
@@ -60,7 +60,7 @@ export default async function LentPage() {
         }
       >
         {loans.length === 0 ? (
-          <div className="rounded-[8px] border-[2px] border-dashed border-black/30 dark:border-white/30 p-6 sm:p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
+          <div className="rounded-[12px] border-[2px] border-dashed border-black/30 dark:border-white/30 p-6 sm:p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-[6px] border-[2px] border-black bg-[#FB7185] text-white flex items-center justify-center mx-auto mb-2.5 sm:mb-3 font-bold">
               <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>

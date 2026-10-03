@@ -44,18 +44,18 @@ export function ThemeSettingsForm() {
             key={item.id}
             type="button"
             onClick={() => setTheme(item.id)}
-            className={`theme-settings-option relative flex flex-col items-center justify-between min-h-[110px] p-3.5 border-[2px] border-black dark:border-white/40 rounded-sm text-center transition-all cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 ${
+            className={`theme-settings-option relative flex flex-col items-center justify-between min-h-[110px] p-3.5 border-[2px] border-black dark:border-white/40 rounded-[10px] text-center transition-all cursor-pointer shadow-[2px_2px_0_0_#000] hover:-translate-y-0.5 active:translate-y-0.5 ${
               isSelected
                 ? "bg-[#FFE600] text-black shadow-[4px_4px_0_0_#000] -translate-y-0.5 font-black ring-2 ring-black"
-                : "bg-white dark:bg-[#161821] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-[#1E212D]"
+                : "bg-white dark:bg-[var(--card)] text-black dark:text-white hover:bg-gray-100 dark:hover:bg-[var(--muted)]"
             }`}
           >
             {isSelected && (
-              <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center border border-black bg-[#2DD4BF] text-black shadow-[1px_1px_0_0_#000]">
+              <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-[3px] border border-black bg-[#2DD4BF] text-black shadow-[1px_1px_0_0_#000]">
                 <Check className="h-2.5 w-2.5 stroke-[3]" />
               </span>
             )}
-            <div className="flex h-8 w-8 items-center justify-center border border-black bg-white dark:bg-black/40 text-current mb-1 shadow-[1px_1px_0_0_#000]">
+            <div className="theme-option-icon-box flex h-8 w-8 items-center justify-center rounded-[6px] border border-black mb-1 shadow-[1px_1px_0_0_#000]">
               <Icon className="h-4 w-4" />
             </div>
             <div className="w-full">

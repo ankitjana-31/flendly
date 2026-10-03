@@ -81,8 +81,8 @@ export function UsernameAutocomplete({ defaultValue = "" }: { defaultValue?: str
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          placeholder="e.g. ankit"
-          className="h-11 w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black"
+          placeholder="Enter username"
+          className="h-11 w-full rounded-[10px] border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black"
         />
         <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
           <Search className="w-4 h-4" />
@@ -91,7 +91,7 @@ export function UsernameAutocomplete({ defaultValue = "" }: { defaultValue?: str
 
       {/* Retro Styled Yellow Glow Popup Suggestions */}
       {open && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-1.5 overflow-hidden border-[2.5px] border-black bg-white dark:bg-[var(--card)] shadow-[4px_4px_0_0_#000000]">
+        <div className="absolute top-full left-0 right-0 z-50 mt-1.5 overflow-hidden rounded-[10px] border-[2.5px] border-black bg-white dark:bg-[var(--card)] shadow-[4px_4px_0_0_#000000]">
           <div className="px-3 py-1.5 bg-black text-white text-[10px] font-black uppercase flex items-center justify-between">
             <span>⚡ MATCHING REGISTERED PEERS</span>
             <span>CLICK TO SELECT</span>

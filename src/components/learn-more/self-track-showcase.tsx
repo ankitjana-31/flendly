@@ -31,29 +31,24 @@ export function SelfTrackShowcase() {
   return (
     <section className="w-full max-w-6xl mx-auto z-10 font-mono">
       <RetroWindow
-        title="SELF TRACK VAULT"
+        title="SELF TRACK"
         subtitle="PRIVATE LEDGER"
         colorBar="yellow"
         className="bg-white dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
         contentClassName="p-6 sm:p-8 text-left"
-        headerRight={
-          <span className="px-2 py-0.5 border border-black bg-black text-white font-mono text-[10px] font-bold uppercase">
-            PRIVACY MAX
-          </span>
-        }
       >
         <div className="grid lg:grid-cols-12 gap-6 items-start">
           {/* Left Column: Pitch & Features */}
           <div className="lg:col-span-6 flex flex-col gap-4">
             <div>
               <span className="inline-block px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-2">
-                STANDALONE FEATURE
+                OFFLINE MODE
               </span>
               <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white uppercase tracking-tight">
-                Self Track: Private Offline Ledger
+                Self Track: Private Ledger
               </h2>
               <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base mt-2 leading-relaxed font-sans">
-                Lent ₹500 for chai? Paid ₹3,000 for concert tickets? Covered your roommate&apos;s Wi-Fi? Self Track is your personal offline record. Zero notifications to anyone. 100% peace of mind.
+                Log cash loans, split bills, or IOUs privately. No notifications to anyone.
               </p>
             </div>
 

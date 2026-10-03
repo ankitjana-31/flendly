@@ -76,8 +76,8 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
 
   return (
     <RetroWindow
-      title="NEW RECORD // LOG OFFLINE"
-      subtitle="private entry"
+      title="NEW RECORD"
+      subtitle="private"
       colorBar="yellow"
       className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000]"
       contentClassName="p-5 sm:p-6"
@@ -161,7 +161,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
-              placeholder="e.g. Ankit"
+              placeholder="Name"
               className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
@@ -180,7 +180,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              placeholder="e.g. 2500"
+              placeholder="Amount"
               className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-black shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
@@ -215,7 +215,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="e.g. Dinner bill, promised to pay via UPI"
+              placeholder="Optional context"
               className="w-full h-10 px-3 border-[2px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 font-mono text-xs font-bold shadow-[2px_2px_0_0_#000000] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
@@ -229,7 +229,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
             className="w-full h-11 bg-[#FFE600] text-black border-[2.5px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
-            {isSubmitting ? "SAVING RECORD..." : "COMMIT TO PRIVATE LEDGER"}
+            {isSubmitting ? "SAVING..." : "SAVE RECORD"}
           </button>
         </div>
       </form>

@@ -22,8 +22,8 @@ export default async function SelfTrackPage() {
     <div className="flex flex-col gap-4 sm:gap-6 w-full max-w-[1440px] mx-auto px-3 sm:px-6 md:px-8 py-3 sm:py-6 pb-16">
       {/* Retro OS Header Banner */}
       <RetroWindow
-        title="PRIVATE LEDGER // OFFLINE TRACKER"
-        subtitle="standalone cash records"
+        title="PRIVATE LEDGER"
+        subtitle="cash records"
         colorBar="blue"
         glow={true}
         className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB]"
@@ -37,22 +37,18 @@ export default async function SelfTrackPage() {
       >
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-[#2DD4BF] text-black border-[1.5px] border-black font-mono text-xs font-bold uppercase shadow-[1.5px_1.5px_0_0_#000]">
-              <span>🔒</span>
-              <span>STANDALONE VAULT</span>
-            </div>
             <h1 className="font-mono text-xl sm:text-3xl font-black tracking-tight text-black dark:text-white uppercase">
-              Personal Cash & Offline Ledger
+              Private Cash Ledger
             </h1>
             <p className="font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
-              Log split bills, informal cash loans, or IOUs. Zero notifications are sent to counterparties.
+              Log split bills, cash loans, or IOUs. Private to you.
             </p>
           </div>
-          <div className="p-3 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] font-mono text-xs text-black dark:text-white shadow-[2px_2px_0_0_#000] shrink-0">
-            <span className="text-gray-500 block text-[10px] font-bold uppercase">LEDGER INTEGRITY</span>
+          <div className="p-3 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] font-mono text-xs text-black dark:text-white shadow-[2px_2px_0_0_#000] shrink-0 rounded-[12px]">
+            <span className="text-gray-500 block text-[10px] font-bold uppercase">STATUS</span>
             <span className="text-[#059669] dark:text-[#2DD4BF] font-black flex items-center gap-1 mt-0.5">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-              LOCAL SESSION SECURE
+              SECURE
             </span>
           </div>
         </div>

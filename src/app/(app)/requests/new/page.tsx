@@ -36,8 +36,8 @@ export default async function NewRequestPage() {
       {/* Main Window */}
       <div className="max-w-2xl mx-auto w-full">
         <RetroWindow
-          title="PROPOSAL WIZARD // FORM_v2.0"
-          subtitle="Configure amount, interest structure, and closure deadline"
+          title="PROPOSAL WIZARD"
+          subtitle="new agreement"
           colorBar="yellow"
           glow={true}
           className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"

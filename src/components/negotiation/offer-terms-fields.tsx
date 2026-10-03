@@ -7,7 +7,7 @@ type InterestType = "none" | "simple" | "compound";
 type Frequency = "daily" | "monthly" | "yearly";
 
 const inputClass =
-  "h-11 w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black";
+  "h-11 w-full rounded-[10px] border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black";
 const labelClass = "text-xs font-bold uppercase text-black dark:text-white flex items-center gap-1.5";
 
 export function OfferTermsFields({
@@ -24,6 +24,8 @@ export function OfferTermsFields({
   };
 }) {
   const [interestType, setInterestType] = useState<InterestType>(defaults?.interestType ?? "none");
+  const [interestFrequency, setInterestFrequency] = useState<Frequency>(defaults?.interestFrequency ?? "monthly");
+  const [compounding, setCompounding] = useState<Frequency>(defaults?.compounding ?? "monthly");
 
   return (
     <div className="flex flex-col gap-4 font-mono">
@@ -58,7 +60,7 @@ export function OfferTermsFields({
             return (
               <label
                 key={type}
-                className={`flex h-11 cursor-pointer items-center justify-center gap-1.5 border-[2.5px] border-black font-mono text-xs sm:text-sm font-black uppercase transition-all select-none ${
+                className={`flex h-11 cursor-pointer items-center justify-center gap-1.5 rounded-[10px] border-[2.5px] border-black font-mono text-xs sm:text-sm font-black uppercase transition-all select-none ${
                   isSelected
                     ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000] -translate-y-0.5"
                     : "bg-[var(--card)] text-[var(--foreground)] shadow-[1.5px_1.5px_0_0_#000] hover:bg-[#FFE600] hover:!text-black"
@@ -84,7 +86,7 @@ export function OfferTermsFields({
 
       {/* Rate and Frequency Fields */}
       {interestType !== "none" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-[10px] border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
           <div className="flex flex-col gap-1.5">
             <label className={labelClass} htmlFor="interestRate">
               <span>Interest Rate (%)</span>
@@ -102,41 +104,77 @@ export function OfferTermsFields({
             />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className={labelClass} htmlFor="interestFrequency">
+            <label className={labelClass}>
               <span>Accrual Interval</span>
             </label>
-            <select
-              id="interestFrequency"
-              name="interestFrequency"
-              required
-              defaultValue={defaults?.interestFrequency ?? "monthly"}
-              className={inputClass}
-            >
-              <option value="daily">Per Day</option>
-              <option value="monthly">Per Month</option>
-              <option value="yearly">Per Year</option>
-            </select>
+            <div className="grid grid-cols-3 gap-1.5 h-11">
+              {[
+                { value: "daily" as const, label: "Day" },
+                { value: "monthly" as const, label: "Month" },
+                { value: "yearly" as const, label: "Year" },
+              ].map((opt) => {
+                const isSelected = interestFrequency === opt.value;
+                return (
+                  <label
+                    key={opt.value}
+                    className={`flex items-center justify-center cursor-pointer rounded-[8px] border-[2px] border-black font-mono text-xs font-bold uppercase transition-all select-none ${
+                      isSelected
+                        ? "bg-[#FFE600] !text-black shadow-[2px_2px_0_0_#000] font-black"
+                        : "bg-white dark:bg-[var(--card)] text-black dark:text-white shadow-[1px_1px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="interestFrequency"
+                      value={opt.value}
+                      checked={isSelected}
+                      onChange={() => setInterestFrequency(opt.value)}
+                      className="sr-only"
+                    />
+                    <span>{opt.label}</span>
+                  </label>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
 
       {/* Compounding Frequency */}
       {interestType === "compound" && (
-        <div className="flex flex-col gap-1.5 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
-          <label className={labelClass} htmlFor="compounding">
+        <div className="flex flex-col gap-1.5 p-3.5 rounded-[10px] border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
+          <label className={labelClass}>
             <span>Compounding Frequency</span>
           </label>
-          <select
-            id="compounding"
-            name="compounding"
-            required
-            defaultValue={defaults?.compounding ?? "monthly"}
-            className={inputClass}
-          >
-            <option value="daily">Daily Compounding</option>
-            <option value="monthly">Monthly Compounding</option>
-            <option value="yearly">Yearly Compounding</option>
-          </select>
+          <div className="grid grid-cols-3 gap-1.5 h-11">
+            {[
+              { value: "daily" as const, label: "Daily" },
+              { value: "monthly" as const, label: "Monthly" },
+              { value: "yearly" as const, label: "Yearly" },
+            ].map((opt) => {
+              const isSelected = compounding === opt.value;
+              return (
+                <label
+                  key={opt.value}
+                  className={`flex items-center justify-center cursor-pointer rounded-[8px] border-[2px] border-black font-mono text-xs font-bold uppercase transition-all select-none ${
+                    isSelected
+                      ? "bg-[#FFE600] !text-black shadow-[2px_2px_0_0_#000] font-black"
+                      : "bg-white dark:bg-[var(--card)] text-black dark:text-white shadow-[1px_1px_0_0_#000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="compounding"
+                    value={opt.value}
+                    checked={isSelected}
+                    onChange={() => setCompounding(opt.value)}
+                    className="sr-only"
+                  />
+                  <span>{opt.label}</span>
+                </label>
+              );
+            })}
+          </div>
         </div>
       )}
 
@@ -168,8 +206,8 @@ export function OfferTermsFields({
           rows={2}
           maxLength={500}
           defaultValue={defaults?.message}
-          className="w-full border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 py-2 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black"
-          placeholder="e.g. For concert tickets / travel booking"
+          className="w-full rounded-[10px] border-[2px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] px-3 py-2 font-mono text-sm font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000] outline-none transition-all focus:bg-[#FEF08A] focus:text-black"
+          placeholder="Note / context"
         />
       </div>
     </div>

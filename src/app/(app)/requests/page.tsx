@@ -17,7 +17,7 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
   return (
     <Link
       href={`/requests/${request.id}`}
-      className="group/req flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-3 sm:p-5 rounded-[8px] border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--card)] text-black dark:text-white shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
+      className="group/req flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-3 sm:p-5 rounded-[12px] border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--card)] text-black dark:text-white shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
     >
       <div className="flex items-center gap-3">
         <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-[6px] border-[2px] border-black flex items-center justify-center font-mono font-black text-sm shrink-0 shadow-[1.5px_1.5px_0_0_#000] ${
@@ -66,7 +66,7 @@ export default async function RequestsPage({
 
   const renderRows = (requestRows: RequestListItem[], emptyMessage: string, emptyDescription: string) =>
     requestRows.length === 0 ? (
-      <div className="rounded-[8px] border-[2px] border-dashed border-black/30 dark:border-white/30 p-6 sm:p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
+      <div className="rounded-[12px] border-[2px] border-dashed border-black/30 dark:border-white/30 p-6 sm:p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
         <div className="w-9 h-9 rounded-[6px] border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-2.5 text-black font-bold">
           ⚡
         </div>

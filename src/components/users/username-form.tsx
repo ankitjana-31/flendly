@@ -39,7 +39,7 @@ export function UsernameForm() {
             value={fullNameInput}
             onChange={(e) => setFullNameInput(e.target.value)}
             className="h-11 w-full bg-transparent px-3 text-sm font-bold text-black dark:text-white outline-none placeholder:text-gray-400 font-mono"
-            placeholder="e.g. Rahul Sharma"
+            placeholder="Your display name"
           />
         </div>
         <p className="text-[11px] text-gray-500 dark:text-gray-400 font-sans">

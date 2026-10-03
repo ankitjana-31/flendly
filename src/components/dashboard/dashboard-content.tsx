@@ -96,12 +96,12 @@ export function DashboardContent({
         </div>
 
         {/* Mobile-Prominent New Request CTA Button */}
-        <div className="flex items-center gap-2">
+        <div className="w-full sm:w-auto flex items-center">
           <a
             href="/requests/new"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-[8px] border-[2px] border-black bg-[#FFE600] text-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-2.5 rounded-[12px] border-[2.5px] border-black bg-[#FFE600] text-black font-mono text-sm font-black uppercase shadow-[3.5px_3.5px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all cursor-pointer"
           >
-            <Plus className="w-4 h-4 stroke-[3]" />
+            <Plus className="w-5 h-5 sm:w-4 sm:h-4 stroke-[3]" />
             <span>NEW REQUEST</span>
           </a>
         </div>
@@ -120,7 +120,7 @@ export function DashboardContent({
             subtitle="owed to you"
             colorBar="green"
             glow={aggregates.totalLent > 0}
-            className="theme-colored-card theme-receivable-card rounded-[8px] bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#134E4A]"
+            className="theme-colored-card theme-receivable-card rounded-[12px] bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#134E4A]"
             contentClassName="theme-receivable-content p-3 sm:p-5 text-black"
             headerRight={
               <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#2DD4BF] text-black font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
@@ -152,7 +152,7 @@ export function DashboardContent({
             title="PAYABLES"
             subtitle="you owe"
             colorBar="pink"
-            className="theme-colored-card theme-payable-card rounded-[8px] bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#881337]"
+            className="theme-colored-card theme-payable-card rounded-[12px] bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#881337]"
             contentClassName="p-3 sm:p-5 text-white"
             headerRight={
               <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#F43F5E] text-white font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
@@ -306,7 +306,7 @@ export function DashboardContent({
         </div>
 
         {openRequests.length === 0 ? (
-          <div className="rounded-[8px] border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] p-3 sm:p-4 text-center shadow-[2px_2px_0_0_#000] w-full">
+          <div className="rounded-[12px] border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] p-3 sm:p-4 text-center shadow-[2px_2px_0_0_#000] w-full">
             <p className="font-mono text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300">
               No open requests. Start a new peer deal with the button above.
             </p>
@@ -325,7 +325,7 @@ export function DashboardContent({
                 >
                   <a
                     href={`/requests/${r.id}`}
-                    className="group/req flex items-center justify-between gap-2 p-2.5 sm:p-4 rounded-[8px] border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] text-black dark:text-white shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
+                    className="group/req flex items-center justify-between gap-2 p-2.5 sm:p-4 rounded-[12px] border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] text-black dark:text-white shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
                   >
                     <div className="min-w-0">
                       <p className="font-mono text-xs sm:text-base font-black truncate text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
@@ -361,7 +361,7 @@ export function DashboardContent({
             onMaximize={() => router.push("/self-track")}
             subtitle="OFFLINE ENTRIES"
             colorBar="yellow"
-            className="rounded-[8px] bg-white dark:bg-[var(--card)] border-[2px] sm:border-[2.5px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] w-full"
+            className="rounded-[12px] bg-white dark:bg-[var(--card)] border-[2px] sm:border-[2.5px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] w-full"
             contentClassName="p-3 sm:p-4"
             headerRight={
               <a
@@ -391,7 +391,7 @@ export function DashboardContent({
               {/* Borrowed vs Lent Breakdown Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full min-w-0">
                 {/* Personal Lent */}
-                <div className="p-3 sm:p-3.5 rounded-[8px] border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
+                <div className="p-3 sm:p-3.5 rounded-[12px] border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <span className="font-mono text-[11px] sm:text-xs font-black text-[#059669] dark:text-[#2DD4BF] uppercase truncate">
                       Lent (Offline)
@@ -409,7 +409,7 @@ export function DashboardContent({
                 </div>
 
                 {/* Personal Borrowed */}
-                <div className="p-3 sm:p-3.5 rounded-[8px] border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
+                <div className="p-3 sm:p-3.5 rounded-[12px] border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <span className="font-mono text-[11px] sm:text-xs font-black text-[#F43F5E] uppercase truncate">
                       Borrowed (Offline)
@@ -482,7 +482,7 @@ export function DashboardContent({
               )}
 
               {selfTracks.length === 0 && (
-                <div className="rounded-[8px] p-2.5 border border-dashed border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-center font-mono text-xs font-bold text-gray-600 dark:text-gray-300 w-full">
+                <div className="rounded-[12px] p-2.5 border border-dashed border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-center font-mono text-xs font-bold text-gray-600 dark:text-gray-300 w-full">
                   No offline cash tracks recorded yet.
                 </div>
               )}
