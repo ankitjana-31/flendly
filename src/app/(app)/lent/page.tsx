@@ -22,23 +22,23 @@ export default async function LentPage() {
   );
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 sm:gap-6 px-3 sm:px-6 md:px-8 py-3 sm:py-6 pb-16 font-mono">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-3 sm:pb-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-[#F43F5E] dark:text-[#FB7185]">
+          <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-[#F43F5E] dark:text-[#FB7185]">
             <span>[RECEIVABLES]</span>
             <span className="text-gray-400">//</span>
             <span className="text-gray-600 dark:text-gray-300 uppercase">MONEY GIVEN OUT</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-black dark:text-white tracking-tight mt-1">
+          <h1 className="text-2xl sm:text-4xl font-black text-black dark:text-white tracking-tight mt-0.5 sm:mt-1">
             Money You&apos;ve Lent
           </h1>
         </div>
 
         <Link
           href="/requests/new"
-          className="inline-flex items-center gap-2 px-4 py-2 border-[2.5px] border-black bg-[#FB7185] text-white font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-[#F43F5E] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-[8px] border-[2px] border-black bg-[#FB7185] text-white font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-[#F43F5E] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
         >
           <Plus className="w-4 h-4 stroke-[3]" />
           <span>NEW LOAN PROPOSAL</span>
@@ -47,27 +47,27 @@ export default async function LentPage() {
 
       {/* Summary Window - Pink accented */}
       <RetroWindow
-        title="LENT PORTFOLIO // RECEIVABLES"
+        title="LENT PORTFOLIO"
         subtitle={`${active.length} active peer loans`}
         colorBar="pink"
         glow={true}
-        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
-        contentClassName="p-5 sm:p-6"
+        className="rounded-[8px] bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] sm:shadow-[6px_6px_0_0_#000000]"
+        contentClassName="p-4 sm:p-6"
         headerRight={
-          <span className="px-2.5 py-0.5 border border-black bg-[#FB7185] text-white font-mono text-[11px] font-black uppercase">
-            ACTIVE TOTAL: {formatMoney(totalActiveLent)}
+          <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#FB7185] text-white font-mono text-[10px] sm:text-[11px] font-black uppercase">
+            TOTAL: {formatMoney(totalActiveLent)}
           </span>
         }
       >
         {loans.length === 0 ? (
-          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
-            <div className="w-10 h-10 border-[2px] border-black bg-[#FB7185] text-white flex items-center justify-center mx-auto mb-3 font-bold">
-              <ArrowUpRight className="w-6 h-6" />
+          <div className="rounded-[8px] border-[2px] border-dashed border-black/30 dark:border-white/30 p-6 sm:p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-[6px] border-[2px] border-black bg-[#FB7185] text-white flex items-center justify-center mx-auto mb-2.5 sm:mb-3 font-bold">
+              <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h3 className="font-mono text-base font-bold text-black dark:text-white uppercase">
+            <h3 className="font-mono text-sm sm:text-base font-bold text-black dark:text-white uppercase">
               You haven&apos;t lent anyone money yet
             </h3>
-            <p className="font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-md mx-auto">
+            <p className="hidden sm:block font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-md mx-auto">
               Ready to send cash to a friend with crystal clear terms? Initiate a loan request above.
             </p>
           </div>

@@ -58,13 +58,17 @@ type RawRequestRow = {
 
 function normalizeRequest(row: RawRequestRow): RequestListItem {
   const offers = row.loan_offers ?? [];
-
   const active = offers.find((o) => o.status === "ACTIVE") ?? null;
+  const today = new Date().toISOString().slice(0, 10);
+  const isExpired =
+    Boolean(active?.deadline &&
+    active.deadline < today &&
+    ["PENDING", "COUNTERED"].includes(row.status));
 
   return {
     id: row.id,
     direction: row.direction,
-    status: row.status,
+    status: isExpired ? "CANCELLED" : row.status,
     created_at: row.created_at,
     updated_at: row.updated_at,
     sender: row.sender,
@@ -159,10 +163,18 @@ export async function getRequestDetail(requestId: string): Promise<RequestDetail
     a.created_at < b.created_at ? -1 : 1,
   );
 
+  const activeOffer = offers.find((o) => o.status === "ACTIVE");
+  const today = new Date().toISOString().slice(0, 10);
+  const isExpired = Boolean(
+    activeOffer?.deadline &&
+    activeOffer.deadline < today &&
+    ["PENDING", "COUNTERED"].includes(data.status),
+  );
+
   return {
     id: data.id,
     direction: data.direction,
-    status: data.status,
+    status: isExpired ? "CANCELLED" : data.status,
     created_at: data.created_at,
     updated_at: data.updated_at,
     sender: data.sender as unknown as RequestParticipant,

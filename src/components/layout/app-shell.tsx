@@ -180,7 +180,7 @@ export function AppShell({
                     key={item.href}
                     href={item.href}
                     prefetch={true}
-                    className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                    className={`app-sidebar-nav-item flex items-center gap-2.5 rounded-[8px] border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                       isActive
                         ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                         : "bg-[var(--muted)] text-[var(--foreground)]"
@@ -194,7 +194,7 @@ export function AppShell({
               <Link
                 href="/notifications"
                 prefetch={true}
-                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                className={`app-sidebar-nav-item flex items-center gap-2.5 rounded-[8px] border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/notifications"
                     ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                     : "bg-[var(--muted)] text-[var(--foreground)]"
@@ -203,7 +203,7 @@ export function AppShell({
                 <BellIcon className={`h-4 w-4 shrink-0 ${pathname === "/notifications" ? "!text-black" : "text-current"}`} />
                 <span className="uppercase text-xs sm:text-[13px] font-bold">Notifications</span>
                 {unreadCount > 0 && (
-                  <span className="ml-auto flex h-4 min-w-4 items-center justify-center border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
+                  <span className="ml-auto flex h-4 min-w-4 items-center justify-center rounded-[4px] border border-black bg-[#F43F5E] px-1 text-[9.5px] font-bold text-white shadow-[1px_1px_0_0_#000000]">
                     {unreadCount > 9 ? "9+" : unreadCount}
                   </span>
                 )}
@@ -211,7 +211,7 @@ export function AppShell({
               <Link
                 href="/self-track"
                 prefetch={true}
-                className={`app-sidebar-nav-item flex items-center gap-2.5 border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
+                className={`app-sidebar-nav-item flex items-center gap-2.5 rounded-[8px] border-[2px] border-black dark:border-white/40 px-3 py-2 font-bold transition-all shadow-[2px_2px_0_0_#000000] hover:bg-[#FFE600] hover:!text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none ${
                   pathname === "/self-track"
                     ? "bg-[#FFE600] !text-black shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                     : "bg-[var(--muted)] text-[var(--foreground)]"
@@ -219,7 +219,7 @@ export function AppShell({
               >
                 <WalletIcon className={`h-4 w-4 shrink-0 ${pathname === "/self-track" ? "!text-black" : "text-current"}`} />
                 <span className="uppercase text-xs sm:text-[13px] font-bold">Self Track</span>
-                <span className="ml-auto text-[8.5px] px-1.5 py-0.5 border border-black bg-[#A78BFA] !text-black font-black shadow-[1px_1px_0_0_#000]">
+                <span className="ml-auto text-[8.5px] px-1.5 py-0.5 rounded-[4px] border border-black bg-[#A78BFA] !text-black font-black shadow-[1px_1px_0_0_#000]">
                   PRIVATE
                 </span>
               </Link>
@@ -236,7 +236,7 @@ export function AppShell({
             <Link
               href="/profile"
               prefetch={true}
-              className="flex items-center gap-2.5 border-[2px] border-black bg-[var(--card)] p-1.5 text-[var(--foreground)] shadow-[2px_2px_0_0_#000000] transition-all hover:bg-[var(--accent)] hover:text-black dark:hover:bg-[var(--accent)] dark:hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none group"
+              className="flex items-center gap-2.5 rounded-[8px] border-[2px] border-black bg-[var(--card)] p-1.5 text-[var(--foreground)] shadow-[2px_2px_0_0_#000000] transition-all hover:bg-[var(--accent)] hover:text-black dark:hover:bg-[var(--accent)] dark:hover:text-black hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none group"
             >
               <UserAvatar name={fullName} username={username} src={avatarUrl} size="sm" />
               <div className="overflow-hidden min-w-0">
@@ -247,7 +247,7 @@ export function AppShell({
             <form action={signOut}>
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 border-[2px] border-black bg-white dark:bg-[#1E212D] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
+                className="flex w-full items-center justify-center gap-2 rounded-[8px] border-[2px] border-black bg-white dark:bg-[#1E212D] px-2.5 py-1.5 text-left font-mono text-xs font-bold text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#F43F5E] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer transition-all"
               >
                 <LogOutIcon className="h-3.5 w-3.5" />
                 <span className="uppercase text-xs font-bold">Sign Out</span>
@@ -339,7 +339,7 @@ export function AppShell({
                 key={item.href}
                 href={item.href}
                 prefetch={true}
-                className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-[4px] border-[1.5px] border-[var(--border)] px-0.5 py-1 transition-all active:scale-95 ${
+                className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-[8px] border-[1.5px] border-[var(--border)] px-0.5 py-1 transition-all active:scale-95 ${
                   isActive
                     ? "app-mobile-nav-active bg-[#FFE600] !text-black shadow-[2px_2px_0_0_#000] -translate-y-0.5 font-black"
                     : "app-mobile-nav-inactive bg-[var(--card)] text-[var(--foreground)] hover:bg-[#FFE600] hover:!text-black"

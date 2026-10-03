@@ -77,26 +77,39 @@ export function DashboardContent({
       initial="hidden"
       animate="visible"
     >
-      {/* Retro Header */}
+      {/* Retro Header & Prominent New Request CTA */}
       <motion.header
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="flex flex-col gap-1 pb-2.5 sm:pb-3.5"
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 sm:pb-3"
       >
-        <div className="hidden items-center gap-2 sm:flex">
-          <span className="font-mono text-xs text-teal-600 dark:text-teal-400 font-bold">Session Active</span>
-          <span className="hidden sm:inline text-gray-400 font-mono text-xs">//</span>
-          <span className="hidden sm:inline font-mono text-xs text-gray-600 dark:text-gray-300 font-bold uppercase tracking-wider">FLENDLY MASTER DASHBOARD</span>
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <div className="hidden items-center gap-2 sm:flex">
+            <span className="font-mono text-xs text-teal-600 dark:text-teal-400 font-bold">Session Active</span>
+            <span className="text-gray-400 font-mono text-xs">//</span>
+            <span className="font-mono text-xs text-gray-600 dark:text-gray-300 font-bold uppercase tracking-wider">FLENDLY DASHBOARD</span>
+          </div>
+          <h1 className="font-mono text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-black dark:text-white truncate">
+            Welcome back, {profile?.full_name ?? ("@" + profile?.username)}
+          </h1>
         </div>
-        <h1 className="font-mono text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-black dark:text-white truncate">
-          Welcome back, {profile?.full_name ?? ("@" + profile?.username)}
-        </h1>
+
+        {/* Mobile-Prominent New Request CTA Button */}
+        <div className="flex items-center gap-2">
+          <a
+            href="/requests/new"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-[8px] border-[2px] border-black bg-[#FFE600] text-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all cursor-pointer"
+          >
+            <Plus className="w-4 h-4 stroke-[3]" />
+            <span>NEW REQUEST</span>
+          </a>
+        </div>
       </motion.header>
 
       {/* Main Retro Stats Windows */}
       <motion.div
-        className="grid gap-3.5 sm:gap-4.5 sm:grid-cols-2 w-full min-w-0"
+        className="grid gap-3 sm:gap-4.5 sm:grid-cols-2 w-full min-w-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.08 }}
@@ -107,10 +120,10 @@ export function DashboardContent({
             subtitle="owed to you"
             colorBar="green"
             glow={aggregates.totalLent > 0}
-            className="theme-colored-card theme-receivable-card bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#134E4A]"
-            contentClassName="theme-receivable-content p-3.5 sm:p-5 text-black"
+            className="theme-colored-card theme-receivable-card rounded-[8px] bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#134E4A]"
+            contentClassName="theme-receivable-content p-3 sm:p-5 text-black"
             headerRight={
-              <span className="px-2 sm:px-2.5 py-0.5 rounded-[2px] border border-black bg-[#2DD4BF] text-black font-mono text-[10px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+              <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#2DD4BF] text-black font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
                 +INCOMING
               </span>
             }
@@ -139,10 +152,10 @@ export function DashboardContent({
             title="PAYABLES"
             subtitle="you owe"
             colorBar="pink"
-            className="theme-colored-card theme-payable-card bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#881337]"
-            contentClassName="p-3.5 sm:p-5 text-white"
+            className="theme-colored-card theme-payable-card rounded-[8px] bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#881337]"
+            contentClassName="p-3 sm:p-5 text-white"
             headerRight={
-              <span className="px-2 sm:px-2.5 py-0.5 rounded-[2px] border border-black bg-[#F43F5E] text-white font-mono text-[10px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+              <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#F43F5E] text-white font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
                 -OUTGOING
               </span>
             }
@@ -281,9 +294,9 @@ export function DashboardContent({
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="font-mono text-[11px] sm:text-xs font-bold text-teal-600 dark:text-teal-400">[ACTIVE PROPOSALS]</span>
-            <span className="text-gray-400 font-mono text-xs">//</span>
-            <h2 className="font-mono text-base sm:text-lg font-black text-black dark:text-white uppercase tracking-tight truncate">
+            <span className="hidden sm:inline font-mono text-xs font-bold text-teal-600 dark:text-teal-400">[ACTIVE PROPOSALS]</span>
+            <span className="hidden sm:inline text-gray-400 font-mono text-xs">//</span>
+            <h2 className="font-mono text-sm sm:text-lg font-black text-black dark:text-white uppercase tracking-tight truncate">
               Open Requests
             </h2>
           </div>
@@ -293,7 +306,7 @@ export function DashboardContent({
         </div>
 
         {openRequests.length === 0 ? (
-          <div className="border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] p-3.5 sm:p-4 text-center shadow-[2.5px_2.5px_0_0_#000] w-full">
+          <div className="rounded-[8px] border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] p-3 sm:p-4 text-center shadow-[2px_2px_0_0_#000] w-full">
             <p className="font-mono text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300">
               No open requests. Start a new peer deal with the button above.
             </p>
@@ -312,14 +325,14 @@ export function DashboardContent({
                 >
                   <a
                     href={`/requests/${r.id}`}
-                    className="group/req flex items-center justify-between gap-2 p-3 sm:p-4 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] text-black dark:text-white shadow-[2.5px_2.5px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
+                    className="group/req flex items-center justify-between gap-2 p-2.5 sm:p-4 rounded-[8px] border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] text-black dark:text-white shadow-[2px_2px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono w-full"
                   >
                     <div className="min-w-0">
-                      <p className="font-mono text-sm sm:text-base font-black truncate text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
+                      <p className="font-mono text-xs sm:text-base font-black truncate text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
                         {other.full_name ?? ("@" + other.username)} ·{" "}
                         {r.active_offer ? formatMoney(r.active_offer.amount) : "—"}
                       </p>
-                      <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 group-hover/req:text-black dark:group-hover/req:text-black font-bold mt-0.5 truncate transition-colors">
+                      <p className="font-mono text-[10px] sm:text-xs text-gray-600 dark:text-gray-300 group-hover/req:text-black dark:group-hover/req:text-black font-bold mt-0.5 truncate transition-colors">
                         {r.sender.id === userId ? "You sent" : "Sent to you"} ·{" "}
                         {r.direction === "lend" ? "you lend" : "you borrow"}
                       </p>
@@ -343,17 +356,17 @@ export function DashboardContent({
       >
         <div className="w-full min-w-0">
           <RetroWindow
-            title="PERSONAL CASH TRACKER // OFFLINE ENTRIES"
+            title="PERSONAL CASH TRACKER"
             onClose={() => setHideSelfTrack(true)}
             onMaximize={() => router.push("/self-track")}
-            subtitle="PERSONAL CASH LOG"
+            subtitle="OFFLINE ENTRIES"
             colorBar="yellow"
-            className="bg-white dark:bg-[var(--card)] border-[2px] sm:border-[2.5px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] w-full"
+            className="rounded-[8px] bg-white dark:bg-[var(--card)] border-[2px] sm:border-[2.5px] border-black dark:border-white shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] w-full"
             contentClassName="p-3 sm:p-4"
             headerRight={
               <a
                 href="/self-track"
-                className="px-2.5 py-1 rounded-[2px] border border-black bg-[#FFE600] text-black font-mono text-[11px] sm:text-xs font-black shadow-[1.5px_1.5px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-1 cursor-pointer shrink-0"
+                className="px-2.5 py-1 rounded-[6px] border border-black bg-[#FFE600] text-black font-mono text-[11px] sm:text-xs font-black shadow-[1.5px_1.5px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all flex items-center gap-1 cursor-pointer shrink-0"
               >
                 <span>MANAGE</span>
                 <span>→</span>
@@ -361,54 +374,54 @@ export function DashboardContent({
             }
           >
             <div className="flex flex-col gap-2.5 font-mono w-full min-w-0">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-black/10 dark:border-white/10 pb-2">
+              <div className="flex items-center justify-between gap-1.5 border-b border-black/10 dark:border-white/10 pb-2">
                 <div className="min-w-0">
-                  <h3 className="font-mono text-sm sm:text-base font-black text-black dark:text-white uppercase truncate">
+                  <h3 className="font-mono text-xs sm:text-base font-black text-black dark:text-white uppercase truncate">
                     Private Cash & Offline Records
                   </h3>
-                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 font-semibold truncate">
+                  <p className="hidden sm:block font-mono text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 font-semibold truncate">
                     100% private to you · Untracked by other users
                   </p>
                 </div>
-                <div className="font-mono text-[11px] sm:text-xs font-black text-purple-800 dark:text-purple-200 bg-purple-100 dark:bg-purple-950 px-2.5 py-0.5 border border-purple-400 dark:border-purple-800 self-start sm:self-auto shadow-[1px_1px_0_0_#000] shrink-0">
-                  {selfTracks.length} TOTAL RECORD{selfTracks.length !== 1 ? "S" : ""}
+                <div className="font-mono text-[10px] sm:text-xs font-black text-purple-800 dark:text-purple-200 bg-purple-100 dark:bg-purple-950 px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-purple-400 dark:border-purple-800 shadow-[1px_1px_0_0_#000] shrink-0">
+                  {selfTracks.length} RECORD{selfTracks.length !== 1 ? "S" : ""}
                 </div>
               </div>
 
               {/* Borrowed vs Lent Breakdown Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full min-w-0">
                 {/* Personal Lent */}
-                <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
+                <div className="p-3 sm:p-3.5 rounded-[8px] border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <span className="font-mono text-[11px] sm:text-xs font-black text-[#059669] dark:text-[#2DD4BF] uppercase truncate">
-                      Money You Lent (Offline)
+                      Lent (Offline)
                     </span>
-                    <span className="font-mono text-[9px] sm:text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 px-1.5 py-0.2 border border-emerald-400 font-bold shrink-0">
+                    <span className="font-mono text-[9px] sm:text-[10px] rounded-[3px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 px-1.5 py-0.2 border border-emerald-400 font-bold shrink-0">
                       {selfTracks.filter((r) => r.type === "lent" && r.status === "active").length} ACTIVE
                     </span>
                   </div>
-                  <p className="font-mono text-2xl sm:text-3xl font-black text-[#059669] dark:text-[#2DD4BF] mt-0.5">
+                  <p className="font-mono text-xl sm:text-3xl font-black text-[#059669] dark:text-[#2DD4BF] mt-0.5">
                     {formatMoney(personalLentActive)}
                   </p>
-                  <p className="font-mono text-[11px] text-gray-600 dark:text-gray-400 font-semibold mt-0.5">
+                  <p className="hidden sm:block font-mono text-[11px] text-gray-600 dark:text-gray-400 font-semibold mt-0.5">
                     Outstanding to collect from friends
                   </p>
                 </div>
 
                 {/* Personal Borrowed */}
-                <div className="p-3 sm:p-3.5 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
+                <div className="p-3 sm:p-3.5 rounded-[8px] border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <span className="font-mono text-[11px] sm:text-xs font-black text-[#F43F5E] uppercase truncate">
-                      Money You Borrowed (Offline)
+                      Borrowed (Offline)
                     </span>
-                    <span className="font-mono text-[9px] sm:text-[10px] bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 px-1.5 py-0.2 border border-rose-400 font-bold shrink-0">
+                    <span className="font-mono text-[9px] sm:text-[10px] rounded-[3px] bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 px-1.5 py-0.2 border border-rose-400 font-bold shrink-0">
                       {selfTracks.filter((r) => r.type === "borrowed" && r.status === "active").length} ACTIVE
                     </span>
                   </div>
-                  <p className="font-mono text-2xl sm:text-3xl font-black text-[#F43F5E] mt-0.5">
+                  <p className="font-mono text-xl sm:text-3xl font-black text-[#F43F5E] mt-0.5">
                     {formatMoney(personalBorrowedActive)}
                   </p>
-                  <p className="font-mono text-[11px] text-gray-600 dark:text-gray-400 font-semibold mt-0.5">
+                  <p className="hidden sm:block font-mono text-[11px] text-gray-600 dark:text-gray-400 font-semibold mt-0.5">
                     Remaining debt for you to repay
                   </p>
                 </div>
@@ -417,10 +430,10 @@ export function DashboardContent({
               {/* Recent Personal Track Entries Snippet */}
               {selfTracks.length > 0 && (
                 <div className="space-y-1.5 pt-0.5 w-full min-w-0">
-                  <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono font-bold text-gray-700 dark:text-gray-300">
-                    <span className="uppercase tracking-wider truncate">RECENT OFFLINE ENTRIES ({selfTracks.length})</span>
+                  <div className="flex items-center justify-between text-[10px] sm:text-xs font-mono font-bold text-gray-700 dark:text-gray-300">
+                    <span className="uppercase tracking-wider truncate">RECENT ENTRIES ({selfTracks.length})</span>
                     <a href="/self-track" className="text-[#2563EB] dark:text-[#60A5FA] font-bold hover:underline flex items-center gap-1 shrink-0">
-                      Manage & Record New →
+                      Manage →
                     </a>
                   </div>
                   <div className="grid gap-1.5 w-full min-w-0">
@@ -432,15 +445,15 @@ export function DashboardContent({
                       return (
                         <div
                           key={r.id}
-                          className="flex items-center justify-between gap-2 p-2.5 sm:p-3 border-[1.5px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-xs sm:text-sm font-mono shadow-[1.5px_1.5px_0_0_#000] w-full min-w-0"
+                          className="flex items-center justify-between gap-2 p-2 sm:p-3 rounded-[6px] border-[1.5px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-xs sm:text-sm font-mono shadow-[1.5px_1.5px_0_0_#000] w-full min-w-0"
                         >
-                          <div className="flex items-center gap-2 min-w-0 truncate">
+                          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
                             <span
-                              className={`px-1.5 py-0.2 border border-black text-[9px] sm:text-[10px] font-bold uppercase shrink-0 ${
+                              className={`px-1.5 py-0.2 rounded-[2px] border border-black text-[9px] sm:text-[10px] font-bold uppercase shrink-0 ${
                                 isLent ? "bg-[#2DD4BF] text-black" : "bg-[#F43F5E] text-white"
                               }`}
                             >
-                              {isLent ? "LENT" : "BORROWED"}
+                              {isLent ? "LENT" : "BORROW"}
                             </span>
                             <span className="font-bold text-black dark:text-white text-xs sm:text-sm truncate">
                               {r.person_name}
@@ -451,11 +464,11 @@ export function DashboardContent({
                               </span>
                             )}
                           </div>
-                          <div className="flex items-center gap-2 shrink-0">
+                          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                             <span className={`font-black text-xs sm:text-sm ${isLent ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"}`}>
                               {formatMoney(remaining > 0 ? remaining : Number(r.amount))}
                             </span>
-                            <span className={`text-[9px] sm:text-[10px] font-bold px-1.5 py-0.2 border border-black uppercase ${
+                            <span className={`text-[9px] sm:text-[10px] font-bold px-1.5 py-0.2 rounded-[2px] border border-black uppercase ${
                               isSettled ? "bg-[#10B981] text-black" : "bg-[#FFE600] text-black"
                             }`}>
                               {isSettled ? "SETTLED" : "ACTIVE"}
@@ -469,8 +482,8 @@ export function DashboardContent({
               )}
 
               {selfTracks.length === 0 && (
-                <div className="p-2.5 border border-dashed border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-center font-mono text-xs font-bold text-gray-600 dark:text-gray-300 w-full">
-                  No offline cash tracks recorded yet. Keep private notes on informal debts anytime.
+                <div className="rounded-[8px] p-2.5 border border-dashed border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] text-center font-mono text-xs font-bold text-gray-600 dark:text-gray-300 w-full">
+                  No offline cash tracks recorded yet.
                 </div>
               )}
             </div>

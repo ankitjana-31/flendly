@@ -17,19 +17,19 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
   return (
     <Link
       href={`/requests/${request.id}`}
-      className="group/req flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--card)] text-black dark:text-white shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
+      className="group/req flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-3 sm:p-5 rounded-[8px] border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--card)] text-black dark:text-white shadow-[2px_2px_0_0_#000] sm:shadow-[3px_3px_0_0_#000] hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000] transition-all font-mono"
     >
-      <div className="flex items-center gap-3.5">
-        <div className={`w-10 h-10 border-[2px] border-black flex items-center justify-center font-mono font-black text-sm shrink-0 shadow-[2px_2px_0_0_#000] ${
+      <div className="flex items-center gap-3">
+        <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-[6px] border-[2px] border-black flex items-center justify-center font-mono font-black text-sm shrink-0 shadow-[1.5px_1.5px_0_0_#000] ${
           request.direction === "lend" ? "bg-[#2DD4BF] text-black" : "bg-[#F43F5E] text-white"
         }`}>
-          {request.direction === "lend" ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
+          {request.direction === "lend" ? <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" /> : <ArrowDownLeft className="w-4 h-4 sm:w-5 sm:h-5" />}
         </div>
-        <div>
-          <p className="text-base sm:text-lg font-black tracking-tight text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
+        <div className="min-w-0">
+          <p className="text-sm sm:text-lg font-black tracking-tight text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors truncate">
             {other.full_name ?? `@${other.username}`}
           </p>
-          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 group-hover/req:text-black dark:group-hover/req:text-black font-bold mt-0.5 transition-colors">
+          <p className="text-[11px] sm:text-sm text-gray-700 dark:text-gray-300 group-hover/req:text-black dark:group-hover/req:text-black font-bold mt-0.5 transition-colors truncate">
             {isSender ? "You initiated" : "Requested from you"} ·{" "}
             {request.direction === "lend" ? "You lend" : "You borrow"}
             {request.active_offer ? ` · ${interestSummary(request.active_offer)}` : ""}
@@ -37,10 +37,10 @@ function RequestRow({ request, viewerId }: { request: RequestListItem; viewerId:
         </div>
       </div>
 
-      <div className="flex items-center justify-between sm:justify-end gap-4 border-t sm:border-t-0 pt-2 sm:pt-0 border-black/10 dark:border-white/10">
+      <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 border-t sm:border-t-0 pt-2 sm:pt-0 border-black/10 dark:border-white/10">
         <div className="text-left sm:text-right">
-          <span className="text-[10px] uppercase text-gray-600 dark:text-gray-400 group-hover/req:text-black dark:group-hover/req:text-black block font-bold transition-colors">Offer Amount</span>
-          <p className="font-mono text-lg sm:text-xl font-black text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
+          <span className="text-[9px] sm:text-[10px] uppercase text-gray-600 dark:text-gray-400 group-hover/req:text-black dark:group-hover/req:text-black block font-bold transition-colors">Amount</span>
+          <p className="font-mono text-base sm:text-xl font-black text-black dark:text-white group-hover/req:text-black dark:group-hover/req:text-black transition-colors">
             {request.active_offer ? formatMoney(request.active_offer.amount) : "—"}
           </p>
         </div>
@@ -66,17 +66,17 @@ export default async function RequestsPage({
 
   const renderRows = (requestRows: RequestListItem[], emptyMessage: string, emptyDescription: string) =>
     requestRows.length === 0 ? (
-      <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
-        <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 text-black font-bold">
+      <div className="rounded-[8px] border-[2px] border-dashed border-black/30 dark:border-white/30 p-6 sm:p-10 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
+        <div className="w-9 h-9 rounded-[6px] border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-2.5 text-black font-bold">
           ⚡
         </div>
-        <h3 className="font-mono text-base font-bold text-black dark:text-white uppercase">{emptyMessage}</h3>
-        <p className="font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-md mx-auto">
+        <h3 className="font-mono text-sm sm:text-base font-bold text-black dark:text-white uppercase">{emptyMessage}</h3>
+        <p className="hidden sm:block font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-md mx-auto">
           {emptyDescription}
         </p>
       </div>
     ) : (
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2.5 sm:gap-3">
         {requestRows.map((request) => (
           <RequestRow key={request.id} request={request} viewerId={user.id} />
         ))}
@@ -84,22 +84,22 @@ export default async function RequestsPage({
     );
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 sm:gap-6 px-3 sm:px-6 md:px-8 py-3 sm:py-6 pb-16 font-mono">
       {/* Top Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-3 sm:pb-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-teal-600 dark:text-teal-400">
+          <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-teal-600 dark:text-teal-400">
             <span>[PEER_NEGOTIATIONS]</span>
-            <span className="hidden sm:inline text-gray-400">//</span>
-            <span className="hidden sm:inline text-gray-600 dark:text-gray-300 uppercase">PROPOSALS & AGREEMENTS</span>
+            <span className="text-gray-400">//</span>
+            <span className="text-gray-600 dark:text-gray-300 uppercase">PROPOSALS & AGREEMENTS</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-black dark:text-white tracking-tight mt-1">
+          <h1 className="text-2xl sm:text-4xl font-black text-black dark:text-white tracking-tight mt-0.5 sm:mt-1">
             Requests & Agreements
           </h1>
         </div>
 
         <LinkButton href="/requests/new" size="md">
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 stroke-[2.5]" />
           <span>NEW REQUEST</span>
         </LinkButton>
       </div>

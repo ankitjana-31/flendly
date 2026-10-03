@@ -45,36 +45,36 @@ export default async function Home() {
           <nav className="hidden md:flex items-center gap-2 font-mono text-xs">
             <Link
               href="/"
-              className="px-3 py-1.5 bg-[#2563EB] text-white border-[2px] border-black dark:border-white shadow-[2px_2px_0_0_#000000] font-bold hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="px-3 py-1.5 rounded-[6px] bg-[#2563EB] text-white border-[2px] border-black dark:border-white shadow-[2px_2px_0_0_#000000] font-bold hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               HOME
             </Link>
             <Link
               href="/dashboard"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="px-3 py-1.5 rounded-[6px] border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               DASHBOARD
             </Link>
             <Link
               href="/self-track"
-              className="px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="px-3 py-1.5 rounded-[6px] border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-gray-800 dark:text-gray-200 hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               LEDGER
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             <ThemeToggle />
 
             <Link
               href="/auth/login"
-              className="hidden sm:inline-flex px-3 py-1.5 border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all shadow-[2px_2px_0_0_#000000]"
+              className="hidden sm:inline-flex px-3 py-1.5 rounded-[8px] border-[2px] border-black dark:border-white/60 bg-white dark:bg-[#1E212D] text-black dark:text-white font-mono text-xs font-bold hover:bg-[#FB7185] hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all shadow-[2px_2px_0_0_#000000]"
             >
               LOGIN
             </Link>
             <Link
               href="/auth/login"
-              className="whitespace-nowrap px-2 py-1.5 sm:px-5 sm:py-2 bg-[#FFE600] !text-black border-[2px] border-black font-mono text-[10px] sm:text-sm font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
+              className="whitespace-nowrap px-3 py-1.5 sm:px-5 sm:py-2 rounded-[8px] bg-[#FFE600] !text-black border-[2px] border-black font-mono text-xs sm:text-sm font-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none transition-all"
             >
               LAUNCH FLENDLY
             </Link>

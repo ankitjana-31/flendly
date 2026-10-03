@@ -191,6 +191,24 @@ export async function counterOfferAction(
 
 export async function acceptOfferAction(offerId: string, requestId: string) {
   const supabase = await createClient();
+
+  // Validate deadline: unaccepted requests past deadline must auto-cancel
+  const { data: offer } = await supabase
+    .from("loan_offers")
+    .select("deadline")
+    .eq("id", offerId)
+    .maybeSingle();
+
+  const today = new Date().toISOString().slice(0, 10);
+  if (offer?.deadline && offer.deadline < today) {
+    await supabase.from("loan_requests").update({ status: "CANCELLED" }).eq("id", requestId);
+    await supabase.from("loan_offers").update({ status: "DECLINED" }).eq("id", offerId);
+    revalidatePath(`/requests/${requestId}`);
+    revalidatePath("/requests");
+    revalidatePath("/dashboard");
+    return { error: "This proposal deadline has passed. The request has been auto-cancelled." };
+  }
+
   const { data: loanId, error } = await supabase.rpc("accept_offer", { p_offer_id: offerId });
 
   if (error) return { error: error.message };
