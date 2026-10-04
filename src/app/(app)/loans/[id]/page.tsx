@@ -53,19 +53,19 @@ export default async function LoanDetailPage({
     }));
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16">
       {/* Top Header with Back Button */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
         <div>
           <Link
             href={isLender ? "/lent" : "/borrowed"}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white uppercase mb-1 transition-colors"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white uppercase mb-1 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>BACK TO {isLender ? "LENT PORTFOLIO" : "BORROWED LIABILITIES"}</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <span className={`px-2 py-0.5 border border-black font-black text-xs uppercase ${
+          <div className="flex items-center gap-2 font-mono">
+            <span className={`px-2 py-0.5 border border-black font-black text-xs uppercase rounded-[3px] ${
               isLender ? "bg-[#2DD4BF] text-black" : "bg-[#FFE600] text-black"
             }`}>
               {isLender ? "YOU ARE LENDER" : "YOU ARE BORROWER"}
@@ -75,7 +75,7 @@ export default async function LoanDetailPage({
               {loan.counterparty.full_name ?? `@${loan.counterparty.username}`}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-black dark:text-white tracking-tight mt-1">
+          <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-black dark:text-white tracking-tight mt-1">
             {isLender ? "Lent to " : "Borrowed from "} {loan.counterparty.full_name ?? `@${loan.counterparty.username}`}
           </h1>
         </div>
@@ -89,36 +89,36 @@ export default async function LoanDetailPage({
         subtitle={`${interestSummary(loan)} · Due ${formatDate(loan.due_date)}`}
         colorBar={isLender ? "pink" : "yellow"}
         glow={true}
-        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] rounded-[10px]"
         contentClassName="p-5 sm:p-6"
         headerRight={
-          <span className={`px-2.5 py-0.5 border border-black font-mono text-[11px] font-black uppercase ${
+          <span className={`px-2.5 py-0.5 border border-black font-mono text-[11px] font-black uppercase rounded-[3px] ${
             isLender ? "bg-[#2DD4BF] text-black" : "bg-[#FFE600] text-black"
           }`}>
-            OUTSTANDING: {formatMoney(loan.ledger?.outstanding ?? loan.principal_amount)}
+            OUTSTANDING: <span className="font-display font-bold">{formatMoney(loan.ledger?.outstanding ?? loan.principal_amount)}</span>
           </span>
         }
       >
         <div className="space-y-6">
           {/* Financial Metrics Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-              <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Remaining Principal</span>
-              <p className="text-2xl font-black text-black dark:text-white mt-0.5">
+            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[8px] shadow-[2px_2px_0_0_#000]">
+              <span className="font-mono text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Remaining Principal</span>
+              <p className="font-display text-2xl sm:text-3xl font-bold text-black dark:text-white mt-1">
                 {formatMoney(loan.ledger?.principal_remaining ?? loan.principal_amount)}
               </p>
             </div>
 
-            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-              <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Accrued Unpaid Interest</span>
-              <p className="text-2xl font-black text-black dark:text-white mt-0.5">
+            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[8px] shadow-[2px_2px_0_0_#000]">
+              <span className="font-mono text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Accrued Unpaid Interest</span>
+              <p className="font-display text-2xl sm:text-3xl font-bold text-black dark:text-white mt-1">
                 {formatMoney(loan.ledger?.unpaid_interest ?? "0")}
               </p>
             </div>
 
-            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-              <span className="text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Total Outstanding</span>
-              <p className={`text-2xl font-black mt-0.5 ${
+            <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[8px] shadow-[2px_2px_0_0_#000]">
+              <span className="font-mono text-[10px] uppercase text-gray-600 dark:text-gray-300 font-bold block">Total Outstanding</span>
+              <p className={`font-display text-2xl sm:text-3xl font-bold mt-1 ${
                 isLender ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"
               }`}>
                 {formatMoney(totalOutstanding.toString())}
@@ -127,7 +127,7 @@ export default async function LoanDetailPage({
           </div>
 
           {/* Dates & Terms Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] text-xs text-gray-700 dark:text-gray-200">
+          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] font-mono text-xs text-gray-700 dark:text-gray-200 rounded-[6px]">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-[#2563EB] dark:text-[#60A5FA] shrink-0" />
               <span>Started: <strong className="text-black dark:text-white font-bold">{formatDate(loan.start_date)}</strong></span>
@@ -161,12 +161,12 @@ export default async function LoanDetailPage({
         title="PAYMENT AUDIT LOG // CONFIRMED & PENDING"
         subtitle={`${loan.payments.length} transactions logged`}
         colorBar="blue"
-        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] rounded-[10px]"
         contentClassName="p-5 sm:p-6"
       >
         {loan.payments.length === 0 ? (
-          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-8 text-center bg-[#FAF8F5] dark:bg-[var(--muted)]">
-            <p className="text-xs text-gray-500 uppercase font-bold">No payments recorded yet.</p>
+          <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-8 text-center bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[6px]">
+            <p className="font-mono text-xs text-gray-500 uppercase font-bold">No payments recorded yet.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -178,7 +178,7 @@ export default async function LoanDetailPage({
               return (
                 <div
                   key={p.id}
-                  className={`p-4 border-[2px] border-black dark:border-white/40 shadow-[2px_2px_0_0_#000] flex flex-col gap-2.5 ${
+                  className={`p-4 border-[2px] border-black dark:border-white/40 shadow-[2px_2px_0_0_#000] flex flex-col gap-2.5 rounded-[8px] ${
                     isPending
                       ? "bg-[#FFE600]/20 dark:bg-[#2E2800] border-l-[6px] border-l-[#FFE600]"
                       : isRejected
@@ -189,10 +189,10 @@ export default async function LoanDetailPage({
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-lg font-black text-black dark:text-white">
+                        <span className="font-display text-lg sm:text-xl font-bold text-black dark:text-white">
                           {formatMoney(p.amount)}
                         </span>
-                        <span className={`px-2 py-0.5 border border-black text-[10px] font-black uppercase ${
+                        <span className={`font-mono px-2 py-0.5 border border-black text-[10px] font-black uppercase rounded-[2px] ${
                           isPending
                             ? "bg-[#FFE600] text-black"
                             : isRejected
@@ -202,12 +202,12 @@ export default async function LoanDetailPage({
                           {status}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                      <p className="font-mono text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         {formatDate(p.payment_date)} · Interest component {formatMoney(p.interest_component)} · Principal component {formatMoney(p.principal_component)}
                         {Number(p.overpaid_excess) > 0 && ` · Excess ${formatMoney(p.overpaid_excess)}`}
                       </p>
                       {p.note && (
-                        <p className="text-xs text-gray-700 dark:text-gray-300 italic mt-1 flex items-center gap-1">
+                        <p className="font-sans text-xs text-gray-700 dark:text-gray-300 italic mt-1 flex items-center gap-1">
                           <FileText className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                           &quot;{p.note}&quot;
                         </p>
@@ -217,7 +217,7 @@ export default async function LoanDetailPage({
 
                   {/* Lender Confirmation Actions for Pending Payments */}
                   {isPending && isLender && (
-                    <div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center gap-2">
+                    <div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center gap-2 font-mono">
                       <span className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase">Review Payment:</span>
                       <PaymentConfirmActions paymentId={p.id} loanId={loan.id} />
                     </div>

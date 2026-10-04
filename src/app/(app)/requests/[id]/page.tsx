@@ -31,19 +31,19 @@ export default async function RequestDetailPage({
   const isLend = request.direction === "lend";
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16">
       {/* Back button and header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-[2px] border-black/10 dark:border-white/20 pb-4">
         <div>
           <Link
             href="/requests"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white uppercase mb-1 transition-colors"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white uppercase mb-1 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>BACK TO ALL REQUESTS</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <span className={`px-2 py-0.5 border border-black font-black text-xs uppercase ${
+          <div className="flex items-center gap-2 font-mono">
+            <span className={`px-2 py-0.5 border border-black font-black text-xs uppercase rounded-[3px] ${
               isLend ? "bg-[#2DD4BF] text-black" : "bg-[#FFE600] text-black"
             }`}>
               {isLend ? "LENDING PROPOSAL" : "BORROWING PROPOSAL"}
@@ -53,7 +53,7 @@ export default async function RequestDetailPage({
               {other.full_name ?? `@${other.username}`}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-black dark:text-white tracking-tight mt-1">
+          <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-black dark:text-white tracking-tight mt-1">
             {isSender ? "Your Request to " : "Request from "} {other.full_name ?? `@${other.username}`}
           </h1>
         </div>
@@ -63,14 +63,14 @@ export default async function RequestDetailPage({
 
       {/* Accepted notice banner */}
       {request.status === "ACCEPTED" && request.resultingLoanId && (
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-[2.5px] border-black bg-[#2DD4BF] text-black shadow-[4px_4px_0_0_#000]">
-          <div className="flex items-center gap-2 font-bold text-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-[2.5px] border-black bg-[#2DD4BF] text-black shadow-[4px_4px_0_0_#000] rounded-[8px]">
+          <div className="flex items-center gap-2 font-display font-bold text-sm">
             <CheckCircle2 className="w-5 h-5 shrink-0" />
             <span>Proposal approved! This agreement is now an active peer loan.</span>
           </div>
           <Link
             href={`/loans/${request.resultingLoanId}`}
-            className="px-4 py-1.5 border-[2px] border-black bg-white text-black font-black text-xs uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 shrink-0 text-center"
+            className="px-4 py-1.5 border-[2px] border-black bg-white text-black font-mono font-black text-xs uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 shrink-0 text-center rounded-[6px]"
           >
             VIEW ACTIVE LOAN →
           </Link>
@@ -84,29 +84,29 @@ export default async function RequestDetailPage({
           subtitle={`Proposed by ${activeOffer.created_by === user.id ? "You" : (other.full_name ?? `@${other.username}`)}`}
           colorBar={isLend ? "pink" : "yellow"}
           glow={true}
-          className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
+          className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] rounded-[10px]"
           contentClassName="p-5 sm:p-6"
         >
           <div className="space-y-5">
             {/* Offer Metrics */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Proposed Amount</span>
-                <p className="text-2xl font-black mt-0.5" style={{color: 'var(--foreground)'}}>
+              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[8px] shadow-[2px_2px_0_0_#000]">
+                <span className="font-mono text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Proposed Amount</span>
+                <p className="font-display text-2xl sm:text-3xl font-bold mt-0.5" style={{color: 'var(--foreground)'}}>
                   {formatMoney(activeOffer.amount)}
                 </p>
               </div>
 
-              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Interest Structure</span>
-                <p className="text-sm font-bold mt-1" style={{color: 'var(--foreground)'}}>
+              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[8px] shadow-[2px_2px_0_0_#000]">
+                <span className="font-mono text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Interest Structure</span>
+                <p className="font-display text-base font-bold mt-1" style={{color: 'var(--foreground)'}}>
                   {interestSummary(activeOffer)}
                 </p>
               </div>
 
-              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Closure Deadline</span>
-                <p className="text-sm font-bold mt-1 flex items-center gap-1.5" style={{color: 'var(--foreground)'}}>
+              <div className="p-4 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[8px] shadow-[2px_2px_0_0_#000]">
+                <span className="font-mono text-[10px] uppercase font-bold block" style={{color: 'var(--muted-foreground)'}}>Closure Deadline</span>
+                <p className="font-display text-base font-bold mt-1 flex items-center gap-1.5" style={{color: 'var(--foreground)'}}>
                   <Calendar className="w-4 h-4 shrink-0" style={{color: 'var(--muted-foreground)'}} />
                   {formatDate(activeOffer.deadline)}
                 </p>
@@ -114,9 +114,9 @@ export default async function RequestDetailPage({
             </div>
 
             {activeOffer.message && (
-              <div className="p-3.5 border-[2px] border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)]">
-                <span className="text-[10px] uppercase font-bold block mb-1" style={{color: 'var(--muted-foreground)'}}>Attached Note:</span>
-                <p className="text-xs sm:text-sm italic flex items-center gap-1.5" style={{color: 'var(--foreground)'}}>
+              <div className="p-3.5 border-[2px] border-black/30 dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] rounded-[8px]">
+                <span className="font-mono text-[10px] uppercase font-bold block mb-1" style={{color: 'var(--muted-foreground)'}}>Attached Note:</span>
+                <p className="font-sans text-xs sm:text-sm italic flex items-center gap-1.5 font-normal" style={{color: 'var(--foreground)'}}>
                   <FileText className="w-4 h-4 shrink-0 text-amber-500" />
                   &quot;{activeOffer.message}&quot;
                 </p>
@@ -139,13 +139,13 @@ export default async function RequestDetailPage({
         subtitle={`${request.offers.length} recorded proposals`}
       >
         <div className="space-y-3">
-          {request.offers.map((offer, idx) => {
+          {request.offers.map((offer) => {
             const isCreator = offer.created_by === user.id;
             const isActive = offer.status === "ACTIVE";
             return (
               <div
                 key={offer.id}
-                className={`p-4 border-[2px] border-black dark:border-white/40 shadow-[2px_2px_0_0_#000] flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                className={`p-4 border-[2px] border-black dark:border-white/40 shadow-[2px_2px_0_0_#000] flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-[8px] ${
                   isActive
                     ? "bg-[#FFE600] text-black border-l-[6px] border-l-black shadow-[3px_3px_0_0_#000]"
                     : "bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white"
@@ -153,18 +153,18 @@ export default async function RequestDetailPage({
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className={`text-base font-black ${isActive ? "!text-black" : "text-black dark:text-white"}`}>
+                    <span className={`font-display text-base sm:text-lg font-bold ${isActive ? "!text-black" : "text-black dark:text-white"}`}>
                       {formatMoney(offer.amount)}
                     </span>
-                    <span className={`text-xs font-bold ${isActive ? "!text-black/80" : "text-gray-600 dark:text-gray-400"}`}>
+                    <span className={`font-mono text-xs font-bold ${isActive ? "!text-black/80" : "text-gray-600 dark:text-gray-400"}`}>
                       · {interestSummary(offer)}
                     </span>
                   </div>
-                  <p className={`text-xs ${isActive ? "!text-black/80" : "text-gray-600 dark:text-gray-300"}`}>
-                    Proposed by <span className={`font-bold ${isActive ? "!text-black" : "text-black dark:text-white"}`}>{isCreator ? "You" : (other.full_name ?? `@${other.username}`)}</span> · Due {formatDate(offer.deadline)}
+                  <p className={`font-sans text-xs ${isActive ? "!text-black/80" : "text-gray-600 dark:text-gray-300"}`}>
+                    Proposed by <span className={`font-display font-bold ${isActive ? "!text-black" : "text-black dark:text-white"}`}>{isCreator ? "You" : (other.full_name ?? `@${other.username}`)}</span> · Due {formatDate(offer.deadline)}
                   </p>
                   {offer.message && (
-                    <p className={`text-xs italic ${isActive ? "!text-black/90 font-medium" : "text-gray-700 dark:text-gray-300"}`}>
+                    <p className={`font-sans text-xs italic ${isActive ? "!text-black/90 font-medium" : "text-gray-700 dark:text-gray-300 font-normal"}`}>
                       &quot;{offer.message}&quot;
                     </p>
                   )}
@@ -172,7 +172,7 @@ export default async function RequestDetailPage({
 
                 <div className="flex sm:flex-col items-center sm:items-end justify-between gap-1.5 shrink-0">
                   <StatusBadge status={offer.status} />
-                  <span className={`text-[10px] ${isActive ? "!text-black/70 font-bold" : "text-gray-500 dark:text-gray-400"}`}>
+                  <span className={`font-mono text-[10px] ${isActive ? "!text-black/70 font-bold" : "text-gray-500 dark:text-gray-400"}`}>
                     {formatDateTime(offer.created_at)}
                   </span>
                 </div>

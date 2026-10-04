@@ -37,7 +37,7 @@ export function LearnMoreHero() {
         className="bg-[#FDFBF7] dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
         contentClassName="p-6 sm:p-8 md:p-10 text-left"
         headerRight={
-          <div className="flex items-center gap-2 font-mono text-xs text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
+          <div className="flex items-center gap-2 font-mono text-xs text-white bg-black/20 px-2.5 py-0.5 border border-white/30 font-bold">
             <span className="w-2 h-2 rounded-full bg-[#FFE600] animate-pulse" />
             <span>REAL TALK</span>
           </div>
@@ -45,37 +45,37 @@ export function LearnMoreHero() {
       >
         <motion.div variants={itemVariants} className="mb-4">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
-            <span>⚡</span>
+            <span className="w-2 h-2 rounded-xs bg-black inline-block" />
             <span>THE REALITY CHECK</span>
           </span>
         </motion.div>
 
         <motion.h1
           variants={itemVariants}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black dark:text-white leading-[1.1] tracking-tight mb-5"
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black dark:text-white leading-[1.12] tracking-tight mb-5"
         >
           Your mate borrowed ₹500.{" "}
-          <span className="bg-[#FF2E93] text-white px-3 py-0.5 border-[2.5px] border-black shadow-[4px_4px_0_0_#000] inline-block -rotate-1">
+          <span className="bg-[#FF2E93] text-white px-3 py-0.5 border-[2.5px] border-black shadow-[4px_4px_0_0_#000] inline-block -rotate-1 rounded-[6px]">
             It&apos;s been 6 months.
           </span>
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
-          className="text-lg sm:text-xl leading-relaxed text-gray-700 dark:text-gray-200 max-w-3xl mb-6 font-normal"
+          className="font-sans text-base sm:text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-200 max-w-3xl mb-6 font-normal"
         >
           That awkward text never came. The friendship is still intact, but so is the lingering memory of that ₹500. Sound familiar? We built Flendly to kill this awkwardness forever.
         </motion.p>
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-wrap items-center gap-3 pt-1"
+          className="flex flex-wrap items-center gap-3 pt-1 font-mono"
         >
           <Link
             href="/auth/login"
             className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
           >
-            <span>⚡</span>
+            <span>[01]</span>
             <span>LET&apos;S FIX THIS</span>
           </Link>
           <Link

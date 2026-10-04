@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Coins, FileText, Shield, Zap, Lock } from "lucide-react";
+import { Coins, FileText, Shield, Zap } from "lucide-react";
 import { RetroWindow } from "@/components/ui/retro-window";
 
 const features = [
@@ -41,13 +41,13 @@ export function SelfTrackShowcase() {
           {/* Left Column: Pitch & Features */}
           <div className="lg:col-span-6 flex flex-col gap-4">
             <div>
-              <span className="inline-block px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-2">
+              <span className="inline-block px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-2 rounded-[4px]">
                 OFFLINE MODE
               </span>
-              <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white uppercase tracking-tight">
+              <h2 className="font-display text-2xl sm:text-4xl font-bold text-black dark:text-white uppercase tracking-tight">
                 Self Track: Private Ledger
               </h2>
-              <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base mt-2 leading-relaxed font-sans">
+              <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base mt-2 leading-relaxed font-sans font-normal">
                 Log cash loans, split bills, or IOUs privately. No notifications to anyone.
               </p>
             </div>
@@ -58,13 +58,13 @@ export function SelfTrackShowcase() {
                 return (
                   <div
                     key={idx}
-                    className="p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000000]"
+                    className="p-3.5 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000000] rounded-[6px]"
                   >
-                    <div className="w-7 h-7 border border-black bg-[#FFE600] flex items-center justify-center text-black mb-2 shadow-[1px_1px_0_0_#000]">
+                    <div className="w-7 h-7 border border-black bg-[#FFE600] flex items-center justify-center text-black mb-2 shadow-[1px_1px_0_0_#000] rounded-[4px]">
                       <IconComponent className="w-4 h-4 stroke-[2.5]" />
                     </div>
-                    <h3 className="font-mono text-xs font-bold text-black dark:text-white uppercase">{feature.title}</h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-relaxed font-sans">{feature.description}</p>
+                    <h3 className="font-display text-xs font-bold text-black dark:text-white uppercase">{feature.title}</h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-relaxed font-sans font-normal">{feature.description}</p>
                   </div>
                 );
               })}
@@ -73,56 +73,51 @@ export function SelfTrackShowcase() {
 
           {/* Right Column: Live Mockup Card */}
           <div className="lg:col-span-6">
-            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB] p-6">
+            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB] p-6 rounded-[8px]">
               <div className="flex items-center justify-between pb-3 border-b-[2px] border-black dark:border-white/30 mb-4 font-mono text-xs">
                 <span className="font-bold text-black dark:text-white uppercase flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 bg-[#10B981] border border-black inline-block" />
+                  <span className="w-2.5 h-2.5 bg-[#10B981] border border-black inline-block rounded-xs" />
                   <span>SELF TRACK<span className="hidden sm:inline"> // REGISTER</span></span>
                 </span>
-                <span className="px-2 py-0.5 border border-black bg-[#FFE600] text-black font-bold">3 ACTIVE</span>
+                <span className="px-2 py-0.5 border border-black bg-[#FFE600] text-black font-bold rounded-[3px]">3 ACTIVE</span>
               </div>
 
               {/* Record 1 */}
-              <div className="p-4 border-[2px] border-black bg-white dark:bg-[#12141D] shadow-[3px_3px_0_0_#000000] mb-3 space-y-2 font-mono">
+              <div className="p-4 border-[2px] border-black bg-white dark:bg-[#12141D] shadow-[3px_3px_0_0_#000000] mb-3 space-y-2 rounded-[6px]">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="text-[10px] px-2 py-0.5 border border-black bg-[#2DD4BF] text-black font-bold uppercase">LENT</span>
-                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹5,000 to Ashok</h4>
+                    <span className="font-mono text-[10px] px-2 py-0.5 border border-black bg-[#2DD4BF] text-black font-bold uppercase rounded-[2px]">LENT</span>
+                    <h4 className="font-display font-bold text-base text-black dark:text-white mt-1">₹5,000 to Ashok</h4>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-sans">Trip fuel & tolls split</p>
                   </div>
-                  <span className="text-base font-bold text-[#059669] dark:text-[#2DD4BF]">₹2,000 left</span>
+                  <span className="font-display text-base font-bold text-[#059669] dark:text-[#2DD4BF]">₹2,000 left</span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden">
+                <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden rounded-[2px]">
                   <div className="bg-[#2DD4BF] h-full" style={{ width: "60%" }} />
                 </div>
-                <div className="flex justify-between text-[11px] text-gray-500 font-bold">
-                  <span>Repaid: ₹3,000 (60%)</span>
+                <div className="flex justify-between text-[11px] text-gray-500 font-mono font-bold">
+                  <span>Repaid: <strong className="font-display">₹3,000</strong> (60%)</span>
                   <span className="text-[#059669] dark:text-[#2DD4BF]">2 payments logged</span>
                 </div>
               </div>
 
               {/* Record 2 */}
-              <div className="p-4 border-[2px] border-black bg-white dark:bg-[#12141D] shadow-[3px_3px_0_0_#000000] mb-3 space-y-2 font-mono">
+              <div className="p-4 border-[2px] border-black bg-white dark:bg-[#12141D] shadow-[3px_3px_0_0_#000000] space-y-2 rounded-[6px]">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="text-[10px] px-2 py-0.5 border border-black bg-[#F43F5E] text-white font-bold uppercase">BORROWED</span>
-                    <h4 className="font-bold text-base text-black dark:text-white mt-1">₹3,500 from Ayush</h4>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 font-sans">Gym membership annual share</p>
+                    <span className="font-mono text-[10px] px-2 py-0.5 border border-black bg-[#F43F5E] text-white font-bold uppercase rounded-[2px]">BORROWED</span>
+                    <h4 className="font-display font-bold text-base text-black dark:text-white mt-1">₹1,200 from Rishi</h4>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-sans">Wifi bill share</p>
                   </div>
-                  <span className="text-base font-bold text-[#F43F5E]">₹3,500 due</span>
+                  <span className="font-display text-base font-bold text-[#F43F5E]">₹1,200 due</span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden">
+                <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden rounded-[2px]">
                   <div className="bg-[#F43F5E] h-full" style={{ width: "0%" }} />
                 </div>
-                <div className="flex justify-between text-[11px] text-gray-500 font-bold">
-                  <span>Pending settlement</span>
-                  <span className="text-[#F43F5E]">Due this Friday</span>
+                <div className="flex justify-between text-[11px] text-gray-500 font-mono font-bold">
+                  <span>Repaid: <strong className="font-display">₹0</strong> (0%)</span>
+                  <span className="text-[#F43F5E]">Due in 4 days</span>
                 </div>
-              </div>
-
-              <div className="p-3 bg-[#FFE600]/20 border border-black font-mono text-xs font-bold text-black dark:text-white flex items-center gap-2">
-                <Lock className="w-3.5 h-3.5 text-black dark:text-white" />
-                <span>ZERO CLOUD NOTIFICATIONS · ENCRYPTED LOCAL DATA</span>
               </div>
             </div>
           </div>

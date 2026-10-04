@@ -66,10 +66,10 @@ export function LoanAnatomySection() {
           <span className="inline-block px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] mb-2">
             CORE DIFFERENTIATOR
           </span>
-          <h2 className="text-2xl sm:text-4xl font-black text-black dark:text-white uppercase tracking-tight">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-black dark:text-white uppercase tracking-tight">
             Mutual Approval: Official Peer Deeds
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed font-sans">
+          <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed font-sans font-normal">
             Unlike informal chat promises or unverified notes apps, Flendly establishes a verified, two-way digital agreement before a single rupee is tracked.
           </p>
         </div>
@@ -87,20 +87,20 @@ export function LoanAnatomySection() {
               <motion.div
                 key={idx}
                 variants={cardVariants}
-                className="border-[2.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] p-5 sm:p-6 shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_rgba(255,255,255,0.2)] flex flex-col justify-between text-left transition-all hover:-translate-y-0.5"
+                className="border-[2.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] p-5 sm:p-6 shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_rgba(255,255,255,0.2)] flex flex-col justify-between text-left transition-all hover:-translate-y-0.5 rounded-[8px]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className={`px-2 py-0.5 border border-black font-mono text-[10px] font-black uppercase shadow-[1px_1px_0_0_#000] ${feat.tagColor}`}>
+                    <span className={`px-2 py-0.5 border border-black font-mono text-[10px] font-black uppercase shadow-[1px_1px_0_0_#000] rounded-[3px] ${feat.tagColor}`}>
                       {feat.tag}
                     </span>
                     <span className="font-mono text-xs font-bold text-gray-500">#{idx + 1}</span>
                   </div>
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 border border-black bg-[#FFE600] flex items-center justify-center text-black shadow-[1px_1px_0_0_#000] shrink-0">
+                    <div className="w-8 h-8 border border-black bg-[#FFE600] flex items-center justify-center text-black shadow-[1px_1px_0_0_#000] shrink-0 rounded-[4px]">
                       <Icon className="w-4.5 h-4.5 stroke-[2.5]" />
                     </div>
-                    <h3 className="text-lg font-black text-black dark:text-white">{feat.title}</h3>
+                    <h3 className="font-display text-lg font-bold text-black dark:text-white">{feat.title}</h3>
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-relaxed mb-4 font-sans font-normal">
                     {feat.description}
@@ -109,17 +109,17 @@ export function LoanAnatomySection() {
 
                 <div className="pt-3 border-t-[2px] border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-xs">
                   <span className="font-bold text-gray-600 dark:text-gray-400 uppercase">STATUS:</span>
-                  <span className="font-bold text-[#059669] dark:text-[#2DD4BF] bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 border border-emerald-400">ENFORCED BY PROTOCOL</span>
+                  <span className="font-bold text-[#059669] dark:text-[#2DD4BF] bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 border border-emerald-400 rounded-[2px]">ENFORCED BY PROTOCOL</span>
                 </div>
               </motion.div>
             );
           })}
         </motion.div>
 
-        <div className="audit-guarantee-block mt-5 p-4 border-[2px] border-black bg-[#FFE600]/20 shadow-[3px_3px_0_0_#000000] flex items-center gap-3 text-left">
-          <span className="text-xl">⚡</span>
-          <p className="font-mono text-xs sm:text-sm font-bold text-black audit-guarantee-text">
-            <strong>OFFICIAL AUDIT GUARANTEE:</strong> Both parties hold identical, cryptographically signed ledger copies that cannot be altered unilaterally.
+        <div className="audit-guarantee-block mt-5 p-4 border-[2px] border-black bg-[#FFE600]/20 shadow-[3px_3px_0_0_#000000] flex items-center gap-3 text-left rounded-[8px]">
+          <span className="font-mono text-xs font-black bg-black text-[#FFE600] px-2 py-0.5 rounded-[3px] shrink-0">// AUDIT</span>
+          <p className="font-sans text-xs sm:text-sm text-black dark:text-white font-medium">
+            <strong className="font-mono font-bold">OFFICIAL AUDIT GUARANTEE:</strong> Both parties hold identical, cryptographically verified ledger copies that cannot be altered unilaterally.
           </p>
         </div>
       </RetroWindow>
