@@ -22,13 +22,13 @@ export function LandingPreviewSection() {
       <div className="text-center mb-6">
         <div className="inline-flex items-center gap-2 px-3 py-0.5 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[2px_2px_0_0_#000000] font-mono text-xs font-bold uppercase mb-2">
           <Sparkles className="w-3.5 h-3.5 text-black" />
-          INTERACTIVE OS SHOWCASE
+          EXPLORE FLENDLY
         </div>
         <h2 className="font-mono text-2xl sm:text-4xl font-black text-black dark:text-white tracking-tight uppercase">
-          Everything in one retro command center
+          Everything you need to manage peer loans
         </h2>
         <p className="mt-1.5 text-[var(--muted-foreground)] max-w-2xl mx-auto font-sans text-sm sm:text-base">
-          Explore how Flendly organizes every loan, request, live reminder, and private cash ledger.
+          Lending, borrowing, repayment tracking, deal notifications, and a private offline ledger — all in one place.
         </p>
       </div>
 
@@ -93,7 +93,7 @@ export function LandingPreviewSection() {
               <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#2563EB] dark:text-[#93C5FD]">Total Lent Out</span>
                 <p className="text-2xl sm:text-3xl font-black font-mono text-black dark:text-white mt-1">₹22,000</p>
-                <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Across 3 active peer deals</span>
+                <span className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 block font-semibold">Across 3 active loans</span>
               </div>
               <div className="p-5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000000] transition-all duration-200">
                 <span className="font-mono text-xs uppercase font-bold text-[#F43F5E] dark:text-[#FDA4AF]">Total Borrowed</span>
@@ -140,7 +140,7 @@ export function LandingPreviewSection() {
                   </div>
                   <h4 className="font-mono text-base font-bold text-black dark:text-white uppercase">Smart Loan Negotiations</h4>
                   <p className="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-relaxed font-sans">
-                    Review terms, propose split deadlines, or suggest custom interest with single-click proposals.
+                    Review loan terms, propose different deadlines, or suggest custom interest — all within the app.
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-xs font-bold">
