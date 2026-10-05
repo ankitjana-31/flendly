@@ -45,13 +45,25 @@ export function AppShell({
     setUnreadCount(initialUnreadCount);
   }, [initialUnreadCount]);
 
-  // Realtime Supabase listener for notifications counter
+  // Realtime Supabase listener for live sync across loans, payments, proposals, self-tracks, and notifications
   useEffect(() => {
     if (!userId) return;
     const supabase = createClient();
-    const channelName = `notifications_counter:${userId}`;
+    let refreshTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const triggerDebouncedRefresh = () => {
+      if (refreshTimeout) clearTimeout(refreshTimeout);
+      refreshTimeout = setTimeout(() => {
+        startTransition(() => {
+          router.refresh();
+        });
+      }, 250);
+    };
+
+    const channelName = `flendly_live_sync:${userId}`;
     const channel = supabase
       .channel(channelName)
+      // Notifications changes & counter
       .on(
         "postgres_changes",
         {
@@ -65,6 +77,7 @@ export function AppShell({
           if (!newRow?.read_at) {
             setUnreadCount((c) => c + 1);
           }
+          triggerDebouncedRefresh();
         }
       )
       .on(
@@ -85,6 +98,7 @@ export function AppShell({
           } else if (!wasUnread && isUnread) {
             setUnreadCount((count) => count + 1);
           }
+          triggerDebouncedRefresh();
         }
       )
       .on(
@@ -100,18 +114,111 @@ export function AppShell({
           if (!oldRow?.read_at) {
             setUnreadCount((count) => Math.max(0, count - 1));
           }
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Loans as Lender (Lent Portfolio)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "loans",
+          filter: `lender_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Loans as Borrower (Borrowed Liabilities)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "loans",
+          filter: `borrower_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Payments as Payer
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "payments",
+          filter: `payer_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Payments as Receiver
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "payments",
+          filter: `receiver_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Loan Requests as Sender
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "loan_requests",
+          filter: `sender_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Loan Requests as Receiver
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "loan_requests",
+          filter: `receiver_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Private Self Tracks
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "self_tracks",
+          filter: `user_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
         }
       )
       .subscribe((status, err) => {
         if (status === "CHANNEL_ERROR") {
-          console.warn("[Realtime] Notification counter channel error", err);
+          console.warn("[Realtime] Live sync channel error", err);
         }
       });
 
     return () => {
+      if (refreshTimeout) clearTimeout(refreshTimeout);
       supabase.removeChannel(channel);
     };
-  }, [userId]);
+  }, [userId, router]);
 
   return (
     <div className="relative flex w-full bg-[var(--background)] text-[var(--foreground)] transition-colors">
