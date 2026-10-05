@@ -31,7 +31,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden flex items-center justify-center bg-[var(--background)] text-[var(--foreground)] p-4 transition-colors duration-200">
+    <main className="relative min-h-screen w-full overflow-x-hidden flex flex-col items-center justify-center bg-[var(--background)] text-[var(--foreground)] px-4 py-6 sm:py-10 transition-colors duration-200">
       {/* Ambient Retro Geometric Grid Layer */}
       <div 
         aria-hidden="true" 
@@ -41,21 +41,19 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       {/* Reactive Cursor Glow (Luminous in Light & Dark Mode) */}
       <CursorGlow />
 
-      <div className="absolute top-5 left-5 z-30 flex items-center gap-3">
+      {/* Top Safe Navigation Bar directly above the window */}
+      <div className="relative z-30 w-full max-w-md flex items-center justify-between mb-3.5 px-0.5">
         <Link
           href="/"
           className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[var(--foreground)] transition-all duration-200 hover:bg-[var(--accent)] hover:text-black bg-[var(--card)] px-3.5 py-1.5 rounded-[4px] border-[2px] border-[var(--border)] shadow-[3px_3px_0_0_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
         >
           <span aria-hidden className="text-[#2563EB] dark:text-[#60A5FA]">◄</span> [ESC] BACK TO HOME
         </Link>
-      </div>
-
-      <div className="absolute top-5 right-5 z-30">
         <ThemeToggle />
       </div>
 
       {/* Central Login Card */}
       <LoginContent error={error} />
-    </div>
+    </main>
   );
 }

@@ -43,46 +43,33 @@ export default async function CompleteProfilePage() {
 
       <div className="relative z-20 w-full max-w-md">
         <RetroWindow
-          title="FLENDLY // SETUP"
-          subtitle="PROFILE INITIALIZATION"
+          title="FLENDLY // ACCOUNT SETUP"
           colorBar="blue"
           glow={true}
           className="bg-[var(--card)] border-[2.5px] border-[var(--border)] shadow-[6px_6px_0_0_#000000]"
           headerClassName="bg-[#2563EB] text-white"
           contentClassName="p-6 sm:p-8"
-          headerRight={
-            <div className="flex items-center gap-1.5 font-mono text-[10px] text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#FFE600] animate-pulse" />
-              <span>STEP 1 OF 1</span>
-            </div>
-          }
         >
           {/* Brand Header */}
-          <div className="mb-6 flex items-center justify-between border-b-[2px] border-black/10 dark:border-white/10 pb-4 font-mono">
-            <div className="flex items-center gap-3">
-              <Image src="/brand/flendly-symbol.svg" alt="Flendly" width={40} height={40} className="h-10 w-10 shrink-0" />
-              <div>
-                <span className="font-mono text-lg font-bold tracking-tight text-black dark:text-white block">
-                  FLENDLY
-                </span>
-                <span className="font-mono text-[10px] text-[#2563EB] dark:text-[#60A5FA] font-bold tracking-wider uppercase block">
-                  ACCOUNT CREATION
-                </span>
-              </div>
+          <div className="mb-5 flex items-center gap-3 border-b-[2px] border-black/10 dark:border-white/10 pb-4 font-mono">
+            <Image src="/brand/flendly-symbol.svg" alt="Flendly" width={40} height={40} className="h-10 w-10 shrink-0" />
+            <div>
+              <span className="font-mono text-lg font-bold tracking-tight text-black dark:text-white block">
+                FLENDLY
+              </span>
+              <span className="font-mono text-[10px] text-[#2563EB] dark:text-[#60A5FA] font-bold tracking-wider uppercase block">
+                ACCOUNT SETUP
+              </span>
             </div>
-
-            <span className="px-2 py-0.5 border border-black bg-[#2DD4BF] text-black font-mono text-[10px] font-black uppercase shadow-[1px_1px_0_0_#000]">
-              NEW USER
-            </span>
           </div>
 
           {/* Title Section */}
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             <h1 className="font-heading text-xl sm:text-2xl font-black leading-tight text-black dark:text-white">
               Pick your personal handle.
             </h1>
             <p className="text-xs leading-relaxed text-gray-600 dark:text-gray-300 font-sans">
-              This is your unique tag for sending, receiving, and tracking peer-to-peer loans with friends.
+              This is how people will find you and identify you on Flendly.
             </p>
           </div>
 
@@ -90,9 +77,9 @@ export default async function CompleteProfilePage() {
           <UsernameForm />
 
           {/* Trust Footer */}
-          <div className="mt-6 flex items-center justify-center gap-1.5 border-t-[2px] border-black/10 dark:border-white/10 pt-4 font-mono text-[10px] text-gray-500 dark:text-gray-400">
+          <div className="mt-6 flex items-center justify-center gap-1.5 border-t-[2px] border-black/10 dark:border-white/10 pt-4 font-mono text-[11px] text-gray-500 dark:text-gray-400">
             <ShieldCheck className="h-3.5 w-3.5 text-[#059669] dark:text-[#2DD4BF]" />
-            <span>Private by default · End-to-end ledger verification</span>
+            <span>Your profile information stays private.</span>
           </div>
         </RetroWindow>
       </div>

@@ -2,9 +2,10 @@
 
 import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { User, AtSign, ArrowRight, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
+import { User, AtSign, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 
 import { completeUsername } from "@/lib/users/actions";
+import { cn } from "@/lib/utils";
 
 const initialState = {
   error: undefined,
@@ -43,7 +44,7 @@ export function UsernameForm() {
         <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-black dark:text-white">
           Full Name
         </label>
-        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
+        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] rounded-[6px]">
           <div className="flex h-11 w-10 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
             <User className="h-4 w-4" />
           </div>
@@ -59,7 +60,7 @@ export function UsernameForm() {
           />
         </div>
         <p className="text-[11px] text-gray-500 dark:text-gray-400 font-sans">
-          How your display name will appear to your friends & counterparties.
+          This is how your name will appear to other people on Flendly.
         </p>
       </div>
 
@@ -73,7 +74,7 @@ export function UsernameForm() {
             {cleanUsername.length}/20 chars
           </span>
         </div>
-        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000]">
+        <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] rounded-[6px]">
           <div className="flex h-11 w-10 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
             <AtSign className="h-4 w-4" />
           </div>
@@ -102,13 +103,13 @@ export function UsernameForm() {
           )}
         </div>
         <p className="text-[11px] text-gray-500 dark:text-gray-400 font-sans">
-          3–20 characters: lowercase letters, numbers, and underscores.
+          3 to 20 characters · lowercase, numbers, underscores
         </p>
       </div>
 
       {/* Error Callout */}
       {state.error ? (
-        <div className="flex items-start gap-2 border-[2px] border-black bg-[#F43F5E]/15 p-3 text-xs text-[#F43F5E] font-bold shadow-[2px_2px_0_0_#000]">
+        <div className="flex items-start gap-2 border-[2px] border-black bg-[#F43F5E]/15 p-3 text-xs text-[#F43F5E] font-bold shadow-[2px_2px_0_0_#000] rounded-[6px]">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <p className="font-mono leading-relaxed">[ERR]: {state.error}</p>
         </div>
@@ -118,18 +119,20 @@ export function UsernameForm() {
       <button
         type="submit"
         disabled={pending || !isValidUsername}
-        className="group relative flex h-12 w-full items-center justify-center gap-2 border-[2.5px] border-black bg-[#FFE600] px-4 font-mono text-sm font-black text-black shadow-[3px_3px_0_0_#000000] transition-all hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+        className={cn(
+          "relative flex h-12 w-full items-center justify-center gap-2 border-[2.5px] font-mono text-sm font-black transition-all rounded-[8px]",
+          isValidUsername && !pending
+            ? "border-black bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer"
+            : "border-gray-400 dark:border-gray-700 bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-500 shadow-none cursor-not-allowed opacity-75"
+        )}
       >
         {pending ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <Loader2 className="h-4 w-4 animate-spin text-current" />
             <span>CONFIGURING ACCOUNT...</span>
           </>
         ) : (
-          <>
-            <span>START USING FLENDLY</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </>
+          <span>START USING FLENDLY</span>
         )}
       </button>
     </form>

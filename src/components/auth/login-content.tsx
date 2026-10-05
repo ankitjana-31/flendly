@@ -55,41 +55,35 @@ export function LoginContent({ error }: LoginContentProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative z-20 w-full max-w-md px-4"
+      className="relative z-20 w-full max-w-md"
     >
       <RetroWindow
         title="FLENDLY // LOGIN"
         colorBar="blue"
         glow={true}
-        hideDefaultIcon={true}
         className="bg-[var(--card)] border-[2.5px] border-[var(--border)] shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
         headerClassName="bg-[var(--primary)] text-[var(--primary-foreground)]"
         contentClassName="p-6 sm:p-8"
       >
-        <motion.div variants={itemVariants} className="mb-6 flex items-center gap-3">
+        <motion.div variants={itemVariants} className="mb-5 flex items-center gap-3">
           <Image
             src="/brand/flendly-symbol.svg"
             alt="Flendly"
-            width={44}
-            height={44}
-            className="h-11 w-11 shrink-0"
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0"
           />
-          <div>
-            <span className="font-mono text-xl font-bold tracking-tight text-[var(--foreground)] block">
-              FLENDLY
-            </span>
-            <span className="font-mono text-[10px] text-[#2563EB] dark:text-[#60A5FA] font-bold tracking-wider uppercase block">
-              Peer-to-Peer Finance
-            </span>
-          </div>
+          <span className="font-mono text-xl font-bold tracking-tight text-[var(--foreground)] block">
+            FLENDLY
+          </span>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="space-y-2">
+        <motion.div variants={itemVariants} className="space-y-1.5">
           <h1 className="font-heading text-2xl font-bold leading-tight text-[var(--foreground)]">
-            Track money between people you trust.
+            Get started with Flendly.
           </h1>
-          <p className="text-xs sm:text-sm leading-relaxed text-[var(--muted-foreground)]">
-            Create a loan, agree on the terms, and keep track of repayments.
+          <p className="text-xs sm:text-sm leading-relaxed text-[var(--muted-foreground)] font-sans">
+            Continue with Google to create or access your account.
           </p>
         </motion.div>
 
