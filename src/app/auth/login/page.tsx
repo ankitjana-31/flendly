@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signInWithGoogle } from "@/lib/auth/actions";
 import { getCurrentUserProfile, isPlaceholderUsername } from "@/lib/auth/queries";
 import { LoginContent } from "@/components/auth/login-content";
+import { LoginWaveBackground } from "@/components/auth/login-wave-background";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CursorGlow } from "@/components/ui/cursor-glow";
 
@@ -37,6 +38,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         aria-hidden="true" 
         className="pointer-events-none absolute inset-0 opacity-[0.08] dark:opacity-[0.16] [background-image:radial-gradient(#000000_1.5px,transparent_1.5px),linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:[background-image:radial-gradient(#ffffff_1px,transparent_1px),linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px,64px_64px,64px_64px]" 
       />
+
+      {/* Stitch Design System Subtle Background Wave Motif */}
+      <LoginWaveBackground />
 
       {/* Reactive Cursor Glow (Luminous in Light & Dark Mode) */}
       <CursorGlow />
