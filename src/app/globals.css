@@ -1053,4 +1053,36 @@ html.tropical .landing-deal-view-btn:hover {
   color: #04201D !important;
 }
 
+/* ==========================================================================
+   AUTH & COMPLETE PROFILE WAVE MOTIF THEME ADAPTATION
+   ========================================================================== */
+
+html.ocean .auth-wave-stroke-main,
+html.sunset .auth-wave-stroke-main,
+html.tropical .auth-wave-stroke-main {
+  stroke: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.ocean .auth-wave-top-fill1 { fill: rgba(56, 189, 248, 0.12) !important; }
+html.ocean .auth-wave-top-fill2 { fill: rgba(103, 232, 249, 0.08) !important; }
+html.ocean .auth-wave-top-stroke2 { stroke: rgba(56, 189, 248, 0.3) !important; }
+html.ocean .auth-wave-bot-fill1 { fill: rgba(94, 234, 212, 0.1) !important; }
+html.ocean .auth-wave-bot-fill2 { fill: rgba(56, 189, 248, 0.08) !important; }
+html.ocean .auth-wave-bot-stroke2 { stroke: rgba(94, 234, 212, 0.3) !important; }
+
+html.sunset .auth-wave-top-fill1 { fill: rgba(253, 224, 71, 0.1) !important; }
+html.sunset .auth-wave-top-fill2 { fill: rgba(251, 113, 133, 0.08) !important; }
+html.sunset .auth-wave-top-stroke2 { stroke: rgba(253, 224, 71, 0.25) !important; }
+html.sunset .auth-wave-bot-fill1 { fill: rgba(251, 113, 133, 0.08) !important; }
+html.sunset .auth-wave-bot-fill2 { fill: rgba(253, 224, 71, 0.08) !important; }
+html.sunset .auth-wave-bot-stroke2 { stroke: rgba(251, 113, 133, 0.25) !important; }
+
+html.tropical .auth-wave-top-fill1 { fill: rgba(45, 212, 191, 0.12) !important; }
+html.tropical .auth-wave-top-fill2 { fill: rgba(163, 230, 53, 0.08) !important; }
+html.tropical .auth-wave-top-stroke2 { stroke: rgba(45, 212, 191, 0.25) !important; }
+html.tropical .auth-wave-bot-fill1 { fill: rgba(45, 212, 191, 0.1) !important; }
+html.tropical .auth-wave-bot-fill2 { fill: rgba(163, 230, 53, 0.08) !important; }
+html.tropical .auth-wave-bot-stroke2 { stroke: rgba(45, 212, 191, 0.25) !important; }
+
+
 
