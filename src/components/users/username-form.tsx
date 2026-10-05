@@ -38,15 +38,15 @@ export function UsernameForm() {
   const isValidUsername = /^[a-z0-9_]{3,20}$/.test(cleanUsername);
 
   return (
-    <form action={action} className="mt-6 space-y-5 font-mono">
+    <form action={action} className="mt-4 sm:mt-5 space-y-3.5 sm:space-y-4 font-mono">
       {/* Full Name Input */}
-      <div className="space-y-1.5">
-        <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-black dark:text-white">
+      <div className="space-y-1">
+        <label htmlFor="fullName" className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-black dark:text-white">
           Full Name
         </label>
         <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] rounded-[6px]">
-          <div className="flex h-11 w-10 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
-            <User className="h-4 w-4" />
+          <div className="flex h-10 w-9 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
+            <User className="h-3.5 w-3.5" />
           </div>
           <input
             id="fullName"
@@ -55,19 +55,19 @@ export function UsernameForm() {
             maxLength={100}
             value={fullNameInput}
             onChange={(e) => setFullNameInput(e.target.value)}
-            className="h-11 w-full bg-transparent px-3 text-sm font-bold text-black dark:text-white outline-none placeholder:text-gray-400 font-mono"
+            className="h-10 w-full bg-transparent px-3 text-xs sm:text-sm font-bold text-black dark:text-white outline-none placeholder:text-gray-400 font-mono"
             placeholder="Your display name"
           />
         </div>
-        <p className="text-[11px] text-gray-500 dark:text-gray-400 font-sans">
+        <p className="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 font-sans">
           This is how your name will appear to other people on Flendly.
         </p>
       </div>
 
       {/* Username Input */}
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         <div className="flex items-center justify-between">
-          <label htmlFor="username" className="text-xs font-bold uppercase tracking-wider text-black dark:text-white">
+          <label htmlFor="username" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-black dark:text-white">
             Username / Handle
           </label>
           <span className="text-[10px] font-bold text-gray-500">
@@ -75,8 +75,8 @@ export function UsernameForm() {
           </span>
         </div>
         <div className="relative flex items-center border-[2px] border-black dark:border-white/50 bg-white dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] rounded-[6px]">
-          <div className="flex h-11 w-10 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
-            <AtSign className="h-4 w-4" />
+          <div className="flex h-10 w-9 items-center justify-center border-r-[2px] border-black dark:border-white/30 text-gray-500 dark:text-gray-400">
+            <AtSign className="h-3.5 w-3.5" />
           </div>
           <input
             id="username"
@@ -89,7 +89,7 @@ export function UsernameForm() {
             autoComplete="username"
             value={usernameInput}
             onChange={(e) => setUsernameInput(e.target.value)}
-            className="h-11 min-w-0 flex-1 bg-transparent px-3 text-sm font-bold text-black dark:text-white outline-none placeholder:text-gray-400 font-mono"
+            className="h-10 min-w-0 flex-1 bg-transparent px-3 text-xs sm:text-sm font-bold text-black dark:text-white outline-none placeholder:text-gray-400 font-mono"
             placeholder="rahul"
           />
           {cleanUsername.length >= 3 && (
@@ -102,14 +102,14 @@ export function UsernameForm() {
             </div>
           )}
         </div>
-        <p className="text-[11px] text-gray-500 dark:text-gray-400 font-sans">
+        <p className="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 font-sans">
           3 to 20 characters · lowercase, numbers, underscores
         </p>
       </div>
 
       {/* Error Callout */}
       {state.error ? (
-        <div className="flex items-start gap-2 border-[2px] border-black bg-[#F43F5E]/15 p-3 text-xs text-[#F43F5E] font-bold shadow-[2px_2px_0_0_#000] rounded-[6px]">
+        <div className="flex items-start gap-2 border-[2px] border-black bg-[#F43F5E]/15 p-2.5 text-xs text-[#F43F5E] font-bold shadow-[2px_2px_0_0_#000] rounded-[6px]">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <p className="font-mono leading-relaxed">[ERR]: {state.error}</p>
         </div>
@@ -120,9 +120,9 @@ export function UsernameForm() {
         type="submit"
         disabled={pending || !isValidUsername}
         className={cn(
-          "relative flex h-12 w-full items-center justify-center gap-2 border-[2.5px] font-mono text-sm font-black transition-all rounded-[8px]",
+          "relative flex h-11 w-full items-center justify-center gap-2 border-[2.5px] font-mono text-xs sm:text-sm font-black transition-all rounded-[8px]",
           isValidUsername && !pending
-            ? "border-black bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer"
+            ? "border-black bg-[#FFE600] text-black shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-none cursor-pointer"
             : "border-gray-400 dark:border-gray-700 bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-500 shadow-none cursor-not-allowed opacity-75"
         )}
       >
