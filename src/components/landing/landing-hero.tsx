@@ -117,7 +117,7 @@ export function LandingHero() {
               variants={itemVariants}
               className="font-sans text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 font-normal leading-relaxed max-w-xl"
             >
-              Lend to a friend. Agree on the terms. Track every repayment. No more &quot;I&apos;ll pay you back&quot; disappearing into the chat.
+              Lend to a friend, agree on the terms, and track every repayment.
             </motion.p>
 
             <motion.div
@@ -140,45 +140,48 @@ export function LandingHero() {
             </motion.div>
           </div>
 
-          {/* Right Column — Retro Loan Deal Card */}
+          {/* Right Column: Retro Loan Agreement Card */}
           <motion.div
             variants={itemVariants}
             className="lg:col-span-5 flex flex-col gap-3"
           >
             <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] flex flex-col rounded-[12px] overflow-hidden">
               {/* Deal Card Header */}
-              <div className="flex items-center justify-between px-3.5 sm:px-4 py-2 bg-[#2563EB] border-b-[2px] border-black dark:border-white">
+              <div className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 bg-[#2563EB] border-b-[2px] border-black dark:border-white">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#FFE600] inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFE600] inline-block border border-black" />
                   <span className="font-mono text-[11px] sm:text-xs font-black text-white uppercase tracking-wider">
-                    LOAN // ACTIVE
+                    LOAN AGREEMENT // ACTIVE
                   </span>
                 </div>
-                <span className="font-mono text-[9px] sm:text-[10px] bg-[#2DD4BF] text-black px-1.5 py-0.5 border border-black font-black uppercase rounded-[3px]">
-                  VERIFIED
+                <span className="font-mono text-[9px] sm:text-[10px] bg-[#2DD4BF] text-black px-2 py-0.5 border border-black font-black uppercase rounded-[3px]">
+                  MUTUAL CONSENT
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 flex flex-col gap-3">
-                {/* Borrower / Lender */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-[8px] bg-[#FF2E93] text-white border-[2px] border-black flex items-center justify-center font-display font-bold text-sm shadow-[1.5px_1.5px_0_0_#000]">
-                    RH
+              <div className="p-4 sm:p-5 flex flex-col gap-3.5">
+                {/* Parties Grid */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="bg-white dark:bg-[#242938] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block">
+                      Lender
+                    </span>
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white">
+                      Rahul
+                    </span>
                   </div>
-                  <div className="flex flex-col min-w-0">
-                    <div className="flex items-center gap-1.5 font-display font-bold text-base text-black dark:text-white">
-                      <span>Rahul</span>
-                      <span className="text-gray-400 font-mono text-xs">→</span>
-                      <span>Ankit</span>
-                    </div>
-                    <span className="font-mono text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 font-bold">
-                      Mutual Agreement · 3 Oct 2026
+                  <div className="bg-white dark:bg-[#242938] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block">
+                      Borrower
+                    </span>
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white">
+                      Ankit
                     </span>
                   </div>
                 </div>
 
                 {/* Amount */}
-                <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3 flex items-center justify-between rounded-[8px] shadow-[2px_2px_0_0_#000]">
+                <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 flex items-center justify-between rounded-[8px] shadow-[2px_2px_0_0_#000]">
                   <span className="font-mono text-[11px] font-bold text-gray-600 dark:text-gray-300 uppercase">
                     Loan Amount
                   </span>
@@ -209,19 +212,22 @@ export function LandingHero() {
 
                 {/* Status + Action */}
                 <div className="flex items-center justify-between pt-1">
-                  <span className="font-mono text-[10px] sm:text-[11px] bg-[#2DD4BF] text-black px-2.5 py-0.5 border-[1.5px] border-black font-black uppercase rounded-[4px] shadow-[1px_1px_0_0_#000]">
-                    ACTIVE
+                  <span className="font-mono text-[10px] sm:text-[11px] bg-[#2DD4BF] text-black px-2.5 py-1 border-[1.5px] border-black font-black uppercase rounded-[4px] shadow-[1px_1px_0_0_#000]">
+                    STATUS: ACTIVE
                   </span>
-                  <span className="font-mono text-[10px] sm:text-[11px] text-[#2563EB] dark:text-[#60A5FA] font-bold uppercase underline underline-offset-2 cursor-default">
-                    VIEW AGREEMENT →
-                  </span>
+                  <Link
+                    href="/learn-more"
+                    className="font-mono text-[10px] sm:text-[11px] px-2.5 py-1 bg-white dark:bg-[#242938] text-[#2563EB] dark:text-[#60A5FA] border-[1.5px] border-black dark:border-white/40 font-black uppercase rounded-[4px] shadow-[1px_1px_0_0_#000] hover:bg-[#2563EB] hover:text-white transition-colors"
+                  >
+                    VIEW AGREEMENT
+                  </Link>
                 </div>
               </div>
             </div>
 
             {/* Tagline below card */}
-            <div className="bg-[#FFE600] border-[2px] border-black p-2.5 text-center font-mono text-[11px] sm:text-xs font-black text-black shadow-[2px_2px_0_0_#000] rounded-[8px]">
-              YOUR MONEY DESERVES MORE THAN A WHATSAPP MESSAGE
+            <div className="bg-[#FFE600] border-[2px] border-black p-2.5 text-center font-mono text-[11px] sm:text-xs font-black text-black shadow-[2px_2px_0_0_#000] rounded-[8px] uppercase tracking-wide">
+              One clear record for the whole loan.
             </div>
           </motion.div>
         </div>}

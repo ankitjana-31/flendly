@@ -53,9 +53,9 @@ export function LoginContent({ error }: LoginContentProps) {
           <Image
             src="/brand/flendly-symbol.svg"
             alt="Flendly"
-            width={48}
-            height={48}
-            className="h-12 w-12 shrink-0"
+            width={44}
+            height={44}
+            className="h-11 w-11 shrink-0"
           />
           <div>
             <span className="font-mono text-xl font-bold tracking-tight text-[var(--foreground)] block">
@@ -69,17 +69,17 @@ export function LoginContent({ error }: LoginContentProps) {
 
         <motion.div variants={itemVariants} className="space-y-2">
           <h1 className="font-heading text-2xl font-bold leading-tight text-[var(--foreground)]">
-            Track lending with people you trust.
+            Track money between people you trust.
           </h1>
           <p className="text-xs sm:text-sm leading-relaxed text-[var(--muted-foreground)]">
-            Send a request, lock in terms, and keep one single source of truth instead of screenshots of bank transfers.
+            Create a loan, agree on the terms, and keep track of repayments.
           </p>
         </motion.div>
 
         {error ? (
           <motion.p
             variants={itemVariants}
-            className="mt-4 border-[2px] border-black bg-[#F43F5E]/15 p-3 font-mono text-xs text-[#F43F5E] font-bold shadow-[2px_2px_0_0_#000000]"
+            className="mt-4 border-[2px] border-black bg-[#F43F5E]/15 p-3 font-mono text-xs text-[#F43F5E] font-bold shadow-[2px_2px_0_0_#000000] rounded-[6px]"
           >
             [ERR]: {error}
           </motion.p>
@@ -88,36 +88,17 @@ export function LoginContent({ error }: LoginContentProps) {
         <motion.form
           variants={itemVariants}
           action={signInWithGoogle}
-          className="mt-7"
+          className="mt-6"
         >
           <GoogleSignInButton />
         </motion.form>
 
         <motion.p
           variants={itemVariants}
-          className="mt-6 text-center font-mono text-[11px] leading-relaxed text-gray-500 dark:text-gray-400"
+          className="mt-5 text-center font-mono text-[11px] leading-relaxed text-gray-500 dark:text-gray-400"
         >
-          Your email and phone number are private by default — you choose who,
-          if anyone, can see them.
+          Your account details stay private.
         </motion.p>
-
-        <motion.div
-          variants={itemVariants}
-          className="mt-6 flex justify-center gap-4 text-xs pt-4 border-t-[2px] border-black/10 dark:border-white/10 font-mono text-[11px]"
-        >
-          <div className="flex items-center gap-1.5">
-            <div className="h-2 w-2 bg-[#2DD4BF] border border-black" />
-            <span className="text-[var(--muted-foreground)] font-semibold">Private Ledger</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="h-2 w-2 bg-[#FFE600] border border-black" />
-            <span className="text-[var(--muted-foreground)] font-semibold">Instant Sync</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="h-2 w-2 bg-[#2563EB] border border-black" />
-            <span className="text-[var(--muted-foreground)] font-semibold">Zero Fees</span>
-          </div>
-        </motion.div>
       </RetroWindow>
     </motion.div>
   );

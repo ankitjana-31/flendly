@@ -28,7 +28,7 @@ export function LandingPreviewSection() {
           Everything you need to manage peer loans
         </h2>
         <p className="mt-1.5 text-[var(--muted-foreground)] max-w-2xl mx-auto font-sans text-sm sm:text-base font-normal">
-          Lending, borrowing, repayment tracking, deal notifications, and a private offline ledger — all in one place.
+          Lending, borrowing, repayment tracking, deal notifications, and a private offline ledger, all in one place.
         </p>
       </div>
 
@@ -140,7 +140,7 @@ export function LandingPreviewSection() {
                   </div>
                   <h4 className="font-display text-base font-bold text-black dark:text-white uppercase">Smart Loan Negotiations</h4>
                   <p className="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-relaxed font-sans font-normal">
-                    Review loan terms, propose different deadlines, or suggest custom interest — all within the app.
+                    Review loan terms, propose different deadlines, or suggest custom interest, all within the app.
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-xs font-bold">

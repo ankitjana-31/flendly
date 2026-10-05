@@ -3,12 +3,12 @@
 import React from "react";
 
 const steps = [
-  { num: "01", label: "REQUEST", desc: "Ask a friend or propose a peer loan.", color: "bg-[#2563EB]", textColor: "text-white" },
-  { num: "02", label: "OFFER", desc: "Set the amount, repayment date and terms.", color: "bg-[#FF2E93]", textColor: "text-white" },
-  { num: "03", label: "AGREE", desc: "Both sides review and accept the deal.", color: "bg-[#FFE600]", textColor: "text-black" },
-  { num: "04", label: "LOAN", desc: "The agreement is locked and recorded.", color: "bg-[#10B981]", textColor: "text-black" },
-  { num: "05", label: "REPAY", desc: "Track every repayment as it happens.", color: "bg-[#2DD4BF]", textColor: "text-black" },
-  { num: "06", label: "SETTLED", desc: "Loan closed. Friendship intact.", color: "bg-[#059669]", textColor: "text-white" },
+  { num: "01", label: "REQUEST", desc: "Ask for money or create a lending request.", color: "bg-[#2563EB]", textColor: "text-white" },
+  { num: "02", label: "OFFER", desc: "Set the amount and repayment terms.", color: "bg-[#FF2E93]", textColor: "text-white" },
+  { num: "03", label: "AGREE", desc: "Both sides accept the exact deal.", color: "bg-[#FFE600]", textColor: "text-black" },
+  { num: "04", label: "LOAN", desc: "The agreed terms become an official loan record.", color: "bg-[#10B981]", textColor: "text-black" },
+  { num: "05", label: "REPAY", desc: "Record repayments and see what remains.", color: "bg-[#2DD4BF]", textColor: "text-black" },
+  { num: "06", label: "PAID", desc: "The loan is settled and closed.", color: "bg-[#059669]", textColor: "text-white" },
 ];
 
 export function LandingAuditSection() {

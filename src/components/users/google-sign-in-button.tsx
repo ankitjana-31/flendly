@@ -10,7 +10,7 @@ export function GoogleSignInButton() {
       <button
         type="submit"
         disabled={pending}
-        className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden border-[2.5px] border-[var(--border)] bg-[var(--card)] px-6 font-mono text-sm font-bold text-[var(--foreground)] shadow-[4px_4px_0_0_#000000] dark:shadow-[4px_4px_0_0_#FFE600] transition-all hover:bg-[var(--accent)] hover:!text-black active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer"
+        className="group relative flex h-13 sm:h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-[10px] border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--card)] px-5 font-mono text-xs sm:text-sm font-black text-black dark:text-white shadow-[3px_3px_0_0_#000000] dark:shadow-[3px_3px_0_0_#FFE600] transition-all hover:bg-[#FFE600] hover:text-black dark:hover:bg-[#FFE600] dark:hover:text-black hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000000] active:translate-y-0.5 active:shadow-[1px_1px_0_0_#000000] disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer"
       >
         {/* Subtle sleek glass sheen reflection on hover */}
         <div 
@@ -20,7 +20,7 @@ export function GoogleSignInButton() {
 
         {pending ? (
           <>
-            <svg className="h-5 w-5 animate-spin text-black dark:text-white" viewBox="0 0 24 24" fill="none">
+            <svg className="h-5 w-5 animate-spin text-current" viewBox="0 0 24 24" fill="none">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path
                 className="opacity-75"
@@ -28,11 +28,11 @@ export function GoogleSignInButton() {
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
               />
             </svg>
-            <span className="font-mono text-xs tracking-wider uppercase font-bold">CONNECTING_SESSION…</span>
+            <span className="font-mono text-xs tracking-wider uppercase font-black">CONNECTING…</span>
           </>
         ) : (
           <>
-            <div className="flex h-7 w-7 items-center justify-center border border-black bg-white shadow-[1px_1px_0_0_#000000] transition-transform group-hover:scale-105">
+            <div className="flex h-7 w-7 items-center justify-center rounded-[4px] border border-black bg-white shadow-[1px_1px_0_0_#000000] transition-transform group-hover:scale-105 shrink-0">
               <svg className="h-4 w-4" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
@@ -52,7 +52,7 @@ export function GoogleSignInButton() {
                 />
               </svg>
             </div>
-            <span className="font-mono text-sm uppercase tracking-wide font-bold">
+            <span className="font-mono text-xs sm:text-sm uppercase tracking-wider font-black">
               CONTINUE WITH GOOGLE
             </span>
           </>
