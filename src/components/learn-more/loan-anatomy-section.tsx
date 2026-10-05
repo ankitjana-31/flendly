@@ -24,31 +24,35 @@ const cardVariants = {
 const uspFeatures = [
   {
     icon: Scale,
-    title: "100% Dual-Sided Mutual Consent",
-    tag: "NO ARBITRARY DEBT",
-    description: "A loan never goes live until both parties explicitly review, negotiate, and digitally accept terms. Nobody can falsely claim you owe them money.",
+    title: "BOTH SIDES AGREE",
+    tag: "MUTUAL CONSENT",
+    description: "A loan never goes live until both of you review and accept the terms. Nobody can claim you owe them money without your agreement.",
     tagColor: "bg-[#2DD4BF] text-black",
+    status: "VERIFIED",
   },
   {
     icon: FileCheck,
-    title: "Official Digital IOU Record",
-    tag: "LEGITIMATE PROOF",
-    description: "Generates an immutable contract audit trail with clear principal, agreed interest rate, compounding schedule, and binding closure deadline.",
+    title: "ONE CLEAR RECORD",
+    tag: "SINGLE SOURCE",
+    description: "One clear record shows the principal amount, repayment date, and agreed terms. No more searching through buried chats.",
     tagColor: "bg-[#FFE600] text-black",
+    status: "RECORDED",
   },
   {
     icon: History,
-    title: "Interactive Counter-Offers",
-    tag: "SMART NEGOTIATIONS",
-    description: "Need longer to repay? Suggest a split deadline or adjusted terms with one tap. Zero awkward phone calls or endless WhatsApp negotiations.",
+    title: "CHANGE THE TERMS TOGETHER",
+    tag: "EASY ADJUSTMENTS",
+    description: "Need longer to repay? Propose updated terms in seconds with one tap without awkward back-and-forth negotiations.",
     tagColor: "bg-[#2563EB] text-white",
+    status: "ACTIVE",
   },
   {
     icon: ShieldAlert,
-    title: "Automatic Due Date Auditing",
-    tag: "ZERO GUILT REMINDERS",
-    description: "System automatically tracks upcoming milestones and triggers objective reminder alerts without you having to beg your friend for cash.",
+    title: "KNOW WHEN IT'S DUE",
+    tag: "NO AWKWARD REMINDERS",
+    description: "The app tracks upcoming milestones and triggers objective reminder alerts so friendships stay intact without uncomfortable conversations.",
     tagColor: "bg-[#F43F5E] text-white",
+    status: "SETTLED",
   },
 ];
 
@@ -56,8 +60,7 @@ export function LoanAnatomySection() {
   return (
     <section className="w-full max-w-6xl mx-auto z-10 font-mono">
       <RetroWindow
-        title="THE FLENDLY USP // DUAL CONSENT ARCHITECTURE"
-        subtitle="WHY FLENDLY IS UNIQUE"
+        title="THE FLENDLY GUARANTEE"
         colorBar="yellow"
         className="bg-white dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#FFE600]"
         contentClassName="p-6 sm:p-8"
@@ -67,10 +70,10 @@ export function LoanAnatomySection() {
             CORE DIFFERENTIATOR
           </span>
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-black dark:text-white uppercase tracking-tight">
-            Mutual Approval: Official Peer Deeds
+            Mutual Approval: Clear terms before money is tracked
           </h2>
           <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed font-sans font-normal">
-            Unlike informal chat promises or unverified notes apps, Flendly establishes a verified, two-way digital agreement before a single rupee is tracked.
+            Unlike informal chat promises or unverified notes apps, Flendly establishes a clear agreement both friends accept before any money is tracked.
           </p>
         </div>
 
@@ -109,7 +112,7 @@ export function LoanAnatomySection() {
 
                 <div className="pt-3 border-t-[2px] border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-xs">
                   <span className="font-bold text-gray-600 dark:text-gray-400 uppercase">STATUS:</span>
-                  <span className="font-bold text-[#059669] dark:text-[#2DD4BF] bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 border border-emerald-400 rounded-[2px]">ENFORCED BY PROTOCOL</span>
+                  <span className="font-bold text-[#059669] dark:text-[#2DD4BF] bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 border border-emerald-400 rounded-[2px]">{feat.status}</span>
                 </div>
               </motion.div>
             );
@@ -117,9 +120,9 @@ export function LoanAnatomySection() {
         </motion.div>
 
         <div className="audit-guarantee-block mt-5 p-4 border-[2px] border-black bg-[#FFE600]/20 shadow-[3px_3px_0_0_#000000] flex items-center gap-3 text-left rounded-[8px]">
-          <span className="font-mono text-xs font-black bg-black text-[#FFE600] px-2 py-0.5 rounded-[3px] shrink-0">// AUDIT</span>
+          <span className="font-mono text-xs font-black bg-black text-[#FFE600] px-2 py-0.5 rounded-[3px] shrink-0">AUDIT</span>
           <p className="font-sans text-xs sm:text-sm text-black dark:text-white font-medium">
-            <strong className="font-mono font-bold">OFFICIAL AUDIT GUARANTEE:</strong> Both parties hold identical, cryptographically verified ledger copies that cannot be altered unilaterally.
+            <strong className="font-mono font-bold">AUDIT GUARANTEE:</strong> Both friends see the exact same ledger, updated in real time as repayments happen.
           </p>
         </div>
       </RetroWindow>

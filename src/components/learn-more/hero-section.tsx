@@ -30,8 +30,7 @@ export function LearnMoreHero() {
       className="relative z-10 w-full max-w-6xl mx-auto"
     >
       <RetroWindow
-        title="PROBLEM STATEMENT // WHY WE BUILT THIS"
-        subtitle="OVERVIEW"
+        title="THE PROBLEM"
         colorBar="blue"
         glow={true}
         className="bg-[#FDFBF7] dark:bg-[var(--card)] border-[3px] border-black dark:border-white shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
@@ -63,7 +62,7 @@ export function LearnMoreHero() {
           variants={itemVariants}
           className="font-sans text-base sm:text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-200 max-w-3xl mb-6 font-normal"
         >
-          That awkward text never came. The friendship is still intact, but so is the lingering memory of that ₹500. Sound familiar? We built Flendly to kill this awkwardness forever.
+          You remember the amount. You remember the person. But the chat is buried, the promise was never written down, and asking again feels awkward.
         </motion.p>
 
         <motion.div
@@ -72,14 +71,14 @@ export function LearnMoreHero() {
         >
           <Link
             href="/auth/login"
-            className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+            className="px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2 rounded-[10px]"
           >
             <span>[01]</span>
-            <span>LET&apos;S FIX THIS</span>
+            <span>SEE HOW IT WORKS</span>
           </Link>
           <Link
             href="/"
-            className="px-6 py-3.5 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2"
+            className="px-6 py-3.5 bg-white dark:bg-[var(--muted)] text-black dark:text-white border-[2.5px] border-black dark:border-white font-mono text-xs sm:text-sm font-bold uppercase shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#ffffff] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center gap-2 rounded-[10px]"
           >
             <span>◄</span>
             <span>BACK TO HOME</span>

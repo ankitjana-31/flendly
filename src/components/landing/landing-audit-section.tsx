@@ -3,12 +3,10 @@
 import React from "react";
 
 const steps = [
-  { num: "01", label: "REQUEST", desc: "Ask for money or create a lending request.", color: "bg-[#2563EB]", textColor: "text-white" },
-  { num: "02", label: "OFFER", desc: "Set the amount and repayment terms.", color: "bg-[#FF2E93]", textColor: "text-white" },
-  { num: "03", label: "AGREE", desc: "Both sides accept the exact deal.", color: "bg-[#FFE600]", textColor: "text-black" },
-  { num: "04", label: "LOAN", desc: "The agreed terms become an official loan record.", color: "bg-[#10B981]", textColor: "text-black" },
-  { num: "05", label: "REPAY", desc: "Record repayments and see what remains.", color: "bg-[#2DD4BF]", textColor: "text-black" },
-  { num: "06", label: "PAID", desc: "The loan is settled and closed.", color: "bg-[#059669]", textColor: "text-white" },
+  { num: "01", label: "REQUEST", desc: "Start a lending request.", color: "bg-[#2563EB]", textColor: "text-white" },
+  { num: "02", label: "AGREE", desc: "Set the amount and terms together.", color: "bg-[#FF2E93]", textColor: "text-white" },
+  { num: "03", label: "RECORD", desc: "Both sides accept and the loan becomes an official record.", color: "bg-[#FFE600]", textColor: "text-black" },
+  { num: "04", label: "REPAY", desc: "Track repayments until the loan is settled.", color: "bg-[#10B981]", textColor: "text-black" },
 ];
 
 export function LandingAuditSection() {
@@ -20,7 +18,7 @@ export function LandingAuditSection() {
           <span>HOW FLENDLY WORKS</span>
         </div>
         <span className="landing-comparison-badge px-2 py-0.5 bg-white text-black border border-black font-mono text-[9px] sm:text-[10px] font-black hidden sm:inline shadow-[1px_1px_0_0_#000] rounded-[2px]">
-          6 STEPS
+          4 STEPS
         </span>
       </div>
 
@@ -30,22 +28,19 @@ export function LandingAuditSection() {
           <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-black dark:text-white tracking-tight uppercase">
             Make the deal clear. Then keep track of it.
           </h2>
-          <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 font-normal max-w-xl mx-auto font-sans">
-            Turn &quot;I&apos;ll pay you back&quot; into something trackable.
-          </p>
         </div>
 
-        {/* 6-Step Flow */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        {/* 4-Step Flow */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {steps.map((step) => (
             <div key={step.num} className="relative flex flex-col items-center text-center group">
               {/* Step Badge */}
-              <div className={`w-full ${step.color} ${step.textColor} border-[2px] border-black shadow-[3px_3px_0_0_#000] rounded-[8px] p-3 sm:p-4 flex flex-col items-center gap-1.5 transition-transform group-hover:-translate-y-1`}>
+              <div className={`w-full ${step.color} ${step.textColor} border-[2px] border-black shadow-[3px_3px_0_0_#000] rounded-[8px] p-3.5 sm:p-4 flex flex-col items-center gap-1.5 transition-transform group-hover:-translate-y-1`}>
                 <span className="font-mono text-[10px] font-bold opacity-75 uppercase">{step.num} //</span>
                 <span className="font-mono text-sm sm:text-base font-black tracking-wider">{step.label}</span>
               </div>
               {/* Description */}
-              <p className="mt-2 text-[11px] sm:text-xs text-gray-600 dark:text-gray-400 font-sans font-medium leading-snug px-1">
+              <p className="mt-2.5 text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-sans font-medium leading-snug px-1">
                 {step.desc}
               </p>
             </div>
