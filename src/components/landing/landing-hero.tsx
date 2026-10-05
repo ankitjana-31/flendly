@@ -74,9 +74,6 @@ export function LandingHero() {
         {/* Title bar */}
         <div className="h-10 bg-[#2563EB] text-white px-4 border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
           <div className="flex items-center gap-2 font-mono text-xs uppercase font-bold tracking-wider">
-            <span className="w-3.5 h-3.5 bg-[#FFE600] border border-black inline-flex items-center justify-center rounded-[2px]">
-              <span className="w-1.5 h-1.5 bg-black rounded-xs" />
-            </span>
             <span>FLENDLY // PEER LENDING</span>
           </div>
           <div className="hidden sm:flex items-center gap-1">
@@ -97,8 +94,7 @@ export function LandingHero() {
           {/* Left Column (Headline + Actions) */}
           <div className="lg:col-span-7 flex flex-col gap-3.5 sm:gap-5">
             <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-[11px] sm:text-xs font-black shadow-[2px_2px_0_0_#000] uppercase tracking-wider rounded-[6px]">
-                <span className="w-2 h-2 rounded-xs bg-black inline-block" />
+              <span className="inline-flex items-center px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-[11px] sm:text-xs font-black shadow-[2px_2px_0_0_#000] uppercase tracking-wider rounded-[6px]">
                 <span>LEND IT. LOCK IT. TRACK IT.</span>
               </span>
             </motion.div>

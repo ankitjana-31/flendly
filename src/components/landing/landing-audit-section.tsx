@@ -17,7 +17,6 @@ export function LandingAuditSection() {
       {/* Titlebar */}
       <div className="h-9 sm:h-10 bg-[#10B981] text-black px-3.5 sm:px-6 border-b-[2px] sm:border-b-[3px] border-black dark:border-white flex items-center justify-between select-none">
         <div className="flex items-center gap-2 font-mono text-[11px] sm:text-sm uppercase font-black tracking-wider">
-          <span className="w-2 h-2 bg-black inline-block rounded-xs" />
           <span>HOW FLENDLY WORKS</span>
         </div>
         <span className="landing-comparison-badge px-2 py-0.5 bg-white text-black border border-black font-mono text-[9px] sm:text-[10px] font-black hidden sm:inline shadow-[1px_1px_0_0_#000] rounded-[2px]">

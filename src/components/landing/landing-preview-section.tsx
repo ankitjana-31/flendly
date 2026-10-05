@@ -20,8 +20,7 @@ export function LandingPreviewSection() {
     <section className="landing-preview relative z-20 w-full max-w-[1400px] mx-auto mt-2 px-4 sm:px-6 pb-6">
       {/* Section Header */}
       <div className="text-center mb-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[2px_2px_0_0_#000000] font-mono text-xs font-bold uppercase mb-2.5 rounded-[4px]">
-          <span className="w-2 h-2 bg-black inline-block rounded-xs" />
+        <div className="inline-flex items-center px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[2px_2px_0_0_#000000] font-mono text-xs font-bold uppercase mb-2.5 rounded-[4px]">
           <span>EXPLORE FLENDLY</span>
         </div>
         <h2 className="font-display text-2xl sm:text-4xl font-bold text-black dark:text-white tracking-tight uppercase">

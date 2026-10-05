@@ -44,8 +44,7 @@ export function LearnMoreHero() {
         }
       >
         <motion.div variants={itemVariants} className="mb-4">
-          <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
-            <span className="w-2 h-2 rounded-xs bg-black inline-block" />
+          <span className="inline-flex items-center px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000]">
             <span>THE REALITY CHECK</span>
           </span>
         </motion.div>

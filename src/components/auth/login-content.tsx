@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import Image from "next/image";
 import { signInWithGoogle } from "@/lib/auth/actions";
@@ -32,6 +34,21 @@ type LoginContentProps = {
 
 export function LoginContent({ error }: LoginContentProps) {
   const shouldReduceMotion = useReducedMotion();
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        router.push("/");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [router]);
 
   return (
     <motion.div
@@ -41,10 +58,10 @@ export function LoginContent({ error }: LoginContentProps) {
       className="relative z-20 w-full max-w-md px-4"
     >
       <RetroWindow
-        title="FLENDLY // AUTHENTICATION"
-        subtitle="SECURE SESSION"
+        title="FLENDLY // LOGIN"
         colorBar="blue"
         glow={true}
+        hideDefaultIcon={true}
         className="bg-[var(--card)] border-[2.5px] border-[var(--border)] shadow-[6px_6px_0_0_#000000] dark:shadow-[6px_6px_0_0_#2563EB]"
         headerClassName="bg-[var(--primary)] text-[var(--primary-foreground)]"
         contentClassName="p-6 sm:p-8"

@@ -7,6 +7,7 @@ export interface RetroWindowProps {
   title?: React.ReactNode;
   subtitle?: string;
   icon?: React.ReactNode;
+  hideDefaultIcon?: boolean;
   children: React.ReactNode;
   className?: string;
   headerClassName?: string;
@@ -24,6 +25,7 @@ export function RetroWindow({
   title = "FLENDLY",
   subtitle,
   icon,
+  hideDefaultIcon = false,
   children,
   className,
   headerClassName,
@@ -147,11 +149,11 @@ export function RetroWindow({
                 className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block cursor-pointer hover:opacity-80"
               />
             </div>
-          ) : (
+          ) : !hideDefaultIcon ? (
             <span className="inline-flex h-3.5 w-3.5 sm:h-4.5 sm:w-4.5 items-center justify-center rounded-[2px] border border-black bg-[#FFE600] text-[8.5px] sm:text-[10px] font-mono font-bold text-black shadow-xs select-none shrink-0">
               ▲
             </span>
-          )}
+          ) : null}
 
           {icon && <span className="text-current opacity-80 shrink-0">{icon}</span>}
 
