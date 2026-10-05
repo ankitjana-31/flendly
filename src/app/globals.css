@@ -847,6 +847,20 @@ html.dark .landing-preview-tab-active .landing-preview-tab-tag,
    LANDING HERO LOAN AGREEMENT CARD THEME CONTRAST SYSTEM
    ========================================================================== */
 
+/* Card container */
+.landing-deal-card {
+  background-color: #FAF8F5;
+  border-color: #000000;
+}
+
+html.dark .landing-deal-card,
+html.ocean .landing-deal-card,
+html.sunset .landing-deal-card,
+html.tropical .landing-deal-card {
+  background-color: var(--muted) !important;
+  border-color: var(--border) !important;
+}
+
 /* 1. Header background & title contrast across all themes */
 .landing-deal-header {
   background-color: #2563EB;
@@ -913,23 +927,83 @@ html.dark .landing-deal-consent-badge {
 
 html.ocean .landing-deal-consent-badge {
   background-color: #061522 !important;
-  color: #38BDF8 !important;
-  border: 1px solid #061522 !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
 }
 
 html.sunset .landing-deal-consent-badge {
   background-color: #24121D !important;
-  color: #FDE047 !important;
-  border: 1px solid #24121D !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
 }
 
 html.tropical .landing-deal-consent-badge {
   background-color: #04201D !important;
-  color: #2DD4BF !important;
-  border: 1px solid #04201D !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
 }
 
-/* 3. STATUS: ACTIVE badge: guaranteed solid mint + pitch black text across all themes */
+/* 3. Inner data cells (Lender, Borrower, Amount, Terms) contrast across themes */
+.landing-deal-cell {
+  background-color: #ffffff;
+  border-color: #000000;
+}
+
+.landing-deal-label {
+  color: #4B5563;
+}
+
+.landing-deal-value,
+.landing-deal-amount {
+  color: #000000;
+}
+
+.landing-deal-interest {
+  color: #059669;
+}
+
+html.dark .landing-deal-cell,
+html.ocean .landing-deal-cell,
+html.sunset .landing-deal-cell,
+html.tropical .landing-deal-cell {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+}
+
+html.dark .landing-deal-label,
+html.ocean .landing-deal-label,
+html.sunset .landing-deal-label,
+html.tropical .landing-deal-label {
+  color: var(--muted-foreground) !important;
+}
+
+html.dark .landing-deal-value,
+html.dark .landing-deal-amount,
+html.dark .landing-deal-cell .landing-deal-value,
+html.dark .landing-deal-cell .landing-deal-amount,
+html.ocean .landing-deal-value,
+html.ocean .landing-deal-amount,
+html.ocean .landing-deal-cell .landing-deal-value,
+html.ocean .landing-deal-cell .landing-deal-amount,
+html.sunset .landing-deal-value,
+html.sunset .landing-deal-amount,
+html.sunset .landing-deal-cell .landing-deal-value,
+html.sunset .landing-deal-cell .landing-deal-amount,
+html.tropical .landing-deal-value,
+html.tropical .landing-deal-amount,
+html.tropical .landing-deal-cell .landing-deal-value,
+html.tropical .landing-deal-cell .landing-deal-amount {
+  color: var(--foreground) !important;
+}
+
+html.dark .landing-deal-interest,
+html.ocean .landing-deal-interest,
+html.sunset .landing-deal-interest,
+html.tropical .landing-deal-interest {
+  color: var(--success) !important;
+}
+
+/* 4. STATUS: ACTIVE badge: guaranteed solid mint + pitch black text across all themes */
 :where(html, html.dark, html.sunset, html.ocean, html.tropical) .landing-deal-badge-active {
   background-color: #2DD4BF !important;
   color: #000000 !important;
@@ -940,42 +1014,25 @@ html.tropical .landing-deal-consent-badge {
   color: #000000 !important;
 }
 
-/* 4. VIEW AGREEMENT button: clear action button contrast across all themes */
+/* 5. VIEW AGREEMENT button: clear tactile retro action button contrast across all themes */
 .landing-deal-view-btn {
   background-color: #ffffff !important;
   color: #000000 !important;
   border: 1.5px solid #000000 !important;
+  box-shadow: 2px 2px 0 0 #000000 !important;
 }
 
-html.dark .landing-deal-view-btn {
-  background-color: var(--card) !important;
-  color: #ffffff !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
-}
-
-html.ocean .landing-deal-view-btn {
-  background-color: var(--card) !important;
-  color: var(--foreground) !important;
-  border: 1.5px solid var(--border) !important;
-}
-
-html.sunset .landing-deal-view-btn {
-  background-color: var(--card) !important;
-  color: var(--foreground) !important;
-  border: 1.5px solid var(--border) !important;
-}
-
+html.dark .landing-deal-view-btn,
+html.ocean .landing-deal-view-btn,
+html.sunset .landing-deal-view-btn,
 html.tropical .landing-deal-view-btn {
-  background-color: var(--card) !important;
-  color: var(--foreground) !important;
-  border: 1.5px solid var(--border) !important;
+  background-color: #FAF8F5 !important;
+  color: #000000 !important;
+  border: 1.5px solid #000000 !important;
+  box-shadow: 2px 2px 0 0 #000000 !important;
 }
 
-.landing-deal-view-btn:hover {
-  background-color: #2563EB !important;
-  color: #ffffff !important;
-}
-
+.landing-deal-view-btn:hover,
 html.dark .landing-deal-view-btn:hover {
   background-color: #2563EB !important;
   color: #ffffff !important;
@@ -995,4 +1052,5 @@ html.tropical .landing-deal-view-btn:hover {
   background-color: #2DD4BF !important;
   color: #04201D !important;
 }
+
 

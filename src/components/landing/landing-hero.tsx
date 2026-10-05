@@ -135,7 +135,7 @@ export function LandingHero() {
             variants={itemVariants}
             className="lg:col-span-5 flex flex-col gap-3"
           >
-            <div className="border-[2.5px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] flex flex-col rounded-[12px] overflow-hidden">
+            <div className="border-[2.5px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] flex flex-col rounded-[12px] overflow-hidden landing-deal-card">
               {/* Deal Card Header */}
               <div className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 bg-[#2563EB] border-b-[2px] border-black dark:border-white/40 landing-deal-header">
                 <div className="flex items-center gap-2">
@@ -152,49 +152,49 @@ export function LandingHero() {
               <div className="p-4 sm:p-5 flex flex-col gap-3.5">
                 {/* Parties Grid */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px] landing-deal-cell">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block landing-deal-label">
                       Lender
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-[var(--foreground)]">
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white landing-deal-value">
                       Shylock
                     </span>
                   </div>
-                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px] landing-deal-cell">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block landing-deal-label">
                       Borrower
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-[var(--foreground)]">
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white landing-deal-value">
                       Antonio
                     </span>
                   </div>
                 </div>
 
                 {/* Amount */}
-                <div className="bg-white dark:bg-[var(--card)] border-[2px] border-black dark:border-white/40 p-3.5 flex items-center justify-between rounded-[8px] shadow-[2px_2px_0_0_#000]">
-                  <span className="font-mono text-[11px] font-bold text-gray-600 dark:text-[var(--muted-foreground)] uppercase">
+                <div className="bg-white dark:bg-[var(--card)] border-[2px] border-black dark:border-white/40 p-3.5 flex items-center justify-between rounded-[8px] shadow-[2px_2px_0_0_#000] landing-deal-cell">
+                  <span className="font-mono text-[11px] font-bold text-gray-600 dark:text-gray-400 uppercase landing-deal-label">
                     Loan Amount
                   </span>
-                  <span className="font-display text-2xl sm:text-3xl font-bold text-black dark:text-[var(--foreground)] tracking-tight">
+                  <span className="font-display text-2xl sm:text-3xl font-bold text-black dark:text-white tracking-tight landing-deal-amount">
                     ₹3,000
                   </span>
                 </div>
 
                 {/* Terms Grid */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px] landing-deal-cell">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block landing-deal-label">
                       Repay by
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-[var(--foreground)]">
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white landing-deal-value">
                       18 OCT 2026
                     </span>
                   </div>
-                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px] landing-deal-cell">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block landing-deal-label">
                       Interest
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-[#10B981] dark:text-[var(--success)]">
+                    <span className="font-display text-sm sm:text-base font-bold text-[#10B981] dark:text-[#5EEAD4] landing-deal-interest">
                       0%
                     </span>
                   </div>
