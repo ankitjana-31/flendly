@@ -17,22 +17,19 @@ export function LandingPreviewSection() {
   ];
 
   return (
-    <section className="landing-preview relative z-20 w-full max-w-[1400px] mx-auto mt-2 px-4 sm:px-6 pb-6">
+    <section className="landing-preview relative z-20 w-full max-w-[1400px] mx-auto mt-2 px-0 sm:px-2 pb-6">
       {/* Section Header */}
-      <div className="text-center mb-6">
-        <div className="inline-flex items-center px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[2px_2px_0_0_#000000] font-mono text-xs font-bold uppercase mb-2.5 rounded-[4px]">
+      <div className="text-center mb-5 sm:mb-6">
+        <div className="inline-flex items-center px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black shadow-[2px_2px_0_0_#000000] font-mono text-xs font-bold uppercase mb-2 rounded-[4px]">
           <span>EXPLORE FLENDLY</span>
         </div>
-        <h2 className="font-display text-2xl sm:text-4xl font-bold text-black dark:text-white tracking-tight uppercase">
-          Everything you need to manage peer loans
+        <h2 className="font-display text-xl sm:text-3xl md:text-4xl font-bold text-black dark:text-white tracking-tight uppercase">
+          Everything you need to manage peer loans.
         </h2>
-        <p className="mt-1.5 text-[var(--muted-foreground)] max-w-2xl mx-auto font-sans text-sm sm:text-base font-normal">
-          Lending, borrowing, repayment tracking, deal notifications, and a private offline ledger, all in one place.
-        </p>
       </div>
 
-      {/* Interactive Tabs Selector - Two Rows on Mobile, Centered on Desktop */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-2 pb-2 mb-4 sm:mb-5 max-w-full px-1">
+      {/* Interactive Tabs Selector - Responsive Wrapping, Centered */}
+      <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 pt-1 pb-2 mb-4 sm:mb-5 max-w-full px-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -40,7 +37,7 @@ export function LandingPreviewSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`landing-preview-tab flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-[10px] font-mono text-[11px] sm:text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
+              className={`landing-preview-tab flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-[10px] font-mono text-[11px] sm:text-xs font-bold uppercase transition-all duration-200 border-[2px] border-black cursor-pointer ${
                 isActive
                   ? "landing-preview-tab-active bg-[#FFE600] text-black shadow-[2.5px_2.5px_0_0_#000000] sm:shadow-[3px_3px_0_0_#000000] -translate-y-0.5 font-black"
                   : "landing-preview-tab-inactive bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[2px_2px_0_0_#000000] hover:bg-[#FB7185] hover:text-white dark:hover:bg-[#FB7185] dark:hover:text-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#000]"
@@ -66,7 +63,7 @@ export function LandingPreviewSection() {
         glow={true}
         className="rounded-[8px] bg-white dark:bg-[var(--card)] border-[2px] sm:border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] sm:shadow-[6px_6px_0_0_#000000] dark:shadow-[4px_4px_0_0_#2563EB]"
         headerClassName="bg-[#2563EB] text-white"
-        contentClassName="p-4 sm:p-6 md:p-10"
+        contentClassName="p-3.5 sm:p-6 md:p-8"
         headerRight={
           <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono text-white bg-black/20 px-2 py-0.5 border border-white/30 font-bold rounded-[3px]">
             <span className="hidden sm:inline">LIVE SYNC READY</span>

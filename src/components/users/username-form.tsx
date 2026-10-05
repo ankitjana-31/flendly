@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { User, AtSign, ArrowRight, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 
 import { completeUsername } from "@/lib/users/actions";
@@ -10,12 +11,27 @@ const initialState = {
 };
 
 export function UsernameForm() {
+  const router = useRouter();
   const [state, action, pending] = useActionState(
     completeUsername,
     initialState,
   );
   const [usernameInput, setUsernameInput] = useState("");
   const [fullNameInput, setFullNameInput] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        router.push("/");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [router]);
 
   const cleanUsername = usernameInput.trim().toLowerCase();
   const isValidUsername = /^[a-z0-9_]{3,20}$/.test(cleanUsername);

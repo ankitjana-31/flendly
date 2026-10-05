@@ -93,12 +93,6 @@ export function LandingHero() {
         {!isMinimized && <div className="p-4 sm:p-6 md:p-8 lg:p-10 grid lg:grid-cols-12 gap-5 lg:gap-8 items-center text-left">
           {/* Left Column (Headline + Actions) */}
           <div className="lg:col-span-7 flex flex-col gap-3.5 sm:gap-5">
-            <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center px-3 py-1 bg-[#2DD4BF] text-black border-[2px] border-black font-mono text-[11px] sm:text-xs font-black shadow-[2px_2px_0_0_#000] uppercase tracking-wider rounded-[6px]">
-                <span>LEND IT. LOCK IT. TRACK IT.</span>
-              </span>
-            </motion.div>
-
             <motion.h1
               variants={itemVariants}
               className="font-display text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-black dark:text-white leading-[1.12]"
@@ -163,7 +157,7 @@ export function LandingHero() {
                       Lender
                     </span>
                     <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white">
-                      Rahul
+                      Shylock
                     </span>
                   </div>
                   <div className="bg-white dark:bg-[#242938] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
@@ -171,7 +165,7 @@ export function LandingHero() {
                       Borrower
                     </span>
                     <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white">
-                      Ankit
+                      Antonio
                     </span>
                   </div>
                 </div>
@@ -182,7 +176,7 @@ export function LandingHero() {
                     Loan Amount
                   </span>
                   <span className="font-display text-2xl sm:text-3xl font-bold text-black dark:text-white tracking-tight">
-                    ₹2,500
+                    ₹3,000
                   </span>
                 </div>
 

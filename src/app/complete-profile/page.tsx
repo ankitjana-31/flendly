@@ -21,7 +21,7 @@ export default async function CompleteProfilePage() {
   }
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-x-hidden bg-[var(--background)] text-[var(--foreground)] px-4 py-8 transition-colors duration-200">
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-x-hidden bg-[var(--background)] text-[var(--foreground)] px-4 py-6 sm:py-10 transition-colors duration-200">
       {/* Ambient Retro Geometric Grid Layer */}
       <div 
         aria-hidden="true" 
@@ -30,17 +30,14 @@ export default async function CompleteProfilePage() {
 
       <CursorGlow />
 
-      {/* Top Left Navigation: Back to Landing / Home */}
-      <div className="absolute top-5 left-5 z-30">
+      {/* Top Safe Navigation Bar above the window */}
+      <div className="relative z-30 w-full max-w-md flex items-center justify-between mb-3.5 px-0.5">
         <Link
           href="/"
           className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[var(--foreground)] transition-all duration-200 hover:bg-[var(--accent)] hover:text-black bg-[var(--card)] px-3.5 py-1.5 rounded-[4px] border-[2px] border-[var(--border)] shadow-[3px_3px_0_0_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
         >
           <span aria-hidden className="text-[#2563EB] dark:text-[#60A5FA]">◄</span> [ESC] BACK TO HOME
         </Link>
-      </div>
-
-      <div className="absolute top-5 right-5 z-30">
         <ThemeToggle />
       </div>
 

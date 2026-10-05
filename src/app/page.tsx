@@ -84,7 +84,7 @@ export default async function Home() {
       </header>
 
       {/* Main Content Area filling wide desktop screen nicely */}
-      <main className="relative z-20 w-full max-w-[1400px] mx-auto pt-16 md:pt-18 px-4 sm:px-6 lg:px-8 pb-12 flex flex-col gap-8 md:gap-10 items-center">
+      <main className="relative z-20 w-full max-w-[1400px] mx-auto pt-16 md:pt-18 px-3.5 sm:px-6 lg:px-8 pb-12 flex flex-col gap-8 md:gap-10 items-center">
         <LandingHero />
         <LandingAuditSection />
         <LandingPreviewSection />
