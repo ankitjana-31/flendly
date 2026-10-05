@@ -135,16 +135,16 @@ export function LandingHero() {
             variants={itemVariants}
             className="lg:col-span-5 flex flex-col gap-3"
           >
-            <div className="border-[2.5px] border-black dark:border-white bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] flex flex-col rounded-[12px] overflow-hidden">
+            <div className="border-[2.5px] border-black dark:border-white/60 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[4px_4px_0_0_#000000] flex flex-col rounded-[12px] overflow-hidden">
               {/* Deal Card Header */}
-              <div className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 bg-[#2563EB] border-b-[2px] border-black dark:border-white">
+              <div className="flex items-center justify-between px-3.5 sm:px-4 py-2.5 bg-[#2563EB] border-b-[2px] border-black dark:border-white/40 landing-deal-header">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFE600] inline-block border border-black" />
-                  <span className="font-mono text-[11px] sm:text-xs font-black text-white uppercase tracking-wider">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFE600] inline-block border border-black shrink-0" />
+                  <span className="font-mono text-[11px] sm:text-xs font-black uppercase tracking-wider landing-deal-title">
                     LOAN AGREEMENT // ACTIVE
                   </span>
                 </div>
-                <span className="font-mono text-[9px] sm:text-[10px] bg-[#2DD4BF] text-black px-2 py-0.5 border border-black font-black uppercase rounded-[3px]">
+                <span className="font-mono text-[9px] sm:text-[10px] px-2 py-0.5 border font-black uppercase rounded-[3px] landing-deal-consent-badge">
                   MUTUAL CONSENT
                 </span>
               </div>
@@ -152,49 +152,49 @@ export function LandingHero() {
               <div className="p-4 sm:p-5 flex flex-col gap-3.5">
                 {/* Parties Grid */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  <div className="bg-white dark:bg-[#242938] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
                       Lender
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white">
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-[var(--foreground)]">
                       Shylock
                     </span>
                   </div>
-                  <div className="bg-white dark:bg-[#242938] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
                       Borrower
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white">
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-[var(--foreground)]">
                       Antonio
                     </span>
                   </div>
                 </div>
 
                 {/* Amount */}
-                <div className="bg-white dark:bg-[#242938] border-[2px] border-black dark:border-white/40 p-3.5 flex items-center justify-between rounded-[8px] shadow-[2px_2px_0_0_#000]">
-                  <span className="font-mono text-[11px] font-bold text-gray-600 dark:text-gray-300 uppercase">
+                <div className="bg-white dark:bg-[var(--card)] border-[2px] border-black dark:border-white/40 p-3.5 flex items-center justify-between rounded-[8px] shadow-[2px_2px_0_0_#000]">
+                  <span className="font-mono text-[11px] font-bold text-gray-600 dark:text-[var(--muted-foreground)] uppercase">
                     Loan Amount
                   </span>
-                  <span className="font-display text-2xl sm:text-3xl font-bold text-black dark:text-white tracking-tight">
+                  <span className="font-display text-2xl sm:text-3xl font-bold text-black dark:text-[var(--foreground)] tracking-tight">
                     ₹3,000
                   </span>
                 </div>
 
                 {/* Terms Grid */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  <div className="bg-white dark:bg-[#242938] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
                       Repay by
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-white">
+                    <span className="font-display text-sm sm:text-base font-bold text-black dark:text-[var(--foreground)]">
                       18 OCT 2026
                     </span>
                   </div>
-                  <div className="bg-white dark:bg-[#242938] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
-                    <span className="font-mono text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase block">
+                  <div className="bg-white dark:bg-[var(--card)] border-[1.5px] border-black dark:border-white/30 p-2.5 rounded-[8px]">
+                    <span className="font-mono text-[10px] text-gray-500 dark:text-[var(--muted-foreground)] font-bold uppercase block">
                       Interest
                     </span>
-                    <span className="font-display text-sm sm:text-base font-bold text-[#10B981]">
+                    <span className="font-display text-sm sm:text-base font-bold text-[#10B981] dark:text-[var(--success)]">
                       0%
                     </span>
                   </div>
@@ -202,12 +202,12 @@ export function LandingHero() {
 
                 {/* Status + Action */}
                 <div className="flex items-center justify-between pt-1">
-                  <span className="font-mono text-[10px] sm:text-[11px] bg-[#2DD4BF] text-black px-2.5 py-1 border-[1.5px] border-black font-black uppercase rounded-[4px] shadow-[1px_1px_0_0_#000]">
+                  <span className="font-mono text-[10px] sm:text-[11px] px-2.5 py-1 border-[1.5px] font-black uppercase rounded-[4px] shadow-[1px_1px_0_0_#000] landing-deal-badge-active">
                     STATUS: ACTIVE
                   </span>
                   <Link
                     href="/learn-more"
-                    className="font-mono text-[10px] sm:text-[11px] px-2.5 py-1 bg-white dark:bg-[#242938] text-[#2563EB] dark:text-[#60A5FA] border-[1.5px] border-black dark:border-white/40 font-black uppercase rounded-[4px] shadow-[1px_1px_0_0_#000] hover:bg-[#2563EB] hover:text-white transition-colors"
+                    className="font-mono text-[10px] sm:text-[11px] px-2.5 py-1 border-[1.5px] font-black uppercase rounded-[4px] shadow-[1px_1px_0_0_#000] transition-colors landing-deal-view-btn"
                   >
                     VIEW AGREEMENT
                   </Link>

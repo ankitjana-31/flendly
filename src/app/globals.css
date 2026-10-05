@@ -842,3 +842,157 @@ html.dark .landing-preview-tab-active .landing-preview-tab-tag,
   color: #ffffff !important;
   border: 1px solid #000000 !important;
 }
+
+/* ==========================================================================
+   LANDING HERO LOAN AGREEMENT CARD THEME CONTRAST SYSTEM
+   ========================================================================== */
+
+/* 1. Header background & title contrast across all themes */
+.landing-deal-header {
+  background-color: #2563EB;
+  color: #ffffff;
+  border-bottom: 2px solid #000000;
+}
+
+.landing-deal-header .landing-deal-title {
+  color: #ffffff !important;
+}
+
+html.dark .landing-deal-header {
+  background-color: #2563EB !important;
+  color: #ffffff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+html.dark .landing-deal-header .landing-deal-title {
+  color: #ffffff !important;
+}
+
+html.ocean .landing-deal-header {
+  background-color: #38BDF8 !important;
+  color: #061522 !important;
+  border-bottom-color: var(--border) !important;
+}
+
+html.ocean .landing-deal-header .landing-deal-title {
+  color: #061522 !important;
+}
+
+html.sunset .landing-deal-header {
+  background-color: #FDE047 !important;
+  color: #24121D !important;
+  border-bottom-color: var(--border) !important;
+}
+
+html.sunset .landing-deal-header .landing-deal-title {
+  color: #24121D !important;
+}
+
+html.tropical .landing-deal-header {
+  background-color: #2DD4BF !important;
+  color: #04201D !important;
+  border-bottom-color: var(--border) !important;
+}
+
+html.tropical .landing-deal-header .landing-deal-title {
+  color: #04201D !important;
+}
+
+/* 2. MUTUAL CONSENT badge: automatic high contrast on all headers */
+.landing-deal-consent-badge {
+  background-color: #2DD4BF !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+
+html.dark .landing-deal-consent-badge {
+  background-color: #2DD4BF !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+
+html.ocean .landing-deal-consent-badge {
+  background-color: #061522 !important;
+  color: #38BDF8 !important;
+  border: 1px solid #061522 !important;
+}
+
+html.sunset .landing-deal-consent-badge {
+  background-color: #24121D !important;
+  color: #FDE047 !important;
+  border: 1px solid #24121D !important;
+}
+
+html.tropical .landing-deal-consent-badge {
+  background-color: #04201D !important;
+  color: #2DD4BF !important;
+  border: 1px solid #04201D !important;
+}
+
+/* 3. STATUS: ACTIVE badge: guaranteed solid mint + pitch black text across all themes */
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .landing-deal-badge-active {
+  background-color: #2DD4BF !important;
+  color: #000000 !important;
+  border: 1.5px solid #000000 !important;
+}
+
+:where(html, html.dark, html.sunset, html.ocean, html.tropical) .landing-deal-badge-active * {
+  color: #000000 !important;
+}
+
+/* 4. VIEW AGREEMENT button: clear action button contrast across all themes */
+.landing-deal-view-btn {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1.5px solid #000000 !important;
+}
+
+html.dark .landing-deal-view-btn {
+  background-color: var(--card) !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+html.ocean .landing-deal-view-btn {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1.5px solid var(--border) !important;
+}
+
+html.sunset .landing-deal-view-btn {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1.5px solid var(--border) !important;
+}
+
+html.tropical .landing-deal-view-btn {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1.5px solid var(--border) !important;
+}
+
+.landing-deal-view-btn:hover {
+  background-color: #2563EB !important;
+  color: #ffffff !important;
+}
+
+html.dark .landing-deal-view-btn:hover {
+  background-color: #2563EB !important;
+  color: #ffffff !important;
+}
+
+html.ocean .landing-deal-view-btn:hover {
+  background-color: #38BDF8 !important;
+  color: #061522 !important;
+}
+
+html.sunset .landing-deal-view-btn:hover {
+  background-color: #FDE047 !important;
+  color: #24121D !important;
+}
+
+html.tropical .landing-deal-view-btn:hover {
+  background-color: #2DD4BF !important;
+  color: #04201D !important;
+}
+
