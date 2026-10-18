@@ -30,7 +30,7 @@ function Toast({ message, type, onDone }: { message: string; type: "success" | "
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -16 }}
       onAnimationComplete={() => setTimeout(onDone, 1800)}
-      className={`fixed top-4 right-4 z-50 flex items-center gap-2 border-[2px] border-black px-4 py-2.5 font-mono text-xs font-bold shadow-[4px_4px_0_0_#000] ${
+      className={`fixed top-4 right-4 z-50 flex items-center gap-2 border-[2px] border-black px-3.5 py-2 font-mono text-xs font-bold shadow-[3px_3px_0_0_#000] rounded-[4px] ${
         type === "success"
           ? "bg-[#2DD4BF] text-black"
           : "bg-[#F43F5E] text-white"
@@ -148,7 +148,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
     setActivePaymentRecordId(null);
     setPaymentAmount("");
     setPaymentNote("");
-    showToast("Payment recorded!", "success");
+    showToast("Installment payment logged!", "success");
 
     setIsRecordingPayment(true);
     try {
@@ -160,28 +160,24 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
       });
 
       if (!res.success) {
-        // Revert temp payment on error
         setRecords(prev);
-        setPaymentError(res.error || "Failed to record payment");
-        setActivePaymentRecordId(recordId);
-        showToast(res.error || "Failed to record payment", "error");
+        showToast(res.error || "Failed to save payment", "error");
       } else {
-        // Replace temp with real data from server
         onRecordDeleted?.();
       }
-    } catch (err) {
+    } catch {
       setRecords(prev);
-      setPaymentError(err instanceof Error ? err.message : "Failed to record payment");
-      setActivePaymentRecordId(recordId);
       showToast("Network error — payment reverted", "error");
     } finally {
       setIsRecordingPayment(false);
     }
   };
 
-  // OPTIMISTIC: Delete payment instantly
+  // OPTIMISTIC: Delete payment instantly, then sync server
   const handleDeletePayment = async (paymentId: string, recordId: string) => {
+    if (!confirm("Delete this payment log?")) return;
     const prev = records;
+
     setRecords((rs) =>
       rs.map((r) =>
         r.id === recordId
@@ -189,7 +185,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
           : r
       )
     );
-    showToast("Payment log removed.", "success");
+    showToast("Payment deleted.", "success");
 
     try {
       const res = await deleteSelfTrackPayment(paymentId, recordId);
@@ -214,7 +210,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
   });
 
   return (
-    <div className="space-y-4 font-mono">
+    <div className="space-y-2.5 font-mono">
       {/* Instant Feedback Toast */}
       <AnimatePresence>
         {toast && (
@@ -227,8 +223,8 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
         )}
       </AnimatePresence>
 
-      {/* Category Filter Tabs */}
-      <div className="flex items-center gap-1.5 flex-wrap pb-2 border-b border-black/10 dark:border-white/10">
+      {/* Compact Category Filter Pills — Horizontally Scrollable on Mobile */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar py-0.5">
         {[
           { id: "all", label: `ALL [${records.length}]` },
           { id: "lent", label: `LENT [${records.filter(r => r.type === "lent").length}]` },
@@ -238,10 +234,10 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
         ].map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setFilter(tab.id as any)}
-            className={`px-3 py-1 text-xs font-bold uppercase transition-all border-[2px] border-black cursor-pointer ${
+            onClick={() => setFilter(tab.id as typeof filter)}
+            className={`px-2.5 py-1 text-[11px] font-bold uppercase transition-all border-[1.5px] border-black rounded-[4px] shrink-0 whitespace-nowrap cursor-pointer ${
               filter === tab.id
-                ? "bg-[#FFE600] text-black shadow-[2px_2px_0_0_#000000] -translate-y-0.5"
+                ? "bg-[#FFE600] text-black shadow-[1.5px_1.5px_0_0_#000000] -translate-y-0.5"
                 : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
             }`}
           >
@@ -251,17 +247,19 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
       </div>
 
       {filteredRecords.length === 0 ? (
-        <div className="border-[2px] border-dashed border-black/40 dark:border-white/40 p-8 text-center bg-white dark:bg-[var(--card)] shadow-[3px_3px_0_0_#000]">
-          <div className="w-10 h-10 border-[2px] border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-3 text-black font-bold">
+        <div className="border-[2px] border-dashed border-black/30 dark:border-white/30 p-6 text-center bg-white dark:bg-[var(--card)] shadow-[2px_2px_0_0_#000] rounded-[6px]">
+          <div className="w-8 h-8 border border-black bg-[#FFE600] flex items-center justify-center mx-auto mb-2 text-black font-bold rounded-[4px]">
             ⚡
           </div>
-          <h3 className="font-mono text-sm font-bold text-black dark:text-white uppercase">No records in this category</h3>
-          <p className="font-mono text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">
-            Use the form to add your first private record for cash or offline transactions.
+          <h3 className="font-mono text-xs sm:text-sm font-bold text-black dark:text-white uppercase">
+            No records in this category
+          </h3>
+          <p className="font-mono text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 max-w-sm mx-auto">
+            Use the form above to add a private record for offline loans or cash splits.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-3.5">
+        <div className="grid grid-cols-1 gap-2 sm:gap-2.5">
           {filteredRecords.map((record) => {
             const isLent = record.type === "lent";
             const originalAmount = Number(record.amount);
@@ -276,119 +274,127 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
               <motion.div
                 key={record.id}
                 layout
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.18 }}
-                className={`border-[2.5px] border-black dark:border-white/60 bg-white dark:bg-[var(--card)] transition-all shadow-[4px_4px_0_0_#000000] ${
-                  isSettled ? "opacity-85" : ""
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.15 }}
+                className={`border-[1.5px] sm:border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] shadow-[2.5px_2.5px_0_0_#000] rounded-[6px] overflow-hidden transition-all ${
+                  isSettled ? "opacity-80" : ""
                 }`}
               >
-                {/* Header Bar */}
-                <div className={`px-4 py-2 border-b-[2px] border-black dark:border-white/40 flex items-center justify-between font-mono text-xs ${
-                  isLent ? "bg-[#2DD4BF]/20 dark:bg-[#0B3D30]" : "bg-[#F43F5E]/15 dark:bg-[#3D0C1D]"
-                }`}>
+                {/* Compact Header Strip */}
+                <div
+                  className={`px-3 py-1.5 border-b-[1.5px] border-black/20 dark:border-white/20 flex items-center justify-between font-mono text-[11px] ${
+                    isLent
+                      ? "bg-[#2DD4BF]/15 dark:bg-[#0B3D30]/60"
+                      : "bg-[#F43F5E]/10 dark:bg-[#3D0C1D]/60"
+                  }`}
+                >
                   <div className="flex items-center gap-2">
-                    <span className={`px-2 py-0.5 border border-black font-bold text-[10px] uppercase ${
-                      isLent ? "bg-[#2DD4BF] text-black" : "bg-[#F43F5E] text-white"
-                    }`}>
+                    <span
+                      className={`px-1.5 py-0.5 rounded-[3px] border border-black font-black text-[9px] uppercase tracking-wider ${
+                        isLent ? "bg-[#2DD4BF] text-black" : "bg-[#F43F5E] text-white"
+                      }`}
+                    >
                       {isLent ? "I LENT" : "I BORROWED"}
                     </span>
-                    <span className="text-gray-600 dark:text-gray-300 font-bold flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
+                    <span className="text-gray-600 dark:text-gray-300 font-bold text-[10px] sm:text-xs flex items-center gap-1">
+                      <Calendar className="w-3 h-3 text-gray-400" />
                       {formatDate(record.record_date)}
                     </span>
                   </div>
 
-                  <span className={`px-2 py-0.5 border border-black text-[10px] font-bold uppercase ${
-                    isSettled ? "bg-[#10B981] text-black" : "bg-[#FFE600] text-black"
-                  }`}>
+                  <span
+                    className={`px-1.5 py-0.5 rounded-[3px] border border-black text-[9px] font-black uppercase ${
+                      isSettled ? "bg-[#10B981] text-black" : "bg-[#FFE600] text-black"
+                    }`}
+                  >
                     {isSettled ? "SETTLED" : "ACTIVE"}
                   </span>
                 </div>
 
-                <div className="p-4 sm:p-5 space-y-3">
+                {/* Card Body */}
+                <div className="p-2.5 sm:p-3 space-y-2">
                   {/* Person and Amount Row */}
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 className="font-mono text-base sm:text-lg font-black text-black dark:text-white">
-                        {isLent ? "Lent to: " : "Borrowed from: "}
-                        <span className="bg-[#FFE600] text-black px-1.5 py-0.5 border border-black inline-block ml-1">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="font-mono text-sm sm:text-base font-black text-black dark:text-white break-words">
+                        <span className="text-gray-500 font-semibold text-xs">
+                          {isLent ? "To: " : "From: "}
+                        </span>
+                        <span className="bg-[#FFE600] text-black px-1.5 py-0.5 border border-black inline-block rounded-[3px] ml-0.5">
                           {record.person_name}
                         </span>
                       </h4>
                       {record.note && (
-                        <p className="font-mono text-xs text-gray-600 dark:text-gray-400 mt-1 flex items-center gap-1.5 italic">
-                          <FileText className="w-3.5 h-3.5 shrink-0 text-amber-500" />
-                          {record.note}
+                        <p className="font-mono text-[11px] text-gray-600 dark:text-gray-400 mt-1 flex items-start gap-1 italic break-words">
+                          <FileText className="w-3 h-3 shrink-0 text-amber-500 mt-0.5" />
+                          <span>{record.note}</span>
                         </p>
                       )}
                     </div>
 
                     <div className="text-right shrink-0 font-mono">
-                      <span className="text-[10px] uppercase text-gray-500 block font-bold">Total Record</span>
-                      <p className={`text-xl font-black ${isLent ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"}`}>
+                      <span className="text-[9px] uppercase text-gray-400 block font-bold">Total</span>
+                      <p className={`text-base sm:text-lg font-black ${isLent ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E] dark:text-[#FB7185]"}`}>
                         {formatMoney(originalAmount)}
                       </p>
                     </div>
                   </div>
 
-                  {/* Progress Bar */}
-                  <div className="p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] space-y-1.5">
-                    <div className="flex justify-between text-xs font-bold">
-                      <span className="text-gray-600 dark:text-gray-400">Repayment: {progress}%</span>
+                  {/* Clean Repayment Progress Bar */}
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center text-[10px] sm:text-[11px] font-bold">
+                      <span className="text-gray-600 dark:text-gray-400">
+                        {isSettled ? "Settled (100%)" : `${progress}% paid (${formatMoney(totalPaid)})`}
+                      </span>
                       <span className={remaining === 0 ? "text-[#059669] dark:text-[#2DD4BF]" : "text-black dark:text-white"}>
-                        {remaining === 0 ? "Fully Repaid" : `${formatMoney(remaining)} Remaining`}
+                        {remaining === 0 ? "Fully Cleared" : `${formatMoney(remaining)} Remaining`}
                       </span>
                     </div>
 
-                    <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black h-3 overflow-hidden">
+                    <div className="w-full bg-gray-200 dark:bg-gray-800 border border-black/50 dark:border-white/30 h-2 rounded-[2px] overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
-                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         className={`h-full ${isLent ? "bg-[#2DD4BF]" : "bg-[#F43F5E]"}`}
                       />
                     </div>
-
-                    <div className="flex justify-between text-[10px] text-gray-500 pt-0.5">
-                      <span>Total Paid: {formatMoney(totalPaid)}</span>
-                      <span>{record.payments.length} installments logged</span>
-                    </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="pt-2 flex items-center justify-between gap-2 flex-wrap border-t border-black/10 dark:border-white/10">
-                    <div className="flex items-center gap-2">
+                  {/* Compact Action Buttons */}
+                  <div className="pt-1.5 flex items-center justify-between gap-1.5 flex-wrap border-t border-black/10 dark:border-white/10 text-xs">
+                    <div className="flex items-center gap-1.5">
                       {!isSettled && (
                         <button
                           onClick={() => {
                             setActivePaymentRecordId(isAddingPayment ? null : record.id);
                             setPaymentAmount(remaining.toString());
                           }}
-                          className="px-3 py-1 border-[2px] border-black bg-[#FFE600] text-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-yellow-300 cursor-pointer flex items-center gap-1 transition-all"
+                          className="h-6.5 px-2 text-[10px] sm:text-[11px] font-black uppercase border border-black bg-[#FFE600] text-black shadow-[1px_1px_0_0_#000] hover:bg-yellow-300 active:translate-y-0.5 rounded-[3px] flex items-center gap-1 cursor-pointer transition-all"
                         >
-                          <IndianRupee className="w-3.5 h-3.5" />
-                          <span>Record Repayment</span>
+                          <IndianRupee className="w-3 h-3 stroke-[2.5]" />
+                          <span>+ Pay</span>
                         </button>
                       )}
 
                       {record.payments.length > 0 && (
                         <button
                           onClick={() => setExpandedId(isExpanded ? null : record.id)}
-                          className="px-2.5 py-1 border-[2px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] hover:bg-gray-100 cursor-pointer flex items-center gap-1"
+                          className="h-6.5 px-2 text-[10px] sm:text-[11px] font-bold uppercase border border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[1px_1px_0_0_#000] hover:bg-gray-100 rounded-[3px] flex items-center gap-1 cursor-pointer"
                         >
-                          <History className="w-3.5 h-3.5 text-gray-500" />
+                          <History className="w-3 h-3 text-gray-400" />
                           <span>Log ({record.payments.length})</span>
-                          {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                          {isExpanded ? <ChevronUp className="w-2.5 h-2.5" /> : <ChevronDown className="w-2.5 h-2.5" />}
                         </button>
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handleToggleStatus(record.id, record.status)}
-                        className={`px-3 py-1 border-[2px] border-black font-mono text-xs font-bold uppercase shadow-[2px_2px_0_0_#000] cursor-pointer flex items-center gap-1 transition-all ${
+                        className={`h-6.5 px-2 text-[10px] sm:text-[11px] font-bold uppercase border border-black rounded-[3px] shadow-[1px_1px_0_0_#000] cursor-pointer flex items-center gap-1 transition-all ${
                           isSettled
                             ? "bg-[#2DD4BF] text-black hover:bg-teal-300"
                             : "bg-white dark:bg-[var(--muted)] text-black dark:text-white hover:bg-gray-100"
@@ -396,12 +402,12 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                       >
                         {isSettled ? (
                           <>
-                            <CheckCircle2 className="w-3.5 h-3.5 text-black" />
+                            <CheckCircle2 className="w-3 h-3 text-black" />
                             <span>Settled</span>
                           </>
                         ) : (
                           <>
-                            <Circle className="w-3.5 h-3.5" />
+                            <Circle className="w-3 h-3" />
                             <span>Mark Settled</span>
                           </>
                         )}
@@ -409,10 +415,10 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
 
                       <button
                         onClick={() => handleDelete(record.id)}
-                        className="p-1.5 border border-black bg-[#F43F5E] text-white shadow-[1px_1px_0_0_#000] hover:opacity-90 cursor-pointer transition-opacity"
+                        className="h-6.5 w-6.5 border border-black bg-[#F43F5E] text-white rounded-[3px] shadow-[1px_1px_0_0_#000] hover:opacity-90 flex items-center justify-center cursor-pointer transition-opacity"
                         title="Delete record"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Trash2 className="w-3 h-3" />
                       </button>
                     </div>
                   </div>
@@ -424,31 +430,31 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.18 }}
-                        className="mt-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000]"
+                        transition={{ duration: 0.16 }}
+                        className="mt-2 p-2.5 border-[1.5px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] rounded-[4px]"
                       >
-                        <div className="flex justify-between items-center mb-2.5 pb-1 border-b border-black/20 dark:border-white/20">
-                          <span className="text-xs font-black uppercase text-black dark:text-white flex items-center gap-1.5">
+                        <div className="flex justify-between items-center mb-2 pb-1 border-b border-black/20 dark:border-white/20">
+                          <span className="text-[11px] font-black uppercase text-black dark:text-white flex items-center gap-1">
                             <span>⚡</span>
-                            <span>Record Installment Repayment</span>
+                            <span>Record Repayment</span>
                           </span>
                           <button
                             onClick={() => setActivePaymentRecordId(null)}
-                            className="w-4 h-4 border border-black bg-white text-black text-[10px] font-bold flex items-center justify-center hover:bg-gray-200"
+                            className="w-4 h-4 border border-black bg-white dark:bg-[var(--card)] text-black dark:text-white text-[10px] font-bold flex items-center justify-center hover:bg-gray-200 rounded-[2px]"
                           >
                             ✕
                           </button>
                         </div>
 
                         {paymentError && (
-                          <div className="p-2 border border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] text-xs font-bold mb-2">
+                          <div className="p-1.5 border border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] text-[10px] font-bold mb-2 rounded-[3px]">
                             ⚠️ {paymentError}
                           </div>
                         )}
 
-                        <form onSubmit={(e) => handleRecordPayment(e, record.id)} className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <form onSubmit={(e) => handleRecordPayment(e, record.id)} className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                           <div>
-                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-1 uppercase">
+                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-0.5 uppercase">
                               Amount (₹)
                             </label>
                             <input
@@ -459,12 +465,12 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               value={paymentAmount}
                               onChange={(e) => setPaymentAmount(e.target.value)}
                               placeholder={`Max ₹${remaining}`}
-                              className="w-full h-8 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold focus:bg-[#FEF08A] focus:text-black outline-none"
+                              className="w-full h-7 px-2 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold text-black dark:text-white focus:bg-[#FEF08A] focus:text-black outline-none rounded-[3px]"
                             />
                           </div>
 
                           <div>
-                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-1 uppercase">
+                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-0.5 uppercase">
                               Payment Date
                             </label>
                             <input
@@ -472,37 +478,37 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               required
                               value={paymentDate}
                               onChange={(e) => setPaymentDate(e.target.value)}
-                              className="w-full h-8 px-2 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold outline-none"
+                              className="w-full h-7 px-1.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold text-black dark:text-white outline-none rounded-[3px]"
                             />
                           </div>
 
                           <div>
-                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-1 uppercase">
+                            <label className="text-[10px] font-bold text-gray-600 dark:text-gray-300 block mb-0.5 uppercase">
                               Note (Optional)
                             </label>
                             <input
                               type="text"
                               value={paymentNote}
                               onChange={(e) => setPaymentNote(e.target.value)}
-                              placeholder="Note (optional)"
-                              className="w-full h-8 px-2.5 rounded-[6px] border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold outline-none"
+                              placeholder="e.g. Part payment"
+                              className="w-full h-7 px-2 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-xs font-bold text-black dark:text-white outline-none rounded-[3px]"
                             />
                           </div>
 
-                          <div className="sm:col-span-3 flex justify-end gap-2 pt-1">
+                          <div className="sm:col-span-3 flex justify-end gap-1.5 pt-1">
                             <button
                               type="button"
                               onClick={() => setActivePaymentRecordId(null)}
-                              className="px-3 py-1 rounded-[6px] border border-black bg-white text-black text-xs font-bold cursor-pointer hover:bg-gray-100"
+                              className="px-2.5 py-0.5 border border-black bg-white dark:bg-[var(--card)] text-black dark:text-white text-[11px] font-bold cursor-pointer hover:bg-gray-100 rounded-[3px]"
                             >
-                              CANCEL
+                              Cancel
                             </button>
                             <button
                               type="submit"
                               disabled={isRecordingPayment}
-                              className="px-4 py-1 rounded-[6px] border-[2px] border-black bg-[#2DD4BF] text-black text-xs font-black shadow-[2px_2px_0_0_#000] hover:bg-teal-300 cursor-pointer disabled:opacity-60"
+                              className="px-3 py-0.5 border-[1.5px] border-black bg-[#2DD4BF] text-black text-[11px] font-black shadow-[1.5px_1.5px_0_0_#000] hover:bg-teal-300 cursor-pointer disabled:opacity-60 rounded-[3px]"
                             >
-                              {isRecordingPayment ? "SAVING..." : "SAVE PAYMENT"}
+                              {isRecordingPayment ? "Saving..." : "Save Payment"}
                             </button>
                           </div>
                         </form>
@@ -517,29 +523,29 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.18 }}
-                        className="mt-3 p-3 border-[2px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] space-y-2"
+                        transition={{ duration: 0.16 }}
+                        className="mt-2 p-2 border-[1.5px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] space-y-1.5 rounded-[4px]"
                       >
-                        <p className="text-[10px] font-black text-gray-500 uppercase tracking-wider">
+                        <p className="text-[9px] font-black text-gray-500 uppercase tracking-wider">
                           PAYMENT AUDIT TRAIL ({record.payments.length})
                         </p>
                         <div className="space-y-1">
                           {record.payments.map((p) => (
                             <div
                               key={p.id}
-                              className="flex items-center justify-between p-2 border border-black/20 dark:border-white/20 bg-white dark:bg-[var(--card)] text-xs"
+                              className="flex items-center justify-between p-1.5 border border-black/15 dark:border-white/15 bg-white dark:bg-[var(--card)] text-xs rounded-[3px]"
                             >
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1.5 flex-wrap">
                                 <span className="font-bold text-[#059669] dark:text-[#2DD4BF]">{formatMoney(p.amount)}</span>
-                                <span className="text-gray-500">· {formatDate(p.payment_date)}</span>
-                                {p.note && <span className="text-gray-700 dark:text-gray-300 italic">({p.note})</span>}
+                                <span className="text-gray-400 text-[10px]">· {formatDate(p.payment_date)}</span>
+                                {p.note && <span className="text-gray-600 dark:text-gray-400 text-[10px] italic">({p.note})</span>}
                               </div>
                               <button
                                 onClick={() => handleDeletePayment(p.id, record.id)}
-                                className="text-gray-400 hover:text-[#F43F5E] p-1 transition-colors"
+                                className="text-gray-400 hover:text-[#F43F5E] p-0.5 transition-colors cursor-pointer"
                                 title="Delete payment log"
                               >
-                                <Trash2 className="w-3.5 h-3.5" />
+                                <Trash2 className="w-3 h-3" />
                               </button>
                             </div>
                           ))}

@@ -4,8 +4,7 @@ import { listSelfTracks, getSelfTrackStats } from "@/lib/self-track/queries";
 import { SelfTrackForm } from "@/components/self-track/self-track-form";
 import { SelfTrackList } from "@/components/self-track/self-track-list";
 import { formatMoney } from "@/lib/format";
-import { RetroWindow } from "@/components/ui/retro-window";
-import { Wallet, ArrowUpRight, ArrowDownLeft, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, ArrowDownLeft } from "lucide-react";
 
 export default async function SelfTrackPage() {
   const { user } = await getCurrentUserProfile();
@@ -19,143 +18,126 @@ export default async function SelfTrackPage() {
   const netOutstanding = stats.activeLent - stats.activeBorrowed;
 
   return (
-    <div className="flex flex-col gap-4 sm:gap-6 w-full max-w-[1440px] mx-auto px-3 sm:px-6 md:px-8 py-3 sm:py-6 pb-16">
-      {/* Retro OS Header Banner */}
-      <RetroWindow
-        title="PRIVATE LEDGER"
-        subtitle="cash records"
-        colorBar="blue"
-        glow={true}
-        className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[5px_5px_0_0_#000000] dark:shadow-[5px_5px_0_0_#2563EB]"
-        contentClassName="p-3 sm:p-6"
-        headerRight={
-          <div className="flex items-center gap-1.5 px-2 py-0.5 border border-black bg-[#FFE600] text-black font-mono text-[10px] font-black uppercase">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>100% PRIVATE DATA</span>
-          </div>
-        }
-      >
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <h1 className="font-mono text-xl sm:text-3xl font-black tracking-tight text-black dark:text-white uppercase">
-              Private Cash Ledger
+    <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 py-3 sm:py-5 pb-24 sm:pb-16 font-mono">
+      {/* 1. Compact Page Header */}
+      <div className="flex items-center justify-between gap-2 border-b-[2px] border-black/10 dark:border-white/20 pb-2">
+        <div>
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl sm:text-2xl font-black text-black dark:text-white tracking-tight uppercase">
+              Personal Ledger
             </h1>
-            <p className="font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
-              Log split bills, cash loans, or IOUs. Private to you.
-            </p>
-          </div>
-          <div className="p-3 border-[2px] border-black dark:border-white/30 bg-[#FAF8F5] dark:bg-[var(--muted)] font-mono text-xs text-black dark:text-white shadow-[2px_2px_0_0_#000] shrink-0 rounded-[12px]">
-            <span className="text-gray-500 block text-[10px] font-bold uppercase">STATUS</span>
-            <span className="text-[#059669] dark:text-[#2DD4BF] font-black flex items-center gap-1 mt-0.5">
-              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-              SECURE
+            <span className="px-1.5 py-0.5 rounded-[4px] border border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
+              Private
             </span>
           </div>
-        </div>
-      </RetroWindow>
-
-      {/* 4 Neo-Brutalist Summary Stat Windows */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5">
-        {/* Stat 1: Money Lent */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#10B981] flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#059669] dark:text-[#2DD4BF]">
-              Money Lent
-            </span>
-            <div className="w-6 h-6 border border-black bg-[#2DD4BF] text-black flex items-center justify-center font-bold">
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-          <p className="font-mono text-2xl font-black text-black dark:text-white mt-2">
-            {formatMoney(stats.totalLent)}
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+            Private records for money lent and borrowed.
           </p>
-          <div className="mt-2 pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-[11px] text-gray-600 dark:text-gray-400">
-            <span>To collect:</span>
-            <span className="font-bold text-[#059669] dark:text-[#2DD4BF]">{formatMoney(stats.activeLent)}</span>
-          </div>
-        </div>
-
-        {/* Stat 2: Money Borrowed */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#F43F5E] flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#F43F5E]">
-              Money Borrowed
-            </span>
-            <div className="w-6 h-6 border border-black bg-[#F43F5E] text-white flex items-center justify-center font-bold">
-              <ArrowDownLeft className="w-3.5 h-3.5" />
-            </div>
-          </div>
-          <p className="font-mono text-2xl font-black text-black dark:text-white mt-2">
-            {formatMoney(stats.totalBorrowed)}
-          </p>
-          <div className="mt-2 pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-mono text-[11px] text-gray-600 dark:text-gray-400">
-            <span>To repay:</span>
-            <span className="font-bold text-[#F43F5E]">{formatMoney(stats.activeBorrowed)}</span>
-          </div>
-        </div>
-
-        {/* Stat 3: Net Balance */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#2563EB] flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#2563EB] dark:text-[#60A5FA]">
-              Net Standing
-            </span>
-            <div className="w-6 h-6 border border-black bg-[#2563EB] text-white flex items-center justify-center font-bold">
-              <Wallet className="w-3.5 h-3.5" />
-            </div>
-          </div>
-          <p className={`font-mono text-2xl font-black mt-2 ${
-            netOutstanding >= 0 ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E]"
-          }`}>
-            {netOutstanding >= 0 ? `+${formatMoney(netOutstanding)}` : formatMoney(netOutstanding)}
-          </p>
-          <div className="mt-2 pt-2 border-t border-black/10 dark:border-white/10 font-mono text-[10px] text-gray-500 truncate">
-            {netOutstanding >= 0 ? "Surplus: You are owed more" : "Active personal debt to clear"}
-          </div>
-        </div>
-
-        {/* Stat 4: Settled Count */}
-        <div className="p-4 border-[2.5px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[3px_3px_0_0_#000] dark:shadow-[3px_3px_0_0_#FFE600] flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-black dark:text-gray-300">
-              Settled Logs
-            </span>
-            <div className="w-6 h-6 border border-black bg-[#FFE600] text-black flex items-center justify-center font-bold">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-            </div>
-          </div>
-          <p className="font-mono text-2xl font-black text-black dark:text-white mt-2">
-            {stats.settledCount}
-          </p>
-          <div className="mt-2 pt-2 border-t border-black/10 dark:border-white/10 font-mono text-[11px] text-gray-600 dark:text-gray-400">
-            {selfTracks.length > 0 
-              ? `${Math.round((stats.settledCount / selfTracks.length) * 100)}% resolution rate`
-              : "0 total entries"}
-          </div>
         </div>
       </div>
 
-      {/* Main Grid: Form on Left + Records List on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
-        {/* Left Column: Form (only sticky on large desktop screens to prevent mobile overlap) */}
-        <div className="lg:col-span-5 lg:sticky lg:top-20 relative z-10">
-          <SelfTrackForm />
-        </div>
-
-        {/* Right Column: Records */}
-        <div className="lg:col-span-7 space-y-3 sm:space-y-4 relative z-0">
-          <div className="flex items-center justify-between border-b-[2px] border-black dark:border-white/30 pb-2">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">[ENTRIES]</span>
-              <h2 className="font-mono text-base font-bold text-black dark:text-white uppercase tracking-tight">
-                Your Private Records ({selfTracks.length})
-              </h2>
-            </div>
-            <span className="font-mono text-[10px] font-bold text-gray-500 uppercase">Live synced</span>
+      {/* 2. Compact Summary Section: 4 Metric Tiles */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
+        {/* Tile 1: Money Lent */}
+        <div className="p-2.5 sm:p-3 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] shadow-[2px_2px_0_0_#000] rounded-[6px] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#059669] dark:text-[#2DD4BF]">
+              Money Lent
+            </span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#059669] dark:text-[#2DD4BF]" />
           </div>
-
-          <SelfTrackList records={selfTracks} />
+          <p className="text-base sm:text-lg font-black text-black dark:text-white mt-1 truncate">
+            {formatMoney(stats.totalLent)}
+          </p>
         </div>
+
+        {/* Tile 2: Money Borrowed */}
+        <div className="p-2.5 sm:p-3 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] shadow-[2px_2px_0_0_#000] rounded-[6px] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F43F5E] dark:text-[#FB7185]">
+              Money Borrowed
+            </span>
+            <ArrowDownLeft className="w-3.5 h-3.5 text-[#F43F5E] dark:text-[#FB7185]" />
+          </div>
+          <p className="text-base sm:text-lg font-black text-black dark:text-white mt-1 truncate">
+            {formatMoney(stats.totalBorrowed)}
+          </p>
+        </div>
+
+        {/* Tile 3: To Collect */}
+        <div className="p-2.5 sm:p-3 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] shadow-[2px_2px_0_0_#000] rounded-[6px] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#059669] dark:text-[#2DD4BF]">
+              To Collect
+            </span>
+            <span className="w-2 h-2 rounded-full bg-[#2DD4BF]" />
+          </div>
+          <p className="text-base sm:text-lg font-black text-[#059669] dark:text-[#2DD4BF] mt-1 truncate">
+            {formatMoney(stats.activeLent)}
+          </p>
+        </div>
+
+        {/* Tile 4: To Repay */}
+        <div className="p-2.5 sm:p-3 border-[2px] border-black dark:border-white/40 bg-white dark:bg-[var(--card)] shadow-[2px_2px_0_0_#000] rounded-[6px] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F43F5E] dark:text-[#FB7185]">
+              To Repay
+            </span>
+            <span className="w-2 h-2 rounded-full bg-[#F43F5E]" />
+          </div>
+          <p className="text-base sm:text-lg font-black text-[#F43F5E] dark:text-[#FB7185] mt-1 truncate">
+            {formatMoney(stats.activeBorrowed)}
+          </p>
+        </div>
+      </div>
+
+      {/* Net Standing Compact Summary Bar */}
+      <div className="flex items-center justify-between px-3 py-2 border-[2px] border-black dark:border-white/40 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2px_2px_0_0_#000] rounded-[6px] text-xs">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <span className="font-bold text-gray-700 dark:text-gray-300 uppercase text-[10px] sm:text-xs tracking-wider">
+            Net Standing:
+          </span>
+          <span
+            className={`font-black text-sm sm:text-base ${
+              netOutstanding > 0
+                ? "text-[#059669] dark:text-[#2DD4BF]"
+                : netOutstanding < 0
+                ? "text-[#F43F5E] dark:text-[#FB7185]"
+                : "text-black dark:text-white"
+            }`}
+          >
+            {netOutstanding > 0 ? `+${formatMoney(netOutstanding)}` : formatMoney(netOutstanding)}
+          </span>
+          <span className="hidden xs:inline text-gray-400 dark:text-gray-500">//</span>
+          <span className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 truncate">
+            {netOutstanding > 0
+              ? "You are owed more"
+              : netOutstanding < 0
+              ? "You owe more"
+              : "All even"}
+          </span>
+        </div>
+        {stats.settledCount > 0 && (
+          <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 shrink-0 ml-2">
+            {stats.settledCount} settled
+          </span>
+        )}
+      </div>
+
+      {/* 3. New Record Form */}
+      <div>
+        <SelfTrackForm />
+      </div>
+
+      {/* 4. Private Records Section */}
+      <div className="space-y-2 pt-1">
+        <div className="flex items-center justify-between border-b-[2px] border-black/10 dark:border-white/20 pb-1.5">
+          <h2 className="font-mono text-sm sm:text-base font-black text-black dark:text-white uppercase tracking-tight">
+            Private Records ({selfTracks.length})
+          </h2>
+        </div>
+
+        <SelfTrackList records={selfTracks} />
       </div>
     </div>
   );
