@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Plus, ArrowUpRight, ArrowDownLeft, FileText, Calendar, User, IndianRupee } from "lucide-react";
+import { Plus } from "lucide-react";
 import { createSelfTrack } from "@/lib/self-track/actions";
 import { RetroWindow } from "@/components/ui/retro-window";
 
@@ -77,28 +77,28 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
   return (
     <RetroWindow
       title="NEW RECORD"
-      subtitle="private entry"
+      subtitle="add entry"
       colorBar="yellow"
       controlsStyle="none"
       className="bg-white dark:bg-[var(--card)] border-[2px] sm:border-[2.5px] border-black dark:border-white shadow-[3px_3px_0_0_#000] rounded-[8px]"
-      contentClassName="p-3 sm:p-4"
+      contentClassName="p-4 sm:p-5"
       headerRight={
         onClose ? (
           <button
             onClick={onClose}
-            className="w-5 h-5 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-xs font-bold flex items-center justify-center hover:opacity-90 rounded-[3px]"
+            className="w-6 h-6 border border-black dark:border-white bg-[#F43F5E] text-white font-mono text-xs font-bold flex items-center justify-center hover:opacity-90 rounded-[4px]"
           >
             ✕
           </button>
         ) : undefined
       }
     >
-      <form onSubmit={handleSubmit} className="space-y-2.5 font-mono">
+      <form onSubmit={handleSubmit} className="space-y-4 font-mono">
         {error && (
           <motion.div
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-2 border-[1.5px] border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] text-xs font-bold shadow-[1px_1px_0_0_#000] rounded-[4px]"
+            className="p-3 border-[2px] border-[#F43F5E] bg-[#FF2E93]/15 text-[#9F1239] dark:text-[#FDA4AF] text-sm font-bold shadow-[2px_2px_0_0_#000] rounded-[6px]"
           >
             ⚠️ {error}
           </motion.div>
@@ -108,53 +108,53 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="p-2 border-[1.5px] border-black bg-[#2DD4BF] text-black text-xs font-black shadow-[1px_1px_0_0_#000] flex items-center gap-1.5 rounded-[4px]"
+            className="p-3 border-[2px] border-black bg-[#2DD4BF] text-black text-sm font-black shadow-[2px_2px_0_0_#000] flex items-center gap-2 rounded-[6px]"
           >
-            <span>✓</span> RECORD SAVED TO PRIVATE LEDGER!
+            <span>✓</span> Record saved successfully!
           </motion.div>
         )}
 
-        {/* Compact Segmented Direction Selector */}
+        {/* Direction Selector: Side-by-side Segmented Buttons */}
         <div>
-          <div className="grid grid-cols-2 gap-2 text-xs">
+          <span className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-2">
+            Transaction Direction
+          </span>
+          <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
               onClick={() => setType("lent")}
-              className={`flex items-center justify-center gap-1.5 h-8 sm:h-8.5 px-2 border-[1.5px] border-black font-black uppercase transition-all rounded-[4px] cursor-pointer ${
+              className={`flex items-center justify-center gap-2 h-12 min-h-[48px] px-3 border-[2px] border-black text-[15px] sm:text-base font-black uppercase transition-all rounded-[6px] cursor-pointer ${
                 type === "lent"
-                  ? "bg-[#2DD4BF] text-black shadow-[2px_2px_0_0_#000000] -translate-y-0.5"
+                  ? "bg-[#2DD4BF] text-black shadow-[2.5px_2.5px_0_0_#000000] -translate-y-0.5"
                   : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
-              <ArrowUpRight className="w-3.5 h-3.5" />
               <span>Money I Lent</span>
             </button>
 
             <button
               type="button"
               onClick={() => setType("borrowed")}
-              className={`flex items-center justify-center gap-1.5 h-8 sm:h-8.5 px-2 border-[1.5px] border-black font-black uppercase transition-all rounded-[4px] cursor-pointer ${
+              className={`flex items-center justify-center gap-2 h-12 min-h-[48px] px-3 border-[2px] border-black text-[15px] sm:text-base font-black uppercase transition-all rounded-[6px] cursor-pointer ${
                 type === "borrowed"
-                  ? "bg-[#F43F5E] text-white shadow-[2px_2px_0_0_#000000] -translate-y-0.5"
+                  ? "bg-[#F43F5E] text-white shadow-[2.5px_2.5px_0_0_#000000] -translate-y-0.5"
                   : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
-              <ArrowDownLeft className="w-3.5 h-3.5" />
               <span>Money I Borrowed</span>
             </button>
           </div>
         </div>
 
-        {/* Form Inputs Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
+        {/* Form Inputs Grid: 48px height, 16px text */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           {/* Person Name */}
           <div>
             <label
               htmlFor="person-name"
-              className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-0.5 flex items-center gap-1"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
             >
-              <User className="w-3 h-3 text-[#2563EB]" />
-              {type === "lent" ? "Lent To (Person)" : "Borrowed From (Person)"}
+              {type === "lent" ? "Lent to (Person)" : "Borrowed from (Person)"}
             </label>
             <input
               id="person-name"
@@ -162,8 +162,9 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
-              placeholder="e.g. Rahul, Alex"
-              className="w-full h-8 sm:h-8.5 px-2.5 border-[1.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-xs font-bold shadow-[1px_1px_0_0_#000] rounded-[4px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              placeholder="Enter person's name"
+              autoComplete="off"
+              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
 
@@ -171,9 +172,8 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <div>
             <label
               htmlFor="amount"
-              className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-0.5 flex items-center gap-1"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
             >
-              <IndianRupee className="w-3 h-3 text-[#059669]" />
               Amount (₹)
             </label>
             <input
@@ -185,7 +185,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0.00"
-              className="w-full h-8 sm:h-8.5 px-2.5 border-[1.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-xs font-black shadow-[1px_1px_0_0_#000] rounded-[4px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-base font-black shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
 
@@ -193,9 +193,8 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <div>
             <label
               htmlFor="record-date"
-              className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-0.5 flex items-center gap-1"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
             >
-              <Calendar className="w-3 h-3 text-[#2563EB]" />
               Date
             </label>
             <input
@@ -204,7 +203,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={recordDate}
               onChange={(e) => setRecordDate(e.target.value)}
-              className="w-full h-8 sm:h-8.5 px-2 border-[1.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white text-xs font-bold shadow-[1px_1px_0_0_#000] rounded-[4px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-12 min-h-[48px] px-3 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
 
@@ -212,9 +211,8 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <div>
             <label
               htmlFor="note"
-              className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-0.5 flex items-center gap-1"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
             >
-              <FileText className="w-3 h-3 text-amber-500" />
               Note / Context (Optional)
             </label>
             <input
@@ -222,20 +220,20 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="e.g. Dinner split, Uber"
-              className="w-full h-8 sm:h-8.5 px-2.5 border-[1.5px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-xs font-bold shadow-[1px_1px_0_0_#000] rounded-[4px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              placeholder="Optional note or context"
+              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
             />
           </div>
         </div>
 
-        {/* Save Button */}
-        <div className="pt-1">
+        {/* Save Record Action Button: 48px height, 16px font */}
+        <div className="pt-2">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-9 sm:h-9.5 bg-[#FFE600] text-black border-[2px] border-black font-mono text-xs sm:text-sm font-black uppercase shadow-[2.5px_2.5px_0_0_#000000] hover:bg-yellow-300 active:translate-y-0.5 active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-1.5 cursor-pointer rounded-[4px]"
+            className="w-full h-12 min-h-[48px] bg-[#FFE600] text-black border-[2px] border-black font-mono text-base font-black uppercase shadow-[3px_3px_0_0_#000000] hover:bg-yellow-300 active:translate-y-0.5 active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 cursor-pointer rounded-[6px]"
           >
-            <Plus className="w-4 h-4 stroke-[2.5]" />
+            <Plus className="w-5 h-5 stroke-[2.5]" />
             <span>{isSubmitting ? "SAVING..." : "SAVE RECORD"}</span>
           </button>
         </div>
