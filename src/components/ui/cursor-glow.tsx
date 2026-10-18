@@ -43,9 +43,9 @@ export function CursorGlow({ className = "" }: CursorGlowProps) {
       {/* Dark Mode Cursor Glow Halo */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed inset-0 z-10 hidden dark:block transition-opacity duration-300 ${className}`}
+        className={`cursor-glow-dark pointer-events-none fixed inset-0 z-10 hidden dark:block transition-opacity duration-300 ${className}`}
         style={{
-          background: `radial-gradient(650px circle at ${position.x}px ${position.y}px, rgba(59, 130, 246, 0.22), rgba(45, 212, 191, 0.14), transparent 70%)`,
+          background: `radial-gradient(650px circle at ${position.x}px ${position.y}px, rgba(59, 130, 246, 0.18), rgba(45, 212, 191, 0.11), transparent 70%)`,
         }}
       />
     </>

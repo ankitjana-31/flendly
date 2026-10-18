@@ -131,9 +131,9 @@ body {
 
 .dark .stitch-ambient-grid {
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 32px 32px, 64px 64px, 64px 64px;
 }
 
@@ -147,8 +147,8 @@ body {
 
 .dark .retro-grid-bg {
   background-color: #0B1018;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -1083,6 +1083,68 @@ html.tropical .auth-wave-top-stroke2 { stroke: rgba(45, 212, 191, 0.25) !importa
 html.tropical .auth-wave-bot-fill1 { fill: rgba(45, 212, 191, 0.1) !important; }
 html.tropical .auth-wave-bot-fill2 { fill: rgba(163, 230, 53, 0.08) !important; }
 html.tropical .auth-wave-bot-stroke2 { stroke: rgba(45, 212, 191, 0.25) !important; }
+
+/* ==========================================================================
+   DARK THEME REFINED BRIGHTNESS-REDUCTION & CALMING TREATMENT
+   Target: Roughly 10–15% subtle reduction in visual intensity for saturated
+   surfaces, neon accents, and decorative backgrounds while preserving crisp text,
+   high-contrast numbers, buttons, borders, and tactile retro identity.
+   ========================================================================== */
+
+/* 1. Large Saturated Surfaces (Cyan Receivables & Pink Payables Cards) */
+html.dark .theme-colored-card,
+html.dark .theme-receivable-card,
+html.dark .theme-payable-card {
+  filter: brightness(0.88) saturate(0.88);
+  transition: filter 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+html.dark .theme-colored-card:hover,
+html.dark .theme-receivable-card:hover,
+html.dark .theme-payable-card:hover {
+  filter: brightness(0.92) saturate(0.92);
+}
+
+/* 2. Saturated Neon Yellow Surfaces (Buttons, Navigation Badges, Tabs) */
+html.dark .bg-\[\#FFE600\],
+html.dark .app-mobile-nav-active,
+html.dark .requests-tab-active,
+html.dark .landing-preview-tab-active {
+  filter: brightness(0.90) saturate(0.90);
+}
+
+/* Ensure text and icons inside yellow surfaces remain crisp solid black */
+html.dark .bg-\[\#FFE600\] *,
+html.dark .app-mobile-nav-active *,
+html.dark .requests-tab-active * {
+  color: #000000 !important;
+}
+
+/* 3. Window Titlebars in Dark Mode (Blue, Pink, Green, Yellow header bars) */
+html.dark [data-window-titlebar] {
+  filter: brightness(0.90) saturate(0.90);
+}
+
+/* 4. Retro Grid Ambient Calming (Keep grid clearly visible but less prominent) */
+html.dark .app-shell-grid {
+  opacity: 0.035 !important;
+}
+
+html.dark [class*="opacity-\[0\.08\]"][class*="dark:opacity-\[0\.16\]"] {
+  opacity: 0.05 !important;
+}
+
+/* 5. Ambient Background Waves (Subtle calming in Dark mode) */
+html.dark .auth-wave-motif {
+  filter: brightness(0.88) saturate(0.88);
+  opacity: 0.80;
+}
+
+/* 6. Cursor Glow Halo in Dark Mode */
+html.dark .cursor-glow-dark {
+  opacity: 0.80 !important;
+}
+
 
 
 
