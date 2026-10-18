@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { LinkButton } from "@/components/ui/button";
@@ -115,68 +116,96 @@ export function DashboardContent({
         transition={{ delay: 0.08 }}
       >
         <div className="w-full min-w-0">
-          <RetroWindow
-            title="RECEIVABLES"
-            subtitle="owed to you"
-            colorBar="green"
-            glow={aggregates.totalLent > 0}
-            className="theme-colored-card theme-receivable-card rounded-[12px] bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#134E4A]"
-            contentClassName="theme-receivable-content p-3.5 sm:p-5 text-black"
-            headerRight={
-              <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#2DD4BF] text-black font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
-                +INCOMING
-              </span>
-            }
+          <Link
+            href="/lent"
+            prefetch={true}
+            onKeyDown={(e) => {
+              if (e.key === " " || e.key === "Spacebar") {
+                e.preventDefault();
+                e.currentTarget.click();
+              }
+            }}
+            className="group/stat-card block w-full min-w-0 rounded-[12px] cursor-pointer select-none transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+            aria-label={`Receivables: You are owed ${formatMoney(aggregates.totalLent)} across ${aggregates.activeLentCount} active loan${aggregates.activeLentCount === 1 ? "" : "s"}. Click to view lent loans.`}
           >
-            <div className="min-w-0">
-              <p className="font-mono text-xs sm:text-sm text-black font-black uppercase tracking-wider">
-                You&apos;re owed
-              </p>
-              <motion.p
-                className="mt-0.5 sm:mt-1 font-display text-3xl xs:text-4xl sm:text-5xl font-bold text-black tracking-tight truncate"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
-              >
-                {formatMoney(aggregates.totalLent)}
-              </motion.p>
-              <p className="mt-0.5 sm:mt-1 font-sans text-xs text-black font-semibold truncate">
-                <span className="hidden sm:inline">across </span>{aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
-              </p>
-            </div>
-          </RetroWindow>
+            <RetroWindow
+              title="RECEIVABLES"
+              subtitle="owed to you"
+              colorBar="green"
+              controlsStyle="none"
+              glow={aggregates.totalLent > 0}
+              className="theme-colored-card theme-receivable-card rounded-[12px] bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#134E4A] group-hover/stat-card:shadow-[5px_5px_0_0_#000000] sm:group-hover/stat-card:shadow-[6px_6px_0_0_#000000] dark:group-hover/stat-card:shadow-[5px_5px_0_0_#134E4A] sm:dark:group-hover/stat-card:shadow-[6px_6px_0_0_#134E4A] group-active/stat-card:shadow-[2px_2px_0_0_#000000] dark:group-active/stat-card:shadow-[2px_2px_0_0_#134E4A] cursor-pointer transition-all duration-150"
+              contentClassName="theme-receivable-content p-3.5 sm:p-5 text-black"
+              headerRight={
+                <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#2DD4BF] text-black font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+                  +INCOMING
+                </span>
+              }
+            >
+              <div className="min-w-0">
+                <p className="font-mono text-xs sm:text-sm text-black font-black uppercase tracking-wider">
+                  You&apos;re owed
+                </p>
+                <motion.p
+                  className="mt-0.5 sm:mt-1 font-display text-3xl xs:text-4xl sm:text-5xl font-bold text-black tracking-tight truncate"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
+                >
+                  {formatMoney(aggregates.totalLent)}
+                </motion.p>
+                <p className="mt-0.5 sm:mt-1 font-sans text-xs text-black font-semibold truncate">
+                  <span className="hidden sm:inline">across </span>{aggregates.activeLentCount} active loan{aggregates.activeLentCount === 1 ? "" : "s"}
+                </p>
+              </div>
+            </RetroWindow>
+          </Link>
         </div>
 
         <div className="w-full min-w-0">
-          <RetroWindow
-            title="PAYABLES"
-            subtitle="you owe"
-            colorBar="pink"
-            className="theme-colored-card theme-payable-card rounded-[12px] bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#881337]"
-            contentClassName="p-3.5 sm:p-5 text-white"
-            headerRight={
-              <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#F43F5E] text-white font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
-                -OUTGOING
-              </span>
-            }
+          <Link
+            href="/borrowed"
+            prefetch={true}
+            onKeyDown={(e) => {
+              if (e.key === " " || e.key === "Spacebar") {
+                e.preventDefault();
+                e.currentTarget.click();
+              }
+            }}
+            className="group/stat-card block w-full min-w-0 rounded-[12px] cursor-pointer select-none transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+            aria-label={`Payables: You owe ${formatMoney(aggregates.totalBorrowed)} across ${aggregates.activeBorrowedCount} active loan${aggregates.activeBorrowedCount === 1 ? "" : "s"}. Click to view borrowed loans.`}
           >
-            <div className="min-w-0">
-              <p className="font-mono text-xs sm:text-sm text-white font-black uppercase tracking-wider">
-                You owe
-              </p>
-              <motion.p
-                className="mt-0.5 sm:mt-1 font-display text-3xl xs:text-4xl sm:text-5xl font-bold text-white tracking-tight truncate"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.25, type: "spring", stiffness: 120 }}
-              >
-                {formatMoney(aggregates.totalBorrowed)}
-              </motion.p>
-              <p className="mt-0.5 sm:mt-1 font-sans text-xs text-white/90 font-semibold truncate">
-                <span className="hidden sm:inline">across </span>{aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
-              </p>
-            </div>
-          </RetroWindow>
+            <RetroWindow
+              title="PAYABLES"
+              subtitle="you owe"
+              colorBar="pink"
+              controlsStyle="none"
+              className="theme-colored-card theme-payable-card rounded-[12px] bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[3px_3px_0_0_#000000] sm:shadow-[4px_4px_0_0_#000000] dark:shadow-[3px_3px_0_0_#881337] group-hover/stat-card:shadow-[5px_5px_0_0_#000000] sm:group-hover/stat-card:shadow-[6px_6px_0_0_#000000] dark:group-hover/stat-card:shadow-[5px_5px_0_0_#881337] sm:dark:group-hover/stat-card:shadow-[6px_6px_0_0_#881337] group-active/stat-card:shadow-[2px_2px_0_0_#000000] dark:group-active/stat-card:shadow-[2px_2px_0_0_#881337] cursor-pointer transition-all duration-150"
+              contentClassName="p-3.5 sm:p-5 text-white"
+              headerRight={
+                <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#F43F5E] text-white font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+                  -OUTGOING
+                </span>
+              }
+            >
+              <div className="min-w-0">
+                <p className="font-mono text-xs sm:text-sm text-white font-black uppercase tracking-wider">
+                  You owe
+                </p>
+                <motion.p
+                  className="mt-0.5 sm:mt-1 font-display text-3xl xs:text-4xl sm:text-5xl font-bold text-white tracking-tight truncate"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.25, type: "spring", stiffness: 120 }}
+                >
+                  {formatMoney(aggregates.totalBorrowed)}
+                </motion.p>
+                <p className="mt-0.5 sm:mt-1 font-sans text-xs text-white/90 font-semibold truncate">
+                  <span className="hidden sm:inline">across </span>{aggregates.activeBorrowedCount} active loan{aggregates.activeBorrowedCount === 1 ? "" : "s"}
+                </p>
+              </div>
+            </RetroWindow>
+          </Link>
         </div>
       </motion.div>
 

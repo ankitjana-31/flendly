@@ -15,7 +15,7 @@ export interface RetroWindowProps {
   headerRight?: React.ReactNode;
   glow?: boolean;
   colorBar?: "blue" | "yellow" | "pink" | "green" | "dark" | "default";
-  controlsStyle?: "win95" | "traffic";
+  controlsStyle?: "win95" | "traffic" | "none";
   onClose?: () => void;
   onMaximize?: () => void;
   defaultMinimized?: boolean;
