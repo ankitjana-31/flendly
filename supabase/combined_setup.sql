@@ -1713,11 +1713,11 @@ revoke all on function public.accept_offer(uuid) from public;
 grant execute on function public.accept_offer(uuid) to authenticated, service_role;
 
 
--- Enable Supabase Realtime publication on loans, payments, loan_requests, loan_offers, and self_tracks
+-- Enable Supabase Realtime publication on loans, payments, loan_requests, loan_offers, self_track, and self_track_payments
 do $$
 declare
   t text;
-  tables text[] := array['loans', 'payments', 'loan_requests', 'loan_offers', 'self_tracks'];
+  tables text[] := array['notifications', 'loans', 'payments', 'loan_requests', 'loan_offers', 'self_track', 'self_track_payments'];
 begin
   foreach t in array tables loop
     if exists (

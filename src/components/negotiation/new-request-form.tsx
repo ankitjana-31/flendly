@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Send, ArrowUpRight, ArrowDownLeft } from "lucide-react";
 
 import { OfferTermsFields } from "@/components/negotiation/offer-terms-fields";
@@ -9,9 +9,17 @@ import { createRequestAction, type ActionState } from "@/lib/requests/actions";
 
 const initialState: ActionState = {};
 
-export function NewRequestForm() {
+export function NewRequestForm({
+  initialDirection = "lend",
+}: {
+  initialDirection?: "lend" | "borrow";
+}) {
   const [state, formAction, isPending] = useActionState(createRequestAction, initialState);
-  const [direction, setDirection] = useState<"lend" | "borrow">("lend");
+  const [direction, setDirection] = useState<"lend" | "borrow">(initialDirection);
+
+  useEffect(() => {
+    setDirection(initialDirection);
+  }, [initialDirection]);
 
   return (
     <form action={formAction} className="flex flex-col gap-5 font-mono">

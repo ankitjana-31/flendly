@@ -37,13 +37,43 @@ export default async function LentPage() {
         </div>
 
         <Link
-          href="/requests/new"
+          href="/requests/new?type=lend"
           className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-[12px] border-[2px] border-black bg-[#FB7185] text-white font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-[#F43F5E] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
         >
           <Plus className="w-4 h-4 stroke-[3]" />
           <span>NEW LOAN PROPOSAL</span>
         </Link>
       </div>
+
+      {/* Prominent Net Position Summary Card */}
+      <RetroWindow
+        title="RECEIVABLES OVERVIEW"
+        subtitle="active balance"
+        colorBar="green"
+        controlsStyle="none"
+        glow={totalActiveLent > 0}
+        className="theme-colored-card theme-receivable-card rounded-[12px] bg-[#2DD4BF] dark:bg-[#2DD4BF] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[4px_4px_0_0_#000000] sm:shadow-[5px_5px_0_0_#000000]"
+        contentClassName="theme-receivable-content p-4 sm:p-6 text-black"
+        headerRight={
+          <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#2DD4BF] text-black font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+            +INCOMING
+          </span>
+        }
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
+          <div className="min-w-0">
+            <p className="font-mono text-xs sm:text-sm font-black uppercase tracking-wider text-black">
+              TOTAL OWED TO YOU
+            </p>
+            <p className="mt-1 font-display text-4xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight truncate">
+              {formatMoney(totalActiveLent)}
+            </p>
+          </div>
+          <div className="font-mono text-xs sm:text-sm font-bold text-black/80 pb-0.5 whitespace-nowrap">
+            {active.length} active {active.length === 1 ? "loan" : "loans"}
+          </div>
+        </div>
+      </RetroWindow>
 
       {/* Summary Window - Pink accented */}
       <RetroWindow

@@ -65,6 +65,25 @@ export function NotificationsList({
   useEffect(() => {
     if (!userId) return;
     const supabase = createClient();
+
+    const ensureAuth = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.access_token) {
+          await supabase.realtime.setAuth(session.access_token);
+        }
+      } catch (err) {
+        console.warn("[Realtime] Notifications list auth error", err);
+      }
+    };
+    void ensureAuth();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.access_token) {
+        void supabase.realtime.setAuth(session.access_token);
+      }
+    });
+
     const channelName = `live_notifications_feed:${userId}`;
     const channel = supabase
       .channel(channelName)
@@ -116,6 +135,7 @@ export function NotificationsList({
       });
 
     return () => {
+      authListener?.subscription?.unsubscribe();
       supabase.removeChannel(channel);
     };
   }, [userId]);

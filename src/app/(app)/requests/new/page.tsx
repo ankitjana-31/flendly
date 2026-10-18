@@ -6,9 +6,19 @@ import { RetroWindow } from "@/components/ui/retro-window";
 import { NewRequestForm } from "@/components/negotiation/new-request-form";
 import { getCurrentUserProfile } from "@/lib/auth/queries";
 
-export default async function NewRequestPage() {
+interface PageProps {
+  searchParams?: Promise<{ type?: string; direction?: string; recipientId?: string }>;
+}
+
+export default async function NewRequestPage({ searchParams }: PageProps) {
   const { user } = await getCurrentUserProfile();
   if (!user) redirect("/auth/login");
+
+  const resolvedParams = searchParams ? await searchParams : {};
+  const requestedDirection =
+    resolvedParams.type === "borrow" || resolvedParams.direction === "borrow"
+      ? "borrow"
+      : "lend";
 
   return (
     <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 sm:px-6 md:px-8 py-4 sm:py-6 pb-16 font-mono">
@@ -43,7 +53,7 @@ export default async function NewRequestPage() {
           className="bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[6px_6px_0_0_#000000]"
           contentClassName="p-5 sm:p-7"
         >
-          <NewRequestForm />
+          <NewRequestForm initialDirection={requestedDirection} />
         </RetroWindow>
       </div>
     </div>

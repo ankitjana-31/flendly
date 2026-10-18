@@ -37,7 +37,7 @@ export default async function BorrowedPage() {
         </div>
 
         <Link
-          href="/requests/new"
+          href="/requests/new?type=borrow"
           className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-[12px] border-[2px] border-black bg-[#FFE600] text-black font-mono text-xs sm:text-sm font-black uppercase shadow-[3px_3px_0_0_#000] hover:bg-yellow-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#000] active:translate-y-0.5 active:shadow-none transition-all"
         >
           <Plus className="w-4 h-4 stroke-[3]" />
@@ -45,10 +45,40 @@ export default async function BorrowedPage() {
         </Link>
       </div>
 
+      {/* Prominent Net Position Summary Card */}
+      <RetroWindow
+        title="PAYABLES OVERVIEW"
+        subtitle="active liabilities"
+        colorBar="pink"
+        controlsStyle="none"
+        glow={totalActiveBorrowed > 0}
+        className="theme-colored-card theme-payable-card rounded-[12px] bg-[#F43F5E] dark:bg-[#F43F5E] border-[2px] sm:border-[2.5px] border-black dark:border-black shadow-[4px_4px_0_0_#000000] sm:shadow-[5px_5px_0_0_#000000]"
+        contentClassName="p-4 sm:p-6 text-white"
+        headerRight={
+          <span className="px-2 sm:px-2.5 py-0.5 rounded-[4px] border border-black bg-[#F43F5E] text-white font-mono text-[9px] sm:text-xs font-black uppercase shadow-[1px_1px_0_0_#000]">
+            -OUTGOING
+          </span>
+        }
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
+          <div className="min-w-0">
+            <p className="font-mono text-xs sm:text-sm font-black uppercase tracking-wider text-white">
+              TOTAL YOU OWE
+            </p>
+            <p className="mt-1 font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight truncate">
+              {formatMoney(totalActiveBorrowed)}
+            </p>
+          </div>
+          <div className="font-mono text-xs sm:text-sm font-bold text-white/90 pb-0.5 whitespace-nowrap">
+            {active.length} active {active.length === 1 ? "borrowing" : "borrowings"}
+          </div>
+        </div>
+      </RetroWindow>
+
       {/* Summary Window - Yellow accented */}
       <RetroWindow
         title="BORROWED LIABILITIES"
-        subtitle={`${active.length} active counterparties`}
+        subtitle={`${active.length} active peer loans`}
         colorBar="yellow"
         glow={true}
         className="rounded-[12px] bg-white dark:bg-[var(--card)] border-[2.5px] border-black dark:border-white shadow-[4px_4px_0_0_#000000] sm:shadow-[6px_6px_0_0_#000000]"

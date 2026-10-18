@@ -50,15 +50,38 @@ export function AppShell({
     if (!userId) return;
     const supabase = createClient();
     let refreshTimeout: ReturnType<typeof setTimeout> | null = null;
+    let isCancelled = false;
 
     const triggerDebouncedRefresh = () => {
       if (refreshTimeout) clearTimeout(refreshTimeout);
       refreshTimeout = setTimeout(() => {
-        startTransition(() => {
-          router.refresh();
-        });
+        if (!isCancelled) {
+          startTransition(() => {
+            router.refresh();
+          });
+        }
       }, 250);
     };
+
+    // Ensure Realtime WebSocket connection is authenticated with user's JWT
+    // so Postgres RLS evaluates auth.uid() = userId accurately
+    const ensureAuth = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.access_token) {
+          await supabase.realtime.setAuth(session.access_token);
+        }
+      } catch (err) {
+        console.warn("[Realtime] Failed to sync auth token", err);
+      }
+    };
+    void ensureAuth();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.access_token) {
+        void supabase.realtime.setAuth(session.access_token);
+      }
+    });
 
     const channelName = `flendly_live_sync:${userId}`;
     const channel = supabase
@@ -195,14 +218,38 @@ export function AppShell({
           triggerDebouncedRefresh();
         }
       )
-      // Live Sync: Private Self Tracks
+      // Live Sync: Loan Offers (Counter-offers, acceptance status changes)
       .on(
         "postgres_changes",
         {
           event: "*",
           schema: "public",
-          table: "self_tracks",
+          table: "loan_offers",
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Private Self Tracks (corrected table name: self_track)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "self_track",
           filter: `user_id=eq.${userId}`,
+        },
+        () => {
+          triggerDebouncedRefresh();
+        }
+      )
+      // Live Sync: Private Self Track Payments
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "self_track_payments",
         },
         () => {
           triggerDebouncedRefresh();
@@ -214,8 +261,18 @@ export function AppShell({
         }
       });
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        triggerDebouncedRefresh();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
+      isCancelled = true;
       if (refreshTimeout) clearTimeout(refreshTimeout);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      authListener?.subscription?.unsubscribe();
       supabase.removeChannel(channel);
     };
   }, [userId, router]);
