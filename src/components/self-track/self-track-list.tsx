@@ -259,7 +259,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-3 sm:gap-3.5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5 sm:gap-4">
           {filteredRecords.map((record) => {
             const isLent = record.type === "lent";
             const originalAmount = Number(record.amount);

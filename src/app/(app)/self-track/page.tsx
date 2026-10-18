@@ -17,7 +17,7 @@ export default async function SelfTrackPage() {
   const netOutstanding = stats.activeLent - stats.activeBorrowed;
 
   return (
-    <div className="flex flex-col gap-5 sm:gap-6 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-7 pb-28 sm:pb-20 font-mono">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-5 sm:gap-6 px-4 sm:px-6 md:px-8 py-5 sm:py-7 pb-28 sm:pb-20 font-mono">
       {/* 1. Centred Large Page Heading */}
       <div className="text-center py-1">
         <h1 className="text-[26px] sm:text-[30px] font-black text-black dark:text-white tracking-tight uppercase">
