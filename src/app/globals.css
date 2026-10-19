@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *, .ocean, .ocean *, .sunset, .sunset *, .tropical, .tropical *));
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -174,13 +174,37 @@ html.tropical .app-shell-grid {
 }
 
 /* Custom palettes keep legacy utility classes readable without changing the light theme. */
+html.ocean .text-gray-900,
+html.ocean .text-gray-800,
+html.sunset .text-gray-900,
+html.sunset .text-gray-800,
+html.tropical .text-gray-900,
+html.tropical .text-gray-800 {
+  color: var(--foreground) !important;
+}
+
 html.ocean .text-gray-700,
 html.ocean .text-gray-600,
 html.ocean .text-gray-500,
 html.sunset .text-gray-700,
 html.sunset .text-gray-600,
-html.sunset .text-gray-500 {
+html.sunset .text-gray-500,
+html.tropical .text-gray-700,
+html.tropical .text-gray-600,
+html.tropical .text-gray-500 {
   color: var(--muted-foreground) !important;
+}
+
+/* Ensure placeholder text and date picker indicator are crisp in dark themes */
+:where(.dark, .ocean, .sunset, .tropical) input::placeholder,
+:where(.dark, .ocean, .sunset, .tropical) textarea::placeholder {
+  color: var(--muted-foreground) !important;
+  opacity: 0.7 !important;
+}
+
+:where(.dark, .ocean, .sunset, .tropical) input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85) !important;
+  cursor: pointer !important;
 }
 
 html.ocean [class*="text-[#2563EB]"],
@@ -402,16 +426,25 @@ html.tropical .theme-payable-card .text-white {
 
 html.ocean [class*="dark:text-white"],
 html.sunset [class*="dark:text-white"],
-html.tropical [class*="dark:text-white"] {
+html.tropical [class*="dark:text-white"],
+html.ocean [class*="dark:text-gray-100"],
+html.sunset [class*="dark:text-gray-100"],
+html.tropical [class*="dark:text-gray-100"],
+html.ocean [class*="dark:text-gray-200"],
+html.sunset [class*="dark:text-gray-200"],
+html.tropical [class*="dark:text-gray-200"] {
   color: var(--foreground) !important;
 }
 
 html.ocean [class*="dark:text-gray-300"],
 html.ocean [class*="dark:text-gray-400"],
+html.ocean [class*="dark:text-gray-500"],
 html.sunset [class*="dark:text-gray-300"],
 html.sunset [class*="dark:text-gray-400"],
+html.sunset [class*="dark:text-gray-500"],
 html.tropical [class*="dark:text-gray-300"],
-html.tropical [class*="dark:text-gray-400"] {
+html.tropical [class*="dark:text-gray-400"],
+html.tropical [class*="dark:text-gray-500"] {
   color: var(--muted-foreground) !important;
 }
 

@@ -116,7 +116,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
 
         {/* Direction Selector: Side-by-side Segmented Buttons */}
         <div>
-          <span className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-2">
+          <span className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-[var(--foreground)] mb-2">
             Transaction Direction
           </span>
           <div className="grid grid-cols-2 gap-3">
@@ -126,7 +126,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               className={`flex items-center justify-center gap-2 h-12 min-h-[48px] px-3 border-[2px] border-black text-[15px] sm:text-base font-black uppercase transition-all rounded-[6px] cursor-pointer ${
                 type === "lent"
                   ? "bg-[#2DD4BF] text-black shadow-[2.5px_2.5px_0_0_#000000] -translate-y-0.5"
-                  : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                  : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-[var(--foreground)] shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
               <span>Money I Lent</span>
@@ -138,7 +138,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               className={`flex items-center justify-center gap-2 h-12 min-h-[48px] px-3 border-[2px] border-black text-[15px] sm:text-base font-black uppercase transition-all rounded-[6px] cursor-pointer ${
                 type === "borrowed"
                   ? "bg-[#F43F5E] text-white shadow-[2.5px_2.5px_0_0_#000000] -translate-y-0.5"
-                  : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-300 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                  : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-[var(--foreground)] shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
               <span>Money I Borrowed</span>
@@ -152,7 +152,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <div>
             <label
               htmlFor="person-name"
-              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-[var(--foreground)] mb-1.5"
             >
               {type === "lent" ? "Lent to (Person)" : "Borrowed from (Person)"}
             </label>
@@ -164,7 +164,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               onChange={(e) => setPersonName(e.target.value)}
               placeholder="Enter person's name"
               autoComplete="off"
-              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-[var(--foreground)] placeholder:text-gray-400 dark:placeholder:text-[var(--muted-foreground)]/70 text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] focus:text-black dark:focus:bg-[var(--card)] dark:focus:text-[var(--foreground)] transition-colors"
             />
           </div>
 
@@ -172,7 +172,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <div>
             <label
               htmlFor="amount"
-              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-[var(--foreground)] mb-1.5"
             >
               Amount (₹)
             </label>
@@ -185,7 +185,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0.00"
-              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-base font-black shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-[var(--foreground)] placeholder:text-gray-400 dark:placeholder:text-[var(--muted-foreground)]/70 text-base font-black shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] focus:text-black dark:focus:bg-[var(--card)] dark:focus:text-[var(--foreground)] transition-colors"
             />
           </div>
 
@@ -193,7 +193,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <div>
             <label
               htmlFor="record-date"
-              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-[var(--foreground)] mb-1.5"
             >
               Date
             </label>
@@ -203,7 +203,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               required
               value={recordDate}
               onChange={(e) => setRecordDate(e.target.value)}
-              className="w-full h-12 min-h-[48px] px-3 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-12 min-h-[48px] px-3 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-[var(--foreground)] text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] focus:text-black dark:focus:bg-[var(--card)] dark:focus:text-[var(--foreground)] transition-colors"
             />
           </div>
 
@@ -211,7 +211,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
           <div>
             <label
               htmlFor="note"
-              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-gray-200 mb-1.5"
+              className="block text-[15px] sm:text-base font-bold text-gray-800 dark:text-[var(--foreground)] mb-1.5"
             >
               Note / Context (Optional)
             </label>
@@ -221,7 +221,7 @@ export function SelfTrackForm({ isOpen = true, onClose, onSuccess }: SelfTrackFo
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="Optional note or context"
-              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-white placeholder:text-gray-400 text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] dark:focus:bg-[#2A2E3D] transition-colors"
+              className="w-full h-12 min-h-[48px] px-3.5 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] text-black dark:text-[var(--foreground)] placeholder:text-gray-400 dark:placeholder:text-[var(--muted-foreground)]/70 text-base font-bold shadow-[1.5px_1.5px_0_0_#000] rounded-[6px] focus:outline-none focus:bg-[#FEF08A] focus:text-black dark:focus:bg-[var(--card)] dark:focus:text-[var(--foreground)] transition-colors"
             />
           </div>
         </div>

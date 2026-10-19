@@ -23,7 +23,7 @@ export default async function SelfTrackPage() {
         <h1 className="text-[26px] sm:text-[30px] font-black text-black dark:text-white tracking-tight uppercase">
           Private Records
         </h1>
-        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-1 max-w-md mx-auto">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-[var(--muted-foreground)] mt-1 max-w-md mx-auto">
           Private records for money lent and borrowed.
         </p>
       </div>
@@ -75,7 +75,7 @@ export default async function SelfTrackPage() {
         {/* Net Standing Compact Summary Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 px-4 py-3 border-[2px] border-black dark:border-white/50 bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2.5px_2.5px_0_0_#000] rounded-[8px]">
           <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
-            <span className="text-sm sm:text-[15px] font-bold text-gray-700 dark:text-gray-300">
+            <span className="text-sm sm:text-[15px] font-bold text-gray-700 dark:text-[var(--foreground)]">
               Net Standing:
             </span>
             <span
@@ -89,8 +89,8 @@ export default async function SelfTrackPage() {
             >
               {netOutstanding > 0 ? `+${formatMoney(netOutstanding)}` : formatMoney(netOutstanding)}
             </span>
-            <span className="text-gray-400 dark:text-gray-500 hidden sm:inline">//</span>
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+            <span className="text-gray-400 dark:text-[var(--muted-foreground)] hidden sm:inline">//</span>
+            <span className="text-sm text-gray-600 dark:text-[var(--muted-foreground)]">
               {netOutstanding > 0
                 ? "You are owed more"
                 : netOutstanding < 0
@@ -99,7 +99,7 @@ export default async function SelfTrackPage() {
             </span>
           </div>
           {stats.settledCount > 0 && (
-            <span className="text-xs sm:text-sm font-bold text-gray-500 dark:text-gray-400 self-start sm:self-auto">
+            <span className="text-xs sm:text-sm font-bold text-gray-500 dark:text-[var(--muted-foreground)] self-start sm:self-auto">
               {stats.settledCount} settled
             </span>
           )}

@@ -238,7 +238,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
             className={`h-9 sm:h-10 px-3.5 text-sm font-bold transition-all border-[2px] border-black rounded-[6px] shrink-0 whitespace-nowrap cursor-pointer ${
               filter === tab.id
                 ? "bg-[#FFE600] text-black shadow-[2px_2px_0_0_#000000] -translate-y-0.5"
-                : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-gray-200 shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-gray-800"
+                : "bg-white dark:bg-[var(--muted)] text-gray-700 dark:text-[var(--foreground)] shadow-[1px_1px_0_0_#000000] hover:bg-gray-100 dark:hover:bg-[var(--card)]"
             }`}
           >
             {tab.label}
@@ -254,7 +254,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
           <h3 className="text-base font-bold text-black dark:text-white">
             No records in this category
           </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">
+          <p className="text-sm text-gray-500 dark:text-[var(--muted-foreground)] mt-1 max-w-sm mx-auto">
             Use the form above to add a private record for offline loans or cash splits.
           </p>
         </div>
@@ -299,8 +299,8 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                     >
                       {isLent ? "I Lent" : "I Borrowed"}
                     </span>
-                    <span className="text-gray-600 dark:text-gray-300 font-medium text-xs sm:text-sm flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5 text-gray-500" />
+                    <span className="text-gray-600 dark:text-[var(--muted-foreground)] font-medium text-xs sm:text-sm flex items-center gap-1">
+                      <Calendar className="w-3.5 h-3.5 text-gray-500 dark:text-[var(--muted-foreground)]" />
                       {formatDate(record.record_date)}
                     </span>
                   </div>
@@ -320,13 +320,13 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
                       <h3 className="text-lg sm:text-xl font-black text-black dark:text-white break-words">
-                        <span className="text-gray-500 font-semibold text-sm mr-1">
+                        <span className="text-gray-500 dark:text-[var(--muted-foreground)] font-semibold text-sm mr-1">
                           {isLent ? "To:" : "From:"}
                         </span>
                         <span>{record.person_name}</span>
                       </h3>
                       {record.note && (
-                        <p className="text-sm text-gray-700 dark:text-gray-300 mt-1 flex items-start gap-1.5 italic break-words">
+                        <p className="text-sm text-gray-700 dark:text-[var(--foreground)] mt-1 flex items-start gap-1.5 italic break-words">
                           <FileText className="w-4 h-4 shrink-0 text-amber-500 mt-0.5" />
                           <span>{record.note}</span>
                         </p>
@@ -334,7 +334,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                     </div>
 
                     <div className="text-right shrink-0">
-                      <span className="text-xs uppercase text-gray-400 block font-bold">Total</span>
+                      <span className="text-xs uppercase text-gray-400 dark:text-[var(--muted-foreground)] block font-bold">Total</span>
                       <p className={`text-xl sm:text-2xl font-black ${isLent ? "text-[#059669] dark:text-[#2DD4BF]" : "text-[#F43F5E] dark:text-[#FB7185]"}`}>
                         {formatMoney(originalAmount)}
                       </p>
@@ -344,7 +344,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                   {/* Clean Repayment Progress Bar & Non-contradictory Status */}
                   <div className="space-y-1.5 pt-0.5">
                     <div className="flex justify-between items-center text-xs sm:text-sm font-bold">
-                      <span className="text-gray-600 dark:text-gray-400">
+                      <span className="text-gray-600 dark:text-[var(--muted-foreground)]">
                         {isSettled
                           ? isFullyPaid
                             ? `Fully repaid (${formatMoney(totalPaid)})`
@@ -397,9 +397,9 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                       {record.payments.length > 0 && (
                         <button
                           onClick={() => setExpandedId(isExpanded ? null : record.id)}
-                          className="h-8.5 px-3 text-xs sm:text-sm font-bold uppercase border-[1.5px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-white shadow-[1px_1px_0_0_#000] hover:bg-gray-100 rounded-[4px] flex items-center gap-1.5 cursor-pointer"
+                          className="h-8.5 px-3 text-xs sm:text-sm font-bold uppercase border-[1.5px] border-black bg-white dark:bg-[var(--muted)] text-black dark:text-[var(--foreground)] shadow-[1px_1px_0_0_#000] hover:bg-gray-100 rounded-[4px] flex items-center gap-1.5 cursor-pointer"
                         >
-                          <History className="w-3.5 h-3.5 text-gray-400" />
+                          <History className="w-3.5 h-3.5 text-gray-400 dark:text-[var(--muted-foreground)]" />
                           <span>Logs ({record.payments.length})</span>
                           {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                         </button>
@@ -412,7 +412,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         className={`h-8.5 px-3 text-xs sm:text-sm font-bold uppercase border-[1.5px] border-black rounded-[4px] shadow-[1.5px_1.5px_0_0_#000] cursor-pointer flex items-center gap-1.5 transition-all ${
                           isSettled
                             ? "bg-[#2DD4BF] text-black hover:bg-teal-300"
-                            : "bg-white dark:bg-[var(--muted)] text-black dark:text-white hover:bg-gray-100"
+                            : "bg-white dark:bg-[var(--muted)] text-black dark:text-[var(--foreground)] hover:bg-gray-100"
                         }`}
                       >
                         {isSettled ? (
@@ -449,13 +449,13 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         className="mt-3 p-3.5 border-[2px] border-black bg-[#FAF8F5] dark:bg-[var(--muted)] shadow-[2.5px_2.5px_0_0_#000] rounded-[6px]"
                       >
                         <div className="flex justify-between items-center mb-2.5 pb-1 border-b border-black/20 dark:border-white/20">
-                          <span className="text-sm font-black uppercase text-black dark:text-white flex items-center gap-1.5">
+                          <span className="text-sm font-black uppercase text-black dark:text-[var(--foreground)] flex items-center gap-1.5">
                             <span>⚡</span>
                             <span>Record Repayment</span>
                           </span>
                           <button
                             onClick={() => setActivePaymentRecordId(null)}
-                            className="w-5 h-5 border border-black bg-white dark:bg-[var(--card)] text-black dark:text-white text-xs font-bold flex items-center justify-center hover:bg-gray-200 rounded-[3px]"
+                            className="w-5 h-5 border border-black bg-white dark:bg-[var(--card)] text-black dark:text-[var(--foreground)] text-xs font-bold flex items-center justify-center hover:bg-gray-200 rounded-[3px]"
                           >
                             ✕
                           </button>
@@ -469,7 +469,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
 
                         <form onSubmit={(e) => handleRecordPayment(e, record.id)} className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                           <div>
-                            <label className="text-xs font-bold text-gray-700 dark:text-gray-300 block mb-1">
+                            <label className="text-xs font-bold text-gray-700 dark:text-[var(--foreground)] block mb-1">
                               Amount (₹)
                             </label>
                             <input
@@ -480,12 +480,12 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               value={paymentAmount}
                               onChange={(e) => setPaymentAmount(e.target.value)}
                               placeholder={`Max ₹${remaining}`}
-                              className="w-full h-10 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-sm font-bold text-black dark:text-white focus:bg-[#FEF08A] focus:text-black outline-none rounded-[4px]"
+                              className="w-full h-10 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-sm font-bold text-black dark:text-[var(--foreground)] placeholder:text-gray-400 dark:placeholder:text-[var(--muted-foreground)]/70 focus:bg-[#FEF08A] focus:text-black dark:focus:bg-[var(--card)] dark:focus:text-[var(--foreground)] outline-none rounded-[4px]"
                             />
                           </div>
 
                           <div>
-                            <label className="text-xs font-bold text-gray-700 dark:text-gray-300 block mb-1">
+                            <label className="text-xs font-bold text-gray-700 dark:text-[var(--foreground)] block mb-1">
                               Payment Date
                             </label>
                             <input
@@ -493,12 +493,12 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               required
                               value={paymentDate}
                               onChange={(e) => setPaymentDate(e.target.value)}
-                              className="w-full h-10 px-2 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-sm font-bold text-black dark:text-white outline-none rounded-[4px]"
+                              className="w-full h-10 px-2 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-sm font-bold text-black dark:text-[var(--foreground)] outline-none rounded-[4px]"
                             />
                           </div>
 
                           <div>
-                            <label className="text-xs font-bold text-gray-700 dark:text-gray-300 block mb-1">
+                            <label className="text-xs font-bold text-gray-700 dark:text-[var(--foreground)] block mb-1">
                               Note (Optional)
                             </label>
                             <input
@@ -506,7 +506,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                               value={paymentNote}
                               onChange={(e) => setPaymentNote(e.target.value)}
                               placeholder="e.g. Part payment"
-                              className="w-full h-10 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-sm font-bold text-black dark:text-white outline-none rounded-[4px]"
+                              className="w-full h-10 px-2.5 border-[1.5px] border-black bg-white dark:bg-[var(--card)] text-sm font-bold text-black dark:text-[var(--foreground)] placeholder:text-gray-400 dark:placeholder:text-[var(--muted-foreground)]/70 outline-none rounded-[4px]"
                             />
                           </div>
 
@@ -514,7 +514,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                             <button
                               type="button"
                               onClick={() => setActivePaymentRecordId(null)}
-                              className="px-3 py-1 border border-black bg-white dark:bg-[var(--card)] text-black dark:text-white text-xs font-bold cursor-pointer hover:bg-gray-100 rounded-[4px]"
+                              className="px-3 py-1 border border-black bg-white dark:bg-[var(--card)] text-black dark:text-[var(--foreground)] text-xs font-bold cursor-pointer hover:bg-gray-100 rounded-[4px]"
                             >
                               Cancel
                             </button>
@@ -541,7 +541,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                         transition={{ duration: 0.16 }}
                         className="mt-3 p-3 border-[1.5px] border-black/20 dark:border-white/20 bg-[#FAF8F5] dark:bg-[var(--muted)] space-y-2 rounded-[6px]"
                       >
-                        <p className="text-xs font-black text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                        <p className="text-xs font-black text-gray-600 dark:text-[var(--foreground)] uppercase tracking-wider">
                           Payment Audit Trail ({record.payments.length})
                         </p>
                         <div className="space-y-1.5">
@@ -552,8 +552,8 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                             >
                               <div className="flex items-center gap-2 flex-wrap">
                                 <span className="font-bold text-[#059669] dark:text-[#2DD4BF]">{formatMoney(p.amount)}</span>
-                                <span className="text-gray-400 text-xs">· {formatDate(p.payment_date)}</span>
-                                {p.note && <span className="text-gray-600 dark:text-gray-300 text-xs italic">({p.note})</span>}
+                                <span className="text-gray-400 dark:text-[var(--muted-foreground)] text-xs">· {formatDate(p.payment_date)}</span>
+                                {p.note && <span className="text-gray-600 dark:text-[var(--muted-foreground)] text-xs italic">({p.note})</span>}
                               </div>
                               <button
                                 onClick={() => handleDeletePayment(p.id, record.id)}
