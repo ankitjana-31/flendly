@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Trash2, 
@@ -16,6 +16,8 @@ import {
 import { SelfTrackWithPayments } from "@/lib/types/self-track";
 import { formatMoney, formatDate } from "@/lib/format";
 import { updateSelfTrackStatus, deleteSelfTrack, deleteSelfTrackPayment, addSelfTrackPayment } from "@/lib/self-track/actions";
+import { DeleteRecordModal, DeletePaymentModal } from "./delete-record-modal";
+import type { DeleteRecordInfo } from "./delete-record-modal";
 
 export interface SelfTrackListProps {
   records: SelfTrackWithPayments[];
@@ -30,7 +32,7 @@ function Toast({ message, type, onDone }: { message: string; type: "success" | "
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -16 }}
       onAnimationComplete={() => setTimeout(onDone, 1800)}
-      className={`fixed top-4 right-4 z-50 flex items-center gap-2 border-[2px] border-black px-4 py-2.5 font-mono text-sm font-bold shadow-[3px_3px_0_0_#000] rounded-[6px] ${
+      className={`fixed top-4 right-4 z-[60] flex items-center gap-2 border-[2px] border-black px-4 py-2.5 font-mono text-sm font-bold shadow-[3px_3px_0_0_#000] rounded-[6px] ${
         type === "success"
           ? "bg-[#2DD4BF] text-black"
           : "bg-[#F43F5E] text-white"
@@ -57,6 +59,22 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
 
   // Toast state
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+
+  // Delete Record modal state
+  const [deleteModal, setDeleteModal] = useState<{
+    recordId: string;
+    info: DeleteRecordInfo;
+  } | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+
+  // Delete Payment modal state
+  const [deletePaymentModal, setDeletePaymentModal] = useState<{
+    paymentId: string;
+    recordId: string;
+  } | null>(null);
+  const [isDeletingPayment, setIsDeletingPayment] = useState(false);
+  const [deletePaymentError, setDeletePaymentError] = useState<string | null>(null);
 
   useEffect(() => {
     setRecords(initialRecords);
@@ -92,28 +110,56 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
     }
   };
 
-  // OPTIMISTIC: Delete instantly, then sync server
-  const handleDelete = async (recordId: string) => {
-    if (!confirm("Delete this private record? This cannot be undone.")) return;
+  // Open delete confirmation modal for a record
+  const handleDeleteRequest = useCallback((record: SelfTrackWithPayments) => {
+    setDeleteError(null);
+    setDeleteModal({
+      recordId: record.id,
+      info: {
+        personName: record.person_name,
+        amount: record.amount,
+        type: record.type,
+        recordDate: record.record_date,
+        status: record.status,
+      },
+    });
+  }, []);
+
+  // Execute record deletion after modal confirmation
+  const handleDeleteConfirm = useCallback(async () => {
+    if (!deleteModal || isDeleting) return;
+    const { recordId } = deleteModal;
     const prev = records;
 
-    // Instantly remove from UI
-    setRecords((rs) => rs.filter((r) => r.id !== recordId));
-    showToast("Record deleted.", "success");
+    setIsDeleting(true);
+    setDeleteError(null);
 
     try {
       const res = await deleteSelfTrack(recordId);
       if (!res.success) {
-        setRecords(prev);
-        showToast(res.error || "Failed to delete record", "error");
-      } else {
-        onRecordDeleted?.();
+        setDeleteError(res.error || "Failed to delete record.");
+        setIsDeleting(false);
+        return;
       }
+
+      // Success — remove from UI, close modal, show toast
+      setRecords((rs) => rs.filter((r) => r.id !== recordId));
+      setDeleteModal(null);
+      setIsDeleting(false);
+      showToast("Record deleted.", "success");
+      onRecordDeleted?.();
     } catch {
-      setRecords(prev);
-      showToast("Network error — deletion reverted", "error");
+      setDeleteError("Network error — please try again.");
+      setIsDeleting(false);
     }
-  };
+  }, [deleteModal, isDeleting, records, onRecordDeleted]);
+
+  const handleDeleteClose = useCallback(() => {
+    if (!isDeleting) {
+      setDeleteModal(null);
+      setDeleteError(null);
+    }
+  }, [isDeleting]);
 
   // OPTIMISTIC: Add payment instantly with a temp ID, then confirm from server
   const handleRecordPayment = async (e: React.FormEvent, recordId: string) => {
@@ -173,33 +219,53 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
     }
   };
 
-  // OPTIMISTIC: Delete payment instantly, then sync server
-  const handleDeletePayment = async (paymentId: string, recordId: string) => {
-    if (!confirm("Delete this payment log?")) return;
+  // Open delete confirmation modal for a payment
+  const handleDeletePaymentRequest = useCallback((paymentId: string, recordId: string) => {
+    setDeletePaymentError(null);
+    setDeletePaymentModal({ paymentId, recordId });
+  }, []);
+
+  // Execute payment deletion after modal confirmation
+  const handleDeletePaymentConfirm = useCallback(async () => {
+    if (!deletePaymentModal || isDeletingPayment) return;
+    const { paymentId, recordId } = deletePaymentModal;
     const prev = records;
 
-    setRecords((rs) =>
-      rs.map((r) =>
-        r.id === recordId
-          ? { ...r, payments: r.payments.filter((p) => p.id !== paymentId) }
-          : r
-      )
-    );
-    showToast("Payment deleted.", "success");
+    setIsDeletingPayment(true);
+    setDeletePaymentError(null);
 
     try {
       const res = await deleteSelfTrackPayment(paymentId, recordId);
       if (!res.success) {
-        setRecords(prev);
-        showToast(res.error || "Failed to delete payment", "error");
-      } else {
-        onRecordDeleted?.();
+        setDeletePaymentError(res.error || "Failed to delete payment.");
+        setIsDeletingPayment(false);
+        return;
       }
+
+      // Success — remove payment from UI, close modal, show toast
+      setRecords((rs) =>
+        rs.map((r) =>
+          r.id === recordId
+            ? { ...r, payments: r.payments.filter((p) => p.id !== paymentId) }
+            : r
+        )
+      );
+      setDeletePaymentModal(null);
+      setIsDeletingPayment(false);
+      showToast("Payment deleted.", "success");
+      onRecordDeleted?.();
     } catch {
-      setRecords(prev);
-      showToast("Network error — deletion reverted", "error");
+      setDeletePaymentError("Network error — please try again.");
+      setIsDeletingPayment(false);
     }
-  };
+  }, [deletePaymentModal, isDeletingPayment, records, onRecordDeleted]);
+
+  const handleDeletePaymentClose = useCallback(() => {
+    if (!isDeletingPayment) {
+      setDeletePaymentModal(null);
+      setDeletePaymentError(null);
+    }
+  }, [isDeletingPayment]);
 
   const filteredRecords = records.filter((rec) => {
     if (filter === "lent") return rec.type === "lent";
@@ -222,6 +288,25 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
           />
         )}
       </AnimatePresence>
+
+      {/* Delete Record Modal */}
+      <DeleteRecordModal
+        isOpen={!!deleteModal}
+        record={deleteModal?.info ?? null}
+        isPending={isDeleting}
+        error={deleteError}
+        onConfirm={handleDeleteConfirm}
+        onClose={handleDeleteClose}
+      />
+
+      {/* Delete Payment Modal */}
+      <DeletePaymentModal
+        isOpen={!!deletePaymentModal}
+        isPending={isDeletingPayment}
+        error={deletePaymentError}
+        onConfirm={handleDeletePaymentConfirm}
+        onClose={handleDeletePaymentClose}
+      />
 
       {/* Filter Buttons: 14 to 16px font, comfortable tap height */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1.5 no-scrollbar py-0.5">
@@ -429,7 +514,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                       </button>
 
                       <button
-                        onClick={() => handleDelete(record.id)}
+                        onClick={() => handleDeleteRequest(record)}
                         className="h-8.5 w-8.5 border-[1.5px] border-black bg-[#F43F5E] text-white rounded-[4px] shadow-[1.5px_1.5px_0_0_#000] hover:opacity-90 flex items-center justify-center cursor-pointer transition-opacity"
                         title="Delete record"
                       >
@@ -556,7 +641,7 @@ export function SelfTrackList({ records: initialRecords, onRecordDeleted }: Self
                                 {p.note && <span className="text-gray-600 dark:text-[var(--muted-foreground)] text-xs italic">({p.note})</span>}
                               </div>
                               <button
-                                onClick={() => handleDeletePayment(p.id, record.id)}
+                                onClick={() => handleDeletePaymentRequest(p.id, record.id)}
                                 className="text-gray-400 hover:text-[#F43F5E] p-1 transition-colors cursor-pointer"
                                 title="Delete payment log"
                               >

@@ -6,46 +6,47 @@ import { SelfTrackRecord, SelfTrackPayment, SelfTrackWithPayments, SelfTrackType
 export async function listSelfTracks(userId: string): Promise<SelfTrackWithPayments[]> {
   const supabase = await createClient();
 
-  const { data: records, error } = await supabase
-    .from("self_track")
-    .select("*")
-    .eq("user_id", userId)
-    .order("created_at", { ascending: false });
+  const [{ data: records, error: recordsError }, { data: allPayments, error: paymentsError }] =
+    await Promise.all([
+      supabase
+        .from("self_track")
+        .select("*")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("self_track_payments")
+        .select("*")
+        .order("payment_date", { ascending: true }),
+    ]);
 
-  if (error) {
-    console.error("Error fetching self tracks:", error);
+  if (recordsError) {
+    console.error("Error fetching self tracks:", recordsError);
     return [];
   }
 
-  const rows = (records ?? []) as unknown as any[];
+  if (paymentsError) {
+    console.error("Error fetching self track payments:", paymentsError);
+  }
 
-  // Fetch payments for each record
-  const withPayments = await Promise.all(
-    rows.map(async (record) => {
-      const { data: payments, error: paymentsError } = await supabase
-        .from("self_track_payments")
-        .select("*")
-        .eq("self_track_id", record.id)
-        .order("payment_date", { ascending: true });
+  const paymentsByTrack = new Map<string, SelfTrackPayment[]>();
+  for (const p of ((allPayments ?? []) as unknown as SelfTrackPayment[])) {
+    const list = paymentsByTrack.get(p.self_track_id) ?? [];
+    list.push(p);
+    paymentsByTrack.set(p.self_track_id, list);
+  }
 
-      if (paymentsError) {
-        console.error("Error fetching payments:", paymentsError);
-        return { ...record, payments: [], remaining: Number(record.amount) };
-      }
+  return ((records ?? []) as unknown as any[]).map((record) => {
+    const payments = paymentsByTrack.get(record.id) ?? [];
+    const totalPaid = payments.reduce((sum, p) => sum + Number(p.amount || 0), 0);
+    const amount = Number(record.amount || 0);
+    const remaining = Math.max(0, amount - totalPaid);
 
-      const paymentRecords = (payments ?? []) as unknown as any[];
-      const totalPaid = paymentRecords.reduce((sum, p) => sum + Number(p.amount), 0);
-      const remaining = Number(record.amount) - totalPaid;
-
-      return {
-        ...record,
-        payments: paymentRecords,
-        remaining,
-      };
-    })
-  );
-
-  return withPayments;
+    return {
+      ...record,
+      payments,
+      remaining,
+    };
+  });
 }
 
 export async function getSelfTrackDetail(recordId: string, userId: string): Promise<SelfTrackWithPayments | null> {
@@ -86,50 +87,12 @@ export async function getSelfTrackDetail(recordId: string, userId: string): Prom
 }
 
 export async function getSelfTrackStats(userId: string) {
-  const supabase = await createClient();
+  const records = await listSelfTracks(userId);
 
-  const { data: records, error } = await supabase
-    .from("self_track")
-    .select("*")
-    .eq("user_id", userId);
-
-  if (error) {
-    console.error("Error fetching stats:", error);
-    return {
-      totalLent: 0,
-      totalBorrowed: 0,
-      activeLent: 0,
-      activeBorrowed: 0,
-      settledCount: 0,
-    };
-  }
-
-  const rows = (records ?? []) as unknown as any[];
-
-  // Fetch all payments to calculate totals
-  const allPayments: any[] = [];
-  for (const record of rows) {
-    const { data: payments } = await supabase
-      .from("self_track_payments")
-      .select("*")
-      .eq("self_track_id", record.id);
-
-    if (payments) {
-      allPayments.push(...(payments as unknown as any[]));
-    }
-  }
-
-  const paymentsByRecord = new Map<string, number>();
-  allPayments.forEach((p) => {
-    const current = paymentsByRecord.get(p.self_track_id) ?? 0;
-    paymentsByRecord.set(p.self_track_id, current + Number(p.amount));
-  });
-
-  const stats = rows.reduce(
+  return records.reduce(
     (acc, record) => {
-      const totalPaid = paymentsByRecord.get(record.id) ?? 0;
-      const amount = Number(record.amount);
-      const remaining = amount - totalPaid;
+      const amount = Number(record.amount || 0);
+      const remaining = Number(record.remaining || 0);
 
       if (record.type === "lent") {
         acc.totalLent += amount;
@@ -145,6 +108,4 @@ export async function getSelfTrackStats(userId: string) {
     },
     { totalLent: 0, totalBorrowed: 0, activeLent: 0, activeBorrowed: 0, settledCount: 0 }
   );
-
-  return stats;
 }

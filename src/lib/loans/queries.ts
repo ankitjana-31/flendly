@@ -32,13 +32,26 @@ export type LoanListItem = {
   ledger: LoanLedgerSummary | null;
 };
 
-async function attachLedgers<T extends { id: string }>(
+async function attachLedgers<T extends { id: string; status?: string }>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   supabase: any,
   loans: T[],
 ): Promise<(T & { ledger: LoanLedgerSummary | null })[]> {
   return Promise.all(
     loans.map(async (loan) => {
+      // Settled loans have zero outstanding balance and no accrued interest
+      if (loan.status === "PAID") {
+        const ledger: LoanLedgerSummary = {
+          outstanding: "0.00",
+          principal_remaining: "0.00",
+          unpaid_interest: "0.00",
+          is_overdue: false,
+          is_partially_paid: true,
+          status: "PAID",
+        };
+        return { ...loan, ledger };
+      }
+
       try {
         const { data } = await supabase.rpc("get_loan_ledger", { p_loan_id: loan.id });
         const ledger = Array.isArray(data) ? (data[0] as LoanLedgerSummary | undefined) ?? null : null;

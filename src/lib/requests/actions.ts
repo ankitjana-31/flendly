@@ -6,6 +6,7 @@ import { z } from "zod";
 
 import { createClient } from "@/lib/supabase/server";
 import { calculateApprovalWindow } from "@/lib/requests/approval-window";
+import { broadcastRealtimeSync } from "@/lib/realtime/broadcast";
 
 const interestFrequencySchema = z.enum(["daily", "monthly", "yearly"]);
 
@@ -114,24 +115,6 @@ export async function createRequestAction(
       rpcError.code === "PGRST205")
   ) {
     // Fallback: Direct table operations if RPC is missing in Supabase schema cache
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) return { error: "Authentication required." };
-
-    const { data: receiverProfile } = await supabase
-      .from("profiles")
-      .select("id")
-      .or(`username_normalized.eq.${receiverUsername},username.ilike.${receiverUsername}`)
-      .maybeSingle();
-
-    if (!receiverProfile) {
-      return { error: "No user found with that username." };
-    }
-    if (receiverProfile.id === user.id) {
-      return { error: "You cannot send a request to yourself." };
-    }
-
     const { data: requestRow, error: reqErr } = await supabase
       .from("loan_requests")
       .insert({
@@ -173,6 +156,13 @@ export async function createRequestAction(
   }
 
   if (!requestId) return { error: "Failed to create request." };
+
+  // Instant Realtime sync: notify receiver's live session immediately
+  void broadcastRealtimeSync(receiverProfile.id, {
+    action: "REQUEST_CREATED",
+    id: requestId,
+    sourceUserId: user.id,
+  });
 
   revalidatePath("/requests");
   revalidatePath("/dashboard");
@@ -220,6 +210,28 @@ export async function counterOfferAction(
 
   if (error) return { error: error.message };
 
+  // Update request status to COUNTERED and touch updated_at
+  await supabase
+    .from("loan_requests")
+    .update({ status: "COUNTERED", updated_at: new Date().toISOString() })
+    .eq("id", requestId);
+
+  // Instant Realtime sync: notify counterparty's live session immediately
+  const { data: reqRow } = await supabase
+    .from("loan_requests")
+    .select("sender_id, receiver_id")
+    .eq("id", requestId)
+    .maybeSingle();
+
+  const otherId = reqRow?.sender_id === user.id ? reqRow?.receiver_id : reqRow?.sender_id;
+  if (otherId) {
+    void broadcastRealtimeSync(otherId, {
+      action: "OFFER_COUNTERED",
+      id: requestId,
+      sourceUserId: user.id,
+    });
+  }
+
   revalidatePath(`/requests/${requestId}`);
   revalidatePath("/requests");
   revalidatePath("/dashboard");
@@ -254,9 +266,29 @@ export async function acceptOfferAction(offerId: string, requestId: string) {
     }
   }
 
+  // Pre-fetch participants so we can broadcast instantly
+  const { data: reqRow } = await supabase
+    .from("loan_requests")
+    .select("sender_id, receiver_id")
+    .eq("id", requestId)
+    .maybeSingle();
+
   const { data: loanId, error } = await supabase.rpc("accept_offer", { p_offer_id: offerId });
 
   if (error) return { error: error.message };
+
+  const { data: authData } = await supabase.auth.getUser();
+  const currentUserId = authData.user?.id;
+  const otherId = reqRow?.sender_id === currentUserId ? reqRow?.receiver_id : reqRow?.sender_id;
+
+  // Instant Realtime sync: notify other user of loan crystallization
+  if (otherId) {
+    void broadcastRealtimeSync(otherId, {
+      action: "OFFER_ACCEPTED",
+      id: String(loanId),
+      sourceUserId: currentUserId,
+    });
+  }
 
   revalidatePath(`/requests/${requestId}`);
   revalidatePath("/requests");
@@ -268,6 +300,13 @@ export async function acceptOfferAction(offerId: string, requestId: string) {
 
 export async function declineRequestAction(requestId: string) {
   const supabase = await createClient();
+
+  const { data: reqRow } = await supabase
+    .from("loan_requests")
+    .select("sender_id, receiver_id")
+    .eq("id", requestId)
+    .maybeSingle();
+
   const { error } = await supabase.rpc("decline_request", { p_request_id: requestId });
 
   if (error) {
@@ -279,6 +318,18 @@ export async function declineRequestAction(requestId: string) {
     }
   }
 
+  const { data: authData } = await supabase.auth.getUser();
+  const currentUserId = authData.user?.id;
+  const otherId = reqRow?.sender_id === currentUserId ? reqRow?.receiver_id : reqRow?.sender_id;
+
+  if (otherId) {
+    void broadcastRealtimeSync(otherId, {
+      action: "REQUEST_DECLINED",
+      id: requestId,
+      sourceUserId: currentUserId,
+    });
+  }
+
   revalidatePath(`/requests/${requestId}`);
   revalidatePath("/requests");
   revalidatePath("/dashboard");
@@ -287,6 +338,13 @@ export async function declineRequestAction(requestId: string) {
 
 export async function cancelRequestAction(requestId: string) {
   const supabase = await createClient();
+
+  const { data: reqRow } = await supabase
+    .from("loan_requests")
+    .select("sender_id, receiver_id")
+    .eq("id", requestId)
+    .maybeSingle();
+
   const { error } = await supabase.rpc("cancel_request", { p_request_id: requestId });
 
   if (error) {
@@ -296,6 +354,18 @@ export async function cancelRequestAction(requestId: string) {
     } else {
       return { error: error.message };
     }
+  }
+
+  const { data: authData } = await supabase.auth.getUser();
+  const currentUserId = authData.user?.id;
+  const otherId = reqRow?.sender_id === currentUserId ? reqRow?.receiver_id : reqRow?.sender_id;
+
+  if (otherId) {
+    void broadcastRealtimeSync(otherId, {
+      action: "REQUEST_CANCELLED",
+      id: requestId,
+      sourceUserId: currentUserId,
+    });
   }
 
   revalidatePath(`/requests/${requestId}`);

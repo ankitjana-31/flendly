@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { notificationHref } from "@/lib/notifications/links";
 
@@ -31,7 +32,7 @@ export async function listNotifications(limit = 50): Promise<NotificationItem[]>
   return (data ?? []) as NotificationItem[];
 }
 
-export async function getUnreadCount(): Promise<number> {
+export const getUnreadCount = cache(async (): Promise<number> => {
   const supabase = await createClient();
   const { count, error } = await supabase
     .from("notifications")
@@ -40,4 +41,4 @@ export async function getUnreadCount(): Promise<number> {
 
   if (error) throw error;
   return count ?? 0;
-}
+});

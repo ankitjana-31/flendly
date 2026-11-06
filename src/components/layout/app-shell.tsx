@@ -51,6 +51,7 @@ export function AppShell({
     const supabase = createClient();
     let refreshTimeout: ReturnType<typeof setTimeout> | null = null;
     let isCancelled = false;
+    let channel: ReturnType<typeof supabase.channel> | null = null;
 
     const triggerDebouncedRefresh = () => {
       if (refreshTimeout) clearTimeout(refreshTimeout);
@@ -60,22 +61,213 @@ export function AppShell({
             router.refresh();
           });
         }
-      }, 250);
+      }, 150);
     };
 
-    // Ensure Realtime WebSocket connection is authenticated with user's JWT
-    // so Postgres RLS evaluates auth.uid() = userId accurately
-    const ensureAuth = async () => {
+    const initSubscription = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session?.access_token) {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (session?.access_token && !isCancelled) {
           await supabase.realtime.setAuth(session.access_token);
         }
       } catch (err) {
         console.warn("[Realtime] Failed to sync auth token", err);
       }
+
+      if (isCancelled) return;
+
+      const channelName = `flendly_live_sync:${userId}`;
+      const ch = supabase
+        .channel(channelName)
+        // Direct broadcast events from server actions (sub-50ms latency)
+        .on("broadcast", { event: "flendly_sync" }, (payload) => {
+          const data = payload?.payload as { event?: string; entity?: string } | undefined;
+          if (data?.event === "NOTIFICATION_NEW") {
+            setUnreadCount((c) => c + 1);
+          }
+          triggerDebouncedRefresh();
+        })
+        // Notifications changes & counter
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${userId}`,
+          },
+          (payload) => {
+            const newRow = payload.new as { read_at?: string | null };
+            if (!newRow?.read_at) {
+              setUnreadCount((c) => c + 1);
+            }
+            triggerDebouncedRefresh();
+          }
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "UPDATE",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${userId}`,
+          },
+          (payload) => {
+            const oldRow = payload.old as { read_at?: string | null } | undefined;
+            const newRow = payload.new as { read_at?: string | null } | undefined;
+            const wasUnread = !oldRow?.read_at;
+            const isUnread = !newRow?.read_at;
+            if (wasUnread && !isUnread) {
+              setUnreadCount((count) => Math.max(0, count - 1));
+            } else if (!wasUnread && isUnread) {
+              setUnreadCount((count) => count + 1);
+            }
+            triggerDebouncedRefresh();
+          }
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "DELETE",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${userId}`,
+          },
+          (payload) => {
+            const oldRow = payload.old as { read_at?: string | null } | undefined;
+            if (!oldRow?.read_at) {
+              setUnreadCount((count) => Math.max(0, count - 1));
+            }
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Loans as Lender (Lent Portfolio)
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "loans",
+            filter: `lender_id=eq.${userId}`,
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Loans as Borrower (Borrowed Liabilities)
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "loans",
+            filter: `borrower_id=eq.${userId}`,
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Payments as Payer
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "payments",
+            filter: `payer_id=eq.${userId}`,
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Payments as Receiver
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "payments",
+            filter: `receiver_id=eq.${userId}`,
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Loan Requests as Sender
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "loan_requests",
+            filter: `sender_id=eq.${userId}`,
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Loan Requests as Receiver
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "loan_requests",
+            filter: `receiver_id=eq.${userId}`,
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Loan Offers
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "loan_offers",
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Private Self Tracks
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "self_track",
+            filter: `user_id=eq.${userId}`,
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        // Live Sync: Private Self Track Payments
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "self_track_payments",
+          },
+          () => {
+            triggerDebouncedRefresh();
+          }
+        )
+        .subscribe((status, err) => {
+          if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+            console.warn("[Realtime] Live sync channel status:", status, err);
+          }
+        });
+
+      channel = ch;
     };
-    void ensureAuth();
+
+    void initSubscription();
 
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.access_token) {
@@ -83,197 +275,23 @@ export function AppShell({
       }
     });
 
-    const channelName = `flendly_live_sync:${userId}`;
-    const channel = supabase
-      .channel(channelName)
-      // Notifications changes & counter
-      .on(
-        "postgres_changes",
-        {
-          event: "INSERT",
-          schema: "public",
-          table: "notifications",
-          filter: `user_id=eq.${userId}`,
-        },
-        (payload) => {
-          const newRow = payload.new as { read_at?: string | null };
-          if (!newRow?.read_at) {
-            setUnreadCount((c) => c + 1);
-          }
-          triggerDebouncedRefresh();
-        }
-      )
-      .on(
-        "postgres_changes",
-        {
-          event: "UPDATE",
-          schema: "public",
-          table: "notifications",
-          filter: `user_id=eq.${userId}`,
-        },
-        (payload) => {
-          const oldRow = payload.old as { read_at?: string | null } | undefined;
-          const newRow = payload.new as { read_at?: string | null } | undefined;
-          const wasUnread = !oldRow?.read_at;
-          const isUnread = !newRow?.read_at;
-          if (wasUnread && !isUnread) {
-            setUnreadCount((count) => Math.max(0, count - 1));
-          } else if (!wasUnread && isUnread) {
-            setUnreadCount((count) => count + 1);
-          }
-          triggerDebouncedRefresh();
-        }
-      )
-      .on(
-        "postgres_changes",
-        {
-          event: "DELETE",
-          schema: "public",
-          table: "notifications",
-          filter: `user_id=eq.${userId}`,
-        },
-        (payload) => {
-          const oldRow = payload.old as { read_at?: string | null } | undefined;
-          if (!oldRow?.read_at) {
-            setUnreadCount((count) => Math.max(0, count - 1));
-          }
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Loans as Lender (Lent Portfolio)
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "loans",
-          filter: `lender_id=eq.${userId}`,
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Loans as Borrower (Borrowed Liabilities)
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "loans",
-          filter: `borrower_id=eq.${userId}`,
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Payments as Payer
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "payments",
-          filter: `payer_id=eq.${userId}`,
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Payments as Receiver
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "payments",
-          filter: `receiver_id=eq.${userId}`,
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Loan Requests as Sender
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "loan_requests",
-          filter: `sender_id=eq.${userId}`,
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Loan Requests as Receiver
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "loan_requests",
-          filter: `receiver_id=eq.${userId}`,
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Loan Offers (Counter-offers, acceptance status changes)
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "loan_offers",
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Private Self Tracks (corrected table name: self_track)
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "self_track",
-          filter: `user_id=eq.${userId}`,
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      // Live Sync: Private Self Track Payments
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "self_track_payments",
-        },
-        () => {
-          triggerDebouncedRefresh();
-        }
-      )
-      .subscribe((status, err) => {
-        if (status === "CHANNEL_ERROR") {
-          console.warn("[Realtime] Live sync channel error", err);
-        }
-      });
-
-    const handleVisibilityChange = () => {
+    const handleReconcile = () => {
       if (document.visibilityState === "visible") {
         triggerDebouncedRefresh();
       }
     };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleReconcile);
+    window.addEventListener("focus", handleReconcile);
 
     return () => {
       isCancelled = true;
       if (refreshTimeout) clearTimeout(refreshTimeout);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleReconcile);
+      window.removeEventListener("focus", handleReconcile);
       authListener?.subscription?.unsubscribe();
-      supabase.removeChannel(channel);
+      if (channel) {
+        void supabase.removeChannel(channel);
+      }
     };
   }, [userId, router]);
 

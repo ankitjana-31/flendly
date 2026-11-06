@@ -1,8 +1,9 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { SelfTrackType, SelfTrackStatus } from "@/lib/types/self-track";
+import { broadcastRealtimeSync } from "@/lib/realtime/broadcast";
 
 type SelfTrackInsert = {
   user_id: string;
@@ -68,7 +69,15 @@ export async function createSelfTrack(data: {
       };
     }
 
+    await broadcastRealtimeSync({
+      targetUserIds: userData.user.id,
+      event: "SELF_TRACK_CHANGED",
+      entity: "self_track",
+      entityId: (record as any)?.id,
+    });
+
     revalidatePath("/self-track");
+    revalidatePath("/dashboard");
     return { success: true, data: record };
   } catch (err) {
     console.error("createSelfTrack exception:", err);
@@ -121,7 +130,15 @@ export async function addSelfTrackPayment(data: {
       return { success: false, error: `Failed to record payment: ${error.message}` };
     }
 
+    await broadcastRealtimeSync({
+      targetUserIds: userData.user.id,
+      event: "SELF_TRACK_CHANGED",
+      entity: "self_track",
+      entityId: data.self_track_id,
+    });
+
     revalidatePath("/self-track");
+    revalidatePath("/dashboard");
     return { success: true, data: payment };
   } catch (err) {
     return { success: false, error: err instanceof Error ? err.message : "Failed to record payment." };
@@ -159,7 +176,15 @@ export async function updateSelfTrackStatus(recordId: string, status: SelfTrackS
       return { success: false, error: `Failed to update status: ${error.message}` };
     }
 
+    await broadcastRealtimeSync({
+      targetUserIds: userData.user.id,
+      event: "SELF_TRACK_CHANGED",
+      entity: "self_track",
+      entityId: recordId,
+    });
+
     revalidatePath("/self-track");
+    revalidatePath("/dashboard");
     return { success: true, data: updated };
   } catch (err) {
     return { success: false, error: err instanceof Error ? err.message : "Failed to update status." };
@@ -192,7 +217,15 @@ export async function deleteSelfTrack(recordId: string): Promise<SelfTrackAction
       return { success: false, error: `Failed to delete self track: ${error.message}` };
     }
 
+    await broadcastRealtimeSync({
+      targetUserIds: userData.user.id,
+      event: "SELF_TRACK_CHANGED",
+      entity: "self_track",
+      entityId: recordId,
+    });
+
     revalidatePath("/self-track");
+    revalidatePath("/dashboard");
     return { success: true };
   } catch (err) {
     return { success: false, error: err instanceof Error ? err.message : "Failed to delete record." };
@@ -225,7 +258,15 @@ export async function deleteSelfTrackPayment(paymentId: string, recordId: string
       return { success: false, error: `Failed to delete payment: ${error.message}` };
     }
 
+    await broadcastRealtimeSync({
+      targetUserIds: userData.user.id,
+      event: "SELF_TRACK_CHANGED",
+      entity: "self_track",
+      entityId: recordId,
+    });
+
     revalidatePath("/self-track");
+    revalidatePath("/dashboard");
     return { success: true };
   } catch (err) {
     return { success: false, error: err instanceof Error ? err.message : "Failed to delete payment." };

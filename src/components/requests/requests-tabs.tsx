@@ -18,6 +18,10 @@ export function RequestsTabs({ incomingCount, outgoingCount, activeTab: initialT
   const [activeTab, setActiveTab] = useState(initialTab);
 
   useEffect(() => {
+    setActiveTab(initialTab);
+  }, [initialTab]);
+
+  useEffect(() => {
     router.prefetch(`${pathname}?tab=incoming`);
     router.prefetch(`${pathname}?tab=outgoing`);
   }, [pathname, router]);

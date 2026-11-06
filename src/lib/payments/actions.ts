@@ -5,6 +5,7 @@ import { z } from "zod";
 
 import { createClient } from "@/lib/supabase/server";
 import { todayIso } from "@/lib/format";
+import { broadcastRealtimeSync } from "@/lib/realtime/broadcast";
 
 const paymentSchema = z.object({
   loanId: z.string().uuid(),
@@ -39,12 +40,17 @@ export async function recordPaymentAction(
   if (!user) return { error: "Authentication required." };
 
   // Fetch loan and existing pending payments to prevent duplicate payments exceeding remaining balance
-  const [{ data: ledgerRows }, { data: existingPayments }] = await Promise.all([
+  const [{ data: ledgerRows }, { data: existingPayments }, { data: loan }] = await Promise.all([
     supabase.rpc("get_loan_ledger", { p_loan_id: loanId }),
     supabase
       .from("payments")
       .select("amount, status")
       .eq("loan_id", loanId),
+    supabase
+      .from("loans")
+      .select("lender_id, borrower_id")
+      .eq("id", loanId)
+      .maybeSingle(),
   ]);
 
   const ledger = Array.isArray(ledgerRows) ? ledgerRows[0] : ledgerRows;
@@ -97,6 +103,16 @@ export async function recordPaymentAction(
     }
   }
 
+  // Real-time broadcast to both participants (lender and borrower)
+  if (loan) {
+    await broadcastRealtimeSync({
+      targetUserIds: [loan.lender_id, loan.borrower_id],
+      event: "PAYMENT_RECORDED",
+      entity: "payments",
+      entityId: loanId,
+    });
+  }
+
   revalidatePath(`/loans/${loanId}`);
   revalidatePath("/lent");
   revalidatePath("/borrowed");
@@ -106,9 +122,25 @@ export async function recordPaymentAction(
 
 export async function confirmPaymentAction(paymentId: string, loanId: string) {
   const supabase = await createClient();
+
+  const { data: loan } = await supabase
+    .from("loans")
+    .select("lender_id, borrower_id")
+    .eq("id", loanId)
+    .maybeSingle();
+
   const { error } = await supabase.rpc("confirm_payment", { p_payment_id: paymentId });
 
   if (error) return { error: error.message };
+
+  if (loan) {
+    await broadcastRealtimeSync({
+      targetUserIds: [loan.lender_id, loan.borrower_id],
+      event: "PAYMENT_CONFIRMED",
+      entity: "payments",
+      entityId: paymentId,
+    });
+  }
 
   revalidatePath(`/loans/${loanId}`);
   revalidatePath("/lent");
@@ -119,9 +151,25 @@ export async function confirmPaymentAction(paymentId: string, loanId: string) {
 
 export async function rejectPaymentAction(paymentId: string, loanId: string) {
   const supabase = await createClient();
+
+  const { data: loan } = await supabase
+    .from("loans")
+    .select("lender_id, borrower_id")
+    .eq("id", loanId)
+    .maybeSingle();
+
   const { error } = await supabase.rpc("reject_payment", { p_payment_id: paymentId });
 
   if (error) return { error: error.message };
+
+  if (loan) {
+    await broadcastRealtimeSync({
+      targetUserIds: [loan.lender_id, loan.borrower_id],
+      event: "PAYMENT_REJECTED",
+      entity: "payments",
+      entityId: paymentId,
+    });
+  }
 
   revalidatePath(`/loans/${loanId}`);
   revalidatePath("/lent");

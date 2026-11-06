@@ -65,18 +65,75 @@ export function NotificationsList({
   useEffect(() => {
     if (!userId) return;
     const supabase = createClient();
+    let isCancelled = false;
+    let channel: ReturnType<typeof supabase.channel> | null = null;
 
-    const ensureAuth = async () => {
+    const initSubscription = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        if (session?.access_token) {
+        if (session?.access_token && !isCancelled) {
           await supabase.realtime.setAuth(session.access_token);
         }
       } catch (err) {
         console.warn("[Realtime] Notifications list auth error", err);
       }
+
+      if (isCancelled) return;
+
+      const channelName = `live_notifications_feed:${userId}`;
+      const ch = supabase
+        .channel(channelName)
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${userId}`,
+          },
+          (payload) => {
+            const newNotif = payload.new as NotificationItem;
+            setNotifications((prev) => [newNotif, ...prev.filter((n) => n.id !== newNotif.id)]);
+          }
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "UPDATE",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${userId}`,
+          },
+          (payload) => {
+            const updated = payload.new as NotificationItem;
+            setNotifications((prev) => prev.map((n) => (n.id === updated.id ? updated : n)));
+          }
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "DELETE",
+            schema: "public",
+            table: "notifications",
+            filter: `user_id=eq.${userId}`,
+          },
+          (payload) => {
+            const deletedId = (payload.old as { id?: string })?.id;
+            if (deletedId) {
+              setNotifications((prev) => prev.filter((n) => n.id !== deletedId));
+            }
+          }
+        )
+        .subscribe((status, err) => {
+          if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+            console.warn("[Realtime] Notifications list channel error", status, err);
+          }
+        });
+
+      channel = ch;
     };
-    void ensureAuth();
+
+    void initSubscription();
 
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.access_token) {
@@ -84,59 +141,12 @@ export function NotificationsList({
       }
     });
 
-    const channelName = `live_notifications_feed:${userId}`;
-    const channel = supabase
-      .channel(channelName)
-      .on(
-        "postgres_changes",
-        {
-          event: "INSERT",
-          schema: "public",
-          table: "notifications",
-          filter: `user_id=eq.${userId}`,
-        },
-        (payload) => {
-          const newNotif = payload.new as NotificationItem;
-          setNotifications((prev) => [newNotif, ...prev.filter((n) => n.id !== newNotif.id)]);
-        }
-      )
-      .on(
-        "postgres_changes",
-        {
-          event: "UPDATE",
-          schema: "public",
-          table: "notifications",
-          filter: `user_id=eq.${userId}`,
-        },
-        (payload) => {
-          const updated = payload.new as NotificationItem;
-          setNotifications((prev) => prev.map((n) => (n.id === updated.id ? updated : n)));
-        }
-      )
-      .on(
-        "postgres_changes",
-        {
-          event: "DELETE",
-          schema: "public",
-          table: "notifications",
-          filter: `user_id=eq.${userId}`,
-        },
-        (payload) => {
-          const deletedId = (payload.old as { id?: string })?.id;
-          if (deletedId) {
-            setNotifications((prev) => prev.filter((n) => n.id !== deletedId));
-          }
-        }
-      )
-      .subscribe((status, err) => {
-        if (status === "CHANNEL_ERROR") {
-          console.warn("[Realtime] Notifications list channel error", err);
-        }
-      });
-
     return () => {
+      isCancelled = true;
       authListener?.subscription?.unsubscribe();
-      supabase.removeChannel(channel);
+      if (channel) {
+        void supabase.removeChannel(channel);
+      }
     };
   }, [userId]);
 
